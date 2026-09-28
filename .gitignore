@@ -1,0 +1,51 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Env:各 mode 的非密钥配置入库(.env / .env.<mode> / .env.example)。
+# 密钥/本地覆盖走 .env*.local(已被上面的 *.local 忽略,不入库)。
+
+# Tooling caches
+.pnpm-store/
+.tanstack/
+lefthook-local.yml
+
+# Git worktrees(隔离工作区,不入库)
+.worktrees/
+
+# Local-only Claude / Codex configs
+.claude/settings.local.json
+# 设计 demo 稿归档 ~/i/space/brainstorm,不入库
+.claude/design-demos/
+# AI 工具生成的 skill 快照(openspec 等)不入库;
+# .codex/agents/*.toml 是手写的 spec-agent 定义,入库共享,故不在此忽略
+.agents/
+.codex/skills/
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# mock 业务开发数据库(D-037)
+.mock/
+
+# TypeScript 增量构建产物(tsc -b)
+*.tsbuildinfo
+.superpowers/

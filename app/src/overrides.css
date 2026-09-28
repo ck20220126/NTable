@@ -1,0 +1,965 @@
+/* The package renders as an embeddable table component, without demo-page chrome. */
+body {
+  min-width: 760px;
+  min-height: 480px;
+  background: #fff;
+}
+
+.app-shell {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+  background: #fff;
+}
+
+.workspace {
+  grid-column: auto;
+  grid-row: auto;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+}
+
+.topbar,
+.sidebar,
+.workspace-titlebar {
+  display: none;
+}
+
+/* Feishu drags an empty translucent column mask; content never follows it. */
+.toolbar-left > .add-record,
+.toolbar-left > .toolbar-action {
+  height: 26px;
+  padding: 0 9px;
+  gap: 6px;
+  line-height: 20px;
+  align-items: center;
+}
+
+.table-toolbar .toolbar-left {
+  gap: 8px;
+}
+
+.panel-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+}
+.new-view-panel {
+  width: 280px;
+  padding: 16px;
+}
+.new-view-panel input {
+  font-size: 14px;
+  border-radius: 6px;
+}
+.ui-button.add-condition {
+  padding: 0 8px;
+  border-radius: 6px;
+}
+.ui-button.add-condition:hover:not(:disabled),
+.ui-button.text-button:hover:not(:disabled) {
+  background: rgba(31, 35, 41, 0.08);
+}
+.ui-button.condition-remove,
+.ui-button.header-action,
+.ui-button.tree-add,
+.ui-button.tree-toggle,
+.ui-button.visibility-toggle,
+.ui-button.view-menu-button,
+.search-box > .ui-button {
+  padding: 0;
+  min-width: 0;
+}
+.ui-button--icon.tree-toggle { width: 18px; }
+.ui-button--icon.tree-add { width: 20px; }
+.ui-button--icon.view-menu-button { width: 24px; }
+
+.ntable {
+  grid-template-rows: 42px 42px minmax(0, 1fr);
+}
+
+.ntable-table {
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) 31px;
+  min-width: 0;
+  min-height: 0;
+  height: 100%;
+}
+
+.toolbar-left > .add-record {
+  font-weight: 400;
+}
+
+.toolbar-left > .add-record > svg:first-child,
+.toolbar-left > .toolbar-action > svg:first-child {
+  width: 16px;
+  height: 16px;
+  flex: 0 0 16px;
+}
+
+.toolbar-left > .add-record > svg:first-child {
+  transform: scale(1.275);
+}
+
+.toolbar-action:not(.active),
+.toolbar-action:not(.active)[data-state="open"] {
+  background: transparent;
+  color: #646a73;
+}
+
+.toolbar-action.active,
+.toolbar-action.active[data-state="open"] {
+  background: rgba(250, 211, 85, 0.2);
+  color: #646a73;
+}
+
+.toolbar-action.active[data-tool="筛选"] {
+  background: rgba(20, 86, 240, 0.2);
+}
+
+.toolbar-action.active[data-tool="排序"] {
+  background: rgba(62, 195, 247, 0.2);
+}
+
+.toolbar-action:not(.active):hover,
+.toolbar-action:not(.active)[data-state="open"]:hover {
+  background: rgba(31, 35, 41, 0.08);
+}
+
+.toolbar-action.active:hover,
+.toolbar-action.active[data-tool]:hover {
+  background-image: linear-gradient(rgba(31, 35, 41, 0.08), rgba(31, 35, 41, 0.08));
+}
+
+.grid-head-cell { touch-action: none; }
+.grid-head-cell.dragging {
+  opacity: 1;
+  color: inherit;
+  background: #fff;
+  box-shadow: none;
+}
+.is-column-dragging, .is-column-dragging * { cursor: grabbing !important; }
+.is-column-dragging .grid-row:hover { background: white; }
+.is-column-dragging .tree-row-actions { opacity: 0; }
+.column-drag-layer {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  z-index: 20;
+  pointer-events: none;
+  overflow: hidden;
+}
+.column-drag-highlight, .column-drag-mask, .column-drop-indicator {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  pointer-events: none;
+}
+.column-drag-highlight { background: rgba(51, 112, 255, .12); }
+.column-drag-mask { background: rgba(31, 35, 41, .05); }
+.column-drop-indicator {
+  z-index: 1;
+  width: 2px;
+  transform: translateX(-1px);
+  background: #1456f0;
+}
+
+.grid-head-cell.resizing {
+  z-index: 18;
+  color: #1f2329;
+  background: #f7f8fa;
+  box-shadow: none;
+}
+
+.view-loading {
+  position: absolute;
+  inset: 36px 0 0;
+  z-index: 25;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 54px;
+  color: #646a73;
+  font-size: 12px;
+  background: rgba(255, 255, 255, .76);
+  backdrop-filter: blur(1px);
+}
+
+.view-loading-spinner {
+  width: 14px;
+  height: 14px;
+  margin: 1px 7px 0 0;
+  border: 2px solid #dbe5ff;
+  border-top-color: var(--blue);
+  border-radius: 50%;
+  animation: view-loading-spin .7s linear infinite;
+}
+
+@keyframes view-loading-spin { to { transform: rotate(360deg); } }
+
+.grid-head-cell.drop-target::before {
+  display: none;
+}
+
+.grid-head-cell.drop-target { background: #f3f6fb; }
+
+.resize-handle {
+  right: -4px;
+  width: 9px;
+  z-index: 12;
+}
+
+.resize-handle:hover::after,
+.grid-head-cell.resizing .resize-handle::after {
+  content: none;
+  position: absolute;
+  left: 4px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--blue);
+}
+
+.grid-cell {
+  transition: background-color .08s ease;
+}
+
+.grid-cell.resizing-column {
+  background: inherit;
+}
+
+.grid-scroll.is-column-resizing,
+.grid-scroll.is-column-resizing * { cursor: col-resize !important; }
+
+.grid-scroll.is-column-resizing::after,
+.grid-scroll.is-column-resize-hovered::after {
+  content: "";
+  position: absolute;
+  z-index: 25;
+  left: var(--resize-line-left);
+  top: var(--resize-line-top);
+  height: var(--resize-line-height);
+  width: 2px;
+  transform: translateX(-50%);
+  background: var(--blue);
+  pointer-events: none;
+}
+
+/* Hierarchical records and sub-specifications. */
+.grid-row.child-row {
+  background: #fff;
+}
+
+.grid-row.child-row:hover {
+  background: #f6f8fc;
+}
+
+.grid-header {
+  height: 36px;
+  grid-template-rows: minmax(0, 1fr);
+}
+
+.grid-head-cell,
+.header-check {
+  height: 100%;
+  font-size: 14px;
+}
+
+.grid-head-cell,
+.grid-cell,
+.row-check {
+  background: inherit;
+}
+
+.tree-cell {
+  position: relative;
+  padding-inline: 4px;
+  gap: 2px;
+}
+
+.tree-prefix {
+  position: relative;
+  flex: 0 0 auto;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.tree-connector {
+  position: absolute;
+  top: 0;
+  bottom: -1px;
+  width: 1px;
+  background: repeating-linear-gradient(to bottom, #dee2e8 0 1px, transparent 1px 3px);
+}
+
+.tree-connector.last-child {
+  bottom: 50%;
+}
+
+.tree-toggle {
+  position: relative;
+  z-index: 1;
+  width: 18px;
+  height: 22px;
+  padding: 0;
+  border: 0;
+  border-radius: 4px;
+  display: grid;
+  place-items: center;
+  color: #6b7280;
+  background: transparent;
+  cursor: pointer;
+}
+
+.tree-toggle:hover {
+  color: #1f2329;
+  background: #eef0f3;
+}
+
+.tree-value {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.tree-row-actions {
+  position: absolute;
+  right: 3px;
+  top: 6px;
+  height: 20px;
+  display: inline-flex;
+  align-items: center;
+  gap: 1px;
+  background: #fff;
+  box-shadow: -7px 0 7px #fff;
+  opacity: 0;
+}
+
+.grid-row:hover .tree-row-actions {
+  opacity: 1;
+}
+
+.tree-add,
+.tree-child-count {
+  height: 20px;
+  border: 0;
+  border-radius: 4px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #8f959e;
+  background: transparent;
+}
+
+.tree-add {
+  width: 20px;
+  padding: 0;
+  cursor: pointer;
+}
+
+.tree-child-count {
+  padding: 0 4px;
+  gap: 2px;
+  font-size: 11px;
+  pointer-events: none;
+}
+
+.tree-add:hover,
+.tree-child-count:hover {
+  color: #646a73;
+  background: #eef0f3;
+}
+
+/* Overlay-style scrollbars: native rails stay out of the layout and appear only
+   while the table is hovered or actively scrolling. */
+.auto-scroll-area {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.auto-scroll-area::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+.overlay-scrollbar {
+  position: absolute;
+  z-index: 30;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity .16s ease;
+}
+
+.scrollbars-visible .overlay-scrollbar {
+  opacity: 1;
+}
+
+.overlay-scrollbar span {
+  display: block;
+  pointer-events: auto;
+  background: rgba(99, 108, 122, .45);
+  border-radius: 999px;
+  cursor: grab;
+  transition: background .12s ease;
+}
+
+.overlay-scrollbar span:hover,
+.overlay-scrollbar span:active {
+  background: rgba(70, 81, 98, .68);
+}
+
+.overlay-scrollbar-vertical {
+  top: 4px;
+  right: 3px;
+  bottom: 9px;
+  width: 7px;
+}
+
+.overlay-scrollbar-vertical span {
+  width: 7px;
+  min-height: 28px;
+}
+
+.overlay-scrollbar-horizontal {
+  left: 4px;
+  right: 9px;
+  bottom: 3px;
+  height: 7px;
+}
+
+.overlay-scrollbar-horizontal span {
+  height: 7px;
+  min-width: 28px;
+}
+
+/* View-field drag ordering. */
+.field-option {
+  position: relative;
+}
+
+.field-option.dragging {
+  z-index: 2;
+  background: #edf3ff;
+  box-shadow: inset 0 0 0 1px #79a0ff, 0 5px 12px rgba(31, 35, 41, .12);
+}
+
+.field-option.drop-target::before {
+  content: "";
+  position: absolute;
+  left: 5px;
+  right: 5px;
+  top: -1px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--blue);
+}
+
+.field-grip { cursor: grab; }
+.field-option:active .field-grip { cursor: grabbing; }
+.disabled-grip { opacity: .35; }
+
+.field-option.hidden { color: #a4a9b0; background: transparent; }
+.field-option.hidden:hover { background: #f4f5f7; }
+.visibility-toggle {
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  border: 0;
+  border-radius: 4px;
+  display: grid;
+  place-items: center;
+  background: transparent;
+  color: #6f7782;
+  cursor: pointer;
+}
+
+.auto-scroll-shell {
+  position: relative;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.auto-scroll-shell > .auto-scroll-area {
+  width: 100%;
+  height: 100%;
+}
+.visibility-toggle:hover { background: #e8ebef; color: #245bdb; }
+.field-option > span { flex: 1; text-align: left; }
+
+/* Styled selector component used by filters and sorts. */
+.select-trigger {
+  height: 32px;
+  min-width: 0;
+  width: 100%;
+  border: 1px solid #d9dde4;
+  border-radius: 5px;
+  background: #fff;
+  padding: 0 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.select-trigger:hover { border-color: #b6bdc8; }
+
+.select-trigger.open,
+.select-trigger:focus-visible {
+  border-color: #5d83e8;
+  box-shadow: 0 0 0 2px #e0e8ff;
+  outline: 0;
+}
+
+.select-trigger span {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.select-menu {
+  z-index: 90;
+  width: var(--radix-popover-trigger-width);
+  min-width: 110px;
+  max-height: 260px;
+  overflow: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  background: #fff;
+  border: 1px solid #e0e3e8;
+  border-radius: 7px;
+  padding: 4px;
+  box-shadow: 0 8px 24px rgba(31, 35, 41, .16);
+  animation: panel-in .1s ease-out;
+}
+
+.select-menu::-webkit-scrollbar,
+.field-list::-webkit-scrollbar,
+.condition-list::-webkit-scrollbar,
+.view-tabs::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+.field-list,
+.condition-list,
+.view-tabs {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.select-option {
+  width: 100%;
+  height: 30px;
+  border: 0;
+  border-radius: 4px;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 8px;
+  font-size: 12px;
+  cursor: pointer;
+  text-align: left;
+}
+
+.select-option:hover { background: #f2f4f7; }
+.select-option.selected { color: #245bdb; background: #edf3ff; }
+
+.grid-head-cell.highlighted {
+  z-index: 13;
+  color: #1f2329;
+}
+
+.grid-head-cell {
+  align-items: center;
+  line-height: 1;
+}
+
+.grid-head-cell > svg {
+  flex: 0 0 auto;
+}
+
+.header-action {
+  width: 22px;
+  height: 22px;
+  margin-left: auto;
+  padding: 0;
+  flex: 0 0 22px;
+  border: 0;
+  border-radius: 4px;
+  display: grid;
+  place-items: center;
+  color: #646a73;
+  background: transparent;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.grid-head-cell {
+  padding-right: 1px;
+}
+
+.grid-head-cell:hover .header-action,
+.header-action:focus-visible,
+.header-action[aria-expanded="true"] {
+  opacity: 1;
+}
+
+.header-action:hover,
+.header-action:focus-visible {
+  color: #245bdb;
+  background: rgba(31, 35, 41, .08);
+  outline: 0;
+}
+
+.grid-cell.highlighted-column {
+  background: inherit;
+  box-shadow: none;
+}
+
+.view-tab-wrap {
+  display: flex;
+  align-items: stretch;
+  position: relative;
+  overflow: visible;
+}
+
+.view-tab-wrap.active {
+  background: #fff;
+  border-right: 1px solid #e2e5ea;
+}
+
+.view-tab-wrap.active .view-tab {
+  border-right-color: transparent;
+}
+
+.view-tab-wrap .view-tab {
+  border-right: 0;
+}
+
+.view-tab-wrap + .view-tab-wrap::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 1px;
+  height: 60%;
+  transform: translateY(-50%);
+  background: var(--line);
+  pointer-events: none;
+}
+
+.view-tab-wrap.active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background: var(--blue);
+  pointer-events: none;
+}
+
+/* Frozen columns share one continuous Feishu-style boundary. */
+.row-check.frozen-row-check,
+.grid-head-cell.frozen-column,
+.grid-cell.frozen-column {
+  position: sticky;
+}
+
+.row-check.frozen-row-check {
+  left: 0;
+  z-index: 8;
+}
+
+.header-check.frozen-row-check {
+  z-index: 18;
+}
+
+.grid-head-cell.frozen-column {
+  z-index: 17;
+}
+
+.grid-cell.frozen-column {
+  z-index: 6;
+}
+
+.selected-column-mask {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 19;
+  pointer-events: none;
+  background: rgba(51, 112, 255, .11);
+  animation: selected-column-mask-in .18s ease-out;
+}
+
+@keyframes selected-column-mask-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.grid-scroll:not(.is-freeze-dragging) .grid-head-cell.last-frozen,
+.grid-scroll:not(.is-freeze-dragging) .grid-cell.last-frozen {
+  border-right: 0;
+}
+
+.freeze-boundary-line {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 24;
+  width: 1px;
+  background: #9ca3af;
+  transform: translateX(-100%);
+  pointer-events: none;
+}
+
+.auto-scroll-shell:has(.is-freeze-boundary-hovered:not(.is-freeze-dragging)) .freeze-boundary-line {
+  width: 2px;
+}
+
+.auto-scroll-shell:has(.is-freeze-dragging) .freeze-boundary-line {
+  /* Use the real cell borders while dragging, including their row intersections. */
+  visibility: hidden;
+}
+
+.auto-scroll-shell:has(.is-column-resize-hovered, .is-column-resizing) .freeze-boundary-line {
+  opacity: 0;
+}
+
+.grid-row {
+  contain: layout;
+}
+
+.freeze-region-handle {
+  position: absolute;
+  z-index: 26;
+  width: 26px;
+  height: 39px;
+  opacity: 0;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  cursor: grab;
+}
+
+.freeze-region-handle.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.freeze-region-handle::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 7px;
+  height: 40px;
+  border-radius: 1px;
+  background: var(--blue);
+  opacity: 0;
+  transform: translate(-50%, -50%);
+}
+
+.freeze-region-handle::after {
+  content: "可拖拽改变冻结区域";
+  position: absolute;
+  top: 50%;
+  left: calc(50% + 12px);
+  width: max-content;
+  padding: 5px 8px;
+  border-radius: 5px;
+  color: #fff;
+  background: rgba(31, 35, 41, .92);
+  font-size: 12px;
+  line-height: 18px;
+  opacity: 0;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.freeze-region-handle.visible::before,
+.freeze-region-handle.visible::after,
+.is-freeze-dragging .freeze-region-handle::before {
+  opacity: 1;
+}
+
+.freeze-handle {
+  position: absolute;
+  top: 0;
+  right: -6px;
+  bottom: 0;
+  z-index: 22;
+  width: 11px;
+  cursor: col-resize;
+}
+
+.freeze-handle::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 5px;
+  width: 2px;
+  background: transparent;
+}
+
+.freeze-handle:hover::after,
+.is-freeze-dragging .freeze-handle::after {
+  background: var(--blue);
+}
+
+.grid-scroll.is-freeze-dragging,
+.grid-scroll.is-freeze-dragging * {
+  cursor: grabbing !important;
+}
+
+.grid-scroll.is-freeze-dragging::before {
+  content: "";
+  position: absolute;
+  z-index: 24;
+  top: var(--freeze-preview-top);
+  height: var(--freeze-preview-height);
+  left: var(--freeze-target-left);
+  width: 2px;
+  background: var(--blue);
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.grid-scroll.is-freeze-dragging::after {
+  content: "";
+  position: absolute;
+  z-index: 23;
+  top: var(--freeze-preview-top);
+  height: var(--freeze-preview-height);
+  left: var(--freeze-pointer-left);
+  width: 1px;
+  background: #9ca3af;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.auto-scroll-shell:has(.is-freeze-dragging) .freeze-region-handle::after {
+  opacity: 0;
+}
+
+.header-context-menu {
+  position: fixed;
+  z-index: 100;
+  min-width: 180px;
+  padding: 4px;
+  border: 1px solid #dee2e8;
+  border-radius: 7px;
+  background: #fff;
+  box-shadow: 0 8px 24px rgba(31, 35, 41, .15);
+}
+
+.header-context-menu button {
+  width: 100%;
+  height: 32px;
+  padding: 0 10px;
+  border: 0;
+  border-radius: 5px;
+  color: #1f2329;
+  background: transparent;
+  font-size: 12px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.header-context-menu button:hover { background: #f2f3f5; }
+.header-context-menu button:disabled { color: #bbbfc4; cursor: default; background: transparent; }
+.header-context-menu .menu-separator { display: block; height: 1px; margin: 4px; background: #eff0f1; }
+
+.view-tab-wrap .view-tab.active::after {
+  display: none;
+}
+
+.view-menu-button {
+  padding: 0;
+  line-height: 1;
+  width: 24px;
+  height: 24px;
+  flex: 0 0 24px;
+  align-self: center;
+  margin-left: 0;
+  margin-right: 4px;
+  border: 0;
+  border-radius: 4px;
+  background: transparent;
+  display: grid;
+  place-items: center;
+  color: #646a73;
+  cursor: pointer;
+}
+
+.view-menu-button > svg {
+  display: block;
+  margin: 0;
+}
+
+.view-tab-wrap.active .view-tab {
+  padding-right: 4px;
+}
+
+.view-menu-button:hover,
+.view-menu-button:focus-visible {
+  background: #eef0f3;
+  color: #245bdb;
+  outline: 0;
+}
+
+.view-actions-menu {
+  z-index: 70;
+  min-width: 128px;
+  padding: 4px;
+  border: 1px solid #e2e5ea;
+  border-radius: 7px;
+  background: #fff;
+  box-shadow: 0 8px 24px rgba(31, 35, 41, .16);
+}
+
+.view-action-item {
+  width: 100%;
+  height: 30px;
+  border: 0;
+  border-radius: 4px;
+  background: transparent;
+  padding: 0 9px;
+  text-align: left;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.view-action-item:hover { background: #f2f4f7; }
+.view-action-item.danger { color: #d14343; }
+.view-action-item:disabled { color: #a4a9b0; cursor: not-allowed; }
+
+@keyframes column-highlight {
+  0%, 100% {
+    background: #f7f8fa;
+    box-shadow: inset 0 0 0 0 transparent;
+  }
+  25%, 75% {
+    background: #dce8ff;
+    box-shadow: inset 0 0 0 2px #6f96ff;
+  }
+  50% {
+    background: #eef4ff;
+    box-shadow: inset 0 0 0 1px #9ab7ff;
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "steps": [],
+  "fieldDialogName": "字段配置",
+  "initialFilterTooltip": 0,
+  "view": {
+    "id": "all",
+    "name": "全部记录",
+    "deletable": false,
+    "visibleFieldIds": [
+      "name",
+      "quantity",
+      "status"
+    ],
+    "columnOrder": [
+      "name",
+      "quantity",
+      "status"
+    ],
+    "filters": [
+      {
+        "id": "3e988a6a-5095-410b-a09c-07b4635d958e",
+        "fieldId": "name",
+        "operator": "contains",
+        "value": "Beta"
+      }
+    ],
+    "sorts": [
+      {
+        "id": "a3f0549e-77ca-42f6-add8-440633f5e502",
+        "fieldId": "quantity",
+        "direction": "asc"
+      }
+    ],
+    "frozenFieldCount": 1
+  },
+  "opened": "beta",
+  "selected": 1,
+  "errors": []
+}

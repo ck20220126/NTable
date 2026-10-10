@@ -1,0 +1,5 @@
+{
+  "panel": false,
+  "scrollY": 62.5,
+  "state": "{\n  \"id\": \"all\",\n  \"name\": \"全部\",\n  \"visibleFieldIds\": [\n    \"name\"\n  ],\n  \"columnOrder\": [\n    \"name\",\n    \"quantity\"\n  ],\n  \"filters\": [\n    {\n      \"id\": \"987f55fc-7eb4-43e7-8546-ae6e49902a04\",\n      \"fieldId\": \"name\",\n      \"operator\": \"contains\",\n      \"value\": \"Beta\"\n    }\n  ],\n  \"sorts\": [\n    {\n      \"id\": \"b694295e-8934-4cb7-8a99-3e90d2cc817b\",\n      \"fieldId\": \"quantity\",\n      \"direction\": \"asc\"\n    }\n  ]\n}"
+}

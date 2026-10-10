@@ -1,0 +1,544 @@
+Window: "NTable Release Consumer", App: Safari.
+0 standard window NTable Release Consumer, ID: SafariWindow?IsSecure=false&UUID=A12D6AE3-84AD-45F6-B2CF-BB429B0AA564, Secondary Actions: Raise
+	1 split group
+		2 tab group
+			3 scroll area
+				4 HTML content Description: NTable Release Consumer, URL: 127.0.0.1:5188/
+					5 container
+						6 heading Release 包接入验收, Value: 1
+							7 text Release 包接入验收
+						8 text 宿主样式：18px / 正常页面滚动
+						9 button 超长视图名称
+						10 button 长名称视图列表
+						11 button 长视图列表
+						12 button 切换子记录来源
+						13 button 恢复视图
+						14 button 拒绝视图删除
+						15 button 移除 Alpha
+						16 button 首次加载
+						17 button 请求失败
+						18 button 空数据
+						19 button 恢复数据
+						20 button 后台刷新
+						21 button 500 行数据
+						22 button 5001 层记录
+						23 button 42 列完整数据
+						24 button 仅显示前 4 列
+						25 button 5461 条分支树
+						26 button 切换添加记录入口
+						27 button 聚焦添加记录
+						28 container 添加请求次数
+							29 text 0
+						30 button 切换窄容器
+						31 button 切换紧凑容器
+						32 button 切换多字段
+						33 button 开始键盘焦点轨迹
+						34 button 聚焦工具栏起点
+						35 button 读取键盘焦点轨迹
+						36 container 原生键盘焦点轨迹
+							37 text 未运行
+						38 container 原生键盘焦点事件
+						39 button 开始滚动条指针轨迹
+						40 button 开始列拖动轨迹
+						41 button 读取列拖动轨迹
+						42 container 列拖动轨迹
+							43 text {"summary":{"frames":0,"capture":true,"release":true,"maxAnchorError":null,"guides":0,"layerRemaining":false},"events":[{"type":"pointerdown","trusted":true,"x":600,"captured":false},{"type":"pointermove","trusted":true,"x":865,"captured":false},{"type":"gotpointercapture","trusted":true,"x":0,"captured":true},{"type":"pointerup","trusted":true,"x":865,"captured":true},{"type":"lostpointercapture","trusted":true,"x":0,"captured":false},{"type":"pointermove","trusted":true,"x":865,"captured":false}],"frames"
+						44 button 读取滚动条指针轨迹
+						45 container 滚动条指针轨迹
+							46 text 未运行
+						47 container 滚动条结束状态
+							48 text 未运行
+						49 button 释放滚动条捕获
+						50 button 模拟窗口失焦
+						51 button 卸载表格
+						52 button 数值排序边界
+						53 button 验证当前空态布局
+						54 button 验证当前末行布局
+						55 button 验证独立 Table 末行
+						56 button 验证聚焦末行缩放
+						57 button 验证聚焦中段缩放
+						58 button 验证聚焦末列宽度
+						59 button 验证聚焦中段宽度
+						60 button 验证窄容器冻结布局
+						61 button 验证工具栏布局
+						62 button 验证当前视图布局
+						63 button 验证视图焦点提示
+						64 button 开始视图输入轨迹
+						65 button 读取视图输入轨迹
+						66 button 验证滚动焦点提示
+						67 button 验证焦点提示取消
+						68 container 空态布局结果
+							69 text 未运行
+						70 text 重试次数： 0
+						71 button 运行浏览器性能测量
+						72 container 浏览器性能结果
+							73 text 未运行
+						74 container 浏览器性能摘要
+							75 text 未运行
+						76 button 测量当前数据连续滚动
+						77 button 测量滚动帧（不采样 DOM）
+						78 button 仅测量横向滚动
+						79 button 测量空闲帧基线
+						80 button 开始滚轮测量
+						81 button 开始纯帧滚轮测量
+						82 button 结束滚轮测量
+						83 container 连续滚动结果
+							84 text 未运行
+						85 container 程序滚动摘要
+							86 text 未测量
+						87 container 滚轮测量摘要
+							88 text 未测量
+						89 button 运行键盘事件回归
+						90 container 键盘回归结果
+							91 text 未运行
+						92 text 打开记录： 无 ；宿主表单提交： 0
+						93 button 切换非表单宿主
+						94 container 表格宿主类型
+							95 text form
+						96 toggle button 全部, Value: on
+						97 pop up button 全部菜单
+						98 pop up button 新建视图
+						99 pop up button 字段配置
+						100 pop up button 筛选
+						101 pop up button 排序
+						102 button 搜索
+						103 text 方向键浏览，Home 和 End 到行首行尾，Control 或 Command 加 Home 和 End 到表格首尾，PageUp 和 PageDown 翻页，空格选择，Shift 加上下键连续选择，Enter 打开记录，Escape 取消选择。首个数据列左右键展开或收起。表头 Enter 打开菜单，Alt 加左右键移动列，Shift 加左右键调整列宽。
+						104 table (settable) 记录表格
+							105 row (selectable)
+								106 cell (settable)
+									107 checkbox (settable, integer) 选择全部可见记录, Value: 0
+								108 cell (settable)
+									109 text 数量
+									110 button 数量列菜单
+									111 button 调整数量列宽
+								112 cell (settable)
+									113 text 名称
+									114 button 名称列菜单
+									115 button 调整名称列宽
+								116 cell (settable)
+									117 text 业务字段 34
+									118 button 业务字段 34列菜单
+									119 button 调整业务字段 34列宽
+								120 cell (settable)
+									121 text 业务字段 35
+									122 button 业务字段 35列菜单
+									123 button 调整业务字段 35列宽
+								124 cell (settable)
+									125 text 业务字段 36
+									126 button 业务字段 36列菜单
+									127 button 调整业务字段 36列宽
+								128 cell (settable)
+									129 text 业务字段 37
+									130 button 业务字段 37列菜单
+									131 button 调整业务字段 37列宽
+								132 cell (settable)
+									133 text 业务字段 38
+									134 button 业务字段 38列菜单
+									135 button 调整业务字段 38列宽
+								136 cell (settable)
+									137 text 业务字段 39
+									138 button 业务字段 39列菜单
+									139 button 调整业务字段 39列宽
+								140 cell (settable)
+									141 text 业务字段 40
+									142 button 业务字段 40列菜单
+									143 button 调整业务字段 40列宽
+							144 row (selectable)
+								145 cell (selectable, settable) 1
+								146 cell (selectable, settable) 0
+								147 cell (selectable, settable) 多列记录 0
+								148 cell (selectable, settable) 业务字段 34 / 记录 0
+								149 cell (selectable, settable) 业务字段 35 / 记录 0
+								150 cell (selectable, settable) 业务字段 36 / 记录 0
+								151 cell (selectable, settable) 业务字段 37 / 记录 0
+								152 cell (selectable, settable) 业务字段 38 / 记录 0
+								153 cell (selectable, settable) 业务字段 39 / 记录 0
+								154 cell (selectable, settable) 业务字段 40 / 记录 0
+							155 row (selectable)
+								156 cell (selectable, settable) 2
+								157 cell (selectable, settable) 1
+								158 cell (selectable, settable) 多列记录 1
+								159 cell (selectable, settable) 业务字段 34 / 记录 1
+								160 cell (selectable, settable) 业务字段 35 / 记录 1
+								161 cell (selectable, settable) 业务字段 36 / 记录 1
+								162 cell (selectable, settable) 业务字段 37 / 记录 1
+								163 cell (selectable, settable) 业务字段 38 / 记录 1
+								164 cell (selectable, settable) 业务字段 39 / 记录 1
+								165 cell (selectable, settable) 业务字段 40 / 记录 1
+							166 row (selectable)
+								167 cell (selectable, settable) 3
+								168 cell (selectable, settable) 2
+								169 cell (selectable, settable) 多列记录 2
+								170 cell (selectable, settable) 业务字段 34 / 记录 2
+								171 cell (selectable, settable) 业务字段 35 / 记录 2
+								172 cell (selectable, settable) 业务字段 36 / 记录 2
+								173 cell (selectable, settable) 业务字段 37 / 记录 2
+								174 cell (selectable, settable) 业务字段 38 / 记录 2
+								175 cell (selectable, settable) 业务字段 39 / 记录 2
+								176 cell (selectable, settable) 业务字段 40 / 记录 2
+							177 row (selectable)
+								178 cell (selectable, settable) 4
+								179 cell (selectable, settable) 3
+								180 cell (selectable, settable) 多列记录 3
+								181 cell (selectable, settable) 业务字段 34 / 记录 3
+								182 cell (selectable, settable) 业务字段 35 / 记录 3
+								183 cell (selectable, settable) 业务字段 36 / 记录 3
+								184 cell (selectable, settable) 业务字段 37 / 记录 3
+								185 cell (selectable, settable) 业务字段 38 / 记录 3
+								186 cell (selectable, settable) 业务字段 39 / 记录 3
+								187 cell (selectable, settable) 业务字段 40 / 记录 3
+							188 row (selectable)
+								189 cell (selectable, settable) 5
+								190 cell (selectable, settable) 4
+								191 cell (selectable, settable) 多列记录 4
+								192 cell (selectable, settable) 业务字段 34 / 记录 4
+								193 cell (selectable, settable) 业务字段 35 / 记录 4
+								194 cell (selectable, settable) 业务字段 36 / 记录 4
+								195 cell (selectable, settable) 业务字段 37 / 记录 4
+								196 cell (selectable, settable) 业务字段 38 / 记录 4
+								197 cell (selectable, settable) 业务字段 39 / 记录 4
+								198 cell (selectable, settable) 业务字段 40 / 记录 4
+							199 row (selectable)
+								200 cell (selectable, settable) 6
+								201 cell (selectable, settable) 5
+								202 cell (selectable, settable) 多列记录 5
+								203 cell (selectable, settable) 业务字段 34 / 记录 5
+								204 cell (selectable, settable) 业务字段 35 / 记录 5
+								205 cell (selectable, settable) 业务字段 36 / 记录 5
+								206 cell (selectable, settable) 业务字段 37 / 记录 5
+								207 cell (selectable, settable) 业务字段 38 / 记录 5
+								208 cell (selectable, settable) 业务字段 39 / 记录 5
+								209 cell (selectable, settable) 业务字段 40 / 记录 5
+							210 row (selectable)
+								211 cell (selectable, settable) 7
+								212 cell (selectable, settable) 6
+								213 cell (selectable, settable) 多列记录 6
+								214 cell (selectable, settable) 业务字段 34 / 记录 6
+								215 cell (selectable, settable) 业务字段 35 / 记录 6
+								216 cell (selectable, settable) 业务字段 36 / 记录 6
+								217 cell (selectable, settable) 业务字段 37 / 记录 6
+								218 cell (selectable, settable) 业务字段 38 / 记录 6
+								219 cell (selectable, settable) 业务字段 39 / 记录 6
+								220 cell (selectable, settable) 业务字段 40 / 记录 6
+							221 row (selectable)
+								222 cell (selectable, settable) 8
+								223 cell (selectable, settable) 7
+								224 cell (selectable, settable) 多列记录 7
+								225 cell (selectable, settable) 业务字段 34 / 记录 7
+								226 cell (selectable, settable) 业务字段 35 / 记录 7
+								227 cell (selectable, settable) 业务字段 36 / 记录 7
+								228 cell (selectable, settable) 业务字段 37 / 记录 7
+								229 cell (selectable, settable) 业务字段 38 / 记录 7
+								230 cell (selectable, settable) 业务字段 39 / 记录 7
+								231 cell (selectable, settable) 业务字段 40 / 记录 7
+							232 row (selectable)
+								233 cell (selectable, settable) 9
+								234 cell (selectable, settable) 8
+								235 cell (selectable, settable) 多列记录 8
+								236 cell (selectable, settable) 业务字段 34 / 记录 8
+								237 cell (selectable, settable) 业务字段 35 / 记录 8
+								238 cell (selectable, settable) 业务字段 36 / 记录 8
+								239 cell (selectable, settable) 业务字段 37 / 记录 8
+								240 cell (selectable, settable) 业务字段 38 / 记录 8
+								241 cell (selectable, settable) 业务字段 39 / 记录 8
+								242 cell (selectable, settable) 业务字段 40 / 记录 8
+							243 row (selectable)
+								244 cell (selectable, settable) 10
+								245 cell (selectable, settable) 9
+								246 cell (selectable, settable) 多列记录 9
+								247 cell (selectable, settable) 业务字段 34 / 记录 9
+								248 cell (selectable, settable) 业务字段 35 / 记录 9
+								249 cell (selectable, settable) 业务字段 36 / 记录 9
+								250 cell (selectable, settable) 业务字段 37 / 记录 9
+								251 cell (selectable, settable) 业务字段 38 / 记录 9
+								252 cell (selectable, settable) 业务字段 39 / 记录 9
+								253 cell (selectable, settable) 业务字段 40 / 记录 9
+							254 row (selectable)
+								255 cell (selectable, settable) 11
+								256 cell (selectable, settable) 10
+								257 cell (selectable, settable) 多列记录 10
+								258 cell (selectable, settable) 业务字段 34 / 记录 10
+								259 cell (selectable, settable) 业务字段 35 / 记录 10
+								260 cell (selectable, settable) 业务字段 36 / 记录 10
+								261 cell (selectable, settable) 业务字段 37 / 记录 10
+								262 cell (selectable, settable) 业务字段 38 / 记录 10
+								263 cell (selectable, settable) 业务字段 39 / 记录 10
+								264 cell (selectable, settable) 业务字段 40 / 记录 10
+							265 row (selectable)
+								266 cell (selectable, settable) 12
+								267 cell (selectable, settable) 11
+								268 cell (selectable, settable) 多列记录 11
+								269 cell (selectable, settable) 业务字段 34 / 记录 11
+								270 cell (selectable, settable) 业务字段 35 / 记录 11
+								271 cell (selectable, settable) 业务字段 36 / 记录 11
+								272 cell (selectable, settable) 业务字段 37 / 记录 11
+								273 cell (selectable, settable) 业务字段 38 / 记录 11
+								274 cell (selectable, settable) 业务字段 39 / 记录 11
+								275 cell (selectable, settable) 业务字段 40 / 记录 11
+						276 splitter 可拖拽改变冻结区域
+						277 container
+							278 text 2,000  条记录
+						279 container 视图状态
+							280 text {
+  "id": "all",
+  "name": "全部",
+  "visibleFieldIds": [
+    "name",
+    "quantity",
+    "wide-0",
+    "wide-1",
+    "wide-2",
+    "wide-3",
+    "wide-4",
+    "wide-5",
+    "wide-6",
+    "wide-7",
+    "wide-8",
+    "wide-9",
+    "wide-10",
+    "wide-11",
+    "wide-12",
+    "wide-13",
+    "wide-14",
+    "wide-15",
+    "wide-16",
+    "wide-17",
+    "wide-18",
+    "wide-19",
+    "wide-20",
+    "wide-21",
+    "wide-22",
+    "wide-23",
+    "wide-24",
+    "wide-25",
+    "wide-26",
+    "wide-27",
+    "wide-28",
+   
+						281 container 列序定位
+							282 text {"first":["quantity","name","wide-0","wide-1"],"nameIndex":1,"quantityIndex":0}
+						283 heading 第二个独立实例, Value: 2
+							284 text 第二个独立实例
+						285 toggle button 全部, Value: on
+						286 pop up button 新建视图
+						287 pop up button 字段配置
+						288 pop up button 筛选
+						289 pop up button 排序
+						290 button 搜索
+						291 text 方向键浏览，Home 和 End 到行首行尾，Control 或 Command 加 Home 和 End 到表格首尾，PageUp 和 PageDown 翻页，空格选择，Shift 加上下键连续选择，Enter 打开记录，Escape 取消选择。首个数据列左右键展开或收起。表头 Enter 打开菜单，Alt 加左右键移动列，Shift 加左右键调整列宽。
+						292 table (settable) 记录表格
+							293 row (selectable)
+								294 cell (settable)
+									295 checkbox (settable, integer) 选择全部可见记录, Value: 0
+								296 cell (settable)
+									297 text 名称
+									298 button 名称列菜单
+									299 button 调整名称列宽
+								300 cell (settable)
+									301 text 数量
+									302 button 数量列菜单
+									303 button 调整数量列宽
+							304 row (selectable)
+								305 cell (selectable, settable) 1
+								306 cell (selectable, settable) Second instance
+								307 cell (selectable, settable) 9
+						308 text 1  条记录
+						309 container 字段类型验收
+							310 heading 五种字段类型, Value: 2
+								311 text 五种字段类型
+							312 button 切换数值字段 schema
+							313 button 延迟切换数值字段 schema
+							314 button 延迟旋转列序
+							315 toggle button 字段类型, Value: on
+							316 pop up button 新建视图
+							317 pop up button 字段配置
+							318 pop up button 筛选
+							319 pop up button 排序
+							320 button 搜索
+							321 text 方向键浏览，Home 和 End 到行首行尾，Control 或 Command 加 Home 和 End 到表格首尾，PageUp 和 PageDown 翻页，空格选择，Shift 加上下键连续选择，Enter 打开记录，Escape 取消选择。首个数据列左右键展开或收起。表头 Enter 打开菜单，Alt 加左右键移动列，Shift 加左右键调整列宽。
+							322 table (settable) 记录表格
+								323 row (selectable)
+									324 cell (settable)
+										325 checkbox (settable, integer) 选择全部可见记录, Value: 0
+									326 cell (settable)
+										327 text 记录名称
+										328 button 记录名称列菜单
+										329 button 调整记录名称列宽
+									330 cell (settable)
+										331 text 数值
+										332 button 数值列菜单
+										333 button 调整数值列宽
+									334 cell (settable)
+										335 text 单选
+										336 button 单选列菜单
+										337 button 调整单选列宽
+									338 cell (settable)
+										339 text 多选
+										340 button 多选列菜单
+										341 button 调整多选列宽
+									342 cell (settable)
+										343 text 日期
+										344 button 日期列菜单
+										345 button 调整日期列宽
+								346 row (selectable)
+									347 cell (selectable, settable) 1
+									348 cell (selectable, settable) 标准值
+									349 cell (selectable, settable) 0
+									350 cell (selectable, settable) 待处理
+									351 cell (selectable, settable) 网页端
+移动端
+									352 cell (selectable, settable) 2026-10-08
+								353 row (selectable)
+									354 cell (selectable, settable) 2
+									355 cell (selectable, settable) 空值
+									356 cell (selectable, settable)
+									357 cell (selectable, settable) —
+									358 cell (selectable, settable)
+									359 cell (selectable, settable)
+								360 row (selectable)
+									361 cell (selectable, settable) 3
+									362 cell (selectable, settable) 未匹配选项
+									363 cell (selectable, settable) -1.25
+									364 cell (selectable, settable) —
+									365 cell (selectable, settable) 网页端
+legacy
+									366 cell (selectable, settable) 2026-10-07
+								367 row (selectable)
+									368 cell (selectable, settable) 4
+									369 cell (selectable, settable) 用于验证截断和完整值提示的长文本记录名称
+									370 cell (selectable, settable) 12.5
+									371 cell (selectable, settable) 已完成
+									372 cell (selectable, settable) 移动端
+									373 cell (selectable, settable) 2026-10-08T10:30:00+08:00
+							374 container
+								375 text 4  条记录
+							376 container 字段类型视图状态
+								377 text {
+  "id": "typed",
+  "name": "字段类型",
+  "visibleFieldIds": [
+    "name",
+    "amount",
+    "status",
+    "tags",
+    "day"
+  ],
+  "columnOrder": [
+    "name",
+    "amount",
+    "status",
+    "tags",
+    "day"
+  ],
+  "filters": [],
+  "sorts": []
+}
+						378 container 独立 Table 紧凑验收
+							379 heading 独立 Table 小容器, Value: 2
+								380 text 独立 Table 小容器
+							381 text 方向键浏览，Home 和 End 到行首行尾，Control 或 Command 加 Home 和 End 到表格首尾，PageUp 和 PageDown 翻页，空格选择，Shift 加上下键连续选择，Enter 打开记录，Escape 取消选择。首个数据列左右键展开或收起。表头 Enter 打开菜单，Alt 加左右键移动列，Shift 加左右键调整列宽。
+							382 container
+								383 text 更新失败： 连接失败
+							384 table (selectable, settable) 记录表格
+								385 row (selectable)
+									386 cell (settable)
+										387 checkbox (settable, integer) 选择全部可见记录, Value: 0
+									388 cell (settable)
+										389 text 名称
+										390 button 名称列菜单
+										391 button 调整名称列宽
+									392 cell (settable)
+										393 text 数量
+										394 button 数量列菜单
+										395 button 调整数量列宽
+								396 row (selectable, expanded) Secondary Actions: Collapse
+									397 cell (selectable, settable) 1
+									398 cell (selectable, settable) 收起子规格
+1 个子规格, Value: Alpha
+1
+									399 cell (selectable, settable) 0
+								400 row (selectable)
+									401 cell (selectable, settable)
+									402 cell (selectable, settable) Child
+									403 cell (selectable, settable) 2
+								404 row (selectable)
+									405 cell (selectable, settable) 2
+									406 cell (selectable, settable) Beta
+									407 cell (selectable, settable) 5
+								408 row (selectable)
+									409 cell (selectable, settable) 3
+									410 cell (selectable, settable) Gamma
+									411 cell (selectable, settable) 7
+							412 container
+								413 text 4  条记录
+						414 heading 输入事件验收, Value: 2
+							415 text 输入事件验收
+						416 container 搜索验收
+							417 pop up button 字段配置
+							418 pop up button 筛选
+							419 pop up button 排序
+							420 button 搜索
+							421 button 移除搜索回调
+							422 button 外部清空
+							423 button 卸载搜索
+							424 container 搜索提交记录
+								425 text []
+							426 button 运行输入事件回归
+							427 container 搜索回归结果
+								428 text 未运行
+						429 heading 视图输入事件验收, Value: 2
+							430 text 视图输入事件验收
+						431 container 视图输入验收
+							432 toggle button 全部, Value: on
+							433 pop up button 新建视图
+							434 button 运行视图输入回归
+							435 container 视图输入回归结果
+								436 text 未运行
+						437 container 原生滚轮基线
+							438 heading 原生滚轮基线, Value: 2
+								439 text 原生滚轮基线
+							440 button 开始基线滚轮测量
+							441 button 结束基线滚轮测量
+							442 container 原生滚动基线区域
+								443 text 仅原生滚动容器，无表格渲染或虚拟化回调
+				444 scroll bar (settable, float) 0.06198892
+	445 image WindowControlShadowView._shadowImageView
+	446 toolbar
+		447 container Secondary Actions: Move next, Remove from toolbar
+			448 button Description: show sidebar, Help: Show sidebar, ID: SidebarButton
+			449 menu button Description: Tab Group picker, ID: TabGroupPickerButton?TabGroup=
+		450 container BackForwardSegmentedControl
+			451 button Description: Go back, Help: Show the previous page, ID: BackButton
+			452 button (disabled) Description: Go forward, Help: Show the next page, ID: ForwardButton
+		453 button Description: 1Password, Secondary Actions: Move previous, Move next, Remove from toolbar
+		454 container Secondary Actions: Move previous, Move next, Remove from toolbar
+			455 button Page Menu, ID: AssistantButton
+			456 button Add page to Reading List, ID: OneStepBookmarkingButton
+			457 text field (settable) Description: smart search field, Value: 127.0.0.1:5188, ID: WEB_BROWSER_ADDRESS_AND_SEARCH_FIELD
+			458 button Translation Available, ID: TranslationButton
+			459 button Reload this page, ID: ReloadButton
+		460 button Description: Share, ID: ShareButton, Secondary Actions: Move previous, Move next, Remove from toolbar
+		461 button Description: New Tab, ID: NewTabButton, Secondary Actions: Move previous, Move next, Remove from toolbar
+		462 button Description: Tab Overview, ID: TabOverviewButton, Secondary Actions: Move previous, Remove from toolbar
+	463 tab group Description: Tab bar, 2 tabs, ID: TabBar?isSeparate=false
+		464 tab Start Page, Value: off, ID: TabBarTab?isPinned=false&isNarrow=false&isActive=false, Secondary Actions: close tab
+			465 image Description: favorite, ID: FaviconImageView
+			466 text Value: Start Page, ID: UnifiedTabBarButton._titleTextField
+		467 tab NTable Release Consumer, Help: To interact with the items in this button, press Control-Option-Shift-Down Arrow., Value: on, ID: TabBarTab?isPinned=false&isNarrow=false&isActive=true, Secondary Actions: close tab
+			468 image FaviconImageView
+			469 text Value: NTable Release Consumer, ID: UnifiedTabBarButton._titleTextField
+	470 close button
+	471 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	472 minimize button
+473 menu bar
+	474 Safari
+	475 File
+	476 Edit
+	477 View, ID: SafariViewMenu
+	478 History
+	479 Bookmarks, ID: SafariBookmarksMenu
+	480 Develop
+	481 Window, ID: SafariWindowMenu
+	482 Help, ID: SafariHelpMenu
+
+The focused UI element is 41 button 读取列拖动轨迹

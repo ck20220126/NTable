@@ -1,0 +1,10 @@
+{
+  "preview": {
+    "resizing": true,
+    "width": 340
+  },
+  "afterCancel": {
+    "resizing": false,
+    "width": 300
+  }
+}

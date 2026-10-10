@@ -1,0 +1,61 @@
+{
+  "archiveSha256Matches": true,
+  "archiveFileCount": 22,
+  "localMarkdownLinks": [
+    {
+      "document": "0.1.0-quickstart-20261008/README.md",
+      "target": "docs/delivery-readiness-2026-10-08.md",
+      "exists": true
+    },
+    {
+      "document": "0.1.0-quickstart-20261008/docs/component-integration.md",
+      "target": "../contract/types.ts",
+      "exists": true
+    },
+    {
+      "document": "0.1.0-quickstart-20261008/docs/component-integration.md",
+      "target": "./business-api-contract.md",
+      "exists": true
+    },
+    {
+      "document": "0.1.0-quickstart-20261008/docs/component-integration.md",
+      "target": "./business-api-contract.md",
+      "exists": true
+    },
+    {
+      "document": "0.1.0-quickstart-20261008/docs/business-api-contract.md",
+      "target": "../contract/types.ts",
+      "exists": true
+    },
+    {
+      "document": "0.1.0-quickstart-20261008/docs/business-api-contract.md",
+      "target": "../contract/filtering.ts",
+      "exists": true
+    },
+    {
+      "document": "0.1.0-quickstart-20261008/docs/business-api-contract.md",
+      "target": "./component-integration.md",
+      "exists": true
+    },
+    {
+      "document": "0.1.0-quickstart-20261008/docs/business-api-contract.md",
+      "target": "./component-integration.md",
+      "exists": true
+    }
+  ],
+  "packageFileCount": 28,
+  "packageMatchesCurrentApp": true,
+  "privatePackage": true,
+  "verifySourceLog": {
+    "round": 65,
+    "passed": 47,
+    "failed": 0,
+    "skipped": 0
+  },
+  "remaining": [
+    "supported environment decision",
+    "real IME / assistive technology / touch device evidence",
+    "permission to send runtime dependency names and versions to public npm registry for current audit"
+  ],
+  "completionProven": false
+}

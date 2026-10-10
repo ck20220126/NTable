@@ -1,0 +1,23 @@
+{
+  "start": {
+    "left": 0,
+    "scrollWidth": 6022,
+    "terminal": 0,
+    "width": 958
+  },
+  "end": {
+    "handleRight": 1357.5,
+    "handleWidth": 12,
+    "headerRight": 1358.5,
+    "left": 5064,
+    "scrollWidth": 6022,
+    "terminal": 1,
+    "width": 958
+  },
+  "resized": {
+    "headerWidth": 156,
+    "left": 5064,
+    "scrollWidth": 6038,
+    "width": 958
+  }
+}

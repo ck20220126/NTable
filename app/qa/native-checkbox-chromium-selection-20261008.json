@@ -1,0 +1,24 @@
+[
+  {
+    "stage": "pointer",
+    "checked": true,
+    "header": "mixed"
+  },
+  {
+    "stage": "doubleClick",
+    "state": "  - status: 打开记录：无；宿主表单提交：0\n  - generic: 已选择 1 条"
+  },
+  {
+    "stage": "inputEnter",
+    "state": "  - status: 打开记录：无；宿主表单提交：0\n  - generic: 已选择 1 条"
+  },
+  {
+    "stage": "inputSpace",
+    "checked": false
+  },
+  {
+    "stage": "headerAll",
+    "state": "  - status: 打开记录：无；宿主表单提交：0\n  - generic: 已选择 4 条",
+    "header": "true"
+  }
+]

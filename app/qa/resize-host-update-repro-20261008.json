@@ -1,0 +1,13 @@
+{
+  "preview": {
+    "resizing": "记录名称",
+    "width": 300
+  },
+  "hostDuring": {
+    "resizing": "记录名称",
+    "view": "{\n  \"id\": \"all\",\n  \"name\": \"全部记录\",\n  \"deletable\": false,\n  \"visibleFieldIds\": [\n    \"name\",\n    \"quantity\",\n    \"status\"\n  ],\n  \"columnOrder\": [\n    \"name\",\n    \"quantity\",\n    \"status\"\n  ],\n  \"filters\": [],\n  \"sorts\": [],\n  \"frozenFieldCount\": 1,\n  \"columnWidths\": {\n    \"name\": 420\n  }\n}",
+    "width": 420
+  },
+  "afterRelease": "{\n  \"id\": \"all\",\n  \"name\": \"全部记录\",\n  \"deletable\": false,\n  \"visibleFieldIds\": [\n    \"name\",\n    \"quantity\",\n    \"status\"\n  ],\n  \"columnOrder\": [\n    \"name\",\n    \"quantity\",\n    \"status\"\n  ],\n  \"filters\": [],\n  \"sorts\": [],\n  \"frozenFieldCount\": 1,\n  \"columnWidths\": {\n    \"name\": 310\n  }\n}",
+  "callbacks": "[\n  {\n    \"id\": \"all\",\n    \"patch\": {\n      \"columnWidths\": {\n        \"name\": 310\n      }\n    }\n  }\n]"
+}

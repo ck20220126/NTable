@@ -1,0 +1,44 @@
+{
+  "rows": 25000,
+  "fields": 2,
+  "visibility": "visible",
+  "supportsLongTasks": true,
+  "results": [
+    {
+      "name": "装载 25,000 行",
+      "updateToTwoFramesMs": 37.5,
+      "totalRows": 25000,
+      "mountedRows": 20,
+      "activeMounted": true,
+      "viewportHeight": 240,
+      "longTasks": []
+    },
+    {
+      "name": "数量倒序",
+      "updateToTwoFramesMs": 50.1,
+      "totalRows": 25000,
+      "mountedRows": 21,
+      "activeMounted": true,
+      "viewportHeight": 240,
+      "longTasks": []
+    },
+    {
+      "name": "数量筛选为 24999",
+      "updateToTwoFramesMs": 49.9,
+      "totalRows": 1,
+      "mountedRows": 1,
+      "activeMounted": true,
+      "viewportHeight": 240,
+      "longTasks": []
+    },
+    {
+      "name": "清空筛选和排序",
+      "updateToTwoFramesMs": 49.1,
+      "totalRows": 25000,
+      "mountedRows": 21,
+      "activeMounted": true,
+      "viewportHeight": 240,
+      "longTasks": []
+    }
+  ]
+}

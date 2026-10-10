@@ -1,0 +1,494 @@
+[
+  {
+    "mode": "resize",
+    "context": "switch",
+    "preview": {
+      "callbacks": [],
+      "dragging": false,
+      "freezeDragging": false,
+      "resizing": "记录名称",
+      "view": {
+        "columnOrder": [
+          "name",
+          "quantity",
+          "status"
+        ],
+        "deletable": false,
+        "filters": [],
+        "frozenFieldCount": 1,
+        "id": "all",
+        "name": "全部记录",
+        "sorts": [],
+        "visibleFieldIds": [
+          "name",
+          "quantity",
+          "status"
+        ]
+      },
+      "width": 300
+    },
+    "afterHost": {
+      "callbacks": [],
+      "dragging": false,
+      "freezeDragging": false,
+      "resizing": null,
+      "view": {
+        "columnOrder": [
+          "name",
+          "quantity",
+          "status"
+        ],
+        "columnWidths": {
+          "name": 360
+        },
+        "deletable": false,
+        "filters": [],
+        "frozenFieldCount": 1,
+        "id": "host-alternate",
+        "name": "宿主替换视图",
+        "sorts": [],
+        "visibleFieldIds": [
+          "name",
+          "quantity",
+          "status"
+        ]
+      },
+      "width": 360
+    },
+    "released": {
+      "callbacks": [],
+      "dragging": false,
+      "freezeDragging": false,
+      "resizing": null,
+      "view": {
+        "columnOrder": [
+          "name",
+          "quantity",
+          "status"
+        ],
+        "columnWidths": {
+          "name": 360
+        },
+        "deletable": false,
+        "filters": [],
+        "frozenFieldCount": 1,
+        "id": "host-alternate",
+        "name": "宿主替换视图",
+        "sorts": [],
+        "visibleFieldIds": [
+          "name",
+          "quantity",
+          "status"
+        ]
+      },
+      "width": 360
+    },
+    "tableCount": 1,
+    "capture": "[\n  {\n    \"type\": \"got\",\n    \"pointerId\": 1,\n    \"trusted\": true\n  },\n  {\n    \"type\": \"lost\",\n    \"pointerId\": 1,\n    \"trusted\": true\n  }\n]"
+  },
+  {
+    "mode": "freeze",
+    "context": "switch",
+    "preview": {
+      "callbacks": [],
+      "dragging": false,
+      "freezeDragging": true,
+      "resizing": null,
+      "view": {
+        "columnOrder": [
+          "name",
+          "quantity",
+          "status"
+        ],
+        "deletable": false,
+        "filters": [],
+        "frozenFieldCount": 1,
+        "id": "all",
+        "name": "全部记录",
+        "sorts": [],
+        "visibleFieldIds": [
+          "name",
+          "quantity",
+          "status"
+        ]
+      },
+      "width": 260
+    },
+    "afterHost": {
+      "callbacks": [],
+      "dragging": false,
+      "freezeDragging": false,
+      "resizing": null,
+      "view": {
+        "columnOrder": [
+          "name",
+          "quantity",
+          "status"
+        ],
+        "columnWidths": {
+          "name": 360
+        },
+        "deletable": false,
+        "filters": [],
+        "frozenFieldCount": 1,
+        "id": "host-alternate",
+        "name": "宿主替换视图",
+        "sorts": [],
+        "visibleFieldIds": [
+          "name",
+          "quantity",
+          "status"
+        ]
+      },
+      "width": 360
+    },
+    "released": {
+      "callbacks": [],
+      "dragging": false,
+      "freezeDragging": false,
+      "resizing": null,
+      "view": {
+        "columnOrder": [
+          "name",
+          "quantity",
+          "status"
+        ],
+        "columnWidths": {
+          "name": 360
+        },
+        "deletable": false,
+        "filters": [],
+        "frozenFieldCount": 1,
+        "id": "host-alternate",
+        "name": "宿主替换视图",
+        "sorts": [],
+        "visibleFieldIds": [
+          "name",
+          "quantity",
+          "status"
+        ]
+      },
+      "width": 360
+    },
+    "tableCount": 1,
+    "capture": "[]"
+  },
+  {
+    "mode": "column",
+    "context": "switch",
+    "preview": {
+      "callbacks": [],
+      "dragging": true,
+      "freezeDragging": false,
+      "resizing": null,
+      "view": {
+        "columnOrder": [
+          "name",
+          "quantity",
+          "status"
+        ],
+        "deletable": false,
+        "filters": [],
+        "frozenFieldCount": 1,
+        "id": "all",
+        "name": "全部记录",
+        "sorts": [],
+        "visibleFieldIds": [
+          "name",
+          "quantity",
+          "status"
+        ]
+      },
+      "width": 260
+    },
+    "afterHost": {
+      "callbacks": [],
+      "dragging": false,
+      "freezeDragging": false,
+      "resizing": null,
+      "view": {
+        "columnOrder": [
+          "name",
+          "quantity",
+          "status"
+        ],
+        "columnWidths": {
+          "name": 360
+        },
+        "deletable": false,
+        "filters": [],
+        "frozenFieldCount": 1,
+        "id": "host-alternate",
+        "name": "宿主替换视图",
+        "sorts": [],
+        "visibleFieldIds": [
+          "name",
+          "quantity",
+          "status"
+        ]
+      },
+      "width": 360
+    },
+    "released": {
+      "callbacks": [],
+      "dragging": false,
+      "freezeDragging": false,
+      "resizing": null,
+      "view": {
+        "columnOrder": [
+          "name",
+          "quantity",
+          "status"
+        ],
+        "columnWidths": {
+          "name": 360
+        },
+        "deletable": false,
+        "filters": [],
+        "frozenFieldCount": 1,
+        "id": "host-alternate",
+        "name": "宿主替换视图",
+        "sorts": [],
+        "visibleFieldIds": [
+          "name",
+          "quantity",
+          "status"
+        ]
+      },
+      "width": 360
+    },
+    "tableCount": 1,
+    "capture": "[\n  {\n    \"type\": \"got\",\n    \"pointerId\": 1,\n    \"trusted\": true\n  },\n  {\n    \"type\": \"lost\",\n    \"pointerId\": 1,\n    \"trusted\": true\n  }\n]"
+  },
+  {
+    "mode": "resize",
+    "context": "unmount",
+    "preview": {
+      "callbacks": [],
+      "dragging": false,
+      "freezeDragging": false,
+      "resizing": "记录名称",
+      "view": {
+        "columnOrder": [
+          "name",
+          "quantity",
+          "status"
+        ],
+        "deletable": false,
+        "filters": [],
+        "frozenFieldCount": 1,
+        "id": "all",
+        "name": "全部记录",
+        "sorts": [],
+        "visibleFieldIds": [
+          "name",
+          "quantity",
+          "status"
+        ]
+      },
+      "width": 300
+    },
+    "afterHost": {
+      "callbacks": [],
+      "dragging": false,
+      "resizing": null,
+      "view": {
+        "columnOrder": [
+          "name",
+          "quantity",
+          "status"
+        ],
+        "deletable": false,
+        "filters": [],
+        "frozenFieldCount": 1,
+        "id": "all",
+        "name": "全部记录",
+        "sorts": [],
+        "visibleFieldIds": [
+          "name",
+          "quantity",
+          "status"
+        ]
+      }
+    },
+    "released": {
+      "callbacks": [],
+      "dragging": false,
+      "resizing": null,
+      "view": {
+        "columnOrder": [
+          "name",
+          "quantity",
+          "status"
+        ],
+        "deletable": false,
+        "filters": [],
+        "frozenFieldCount": 1,
+        "id": "all",
+        "name": "全部记录",
+        "sorts": [],
+        "visibleFieldIds": [
+          "name",
+          "quantity",
+          "status"
+        ]
+      }
+    },
+    "tableCount": 0,
+    "capture": "[\n  {\n    \"type\": \"got\",\n    \"pointerId\": 1,\n    \"trusted\": true\n  }\n]"
+  },
+  {
+    "mode": "freeze",
+    "context": "unmount",
+    "preview": {
+      "callbacks": [],
+      "dragging": false,
+      "freezeDragging": true,
+      "resizing": null,
+      "view": {
+        "columnOrder": [
+          "name",
+          "quantity",
+          "status"
+        ],
+        "deletable": false,
+        "filters": [],
+        "frozenFieldCount": 1,
+        "id": "all",
+        "name": "全部记录",
+        "sorts": [],
+        "visibleFieldIds": [
+          "name",
+          "quantity",
+          "status"
+        ]
+      },
+      "width": 260
+    },
+    "afterHost": {
+      "callbacks": [],
+      "dragging": false,
+      "resizing": null,
+      "view": {
+        "columnOrder": [
+          "name",
+          "quantity",
+          "status"
+        ],
+        "deletable": false,
+        "filters": [],
+        "frozenFieldCount": 1,
+        "id": "all",
+        "name": "全部记录",
+        "sorts": [],
+        "visibleFieldIds": [
+          "name",
+          "quantity",
+          "status"
+        ]
+      }
+    },
+    "released": {
+      "callbacks": [],
+      "dragging": false,
+      "resizing": null,
+      "view": {
+        "columnOrder": [
+          "name",
+          "quantity",
+          "status"
+        ],
+        "deletable": false,
+        "filters": [],
+        "frozenFieldCount": 1,
+        "id": "all",
+        "name": "全部记录",
+        "sorts": [],
+        "visibleFieldIds": [
+          "name",
+          "quantity",
+          "status"
+        ]
+      }
+    },
+    "tableCount": 0,
+    "capture": "[]"
+  },
+  {
+    "mode": "column",
+    "context": "unmount",
+    "preview": {
+      "callbacks": [],
+      "dragging": true,
+      "freezeDragging": false,
+      "resizing": null,
+      "view": {
+        "columnOrder": [
+          "name",
+          "quantity",
+          "status"
+        ],
+        "deletable": false,
+        "filters": [],
+        "frozenFieldCount": 1,
+        "id": "all",
+        "name": "全部记录",
+        "sorts": [],
+        "visibleFieldIds": [
+          "name",
+          "quantity",
+          "status"
+        ]
+      },
+      "width": 260
+    },
+    "afterHost": {
+      "callbacks": [],
+      "dragging": false,
+      "resizing": null,
+      "view": {
+        "columnOrder": [
+          "name",
+          "quantity",
+          "status"
+        ],
+        "deletable": false,
+        "filters": [],
+        "frozenFieldCount": 1,
+        "id": "all",
+        "name": "全部记录",
+        "sorts": [],
+        "visibleFieldIds": [
+          "name",
+          "quantity",
+          "status"
+        ]
+      }
+    },
+    "released": {
+      "callbacks": [],
+      "dragging": false,
+      "resizing": null,
+      "view": {
+        "columnOrder": [
+          "name",
+          "quantity",
+          "status"
+        ],
+        "deletable": false,
+        "filters": [],
+        "frozenFieldCount": 1,
+        "id": "all",
+        "name": "全部记录",
+        "sorts": [],
+        "visibleFieldIds": [
+          "name",
+          "quantity",
+          "status"
+        ]
+      }
+    },
+    "tableCount": 0,
+    "capture": "[\n  {\n    \"type\": \"got\",\n    \"pointerId\": 1,\n    \"trusted\": true\n  }\n]"
+  }
+]

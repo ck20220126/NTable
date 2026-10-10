@@ -1,0 +1,71 @@
+{
+  "trace": {
+    "summary": {
+      "frames": 1,
+      "capture": true,
+      "release": true,
+      "maxAnchorError": 0,
+      "guides": 1,
+      "layerRemaining": false
+    },
+    "events": [
+      {
+        "type": "pointerdown",
+        "trusted": true,
+        "x": 522.5,
+        "captured": false
+      },
+      {
+        "type": "pointermove",
+        "trusted": true,
+        "x": 792.5,
+        "captured": false
+      },
+      {
+        "type": "gotpointercapture",
+        "trusted": true,
+        "x": 792.5,
+        "captured": true
+      },
+      {
+        "type": "lostpointercapture",
+        "trusted": true,
+        "x": 792.5,
+        "captured": false
+      },
+      {
+        "type": "pointerup",
+        "trusted": true,
+        "x": 792.5,
+        "captured": false
+      },
+      {
+        "type": "pointermove",
+        "trusted": true,
+        "x": 791,
+        "captured": false
+      },
+      {
+        "type": "pointerdown",
+        "trusted": true,
+        "x": 791,
+        "captured": false
+      },
+      {
+        "type": "pointerup",
+        "trusted": true,
+        "x": 791,
+        "captured": false
+      }
+    ],
+    "frames": [
+      {
+        "x": 792.5,
+        "maskLeft": 712.5,
+        "anchorError": 0,
+        "guideLeft": 821.5
+      }
+    ]
+  },
+  "order": "{\"first\":[\"name\",\"quantity\",\"wide-0\",\"wide-1\"],\"nameIndex\":0,\"quantityIndex\":1}"
+}

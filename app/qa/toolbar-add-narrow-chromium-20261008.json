@@ -1,0 +1,1 @@
+{ "width": 320, "actionScrollWidth": 357, "actionViewport": 118, "searchWidth": 111, "checks": [ "表格布局没有横向溢出", " 添加记录聚焦后可见", "字段配置聚焦后可见", "筛选聚焦后可见", "排序聚焦后可见", "搜索输入与关闭按钮完整可见" ] }

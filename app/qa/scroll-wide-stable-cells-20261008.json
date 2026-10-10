@@ -1,0 +1,33 @@
+{
+  "kind": "programmatic-scroll",
+  "totalRows": 2000,
+  "columns": 42,
+  "sampleCount": 262,
+  "axisSamples": {
+    "vertical": 240,
+    "horizontal": 22
+  },
+  "axisP95Ms": {
+    "vertical": 17.7,
+    "horizontal": 17.6
+  },
+  "viewport": {
+    "width": 1774,
+    "height": 1228,
+    "dpr": 2
+  },
+  "durationMs": 4687,
+  "p50FrameGapMs": 16.7,
+  "p95FrameGapMs": 17.7,
+  "maxFrameGapMs": 83.3,
+  "framesOver50ms": 1,
+  "inspectDom": true,
+  "maxMountedRows": 34,
+  "maxMountedCells": 272,
+  "coverageMisses": 0,
+  "horizontalCoverageMisses": 0,
+  "horizontalGaps": [],
+  "longTasks": [],
+  "finalScrollTop": 0,
+  "finalScrollLeft": 0
+}

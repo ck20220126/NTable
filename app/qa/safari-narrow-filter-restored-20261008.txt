@@ -1,0 +1,158 @@
+Window: "NTable 干净安装验收", App: Safari.
+0 standard window NTable 干净安装验收, ID: SafariWindow?IsSecure=false&UUID=C16069A4-3699-4E36-A29C-52B1EE8B2000, Secondary Actions: Raise
+	1 split group
+		2 tab group
+			3 scroll area
+				4 HTML content Description: NTable 干净安装验收, URL: 127.0.0.1:5189/
+					5 container
+						6 heading NTable 干净安装验收, Value: 1
+							7 text NTable 干净安装验收
+						8 text 实际 tarball 与独立安装的 React、依赖共同运行。
+						9 button 模拟请求失败
+						10 button 延迟更新宿主列宽
+						11 button 延迟重建等价视图
+						12 button 隐藏状态字段
+						13 button 延迟更新隐藏列宽
+						14 button 延迟切换宿主视图
+						15 button 延迟卸载表格
+						16 container 宿主更新状态
+							17 text 未安排
+						18 text 记录打开：
+						19 container 记录打开结果
+							20 text 未打开
+						21 text ；重试次数：
+						22 container 重试次数
+							23 text 0
+						24 container 公共导出
+							25 text {"NTable":true,"Table":true,"TableToolbar":true,"ViewBar":true}
+						26 container 验收视口
+							27 text {"width":574,"height":772,"dpr":1}
+						28 container 干净安装表格
+							29 toggle button 全部记录, Value: on
+							30 pop up button 新建视图
+							31 pop up button 字段配置
+							32 pop up button 筛选
+							33 pop up button 排序
+							34 button 搜索
+							35 text 方向键浏览，Home 和 End 到行首行尾，Control 或 Command 加 Home 和 End 到表格首尾，PageUp 和 PageDown 翻页，空格选择，Shift 加上下键连续选择，Enter 打开记录，Escape 取消选择。首个数据列左右键展开或收起。表头 Enter 打开菜单，Alt 加左右键移动列，Shift 加左右键调整列宽。
+							36 table (selectable, settable) 记录表格
+								37 row (selectable)
+									38 cell (settable)
+										39 checkbox (settable, integer) 选择全部可见记录, Value: 0
+									40 cell (settable)
+										41 text 记录名称
+										42 button 记录名称列菜单
+										43 button 调整记录名称列宽
+									44 cell (settable)
+										45 text 数量
+										46 button 数量列菜单
+										47 button 调整数量列宽
+									48 cell (settable)
+										49 text 状态
+										50 button 状态列菜单
+										51 button 调整状态列宽
+								52 row (selectable, expanded) Secondary Actions: Collapse
+									53 cell (selectable, settable) 1
+									54 cell (selectable, settable) 收起子规格
+1 个子规格, Value: Alpha
+1
+									55 cell (selectable, settable) 0
+									56 cell (selectable, settable) 待处理
+								57 row (selectable)
+									58 cell (selectable, settable)
+									59 cell (selectable, settable) Child
+									60 cell (selectable, settable) 2
+									61 cell (selectable, settable) 已完成
+								62 row (selectable)
+									63 cell (selectable, settable) 2
+									64 cell (selectable, settable) Beta
+									65 cell (selectable, settable) 5
+									66 cell (selectable, settable) 已完成
+							67 splitter 可拖拽改变冻结区域
+							68 container
+								69 text 3  条记录
+						70 container 当前视图
+							71 text {
+  "id": "all",
+  "name": "全部记录",
+  "deletable": false,
+  "visibleFieldIds": [
+    "name",
+    "quantity",
+    "status"
+  ],
+  "columnOrder": [
+    "name",
+    "quantity",
+    "status"
+  ],
+  "filters": [],
+  "sorts": [],
+  "frozenFieldCount": 1
+}
+						72 container 视图更新回调
+							73 text [
+  {
+    "id": "all",
+    "patch": {
+      "filters": [
+        {
+          "id": "d9a49c67-f283-4c48-be02-ce79f9f18221",
+          "fieldId": "name",
+          "operator": "contains",
+          "value": ""
+        }
+      ]
+    }
+  },
+  {
+    "id": "all",
+    "patch": {
+      "filters": [
+        {
+          "id": "d9a49c67-f283-4c48-be02-ce79f9f18221",
+          "fieldId": "name",
+          "operator": "contains",
+          "value": "B"
+        }
+      ]
+    }
+  },
+  {
+    "id": "all",
+    "patch": {
+   
+						74 container 指针捕获事件
+							75 text []
+					76 text 1Password menu is available. Press down arrow to select.
+				77 scroll bar (settable, float) 0
+	78 image WindowControlShadowView._shadowImageView
+	79 toolbar
+		80 container Secondary Actions: Move next, Remove from toolbar
+			81 button Description: show sidebar, Help: Show sidebar, ID: SidebarButton
+			82 menu button Description: Tab Group picker, ID: TabGroupPickerButton?TabGroup=
+		83 container BackForwardSegmentedControl
+			84 button (disabled) Description: Go back, Help: Show the previous page, ID: BackButton
+			85 button (disabled) Description: Go forward, Help: Show the next page, ID: ForwardButton
+		86 container Secondary Actions: Move previous, Move next, Remove from toolbar
+			87 button Page Menu, ID: AssistantButton
+			88 button Add page to Reading List, ID: OneStepBookmarkingButton
+			89 text field (settable) Description: smart search field, Value: 127.0.0.1:5189, ID: WEB_BROWSER_ADDRESS_AND_SEARCH_FIELD
+			90 button Translation Available, ID: TranslationButton
+			91 button Reload this page, ID: ReloadButton
+		92 pop up button more toolbar items
+	93 close button
+	94 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	95 minimize button
+96 menu bar
+	97 Safari
+	98 File
+	99 Edit
+	100 View, ID: SafariViewMenu
+	101 History
+	102 Bookmarks, ID: SafariBookmarksMenu
+	103 Develop
+	104 Window, ID: SafariWindowMenu
+	105 Help, ID: SafariHelpMenu
+
+The focused UI element is 32 pop up button 筛选

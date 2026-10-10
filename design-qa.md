@@ -45,3 +45,9 @@
 - Post-fix evidence: title and menu share one 41 px-high flex wrapper; 31 visible cells plus the header receive the highlight class.
 
 final result: passed
+
+## Filter panel follow-up — 2026-09-29
+
+Live Feishu comparison and local interaction checks completed. See `app/design-qa.md`, section “Filter fidelity QA — 2026-09-29”, for evidence, intentional user-requested differences, corrected findings, and test results.
+
+final result: passed

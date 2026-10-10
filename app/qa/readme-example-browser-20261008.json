@@ -1,0 +1,13 @@
+{
+  "url": "http://127.0.0.1:5189/readme/readme-preview.html",
+  "snapshot": "- button \"全部\":\n  - generic: 全部\n- button \"交付示例\" [pressed]:\n  - generic: 交付示例\n- button \"新建视图\":\n  - text: 新建视图\n- button \"字段配置\":\n  - text: 字段配置\n- button \"筛选\":\n  - text: 筛选\n- button \"排序\":\n  - text: 排序\n- button \"搜索\" [active]:\n- generic: 方向键浏览，Home 和 End 到行首行尾，Control 或 Command 加 Home 和 End 到表格首尾，PageUp 和 PageDown 翻页，空格选择，Shift 加上下键连续选择，Enter 打开记录，Escape 取消选择。首个数据列左右键展开或收起。表头 Enter 打开菜单，Alt 加左右键移动列，Shift 加左右键调整列宽。\n- grid \"记录表格\":\n  - row \"选择全部可见记录 名称 名称列菜单 调整名称列宽\":\n    - columnheader \"选择全部可见记录\":\n      - checkbox \"选择全部可见记录\"\n    - columnheader \"名称 名称列菜单 调整名称列宽\":\n      - generic: 名称\n      - button \"名称列菜单\":\n      - button \"调整名称列宽\"\n  - row \"1 示例记录\":\n    - gridcell \"1\":\n      - generic: \"1\"\n    - gridcell \"示例记录\":\n      - generic: 示例记录\n- generic: 1 条记录\n- status: 打开记录：record-1",
+  "logs": [],
+  "checks": [
+    "README exact TSX production build",
+    "record open ID record-1",
+    "create view controlled active",
+    "no match visible",
+    "clear query restores record",
+    "close search restores focus"
+  ]
+}

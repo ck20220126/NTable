@@ -1,0 +1,83 @@
+{
+  "beforeFix": {
+    "action": "remove amount schema while amount menu open, then increase width",
+    "result": {
+      "status": 176
+    }
+  },
+  "removedMenuAfter": {
+    "focusInside": true,
+    "focusRole": "grid",
+    "menus": 0,
+    "state": {
+      "columnOrder": [
+        "name",
+        "status",
+        "tags",
+        "day"
+      ],
+      "filters": [],
+      "id": "typed",
+      "name": "字段类型",
+      "sorts": [],
+      "visibleFieldIds": [
+        "name",
+        "status",
+        "tags",
+        "day"
+      ]
+    }
+  },
+  "reorderedMenuAfter": {
+    "focusRole": "grid",
+    "state": {
+      "columnOrder": [
+        "amount",
+        "status",
+        "tags",
+        "day",
+        "name"
+      ],
+      "filters": [],
+      "id": "typed",
+      "name": "字段类型",
+      "sorts": [],
+      "visibleFieldIds": [
+        "name",
+        "amount",
+        "status",
+        "tags",
+        "day"
+      ]
+    }
+  },
+  "reopenedMenuResult": {
+    "id": "typed",
+    "name": "字段类型",
+    "visibleFieldIds": [
+      "name",
+      "amount",
+      "status",
+      "tags",
+      "day"
+    ],
+    "columnOrder": [
+      "status",
+      "tags",
+      "day",
+      "name",
+      "amount"
+    ],
+    "filters": [],
+    "sorts": [],
+    "columnWidths": {
+      "amount": 126
+    }
+  },
+  "outsideMenuBefore": 1,
+  "outsideMenuAfter": {
+    "tag": "BUTTON",
+    "text": "恢复数据"
+  },
+  "input": "IAB locator pointer/keyboard, not OS keyboard or screen reader"
+}

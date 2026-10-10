@@ -1,0 +1,141 @@
+{
+  "input": "IAB pointer and keyboard locator actions, not actual screen reader",
+  "states": [
+    {
+      "label": "初始字段",
+      "options": [
+        {
+          "current": "true",
+          "name": "记录名称",
+          "visual": true
+        },
+        {
+          "current": null,
+          "name": "数值",
+          "visual": false
+        },
+        {
+          "current": null,
+          "name": "单选",
+          "visual": false
+        },
+        {
+          "current": null,
+          "name": "多选",
+          "visual": false
+        },
+        {
+          "current": null,
+          "name": "日期",
+          "visual": false
+        }
+      ]
+    },
+    {
+      "label": "筛掉当前项",
+      "options": [
+        {
+          "current": null,
+          "name": "数值",
+          "visual": false
+        }
+      ]
+    },
+    {
+      "label": "键盘选数值后重开",
+      "options": [
+        {
+          "current": null,
+          "name": "记录名称",
+          "visual": false
+        },
+        {
+          "current": "true",
+          "name": "数值",
+          "visual": true
+        },
+        {
+          "current": null,
+          "name": "单选",
+          "visual": false
+        },
+        {
+          "current": null,
+          "name": "多选",
+          "visual": false
+        },
+        {
+          "current": null,
+          "name": "日期",
+          "visual": false
+        }
+      ]
+    },
+    {
+      "label": "数值操作符",
+      "options": [
+        {
+          "current": "true",
+          "name": "等于",
+          "visual": true
+        },
+        {
+          "current": null,
+          "name": "不等于",
+          "visual": false
+        },
+        {
+          "current": null,
+          "name": "大于",
+          "visual": false
+        },
+        {
+          "current": null,
+          "name": "小于",
+          "visual": false
+        },
+        {
+          "current": null,
+          "name": "为空",
+          "visual": false
+        },
+        {
+          "current": null,
+          "name": "不为空",
+          "visual": false
+        }
+      ]
+    },
+    {
+      "label": "新增排序未选值",
+      "options": [
+        {
+          "current": null,
+          "name": "记录名称",
+          "visual": false
+        },
+        {
+          "current": null,
+          "name": "数值",
+          "visual": false
+        },
+        {
+          "current": null,
+          "name": "单选",
+          "visual": false
+        },
+        {
+          "current": null,
+          "name": "多选",
+          "visual": false
+        },
+        {
+          "current": null,
+          "name": "日期",
+          "visual": false
+        }
+      ]
+    }
+  ],
+  "assertions": "5/5 current-choice sets match expected and visual marks"
+}

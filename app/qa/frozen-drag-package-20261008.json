@@ -1,0 +1,10 @@
+{
+  "tarball": "/Users/chengkun/i/space/components/NTable/app/dist/kun-ntable-0.1.0-frozen-drag-20261008.tgz",
+  "consumer": "/private/tmp/ntable-frozen-drag-f5b8frc8",
+  "types": "Bundler and NodeNext passed",
+  "exports": "four exports passed",
+  "size": 39713,
+  "files": 28,
+  "shasum": "c604a1248bd3a2a74d9840ee73d7989a97a5c877",
+  "dependencyBoundary": "reused local node_modules; not clean network install"
+}

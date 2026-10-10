@@ -1,0 +1,15 @@
+{
+  "nameLength": 160,
+  "state": "instant-open",
+  "beforeOffset": 779.5,
+  "afterOffset": 0,
+  "events": [
+    "focus",
+    "ancestor-scroll"
+  ],
+  "checks": [
+    "真实焦点保持",
+    "完整可访问提示",
+    "滚动显露后完整提示可见"
+  ]
+}

@@ -1,0 +1,576 @@
+{
+  "input": "IAB locator pointer and input actions; not OS IME",
+  "checks": [
+    {
+      "label": "大于0加未填写条件",
+      "expected": [
+        "typed-long"
+      ],
+      "rows": [
+        null
+      ],
+      "state": {
+        "columnOrder": [
+          "name",
+          "amount",
+          "status",
+          "tags",
+          "day"
+        ],
+        "filters": [
+          {
+            "fieldId": "amount",
+            "id": "1fc95fed-d715-4660-aa2d-b0a5b49842dd",
+            "operator": "greaterThan",
+            "value": "0"
+          },
+          {
+            "fieldId": "name",
+            "id": "c8679682-8acc-44fe-98e0-c11f29c3e7d3",
+            "operator": "contains",
+            "value": ""
+          }
+        ],
+        "id": "typed",
+        "name": "字段类型",
+        "sorts": [],
+        "visibleFieldIds": [
+          "name",
+          "amount",
+          "status",
+          "tags",
+          "day"
+        ]
+      },
+      "text": "方向键浏览，Home 和 End 到行首行尾，Control 或 Command 加 Home 和 End 到表格首尾，PageUp 和 PageDown 翻页，空格选择，Shift 加上下键连续选择，Enter 打开记录，Escape 取消选择。首个数据列左右键展开或收起。表头 Enter 打开菜单，Alt 加左右键移动列，Shift 加左右键调整列宽。记录名称数值单选多选日期1用于验证截断和完整值提示的长文本记录名称12.5已完成移动端2026-10-08T10:30:00+08:001 条记录"
+    },
+    {
+      "label": "大于0加未填写条件",
+      "expected": [
+        "用于验证截断和完整值提示的长文本记录名称"
+      ],
+      "count": "2",
+      "rows": [
+        null
+      ],
+      "state": {
+        "columnOrder": [
+          "name",
+          "amount",
+          "status",
+          "tags",
+          "day"
+        ],
+        "filters": [
+          {
+            "fieldId": "amount",
+            "id": "1fc95fed-d715-4660-aa2d-b0a5b49842dd",
+            "operator": "greaterThan",
+            "value": "0"
+          },
+          {
+            "fieldId": "status",
+            "id": "c8679682-8acc-44fe-98e0-c11f29c3e7d3",
+            "operator": "contains",
+            "value": ""
+          }
+        ],
+        "id": "typed",
+        "name": "字段类型",
+        "sorts": [],
+        "visibleFieldIds": [
+          "name",
+          "amount",
+          "status",
+          "tags",
+          "day"
+        ]
+      }
+    },
+    {
+      "label": "默认所有：大于0且单选包含draft",
+      "expected": [],
+      "count": "1",
+      "rows": [],
+      "state": {
+        "columnOrder": [
+          "name",
+          "amount",
+          "status",
+          "tags",
+          "day"
+        ],
+        "filters": [
+          {
+            "fieldId": "amount",
+            "id": "1fc95fed-d715-4660-aa2d-b0a5b49842dd",
+            "operator": "greaterThan",
+            "value": "0"
+          },
+          {
+            "fieldId": "status",
+            "id": "c8679682-8acc-44fe-98e0-c11f29c3e7d3",
+            "operator": "contains",
+            "value": "draft"
+          }
+        ],
+        "id": "typed",
+        "name": "字段类型",
+        "sorts": [],
+        "visibleFieldIds": [
+          "name",
+          "amount",
+          "status",
+          "tags",
+          "day"
+        ]
+      },
+      "pass": true
+    },
+    {
+      "label": "任意并保留未填写条件",
+      "expected": [
+        "标准值",
+        "用于验证截断和完整值提示的长文本记录名称"
+      ],
+      "count": "3",
+      "rows": [
+        "标准值",
+        "用于验证截断和完整值提示的长文本记录名称"
+      ],
+      "state": {
+        "columnOrder": [
+          "name",
+          "amount",
+          "status",
+          "tags",
+          "day"
+        ],
+        "filterMode": "any",
+        "filters": [
+          {
+            "fieldId": "amount",
+            "id": "1fc95fed-d715-4660-aa2d-b0a5b49842dd",
+            "operator": "greaterThan",
+            "value": "0"
+          },
+          {
+            "fieldId": "status",
+            "id": "c8679682-8acc-44fe-98e0-c11f29c3e7d3",
+            "operator": "contains",
+            "value": "draft"
+          },
+          {
+            "fieldId": "name",
+            "id": "00ee4747-3428-46b1-8b43-b8ad94310418",
+            "operator": "contains",
+            "value": ""
+          }
+        ],
+        "id": "typed",
+        "name": "字段类型",
+        "sorts": [],
+        "visibleFieldIds": [
+          "name",
+          "amount",
+          "status",
+          "tags",
+          "day"
+        ]
+      },
+      "pass": true
+    },
+    {
+      "label": "数值大于切换文本后回到包含并保留0",
+      "expected": [
+        "标准值"
+      ],
+      "count": "2",
+      "rows": [
+        "标准值"
+      ],
+      "state": {
+        "columnOrder": [
+          "name",
+          "amount",
+          "status",
+          "tags",
+          "day"
+        ],
+        "filterMode": "any",
+        "filters": [
+          {
+            "fieldId": "name",
+            "id": "1fc95fed-d715-4660-aa2d-b0a5b49842dd",
+            "operator": "contains",
+            "value": "0"
+          },
+          {
+            "fieldId": "status",
+            "id": "c8679682-8acc-44fe-98e0-c11f29c3e7d3",
+            "operator": "contains",
+            "value": "draft"
+          }
+        ],
+        "id": "typed",
+        "name": "字段类型",
+        "sorts": [],
+        "visibleFieldIds": [
+          "name",
+          "amount",
+          "status",
+          "tags",
+          "day"
+        ]
+      },
+      "pass": true
+    },
+    {
+      "label": "非法数字在任意模式不匹配",
+      "expected": [
+        "标准值"
+      ],
+      "count": "2",
+      "rows": [
+        "标准值"
+      ],
+      "state": {
+        "columnOrder": [
+          "name",
+          "amount",
+          "status",
+          "tags",
+          "day"
+        ],
+        "filterMode": "any",
+        "filters": [
+          {
+            "fieldId": "amount",
+            "id": "1fc95fed-d715-4660-aa2d-b0a5b49842dd",
+            "operator": "equals",
+            "value": "not-a-number"
+          },
+          {
+            "fieldId": "status",
+            "id": "c8679682-8acc-44fe-98e0-c11f29c3e7d3",
+            "operator": "contains",
+            "value": "draft"
+          }
+        ],
+        "id": "typed",
+        "name": "字段类型",
+        "sorts": [],
+        "visibleFieldIds": [
+          "name",
+          "amount",
+          "status",
+          "tags",
+          "day"
+        ]
+      },
+      "pass": true
+    },
+    {
+      "label": "非法数字在所有模式无匹配",
+      "expected": [],
+      "count": "1",
+      "rows": [],
+      "state": {
+        "columnOrder": [
+          "name",
+          "amount",
+          "status",
+          "tags",
+          "day"
+        ],
+        "filterMode": "all",
+        "filters": [
+          {
+            "fieldId": "amount",
+            "id": "1fc95fed-d715-4660-aa2d-b0a5b49842dd",
+            "operator": "equals",
+            "value": "not-a-number"
+          },
+          {
+            "fieldId": "status",
+            "id": "c8679682-8acc-44fe-98e0-c11f29c3e7d3",
+            "operator": "contains",
+            "value": "draft"
+          }
+        ],
+        "id": "typed",
+        "name": "字段类型",
+        "sorts": [],
+        "visibleFieldIds": [
+          "name",
+          "amount",
+          "status",
+          "tags",
+          "day"
+        ]
+      },
+      "pass": true
+    },
+    {
+      "label": "为空且单选draft无交集",
+      "expected": [],
+      "count": "1",
+      "rows": [],
+      "state": {
+        "columnOrder": [
+          "name",
+          "amount",
+          "status",
+          "tags",
+          "day"
+        ],
+        "filterMode": "all",
+        "filters": [
+          {
+            "fieldId": "amount",
+            "id": "1fc95fed-d715-4660-aa2d-b0a5b49842dd",
+            "operator": "isEmpty",
+            "value": ""
+          },
+          {
+            "fieldId": "status",
+            "id": "c8679682-8acc-44fe-98e0-c11f29c3e7d3",
+            "operator": "contains",
+            "value": "draft"
+          }
+        ],
+        "id": "typed",
+        "name": "字段类型",
+        "sorts": [],
+        "visibleFieldIds": [
+          "name",
+          "amount",
+          "status",
+          "tags",
+          "day"
+        ]
+      },
+      "pass": true
+    },
+    {
+      "label": "删除另一条件仅数值为空",
+      "expected": [
+        "空值"
+      ],
+      "count": "2",
+      "rows": [
+        "空值"
+      ],
+      "state": {
+        "columnOrder": [
+          "name",
+          "amount",
+          "status",
+          "tags",
+          "day"
+        ],
+        "filterMode": "any",
+        "filters": [
+          {
+            "fieldId": "amount",
+            "id": "1fc95fed-d715-4660-aa2d-b0a5b49842dd",
+            "operator": "isEmpty",
+            "value": ""
+          }
+        ],
+        "id": "typed",
+        "name": "字段类型",
+        "sorts": [],
+        "visibleFieldIds": [
+          "name",
+          "amount",
+          "status",
+          "tags",
+          "day"
+        ]
+      },
+      "pass": true
+    },
+    {
+      "label": "数值不为空包含0与负数",
+      "expected": [
+        "标准值",
+        "未匹配选项",
+        "用于验证截断和完整值提示的长文本记录名称"
+      ],
+      "count": "4",
+      "rows": [
+        "标准值",
+        "未匹配选项",
+        "用于验证截断和完整值提示的长文本记录名称"
+      ],
+      "state": {
+        "columnOrder": [
+          "name",
+          "amount",
+          "status",
+          "tags",
+          "day"
+        ],
+        "filterMode": "any",
+        "filters": [
+          {
+            "fieldId": "amount",
+            "id": "1fc95fed-d715-4660-aa2d-b0a5b49842dd",
+            "operator": "isNotEmpty",
+            "value": ""
+          },
+          {
+            "fieldId": "name",
+            "id": "b9be093f-1da1-4460-a185-fa30c9496f3a",
+            "operator": "contains",
+            "value": ""
+          }
+        ],
+        "id": "typed",
+        "name": "字段类型",
+        "sorts": [],
+        "visibleFieldIds": [
+          "name",
+          "amount",
+          "status",
+          "tags",
+          "day"
+        ]
+      },
+      "pass": true
+    },
+    {
+      "label": "从空值规则恢复比较：旧值已清空",
+      "expected": [
+        "标准值",
+        "空值",
+        "未匹配选项",
+        "用于验证截断和完整值提示的长文本记录名称"
+      ],
+      "count": "5",
+      "rows": [
+        "标准值",
+        "空值",
+        "未匹配选项",
+        "用于验证截断和完整值提示的长文本记录名称"
+      ],
+      "state": {
+        "columnOrder": [
+          "name",
+          "amount",
+          "status",
+          "tags",
+          "day"
+        ],
+        "filterMode": "any",
+        "filters": [
+          {
+            "fieldId": "amount",
+            "id": "1fc95fed-d715-4660-aa2d-b0a5b49842dd",
+            "operator": "equals",
+            "value": ""
+          },
+          {
+            "fieldId": "name",
+            "id": "b9be093f-1da1-4460-a185-fa30c9496f3a",
+            "operator": "contains",
+            "value": ""
+          }
+        ],
+        "id": "typed",
+        "name": "字段类型",
+        "sorts": [],
+        "visibleFieldIds": [
+          "name",
+          "amount",
+          "status",
+          "tags",
+          "day"
+        ]
+      },
+      "pass": true
+    },
+    {
+      "label": "小数文本0.0匹配数值0",
+      "expected": [
+        "标准值"
+      ],
+      "count": "2",
+      "rows": [
+        "标准值"
+      ],
+      "state": {
+        "columnOrder": [
+          "name",
+          "amount",
+          "status",
+          "tags",
+          "day"
+        ],
+        "filterMode": "any",
+        "filters": [
+          {
+            "fieldId": "amount",
+            "id": "1fc95fed-d715-4660-aa2d-b0a5b49842dd",
+            "operator": "equals",
+            "value": "0.0"
+          }
+        ],
+        "id": "typed",
+        "name": "字段类型",
+        "sorts": [],
+        "visibleFieldIds": [
+          "name",
+          "amount",
+          "status",
+          "tags",
+          "day"
+        ]
+      },
+      "pass": true
+    },
+    {
+      "label": "清空恢复全部",
+      "expected": [
+        "标准值",
+        "空值",
+        "未匹配选项",
+        "用于验证截断和完整值提示的长文本记录名称"
+      ],
+      "count": "5",
+      "rows": [
+        "标准值",
+        "空值",
+        "未匹配选项",
+        "用于验证截断和完整值提示的长文本记录名称"
+      ],
+      "state": {
+        "columnOrder": [
+          "name",
+          "amount",
+          "status",
+          "tags",
+          "day"
+        ],
+        "filterMode": "any",
+        "filters": [],
+        "id": "typed",
+        "name": "字段类型",
+        "sorts": [],
+        "visibleFieldIds": [
+          "name",
+          "amount",
+          "status",
+          "tags",
+          "day"
+        ]
+      },
+      "pass": true
+    }
+  ],
+  "notes": [
+    "First two reads used invalid row identity selectors and are diagnostic only; subsequent reads use gridcell names and explicit pass comparisons.",
+    "Initial fill transport lost focus after popover close; fresh snapshot and one retry succeeded."
+  ]
+}

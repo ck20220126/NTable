@@ -1,0 +1,1 @@
+{ "nameLength": 160, "state": "instant-open", "events": [ "focus" ], "checks": [ "真实焦点保持", "完整可访问提示", "没有指针激活或祖先自动滚动" ] }

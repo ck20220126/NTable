@@ -1,0 +1,18 @@
+{
+  "temp": "/private/tmp/ntable-overscan-four-WaDlmQ",
+  "artifact": "dist/kun-ntable-0.1.0-overscan-four-20261008.tgz",
+  "size": 39108,
+  "files": 28,
+  "shasum": "b40c361a55a66813e7b4996228f28c9a5b9c8b27",
+  "typeModes": [
+    "Bundler",
+    "NodeNext"
+  ],
+  "exports": [
+    "NTable",
+    "Table",
+    "TableToolbar",
+    "ViewBar"
+  ],
+  "dependencies": "symlink to existing local tree"
+}

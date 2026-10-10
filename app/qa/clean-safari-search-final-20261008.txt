@@ -1,0 +1,127 @@
+Window: "NTable 干净安装验收", App: Safari.
+0 standard window NTable 干净安装验收, ID: SafariWindow?IsSecure=false&UUID=83B86B39-5E92-49B1-91F0-8F79B86EDE5D, Secondary Actions: Raise
+	1 split group
+		2 tab group
+			3 scroll area
+				4 HTML content Description: NTable 干净安装验收, URL: 127.0.0.1:5189/
+					5 container
+						6 heading NTable 干净安装验收, Value: 1
+							7 text NTable 干净安装验收
+						8 text 实际 tarball 与独立安装的 React、依赖共同运行。
+						9 button 模拟请求失败
+						10 button 延迟更新宿主列宽
+						11 button 延迟重建等价视图
+						12 button 隐藏状态字段
+						13 button 延迟更新隐藏列宽
+						14 button 延迟切换宿主视图
+						15 button 延迟卸载表格
+						16 container 宿主更新状态
+							17 text 未安排
+						18 text 记录打开：
+						19 container 记录打开结果
+							20 text beta
+						21 text ；重试次数：
+						22 container 重试次数
+							23 text 1
+						24 container 公共导出
+							25 text {"NTable":true,"Table":true,"TableToolbar":true,"ViewBar":true}
+						26 container 验收视口
+							27 text {"width":1920,"height":874,"dpr":1}
+						28 container 干净安装表格
+							29 toggle button 全部记录, Value: on
+							30 pop up button 新建视图
+							31 pop up button 字段配置
+							32 pop up button 筛选
+							33 pop up button 排序
+							34 text field (settable) 搜索记录, Value: Beta, Placeholder: 搜索
+							35 button 关闭搜索
+							36 text 方向键浏览，Home 和 End 到行首行尾，Control 或 Command 加 Home 和 End 到表格首尾，PageUp 和 PageDown 翻页，空格选择，Shift 加上下键连续选择，Enter 打开记录，Escape 取消选择。首个数据列左右键展开或收起。表头 Enter 打开菜单，Alt 加左右键移动列，Shift 加左右键调整列宽。
+							37 table (selectable, settable) 记录表格
+								38 row (selectable)
+									39 cell (settable)
+										40 checkbox (settable, integer) 选择全部可见记录, Value: 0
+									41 cell (settable)
+										42 text 记录名称
+										43 button 记录名称列菜单
+										44 button 调整记录名称列宽
+									45 cell (settable)
+										46 text 数量
+										47 button 数量列菜单
+										48 button 调整数量列宽
+									49 cell (settable)
+										50 text 状态
+										51 button 状态列菜单
+										52 button 调整状态列宽
+								53 row (selectable)
+									54 cell (selectable, settable) 1
+									55 cell (selectable, settable) Beta
+									56 cell (selectable, settable) 5
+									57 cell (selectable, settable) 已完成
+							58 splitter 可拖拽改变冻结区域
+							59 container
+								60 text 1  条记录
+						61 container 当前视图
+							62 text {
+  "id": "all",
+  "name": "全部记录",
+  "deletable": false,
+  "visibleFieldIds": [
+    "name",
+    "quantity",
+    "status"
+  ],
+  "columnOrder": [
+    "name",
+    "quantity",
+    "status"
+  ],
+  "filters": [],
+  "sorts": [],
+  "frozenFieldCount": 1
+}
+						63 container 视图更新回调
+							64 text []
+						65 container 指针捕获事件
+							66 text []
+					67 text 1Password menu is available. Press down arrow to select.
+				68 scroll bar (settable, float) 0
+	69 image WindowControlShadowView._shadowImageView
+	70 toolbar
+		71 container Secondary Actions: Move next, Remove from toolbar
+			72 button Description: show sidebar, Help: Show sidebar, ID: SidebarButton
+			73 menu button Description: Tab Group picker, ID: TabGroupPickerButton?TabGroup=
+		74 container BackForwardSegmentedControl
+			75 button Description: Go back, Help: Show the previous page, ID: BackButton
+			76 button (disabled) Description: Go forward, Help: Show the next page, ID: ForwardButton
+		77 button Description: 1Password, Secondary Actions: Move previous, Move next, Remove from toolbar
+		78 container Secondary Actions: Move previous, Move next, Remove from toolbar
+			79 button Page Menu, ID: AssistantButton
+			80 button Add page to Reading List, ID: OneStepBookmarkingButton
+			81 text field (settable) Description: smart search field, Value: 127.0.0.1:5189, ID: WEB_BROWSER_ADDRESS_AND_SEARCH_FIELD
+			82 button Translation Available, ID: TranslationButton
+			83 button Reload this page, ID: ReloadButton
+		84 button Description: Share, ID: ShareButton, Secondary Actions: Move previous, Move next, Remove from toolbar
+		85 button Description: New Tab, ID: NewTabButton, Secondary Actions: Move previous, Move next, Remove from toolbar
+		86 button Description: Tab Overview, ID: TabOverviewButton, Secondary Actions: Move previous, Remove from toolbar
+	87 tab group Description: Tab bar, 2 tabs, ID: TabBar?isSeparate=false
+		88 tab Start Page, Value: off, ID: TabBarTab?isPinned=false&isNarrow=false&isActive=false, Secondary Actions: close tab
+			89 image Description: favorite, ID: FaviconImageView
+			90 text Value: Start Page, ID: UnifiedTabBarButton._titleTextField
+		91 tab NTable 干净安装验收, Help: To interact with the items in this button, press Control-Option-Shift-Down Arrow., Value: on, ID: TabBarTab?isPinned=false&isNarrow=false&isActive=true, Secondary Actions: close tab
+			92 image FaviconImageView
+			93 text Value: NTable 干净安装验收, ID: UnifiedTabBarButton._titleTextField
+	94 close button
+	95 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	96 minimize button
+97 menu bar
+	98 Safari
+	99 File
+	100 Edit
+	101 View, ID: SafariViewMenu
+	102 History
+	103 Bookmarks, ID: SafariBookmarksMenu
+	104 Develop
+	105 Window, ID: SafariWindowMenu
+	106 Help, ID: SafariHelpMenu
+
+The focused UI element is 34 text field (settable) 搜索记录, Value: Beta, Placeholder: 搜索

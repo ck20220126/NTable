@@ -1,0 +1,66 @@
+{
+  "initialRows": "4",
+  "exports": "{\"NTable\":true,\"Table\":true,\"TableToolbar\":true,\"ViewBar\":true}",
+  "opened": "beta",
+  "failedRows": "4",
+  "retries": "1",
+  "alertsAfterRetry": 0,
+  "selected": 3,
+  "searchRows": "2",
+  "restoredRows": "4",
+  "searchCloseFocus": "搜索",
+  "sortState": [
+    {
+      "id": "399614a9-e20a-44ad-ae59-af60cc049470",
+      "fieldId": "quantity",
+      "direction": "desc"
+    }
+  ],
+  "sortedRows": [
+    "记录名称数量状态",
+    "1Beta5已完成",
+    "2Alpha10待处理",
+    "Child2已完成"
+  ],
+  "filterRows": "2",
+  "filterState": [
+    {
+      "id": "9585fa78-730d-4fcd-aa63-10e9cb3aed26",
+      "fieldId": "name",
+      "operator": "contains",
+      "value": "Beta"
+    }
+  ],
+  "createdView": {
+    "id": "view-1",
+    "name": "干净接入视图",
+    "deletable": false,
+    "visibleFieldIds": [
+      "name",
+      "quantity",
+      "status"
+    ],
+    "columnOrder": [
+      "name",
+      "quantity",
+      "status"
+    ],
+    "filters": [],
+    "sorts": [],
+    "frozenFieldCount": 1
+  },
+  "errors": [],
+  "passed": {
+    "exports": true,
+    "open": true,
+    "failureRetainsRows": true,
+    "retry": true,
+    "select": true,
+    "search": true,
+    "closeFocus": true,
+    "sort": true,
+    "filter": true,
+    "create": true,
+    "console": true
+  }
+}

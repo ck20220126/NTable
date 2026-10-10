@@ -1,0 +1,40 @@
+{
+  "result": {
+    "callbacks": [
+      {
+        "id": "all",
+        "patch": {
+          "columnWidths": {
+            "name": 300
+          }
+        }
+      }
+    ],
+    "dragging": false,
+    "freezeDragging": false,
+    "resizing": null,
+    "view": {
+      "columnOrder": [
+        "name",
+        "quantity",
+        "status"
+      ],
+      "columnWidths": {
+        "name": 300
+      },
+      "deletable": false,
+      "filters": [],
+      "frozenFieldCount": 1,
+      "id": "all",
+      "name": "全部记录",
+      "sorts": [],
+      "visibleFieldIds": [
+        "name",
+        "quantity",
+        "status"
+      ]
+    },
+    "width": 300
+  },
+  "capture": "[\n  {\n    \"type\": \"got\",\n    \"pointerId\": 1,\n    \"trusted\": true\n  },\n  {\n    \"type\": \"got\",\n    \"pointerId\": 1,\n    \"trusted\": true\n  },\n  {\n    \"type\": \"lost\",\n    \"pointerId\": 1,\n    \"trusted\": true\n  }\n]"
+}

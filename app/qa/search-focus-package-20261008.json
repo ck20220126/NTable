@@ -1,0 +1,13 @@
+{
+  "tarball": "/Users/chengkun/i/space/components/NTable/app/dist/kun-ntable-0.1.0-search-focus-20261008.tgz",
+  "temporaryConsumer": "/private/tmp/ntable-search-focus-3epufgqx",
+  "types": {
+    "Bundler": "passed",
+    "NodeNext": "passed"
+  },
+  "exports": "four exports passed",
+  "size": 39436,
+  "files": 28,
+  "shasum": "8781874205e0940c63af2d2e8e479dfb3aaac24f",
+  "dependencyBoundary": "reused local node_modules; not clean network install"
+}

@@ -1,0 +1,160 @@
+{
+  "id": "@kun/ntable@0.1.0",
+  "name": "@kun/ntable",
+  "version": "0.1.0",
+  "size": 39969,
+  "unpackedSize": 197326,
+  "shasum": "e9b0767eecbf8b1e23f8809bf04e0d63915069f3",
+  "integrity": "sha512-Quyx62A6JR73E+wHAWi/B3FyplYBsTRnr0/e16RsO7xyrub9cSz39TLl8x0rY81+Z45mB/RzDfZdmK7MinNmLA==",
+  "filename": "kun-ntable-0.1.0.tgz",
+  "files": [
+    {
+      "path": "README.md",
+      "size": 677,
+      "mode": 420
+    },
+    {
+      "path": "dist/lib/index.js",
+      "size": 79391,
+      "mode": 420
+    },
+    {
+      "path": "dist/lib/ntable.css",
+      "size": 102350,
+      "mode": 420
+    },
+    {
+      "path": "dist/lib/style.d.ts",
+      "size": 11,
+      "mode": 420
+    },
+    {
+      "path": "dist/lib/types/components/Button.d.ts",
+      "size": 613,
+      "mode": 420
+    },
+    {
+      "path": "dist/lib/types/components/index.d.ts",
+      "size": 86,
+      "mode": 420
+    },
+    {
+      "path": "dist/lib/types/components/Tooltip.d.ts",
+      "size": 374,
+      "mode": 420
+    },
+    {
+      "path": "dist/lib/types/ntable/columnWindow.d.ts",
+      "size": 925,
+      "mode": 420
+    },
+    {
+      "path": "dist/lib/types/ntable/dataState.d.ts",
+      "size": 221,
+      "mode": 420
+    },
+    {
+      "path": "dist/lib/types/ntable/FieldConfigPanel.d.ts",
+      "size": 345,
+      "mode": 420
+    },
+    {
+      "path": "dist/lib/types/ntable/fieldIcons.d.ts",
+      "size": 281,
+      "mode": 420
+    },
+    {
+      "path": "dist/lib/types/ntable/filtering.d.ts",
+      "size": 698,
+      "mode": 420
+    },
+    {
+      "path": "dist/lib/types/ntable/FilterPanel.d.ts",
+      "size": 388,
+      "mode": 420
+    },
+    {
+      "path": "dist/lib/types/ntable/index.d.ts",
+      "size": 197,
+      "mode": 420
+    },
+    {
+      "path": "dist/lib/types/ntable/keyboard.d.ts",
+      "size": 603,
+      "mode": 420
+    },
+    {
+      "path": "dist/lib/types/ntable/NTable.d.ts",
+      "size": 128,
+      "mode": 420
+    },
+    {
+      "path": "dist/lib/types/ntable/PanelControls.d.ts",
+      "size": 778,
+      "mode": 420
+    },
+    {
+      "path": "dist/lib/types/ntable/scrollbar.d.ts",
+      "size": 484,
+      "mode": 420
+    },
+    {
+      "path": "dist/lib/types/ntable/sorting.d.ts",
+      "size": 285,
+      "mode": 420
+    },
+    {
+      "path": "dist/lib/types/ntable/SortPanel.d.ts",
+      "size": 236,
+      "mode": 420
+    },
+    {
+      "path": "dist/lib/types/ntable/Table.d.ts",
+      "size": 249,
+      "mode": 420
+    },
+    {
+      "path": "dist/lib/types/ntable/TableToolbar.d.ts",
+      "size": 248,
+      "mode": 420
+    },
+    {
+      "path": "dist/lib/types/ntable/ToolbarPopover.d.ts",
+      "size": 352,
+      "mode": 420
+    },
+    {
+      "path": "dist/lib/types/ntable/tree.d.ts",
+      "size": 1448,
+      "mode": 420
+    },
+    {
+      "path": "dist/lib/types/ntable/types.d.ts",
+      "size": 3154,
+      "mode": 420
+    },
+    {
+      "path": "dist/lib/types/ntable/useSearchInput.d.ts",
+      "size": 375,
+      "mode": 420
+    },
+    {
+      "path": "dist/lib/types/ntable/ViewBar.d.ts",
+      "size": 195,
+      "mode": 420
+    },
+    {
+      "path": "package.json",
+      "size": 2234,
+      "mode": 420
+    }
+  ],
+  "entryCount": 28,
+  "bundled": [],
+  "installedConsumer": "/private/tmp/ntable-clean-consumer-pm7wf3q3",
+  "strictBundler": "passed",
+  "strictNodeNext": "passed",
+  "productionConsumerBuild": "passed",
+  "dependencyBoundary": "Independent npm-installed dependencies from round 56; updated local tarball, no repository links",
+  "browser": "Keyboard filter entry/commit and Safari 300 percent passed"
+}

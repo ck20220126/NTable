@@ -1,0 +1,4 @@
+空态布局结果
+							35 text { "position": "middle", "samples": [ { "height": 120, "active": "5", "gridHeight": 68, "scrollTop": 128 }, { "height": 90, "active": "5", "gridHeight": 68, "scrollTop": 128 }, { "height": 340, "active": "5", "gridHeight": 240, "scrollTop": 128 } ], "checks": [ "活动身份不变", "焦点不丢失", "三种尺寸内外层可见" ] }
+						36 text 重试次数： 0
+						37 

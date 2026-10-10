@@ -1,0 +1,10 @@
+{
+  "tarball": "/Users/chengkun/i/space/components/NTable/app/dist/kun-ntable-0.1.0-pending-source-20261008.tgz",
+  "consumer": "/private/tmp/ntable-pending-source-xv3lcrgi",
+  "size": 39947,
+  "files": 28,
+  "shasum": "1292796638c922def6e724488e8b88aad085d1da",
+  "types": "Bundler and NodeNext passed",
+  "exports": "four exports passed",
+  "dependencies": "local node_modules reused, not clean network install"
+}

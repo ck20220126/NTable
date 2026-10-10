@@ -1,0 +1,24 @@
+{
+  "kind": "programmatic-scroll",
+  "totalRows": 7,
+  "columns": 42,
+  "sampleCount": 22,
+  "axisSamples": {
+    "vertical": 0,
+    "horizontal": 22
+  },
+  "durationMs": 610,
+  "p50FrameGapMs": 16.9,
+  "p95FrameGapMs": 34.1,
+  "maxFrameGapMs": 34.3,
+  "framesOver50ms": 0,
+  "inspectDom": true,
+  "maxMountedRows": 7,
+  "maxMountedCells": 77,
+  "coverageMisses": 0,
+  "horizontalCoverageMisses": 0,
+  "horizontalGaps": [],
+  "longTasks": [],
+  "finalScrollTop": 0,
+  "finalScrollLeft": 0
+}

@@ -1,0 +1,417 @@
+{
+  "packageSha1": "0de8ad96e61aefc38654bd57f22cc2b3efa8dd4f",
+  "beforeInputWidth": 18,
+  "observations": [
+    {
+      "case": "narrow-search",
+      "close": {
+        "bottom": 213.5,
+        "height": 22,
+        "right": 291,
+        "width": 22,
+        "x": 269,
+        "y": 191.5
+      },
+      "input": {
+        "bottom": 213.5,
+        "height": 22,
+        "right": 263,
+        "width": 100.390625,
+        "x": 162.609375,
+        "y": 191.5
+      },
+      "pageX": 0,
+      "table": {
+        "bottom": 572,
+        "height": 420,
+        "right": 312,
+        "width": 303,
+        "x": 9,
+        "y": 152
+      },
+      "viewport": {
+        "height": 420,
+        "width": 336
+      }
+    },
+    {
+      "case": "narrow-last-value",
+      "clientWidth": 288,
+      "dialog": {
+        "bottom": 397.5,
+        "height": 174.5,
+        "right": 313,
+        "width": 305,
+        "x": 8,
+        "y": 223
+      },
+      "focus": {
+        "label": "筛选值 5",
+        "rect": {
+          "bottom": 343,
+          "height": 32,
+          "right": 277,
+          "width": 164,
+          "x": 113,
+          "y": 311
+        }
+      },
+      "lastControls": [
+        {
+          "label": "筛选字段",
+          "rect": {
+            "bottom": 305,
+            "height": 32,
+            "right": 171,
+            "width": 150,
+            "x": 21,
+            "y": 273
+          }
+        },
+        {
+          "label": "筛选关系",
+          "rect": {
+            "bottom": 343,
+            "height": 32,
+            "right": 105,
+            "width": 84,
+            "x": 21,
+            "y": 311
+          }
+        },
+        {
+          "label": "筛选值 5",
+          "rect": {
+            "bottom": 343,
+            "height": 32,
+            "right": 277,
+            "width": 164,
+            "x": 113,
+            "y": 311
+          }
+        },
+        {
+          "label": "删除筛选条件",
+          "rect": {
+            "bottom": 301,
+            "height": 24,
+            "right": 281,
+            "width": 28,
+            "x": 253,
+            "y": 277
+          }
+        }
+      ],
+      "rows": [
+        "1Beta5已完成"
+      ],
+      "scrollWidth": 288,
+      "viewport": {
+        "height": 420,
+        "width": 336
+      }
+    },
+    {
+      "case": "narrow-empty-operator",
+      "clientWidth": 288,
+      "dialog": {
+        "bottom": 397.5,
+        "height": 174.5,
+        "right": 313,
+        "width": 305,
+        "x": 8,
+        "y": 223
+      },
+      "focus": {
+        "label": "筛选关系",
+        "rect": {
+          "bottom": 343,
+          "height": 32,
+          "right": 109,
+          "width": 84,
+          "x": 25,
+          "y": 311
+        }
+      },
+      "lastControls": [
+        {
+          "label": "筛选字段",
+          "rect": {
+            "bottom": 305,
+            "height": 32,
+            "right": 175,
+            "width": 150,
+            "x": 25,
+            "y": 273
+          }
+        },
+        {
+          "label": "筛选关系",
+          "rect": {
+            "bottom": 343,
+            "height": 32,
+            "right": 109,
+            "width": 84,
+            "x": 25,
+            "y": 311
+          }
+        },
+        {
+          "label": "删除筛选条件",
+          "rect": {
+            "bottom": 301,
+            "height": 24,
+            "right": 285,
+            "width": 28,
+            "x": 257,
+            "y": 277
+          }
+        }
+      ],
+      "rows": [],
+      "scrollWidth": 288,
+      "viewport": {
+        "height": 420,
+        "width": 336
+      }
+    },
+    {
+      "case": "narrow-remove-empty",
+      "clientWidth": 288,
+      "dialog": {
+        "bottom": 397.5,
+        "height": 174.5,
+        "right": 313,
+        "width": 305,
+        "x": 8,
+        "y": 223
+      },
+      "focus": {
+        "label": "筛选配置",
+        "rect": {
+          "bottom": 397.5,
+          "height": 174.5,
+          "right": 313,
+          "width": 305,
+          "x": 8,
+          "y": 223
+        }
+      },
+      "lastControls": [
+        {
+          "label": "筛选字段",
+          "rect": {
+            "bottom": 305,
+            "height": 32,
+            "right": 171,
+            "width": 150,
+            "x": 21,
+            "y": 273
+          }
+        },
+        {
+          "label": "筛选关系",
+          "rect": {
+            "bottom": 343,
+            "height": 32,
+            "right": 105,
+            "width": 84,
+            "x": 21,
+            "y": 311
+          }
+        },
+        {
+          "label": "筛选值 4",
+          "rect": {
+            "bottom": 343,
+            "height": 32,
+            "right": 277,
+            "width": 164,
+            "x": 113,
+            "y": 311
+          }
+        },
+        {
+          "label": "删除筛选条件",
+          "rect": {
+            "bottom": 301,
+            "height": 24,
+            "right": 281,
+            "width": 28,
+            "x": 253,
+            "y": 277
+          }
+        }
+      ],
+      "rows": [
+        "1Alpha10待处理",
+        "Child2已完成",
+        "2Beta5已完成"
+      ],
+      "scrollWidth": 288,
+      "viewport": {
+        "height": 420,
+        "width": 336
+      }
+    },
+    {
+      "case": "normal-single-line",
+      "clientWidth": 288,
+      "dialog": {
+        "bottom": 394.5,
+        "height": 174.5,
+        "right": 313,
+        "width": 305,
+        "x": 8,
+        "y": 220
+      },
+      "focus": {
+        "label": "筛选配置",
+        "rect": {
+          "bottom": 394.5,
+          "height": 174.5,
+          "right": 313,
+          "width": 305,
+          "x": 8,
+          "y": 220
+        }
+      },
+      "lastControls": [
+        {
+          "label": "筛选字段",
+          "rect": {
+            "bottom": 583,
+            "height": 32,
+            "right": 175,
+            "width": 150,
+            "x": 25,
+            "y": 551
+          }
+        },
+        {
+          "label": "筛选关系",
+          "rect": {
+            "bottom": 621,
+            "height": 32,
+            "right": 109,
+            "width": 84,
+            "x": 25,
+            "y": 589
+          }
+        },
+        {
+          "label": "筛选值 4",
+          "rect": {
+            "bottom": 621,
+            "height": 32,
+            "right": 281,
+            "width": 164,
+            "x": 117,
+            "y": 589
+          }
+        },
+        {
+          "label": "删除筛选条件",
+          "rect": {
+            "bottom": 579,
+            "height": 24,
+            "right": 285,
+            "width": 28,
+            "x": 257,
+            "y": 555
+          }
+        }
+      ],
+      "rows": [
+        "1Alpha10待处理",
+        "Child2已完成",
+        "2Beta5已完成"
+      ],
+      "scrollWidth": 288,
+      "viewport": {
+        "height": 420,
+        "width": 336
+      }
+    },
+    {
+      "case": "normal-settled",
+      "clientWidth": 514,
+      "dialog": {
+        "bottom": 502,
+        "height": 304,
+        "right": 767,
+        "width": 516,
+        "x": 251,
+        "y": 198
+      },
+      "focus": {
+        "label": "筛选配置",
+        "rect": {
+          "bottom": 502,
+          "height": 304,
+          "right": 767,
+          "width": 516,
+          "x": 251,
+          "y": 198
+        }
+      },
+      "lastControls": [
+        {
+          "label": "筛选字段",
+          "rect": {
+            "bottom": 447,
+            "height": 32,
+            "right": 418,
+            "width": 150,
+            "x": 268,
+            "y": 415
+          }
+        },
+        {
+          "label": "筛选关系",
+          "rect": {
+            "bottom": 447,
+            "height": 32,
+            "right": 510,
+            "width": 84,
+            "x": 426,
+            "y": 415
+          }
+        },
+        {
+          "label": "筛选值 4",
+          "rect": {
+            "bottom": 447,
+            "height": 32,
+            "right": 718,
+            "width": 200,
+            "x": 518,
+            "y": 415
+          }
+        },
+        {
+          "label": "删除筛选条件",
+          "rect": {
+            "bottom": 443,
+            "height": 24,
+            "right": 754,
+            "width": 28,
+            "x": 726,
+            "y": 419
+          }
+        }
+      ],
+      "rows": [
+        "1Alpha10待处理",
+        "Child2已完成",
+        "2Beta5已完成"
+      ],
+      "scrollWidth": 514,
+      "viewport": {
+        "height": 720,
+        "width": 1280
+      }
+    }
+  ],
+  "logs": []
+}

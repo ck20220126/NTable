@@ -1,0 +1,32 @@
+{
+  "beforeFix": {
+    "active": "BODY",
+    "filterPanel": "still open",
+    "input": "delayed host removes amount and sanitizes view"
+  },
+  "after": {
+    "schemaFocusBefore": {
+      "name": "筛选值 1",
+      "y": 1215
+    },
+    "schemaFocusAfter": {
+      "name": "筛选配置",
+      "role": "dialog",
+      "tag": "DIV",
+      "y": 1215
+    },
+    "removedCondition": {
+      "name": "筛选配置",
+      "role": "dialog"
+    },
+    "removedSort": {
+      "name": "排序配置",
+      "role": "dialog"
+    },
+    "outsideFocus": {
+      "tag": "BUTTON",
+      "text": "恢复数据"
+    }
+  },
+  "scope": "IAB consumer pointer/keyboard actions, no actual screen reader"
+}

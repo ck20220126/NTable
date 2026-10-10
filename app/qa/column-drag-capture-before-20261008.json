@@ -1,0 +1,13 @@
+{
+  "path": "pointerdown ordinary wide-0 -> horizontal wheel to end -> source unmounted -> pointermove",
+  "sourceMountedBeforeMove": false,
+  "errors": [
+    {
+      "level": "error",
+      "message": "InvalidStateError: Failed to execute 'setPointerCapture' on 'Element': InvalidStateError\n    at Ml (http://127.0.0.1:5188/assets/index-CF1H-tbe.js:291:127514)",
+      "timestamp": "2026-10-08T17:50:08.146Z",
+      "url": "http://127.0.0.1:5188/assets/index-CF1H-tbe.js"
+    }
+  ],
+  "frozenControl": "same wheel path on frozen name remained mounted and activated drag without new error"
+}

@@ -1,0 +1,50 @@
+{
+  "id": "all",
+  "name": "全部",
+  "visibleFieldIds": [
+    "name",
+    "quantity"
+  ],
+  "columnOrder": [
+    "name",
+    "quantity"
+  ],
+  "filters": [
+    {
+      "id": "98753b96-5df3-49b2-87c0-b207031db02e",
+      "fieldId": "name",
+      "operator": "contains",
+      "value": ""
+    },
+    {
+      "id": "446d52ce-f76f-4452-8ad2-bad017b6112b",
+      "fieldId": "name",
+      "operator": "contains",
+      "value": ""
+    },
+    {
+      "id": "11d5ddb8-d4c5-4f57-a56e-a2dcffcfdb8e",
+      "fieldId": "name",
+      "operator": "contains",
+      "value": ""
+    },
+    {
+      "id": "359dea40-2603-42c8-9e1b-49c5ef29a445",
+      "fieldId": "name",
+      "operator": "contains",
+      "value": ""
+    }
+  ],
+  "sorts": [
+    {
+      "id": "39d8d9a3-87a9-48e1-8e52-7e9a7c03ecad",
+      "fieldId": "name",
+      "direction": "desc"
+    },
+    {
+      "id": "acb1460c-7444-431f-8042-608b396c65b8",
+      "fieldId": "quantity",
+      "direction": "asc"
+    }
+  ]
+}

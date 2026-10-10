@@ -1,0 +1,52 @@
+{
+  "scroll": {
+    "samples": 262,
+    "axes": {
+      "vertical": 240,
+      "horizontal": 22
+    },
+    "p95": 16.9,
+    "max": 17.7,
+    "slow": 0,
+    "rows": 18,
+    "cells": 144,
+    "verticalMisses": 0,
+    "horizontalMisses": 0,
+    "final": {
+      "top": 0,
+      "left": 0
+    }
+  },
+  "width": {
+    "position": "last",
+    "samples": [
+      {
+        "width": 700,
+        "active": "业务字段 40 / 记录 1999",
+        "scrollLeft": 5322,
+        "visibleWidth": 700,
+        "frozenColumns": 2
+      },
+      {
+        "width": 600,
+        "active": "业务字段 40 / 记录 1999",
+        "scrollLeft": 5422,
+        "visibleWidth": 600,
+        "frozenColumns": 2
+      },
+      {
+        "width": 900,
+        "active": "业务字段 40 / 记录 1999",
+        "scrollLeft": 5125,
+        "visibleWidth": 900,
+        "frozenColumns": 2
+      }
+    ],
+    "checks": [
+      "活动身份不变",
+      "焦点不丢失",
+      "活动列不被冻结区域遮挡"
+    ]
+  },
+  "keyboard": "通过 9 项：首记录首字段导航；左键折叠父行；右键展开父行；Shift 下选择父子两行；Shift 下扩展至三行；反向移动收缩范围；子行左键回到父行；全选包含展开子行；Escape 清空选择"
+}

@@ -1,0 +1,10 @@
+{
+  "afterSecondary": {
+    "layer": true,
+    "source": "记录名称"
+  },
+  "committed": {
+    "layer": false,
+    "view": "{\n  \"id\": \"all\",\n  \"name\": \"全部记录\",\n  \"deletable\": false,\n  \"visibleFieldIds\": [\n    \"name\",\n    \"quantity\",\n    \"status\"\n  ],\n  \"columnOrder\": [\n    \"quantity\",\n    \"name\",\n    \"status\"\n  ],\n  \"filters\": [],\n  \"sorts\": [],\n  \"frozenFieldCount\": 1\n}"
+  }
+}

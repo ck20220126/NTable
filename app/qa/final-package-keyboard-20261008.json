@@ -1,0 +1,999 @@
+{
+  "packageSha1": "f6a05f1f2d039bf3b337028e2e5fc10d317c16ba",
+  "url": "http://127.0.0.1:5189/",
+  "steps": [
+    {
+      "label": "filter-open",
+      "dialogs": [
+        "筛选配置"
+      ],
+      "focus": {
+        "label": "筛选配置",
+        "role": "dialog",
+        "tag": "DIV"
+      },
+      "rows": [
+        "1Alpha10待处理",
+        "Child2已完成",
+        "2Beta5已完成"
+      ],
+      "view": {
+        "columnOrder": [
+          "name",
+          "quantity",
+          "status"
+        ],
+        "deletable": false,
+        "filters": [],
+        "frozenFieldCount": 1,
+        "id": "all",
+        "name": "全部记录",
+        "sorts": [],
+        "visibleFieldIds": [
+          "name",
+          "quantity",
+          "status"
+        ]
+      }
+    },
+    {
+      "label": "add-focus",
+      "dialogs": [
+        "筛选配置"
+      ],
+      "focus": {
+        "label": " 添加筛选条件",
+        "role": null,
+        "tag": "BUTTON"
+      },
+      "rows": [
+        "1Alpha10待处理",
+        "Child2已完成",
+        "2Beta5已完成"
+      ],
+      "view": {
+        "columnOrder": [
+          "name",
+          "quantity",
+          "status"
+        ],
+        "deletable": false,
+        "filters": [],
+        "frozenFieldCount": 1,
+        "id": "all",
+        "name": "全部记录",
+        "sorts": [],
+        "visibleFieldIds": [
+          "name",
+          "quantity",
+          "status"
+        ]
+      }
+    },
+    {
+      "label": "filter-value-focus",
+      "dialogs": [
+        "筛选配置"
+      ],
+      "focus": {
+        "label": "筛选值 1",
+        "role": null,
+        "tag": "INPUT"
+      },
+      "rows": [
+        "1Alpha10待处理",
+        "Child2已完成",
+        "2Beta5已完成"
+      ],
+      "view": {
+        "columnOrder": [
+          "name",
+          "quantity",
+          "status"
+        ],
+        "deletable": false,
+        "filters": [
+          {
+            "fieldId": "name",
+            "id": "4164008b-41c2-4052-b4ba-1e6f5d570c6e",
+            "operator": "contains",
+            "value": ""
+          }
+        ],
+        "frozenFieldCount": 1,
+        "id": "all",
+        "name": "全部记录",
+        "sorts": [],
+        "visibleFieldIds": [
+          "name",
+          "quantity",
+          "status"
+        ]
+      }
+    },
+    {
+      "label": "filter-beta",
+      "dialogs": [
+        "筛选配置"
+      ],
+      "focus": {
+        "label": "筛选值 1",
+        "role": null,
+        "tag": "INPUT"
+      },
+      "rows": [
+        "1Beta5已完成"
+      ],
+      "view": {
+        "columnOrder": [
+          "name",
+          "quantity",
+          "status"
+        ],
+        "deletable": false,
+        "filters": [
+          {
+            "fieldId": "name",
+            "id": "4164008b-41c2-4052-b4ba-1e6f5d570c6e",
+            "operator": "contains",
+            "value": "Beta"
+          }
+        ],
+        "frozenFieldCount": 1,
+        "id": "all",
+        "name": "全部记录",
+        "sorts": [],
+        "visibleFieldIds": [
+          "name",
+          "quantity",
+          "status"
+        ]
+      }
+    },
+    {
+      "label": "filter-delete-focus",
+      "dialogs": [
+        "筛选配置"
+      ],
+      "focus": {
+        "label": "删除筛选条件",
+        "role": null,
+        "tag": "BUTTON"
+      },
+      "rows": [
+        "1Beta5已完成"
+      ],
+      "view": {
+        "columnOrder": [
+          "name",
+          "quantity",
+          "status"
+        ],
+        "deletable": false,
+        "filters": [
+          {
+            "fieldId": "name",
+            "id": "4164008b-41c2-4052-b4ba-1e6f5d570c6e",
+            "operator": "contains",
+            "value": "Beta"
+          }
+        ],
+        "frozenFieldCount": 1,
+        "id": "all",
+        "name": "全部记录",
+        "sorts": [],
+        "visibleFieldIds": [
+          "name",
+          "quantity",
+          "status"
+        ]
+      }
+    },
+    {
+      "label": "filter-delete-focus-recovery",
+      "dialogs": [
+        "筛选配置"
+      ],
+      "focus": {
+        "label": "筛选配置",
+        "role": "dialog",
+        "tag": "DIV"
+      },
+      "rows": [
+        "1Alpha10待处理",
+        "Child2已完成",
+        "2Beta5已完成"
+      ],
+      "view": {
+        "columnOrder": [
+          "name",
+          "quantity",
+          "status"
+        ],
+        "deletable": false,
+        "filters": [],
+        "frozenFieldCount": 1,
+        "id": "all",
+        "name": "全部记录",
+        "sorts": [],
+        "visibleFieldIds": [
+          "name",
+          "quantity",
+          "status"
+        ]
+      }
+    },
+    {
+      "label": "filter-escape-trigger",
+      "dialogs": [],
+      "focus": {
+        "label": "筛选",
+        "role": null,
+        "tag": "BUTTON"
+      },
+      "rows": [
+        "1Alpha10待处理",
+        "Child2已完成",
+        "2Beta5已完成"
+      ],
+      "view": {
+        "columnOrder": [
+          "name",
+          "quantity",
+          "status"
+        ],
+        "deletable": false,
+        "filters": [],
+        "frozenFieldCount": 1,
+        "id": "all",
+        "name": "全部记录",
+        "sorts": [],
+        "visibleFieldIds": [
+          "name",
+          "quantity",
+          "status"
+        ]
+      }
+    },
+    {
+      "label": "sort-open",
+      "dialogs": [
+        "排序配置"
+      ],
+      "focus": {
+        "label": "选择排序字段",
+        "role": null,
+        "tag": "BUTTON"
+      },
+      "rows": [
+        "1Alpha10待处理",
+        "Child2已完成",
+        "2Beta5已完成"
+      ],
+      "view": {
+        "columnOrder": [
+          "name",
+          "quantity",
+          "status"
+        ],
+        "deletable": false,
+        "filters": [],
+        "frozenFieldCount": 1,
+        "id": "all",
+        "name": "全部记录",
+        "sorts": [],
+        "visibleFieldIds": [
+          "name",
+          "quantity",
+          "status"
+        ]
+      }
+    },
+    {
+      "label": "sort-quantity-focus",
+      "dialogs": [
+        "排序配置",
+        null
+      ],
+      "focus": {
+        "label": "数量",
+        "role": null,
+        "tag": "BUTTON"
+      },
+      "rows": [
+        "1Alpha10待处理",
+        "Child2已完成",
+        "2Beta5已完成"
+      ],
+      "view": {
+        "columnOrder": [
+          "name",
+          "quantity",
+          "status"
+        ],
+        "deletable": false,
+        "filters": [],
+        "frozenFieldCount": 1,
+        "id": "all",
+        "name": "全部记录",
+        "sorts": [],
+        "visibleFieldIds": [
+          "name",
+          "quantity",
+          "status"
+        ]
+      }
+    },
+    {
+      "label": "sort-direction-focus",
+      "dialogs": [
+        "排序配置"
+      ],
+      "focus": {
+        "label": "顺序",
+        "role": "radio",
+        "tag": "BUTTON"
+      },
+      "rows": [
+        "1Alpha10待处理",
+        "Child2已完成",
+        "2Beta5已完成"
+      ],
+      "view": {
+        "columnOrder": [
+          "name",
+          "quantity",
+          "status"
+        ],
+        "deletable": false,
+        "filters": [],
+        "frozenFieldCount": 1,
+        "id": "all",
+        "name": "全部记录",
+        "sorts": [
+          {
+            "direction": "asc",
+            "fieldId": "quantity",
+            "id": "4634c0c8-1a72-4907-b1df-8e28fe8173da"
+          }
+        ],
+        "visibleFieldIds": [
+          "name",
+          "quantity",
+          "status"
+        ]
+      }
+    },
+    {
+      "label": "sort-desc",
+      "dialogs": [
+        "排序配置"
+      ],
+      "focus": {
+        "label": "顺序",
+        "role": "radio",
+        "tag": "BUTTON"
+      },
+      "rows": [
+        "1Alpha10待处理",
+        "Child2已完成",
+        "2Beta5已完成"
+      ],
+      "view": {
+        "columnOrder": [
+          "name",
+          "quantity",
+          "status"
+        ],
+        "deletable": false,
+        "filters": [],
+        "frozenFieldCount": 1,
+        "id": "all",
+        "name": "全部记录",
+        "sorts": [
+          {
+            "direction": "asc",
+            "fieldId": "quantity",
+            "id": "4634c0c8-1a72-4907-b1df-8e28fe8173da"
+          }
+        ],
+        "visibleFieldIds": [
+          "name",
+          "quantity",
+          "status"
+        ]
+      }
+    },
+    {
+      "label": "search-alpha-subtree",
+      "dialogs": [],
+      "focus": {
+        "label": "搜索记录",
+        "role": null,
+        "tag": "INPUT"
+      },
+      "rows": [
+        "1Alpha10待处理",
+        "Child2已完成"
+      ],
+      "view": {
+        "columnOrder": [
+          "name",
+          "quantity",
+          "status"
+        ],
+        "deletable": false,
+        "filters": [],
+        "frozenFieldCount": 1,
+        "id": "all",
+        "name": "全部记录",
+        "sorts": [
+          {
+            "direction": "asc",
+            "fieldId": "quantity",
+            "id": "4634c0c8-1a72-4907-b1df-8e28fe8173da"
+          }
+        ],
+        "visibleFieldIds": [
+          "name",
+          "quantity",
+          "status"
+        ]
+      }
+    },
+    {
+      "label": "search-close-restore",
+      "dialogs": [],
+      "focus": {
+        "label": "搜索",
+        "role": null,
+        "tag": "BUTTON"
+      },
+      "rows": [
+        "1Alpha10待处理",
+        "Child2已完成",
+        "2Beta5已完成"
+      ],
+      "view": {
+        "columnOrder": [
+          "name",
+          "quantity",
+          "status"
+        ],
+        "deletable": false,
+        "filters": [],
+        "frozenFieldCount": 1,
+        "id": "all",
+        "name": "全部记录",
+        "sorts": [
+          {
+            "direction": "asc",
+            "fieldId": "quantity",
+            "id": "4634c0c8-1a72-4907-b1df-8e28fe8173da"
+          }
+        ],
+        "visibleFieldIds": [
+          "name",
+          "quantity",
+          "status"
+        ]
+      }
+    },
+    {
+      "label": "settled-sort-radio",
+      "dialogs": [
+        "排序配置"
+      ],
+      "focus": {
+        "label": "顺序",
+        "role": "radio",
+        "tag": "BUTTON"
+      },
+      "rows": [
+        "1Alpha10待处理",
+        "Child2已完成",
+        "2Beta5已完成"
+      ],
+      "view": {
+        "columnOrder": [
+          "name",
+          "quantity",
+          "status"
+        ],
+        "deletable": false,
+        "filters": [],
+        "frozenFieldCount": 1,
+        "id": "all",
+        "name": "全部记录",
+        "sorts": [
+          {
+            "direction": "asc",
+            "fieldId": "quantity",
+            "id": "4634c0c8-1a72-4907-b1df-8e28fe8173da"
+          }
+        ],
+        "visibleFieldIds": [
+          "name",
+          "quantity",
+          "status"
+        ]
+      }
+    },
+    {
+      "label": "sort-arrow-settled",
+      "dialogs": [
+        "排序配置"
+      ],
+      "focus": {
+        "label": "倒序",
+        "role": "radio",
+        "tag": "BUTTON"
+      },
+      "rows": [
+        "1Alpha10待处理",
+        "Child2已完成",
+        "2Beta5已完成"
+      ],
+      "view": {
+        "columnOrder": [
+          "name",
+          "quantity",
+          "status"
+        ],
+        "deletable": false,
+        "filters": [],
+        "frozenFieldCount": 1,
+        "id": "all",
+        "name": "全部记录",
+        "sorts": [
+          {
+            "direction": "asc",
+            "fieldId": "quantity",
+            "id": "4634c0c8-1a72-4907-b1df-8e28fe8173da"
+          }
+        ],
+        "visibleFieldIds": [
+          "name",
+          "quantity",
+          "status"
+        ]
+      }
+    },
+    {
+      "label": "sort-desc-stable",
+      "dialogs": [
+        "排序配置"
+      ],
+      "focus": {
+        "label": "倒序",
+        "role": "radio",
+        "tag": "BUTTON"
+      },
+      "rows": [
+        "1Beta5已完成",
+        "2Alpha10待处理",
+        "Child2已完成"
+      ],
+      "view": {
+        "columnOrder": [
+          "name",
+          "quantity",
+          "status"
+        ],
+        "deletable": false,
+        "filters": [],
+        "frozenFieldCount": 1,
+        "id": "all",
+        "name": "全部记录",
+        "sorts": [
+          {
+            "direction": "desc",
+            "fieldId": "quantity",
+            "id": "4634c0c8-1a72-4907-b1df-8e28fe8173da"
+          }
+        ],
+        "visibleFieldIds": [
+          "name",
+          "quantity",
+          "status"
+        ]
+      }
+    },
+    {
+      "label": "sort-asc-stable",
+      "dialogs": [
+        "排序配置"
+      ],
+      "focus": {
+        "label": "顺序",
+        "role": "radio",
+        "tag": "BUTTON"
+      },
+      "rows": [
+        "1Alpha10待处理",
+        "Child2已完成",
+        "2Beta5已完成"
+      ],
+      "view": {
+        "columnOrder": [
+          "name",
+          "quantity",
+          "status"
+        ],
+        "deletable": false,
+        "filters": [],
+        "frozenFieldCount": 1,
+        "id": "all",
+        "name": "全部记录",
+        "sorts": [
+          {
+            "direction": "asc",
+            "fieldId": "quantity",
+            "id": "4634c0c8-1a72-4907-b1df-8e28fe8173da"
+          }
+        ],
+        "visibleFieldIds": [
+          "name",
+          "quantity",
+          "status"
+        ]
+      }
+    },
+    {
+      "label": "sort-desc-confirmed",
+      "dialogs": [
+        "排序配置"
+      ],
+      "focus": {
+        "label": "倒序",
+        "role": "radio",
+        "tag": "BUTTON"
+      },
+      "rows": [
+        "1Beta5已完成",
+        "2Alpha10待处理",
+        "Child2已完成"
+      ],
+      "view": {
+        "columnOrder": [
+          "name",
+          "quantity",
+          "status"
+        ],
+        "deletable": false,
+        "filters": [],
+        "frozenFieldCount": 1,
+        "id": "all",
+        "name": "全部记录",
+        "sorts": [
+          {
+            "direction": "desc",
+            "fieldId": "quantity",
+            "id": "4634c0c8-1a72-4907-b1df-8e28fe8173da"
+          }
+        ],
+        "visibleFieldIds": [
+          "name",
+          "quantity",
+          "status"
+        ]
+      }
+    },
+    {
+      "label": "grid-tab-entry",
+      "dialogs": [],
+      "focus": {
+        "label": "记录表格",
+        "role": "treegrid",
+        "tag": "DIV"
+      },
+      "rows": [
+        "1Beta5已完成",
+        "2Alpha10待处理",
+        "Child2已完成"
+      ],
+      "view": {
+        "columnOrder": [
+          "name",
+          "quantity",
+          "status"
+        ],
+        "deletable": false,
+        "filters": [],
+        "frozenFieldCount": 1,
+        "id": "all",
+        "name": "全部记录",
+        "sorts": [
+          {
+            "direction": "desc",
+            "fieldId": "quantity",
+            "id": "4634c0c8-1a72-4907-b1df-8e28fe8173da"
+          }
+        ],
+        "visibleFieldIds": [
+          "name",
+          "quantity",
+          "status"
+        ]
+      }
+    },
+    {
+      "label": "grid-selection",
+      "dialogs": [],
+      "focus": {
+        "label": "记录表格",
+        "role": "treegrid",
+        "tag": "DIV"
+      },
+      "rows": [
+        "1Beta5已完成",
+        "2Alpha10待处理",
+        "Child2已完成"
+      ],
+      "view": {
+        "columnOrder": [
+          "name",
+          "quantity",
+          "status"
+        ],
+        "deletable": false,
+        "filters": [],
+        "frozenFieldCount": 1,
+        "id": "all",
+        "name": "全部记录",
+        "sorts": [
+          {
+            "direction": "desc",
+            "fieldId": "quantity",
+            "id": "4634c0c8-1a72-4907-b1df-8e28fe8173da"
+          }
+        ],
+        "visibleFieldIds": [
+          "name",
+          "quantity",
+          "status"
+        ]
+      }
+    },
+    {
+      "label": "grid-tab-exit",
+      "dialogs": [],
+      "focus": {
+        "label": "搜索",
+        "role": null,
+        "tag": "BUTTON"
+      },
+      "rows": [
+        "1Beta5已完成",
+        "2Alpha10待处理",
+        "Child2已完成"
+      ],
+      "view": {
+        "columnOrder": [
+          "name",
+          "quantity",
+          "status"
+        ],
+        "deletable": false,
+        "filters": [],
+        "frozenFieldCount": 1,
+        "id": "all",
+        "name": "全部记录",
+        "sorts": [
+          {
+            "direction": "desc",
+            "fieldId": "quantity",
+            "id": "4634c0c8-1a72-4907-b1df-8e28fe8173da"
+          }
+        ],
+        "visibleFieldIds": [
+          "name",
+          "quantity",
+          "status"
+        ]
+      }
+    },
+    {
+      "label": "fields-open",
+      "dialogs": [
+        "字段配置"
+      ],
+      "focus": {
+        "label": "搜索配置字段",
+        "role": null,
+        "tag": "INPUT"
+      },
+      "rows": [
+        "1Beta5已完成",
+        "2Alpha10待处理",
+        "Child2已完成"
+      ],
+      "view": {
+        "columnOrder": [
+          "name",
+          "quantity",
+          "status"
+        ],
+        "deletable": false,
+        "filters": [],
+        "frozenFieldCount": 1,
+        "id": "all",
+        "name": "全部记录",
+        "sorts": [
+          {
+            "direction": "desc",
+            "fieldId": "quantity",
+            "id": "4634c0c8-1a72-4907-b1df-8e28fe8173da"
+          }
+        ],
+        "visibleFieldIds": [
+          "name",
+          "quantity",
+          "status"
+        ]
+      }
+    },
+    {
+      "label": "field-eye-focus",
+      "dialogs": [
+        "字段配置"
+      ],
+      "focus": {
+        "label": "隐藏记录名称",
+        "role": null,
+        "tag": "BUTTON"
+      },
+      "rows": [
+        "1Beta5已完成",
+        "2Alpha10待处理",
+        "Child2已完成"
+      ],
+      "view": {
+        "columnOrder": [
+          "name",
+          "quantity",
+          "status"
+        ],
+        "deletable": false,
+        "filters": [],
+        "frozenFieldCount": 1,
+        "id": "all",
+        "name": "全部记录",
+        "sorts": [
+          {
+            "direction": "desc",
+            "fieldId": "quantity",
+            "id": "4634c0c8-1a72-4907-b1df-8e28fe8173da"
+          }
+        ],
+        "visibleFieldIds": [
+          "name",
+          "quantity",
+          "status"
+        ]
+      }
+    },
+    {
+      "label": "field-name-hidden-stable",
+      "dialogs": [
+        "字段配置"
+      ],
+      "focus": {
+        "label": "显示记录名称",
+        "role": null,
+        "tag": "BUTTON"
+      },
+      "rows": [
+        "15已完成",
+        "201待处理",
+        "2已完成"
+      ],
+      "view": {
+        "columnOrder": [
+          "name",
+          "quantity",
+          "status"
+        ],
+        "deletable": false,
+        "filters": [],
+        "frozenFieldCount": 1,
+        "id": "all",
+        "name": "全部记录",
+        "sorts": [
+          {
+            "direction": "desc",
+            "fieldId": "quantity",
+            "id": "4634c0c8-1a72-4907-b1df-8e28fe8173da"
+          }
+        ],
+        "visibleFieldIds": [
+          "quantity",
+          "status"
+        ]
+      }
+    },
+    {
+      "label": "field-name-restored-stable",
+      "dialogs": [
+        "字段配置"
+      ],
+      "focus": {
+        "label": "隐藏记录名称",
+        "role": null,
+        "tag": "BUTTON"
+      },
+      "rows": [
+        "1Beta5已完成",
+        "2Alpha10待处理",
+        "Child2已完成"
+      ],
+      "view": {
+        "columnOrder": [
+          "name",
+          "quantity",
+          "status"
+        ],
+        "deletable": false,
+        "filters": [],
+        "frozenFieldCount": 1,
+        "id": "all",
+        "name": "全部记录",
+        "sorts": [
+          {
+            "direction": "desc",
+            "fieldId": "quantity",
+            "id": "4634c0c8-1a72-4907-b1df-8e28fe8173da"
+          }
+        ],
+        "visibleFieldIds": [
+          "quantity",
+          "status",
+          "name"
+        ]
+      }
+    },
+    {
+      "label": "field-escape-restore",
+      "dialogs": [],
+      "focus": {
+        "label": "字段配置",
+        "role": null,
+        "tag": "BUTTON"
+      },
+      "rows": [
+        "1Beta5已完成",
+        "2Alpha10待处理",
+        "Child2已完成"
+      ],
+      "view": {
+        "columnOrder": [
+          "name",
+          "quantity",
+          "status"
+        ],
+        "deletable": false,
+        "filters": [],
+        "frozenFieldCount": 1,
+        "id": "all",
+        "name": "全部记录",
+        "sorts": [
+          {
+            "direction": "desc",
+            "fieldId": "quantity",
+            "id": "4634c0c8-1a72-4907-b1df-8e28fe8173da"
+          }
+        ],
+        "visibleFieldIds": [
+          "quantity",
+          "status",
+          "name"
+        ]
+      }
+    }
+  ],
+  "logs": [],
+  "notes": [
+    "Immediate arrow snapshots preceded Radix focus and React commit; stable aria-checked and rendered rows verified both directions.",
+    "Protocol keys and one native-duration attempt; no real IME or assistive technology claims."
+  ]
+}

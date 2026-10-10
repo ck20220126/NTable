@@ -1,0 +1,7 @@
+{
+  "afterSecondary": {
+    "layer": false,
+    "source": null
+  },
+  "view": "{\n  \"id\": \"all\",\n  \"name\": \"全部记录\",\n  \"deletable\": false,\n  \"visibleFieldIds\": [\n    \"name\",\n    \"quantity\",\n    \"status\"\n  ],\n  \"columnOrder\": [\n    \"name\",\n    \"quantity\",\n    \"status\"\n  ],\n  \"filters\": [],\n  \"sorts\": [],\n  \"frozenFieldCount\": 1\n}"
+}

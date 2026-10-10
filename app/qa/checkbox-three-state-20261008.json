@@ -1,0 +1,45 @@
+[
+  {
+    "stage": "forcedUnchecked",
+    "aria": "false",
+    "background": "rgb(0, 0, 0)",
+    "color": "rgb(255, 255, 255)",
+    "forced": true,
+    "state": "unchecked"
+  },
+  {
+    "stage": "forcedMixed",
+    "aria": "mixed",
+    "background": "rgb(0, 0, 0)",
+    "color": "rgb(255, 255, 255)",
+    "forced": true,
+    "icon": "lucide lucide-minus",
+    "state": "indeterminate"
+  },
+  {
+    "stage": "forcedAll",
+    "aria": "true",
+    "background": "rgb(0, 0, 0)",
+    "color": "rgb(255, 255, 255)",
+    "forced": true,
+    "icon": "lucide lucide-check",
+    "state": "checked"
+  },
+  {
+    "stage": "forcedCleared",
+    "aria": "false",
+    "background": "rgb(0, 0, 0)",
+    "color": "rgb(255, 255, 255)",
+    "forced": true,
+    "state": "unchecked"
+  },
+  {
+    "stage": "normalMixed",
+    "aria": "mixed",
+    "background": "rgb(51, 112, 255)",
+    "color": "rgb(255, 255, 255)",
+    "forced": false,
+    "icon": "lucide lucide-minus",
+    "state": "indeterminate"
+  }
+]

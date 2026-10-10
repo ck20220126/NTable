@@ -1,0 +1,18 @@
+{
+  "temp": "/private/tmp/ntable-hover-EJZ7Ej",
+  "artifact": "/Users/chengkun/i/space/components/NTable/app/dist/kun-ntable-0.1.0-scrollbar-hover-20261008.tgz",
+  "size": 39264,
+  "files": 28,
+  "shasum": "bbb230f0773b5c8a337aa110fb65121a455e1c37",
+  "typeModes": [
+    "Bundler",
+    "NodeNext"
+  ],
+  "exports": [
+    "NTable",
+    "Table",
+    "TableToolbar",
+    "ViewBar"
+  ],
+  "dependencies": "existing local tree"
+}

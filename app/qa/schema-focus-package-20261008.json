@@ -1,0 +1,10 @@
+{
+  "tarball": "/Users/chengkun/i/space/components/NTable/app/dist/kun-ntable-0.1.0-schema-focus-20261008.tgz",
+  "consumer": "/private/tmp/ntable-schema-focus-vlh2wcsy",
+  "types": "Bundler and NodeNext passed",
+  "exports": "four exports passed",
+  "size": 39554,
+  "files": 28,
+  "shasum": "c47094150c42f3c3f868707b9c764710147e2100",
+  "dependencyBoundary": "reused local node_modules; not clean network install"
+}

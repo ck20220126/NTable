@@ -1,0 +1,6 @@
+body { margin: 24px; background: #eee; font: 18px Georgia, serif; overflow: auto; }
+main { max-width: 960px; margin: auto; }
+button { font: inherit; }
+.table-host { height: 340px; margin-top: 20px; background: white; border: 1px solid #ccc; }
+.secondary { height: 220px; }
+pre { font-size: 12px; }

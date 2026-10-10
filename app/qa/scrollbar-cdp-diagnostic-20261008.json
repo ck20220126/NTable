@@ -1,0 +1,95 @@
+{
+  "logs": [
+    {
+      "level": "debug",
+      "message": "ntable-scrollbar-diagnostic vertical 0 true true Object",
+      "timestamp": "2026-10-08T16:40:12.967Z",
+      "url": "http://127.0.0.1:5188/assets/index-CPwqjOzM.js"
+    },
+    {
+      "level": "debug",
+      "message": "ntable-scrollbar-capture true",
+      "timestamp": "2026-10-08T16:40:12.967Z",
+      "url": "http://127.0.0.1:5188/assets/index-CPwqjOzM.js"
+    },
+    {
+      "level": "debug",
+      "message": "ntable-scrollbar-resize [958,240,958,240] [958,240,958,16036]",
+      "timestamp": "2026-10-08T16:41:12.562Z",
+      "url": "http://127.0.0.1:5188/assets/index-BfcyYbkp.js"
+    },
+    {
+      "level": "debug",
+      "message": "ntable-scrollbar-diagnostic vertical 0 true true Object",
+      "timestamp": "2026-10-08T16:41:19.853Z",
+      "url": "http://127.0.0.1:5188/assets/index-BfcyYbkp.js"
+    },
+    {
+      "level": "debug",
+      "message": "ntable-scrollbar-capture true",
+      "timestamp": "2026-10-08T16:41:19.853Z",
+      "url": "http://127.0.0.1:5188/assets/index-BfcyYbkp.js"
+    }
+  ],
+  "trace": {
+    "events": [
+      {
+        "type": "pointermove",
+        "trusted": true,
+        "primary": true,
+        "pointerType": "mouse",
+        "id": 1,
+        "button": -1,
+        "buttons": 0,
+        "target": "",
+        "top": 0
+      },
+      {
+        "type": "pointerdown",
+        "trusted": true,
+        "primary": true,
+        "pointerType": "mouse",
+        "id": 1,
+        "button": 0,
+        "buttons": 1,
+        "target": "",
+        "top": 0
+      },
+      {
+        "type": "after-pointerdown",
+        "connected": true,
+        "captured": false,
+        "top": 0
+      },
+      {
+        "type": "pointermove",
+        "trusted": true,
+        "primary": true,
+        "pointerType": "mouse",
+        "id": 1,
+        "button": -1,
+        "buttons": 1,
+        "target": "grid-row",
+        "top": 0
+      },
+      {
+        "type": "pointerup",
+        "trusted": true,
+        "primary": true,
+        "pointerType": "mouse",
+        "id": 1,
+        "button": 0,
+        "buttons": 0,
+        "target": "grid-row",
+        "top": 0
+      }
+    ],
+    "reactPointer": {
+      "id": 1,
+      "primary": "true",
+      "nativePrimary": "true",
+      "captured": false
+    }
+  },
+  "validDrag": false
+}

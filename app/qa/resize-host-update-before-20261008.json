@@ -1,0 +1,11 @@
+{
+  "duringHostUpdate": {
+    "resizing": null,
+    "view": "{\n  \"id\": \"all\",\n  \"name\": \"全部记录\",\n  \"deletable\": false,\n  \"visibleFieldIds\": [\n    \"name\",\n    \"quantity\",\n    \"status\"\n  ],\n  \"columnOrder\": [\n    \"name\",\n    \"quantity\",\n    \"status\"\n  ],\n  \"filters\": [],\n  \"sorts\": [],\n  \"frozenFieldCount\": 1,\n  \"columnWidths\": {\n    \"name\": 420\n  }\n}",
+    "width": 420
+  },
+  "afterRelease": "{\n  \"id\": \"all\",\n  \"name\": \"全部记录\",\n  \"deletable\": false,\n  \"visibleFieldIds\": [\n    \"name\",\n    \"quantity\",\n    \"status\"\n  ],\n  \"columnOrder\": [\n    \"name\",\n    \"quantity\",\n    \"status\"\n  ],\n  \"filters\": [],\n  \"sorts\": [],\n  \"frozenFieldCount\": 1,\n  \"columnWidths\": {\n    \"name\": 420\n  }\n}",
+  "callbacks": "[]",
+  "validReproduction": false,
+  "note": "Initial geometry read before settled reload used y218 instead of actual y326.5; no resize started. Use resize-host-update-repro-20261008.json for the genuine pre-fix reproduction."
+}

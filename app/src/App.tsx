@@ -1,7 +1,9 @@
 import { Button } from "./components/Button";
-import type { Field, TableRecord } from "./ntable/types";
-import { useEffect, useMemo, useState } from "react";
+import type { Field, TableRecord, TableView } from "./ntable/types";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { NTable } from "./ntable";
+import * as Dialog from "@radix-ui/react-dialog";
+import { createRecordDraft, normalizeDemoViews, readDemoStorage, saveRecordDraft, writeDemoStorage } from "./demoState";
 
 const categoryOptions = [
   { value: "visual", label: "视觉素材", color: "#d9e7ff" },
@@ -20,11 +22,12 @@ const statusOptions = [
 
 export const fields: Field[] = [
   { id: "code", title: "元素编码", type: "text", width: 126, searchable: true },
-  { id: "name", title: "元素名称", type: "text", width: 220, searchable: true },
+  { id: "name", title: "活动元素完整名称", type: "text", width: 220, searchable: true },
   { id: "category", title: "元素分类", type: "singleSelect", width: 140, options: categoryOptions },
   { id: "status", title: "当前状态", type: "singleSelect", width: 128, options: statusOptions },
   { id: "owner", title: "负责人", type: "text", width: 132, searchable: true },
   { id: "department", title: "关注部门", type: "text", width: 140, searchable: true },
+  { id: "quantity", title: "数量", type: "number", width: 112 },
   { id: "startDate", title: "开始日期", type: "date", width: 132 },
   { id: "endDate", title: "结束日期", type: "date", width: 132 },
   { id: "spec", title: "规格", type: "text", width: 168, searchable: true },
@@ -48,6 +51,7 @@ function createRows(count = 10000) {
       status,
       owner: owners[index % owners.length],
       department: departments[index % departments.length],
+      quantity: index % 11 === 10 ? null : index % 101,
       startDate: `2026-10-${day}`,
       endDate: `2026-11-${String(((index + 7) % 27) + 1).padStart(2, "0")}`,
       spec: index % 3 === 0 ? "1440 × 560 px" : index % 3 === 1 ? "750 × 320 px" : "—",
@@ -64,7 +68,7 @@ function createRows(count = 10000) {
   });
 }
 
-function updateTreeRows(rows, record) {
+function updateTreeRows(rows: TableRecord[], record: TableRecord): TableRecord[] {
   return rows.map((row) => {
     if (row.id === record.id) return { ...row, ...record };
     if (!row.children?.length) return row;
@@ -72,7 +76,7 @@ function updateTreeRows(rows, record) {
   });
 }
 
-function insertChildRow(rows, parentId, record) {
+function insertChildRow(rows: TableRecord[], parentId: string, record: TableRecord): TableRecord[] {
   return rows.map((row) => {
     if (row.id === parentId) return { ...row, children: [...(row.children ?? []), record] };
     if (!row.children?.length) return row;
@@ -80,67 +84,77 @@ function insertChildRow(rows, parentId, record) {
   });
 }
 
-const initialViews = [
+const initialViews: TableView[] = [
   { id: "all", name: "全部元素", visibleFieldIds: fields.map((field) => field.id), columnOrder: fields.map((field) => field.id), columnWidths: {}, filters: [], sorts: [] },
-  { id: "design", name: "设计关注", visibleFieldIds: ["code", "name", "category", "status", "owner", "spec", "attachment"], columnOrder: ["code", "name", "category", "status", "owner", "spec", "attachment"], columnWidths: {}, filters: [{ id: "design-dept", fieldId: "department", operator: "equals", value: "设计中心" }], sorts: [] },
-  { id: "operation", name: "运营排期", visibleFieldIds: ["code", "name", "status", "owner", "department", "startDate", "endDate"], columnOrder: ["code", "name", "status", "owner", "department", "startDate", "endDate"], columnWidths: {}, filters: [], sorts: [{ fieldId: "startDate", direction: "asc" }] },
+  { id: "design", name: "设计关注", visibleFieldIds: ["code", "name", "category", "status", "owner", "spec", "attachment"], columnOrder: fields.map(field => field.id), columnWidths: {}, filters: [{ id: "design-dept", fieldId: "department", operator: "equals", value: "设计中心" }], sorts: [] },
+  { id: "operation", name: "运营排期", visibleFieldIds: ["code", "name", "status", "owner", "department", "quantity", "startDate", "endDate"], columnOrder: fields.map(field => field.id), columnWidths: {}, filters: [], sorts: [{ fieldId: "startDate", direction: "asc" }] },
 ];
 
 export function App() {
   const [rows, setRows] = useState(() => createRows());
-  const [views, setViews] = useState(() => {
-    try { return JSON.parse(localStorage.getItem("ntable:views")) || initialViews; }
-    catch { return initialViews; }
-  });
-  const [activeViewId, setActiveViewId] = useState(() => localStorage.getItem("ntable:active-view") || "all");
-  const [editor, setEditor] = useState(null);
+  const [views, setViews] = useState(() => normalizeDemoViews(readDemoStorage("ntable:views"), fields, initialViews));
+  const [activeViewId, setActiveViewId] = useState(() => readDemoStorage("ntable:active-view") || "all");
+  const [editor, setEditor] = useState<Partial<TableRecord> | null>(null);
+  const [storageError, setStorageError] = useState(false);
+  const initialViewsRef = useRef(views);
+  const initialActiveRef = useRef(activeViewId);
+  const editorReturnFocusRef = useRef<HTMLElement | null>(null);
   const activeView = useMemo(() => views.find((view) => view.id === activeViewId) ?? views[0], [views, activeViewId]);
-  useEffect(() => { localStorage.setItem("ntable:views", JSON.stringify(views)); }, [views]);
-  useEffect(() => { localStorage.setItem("ntable:active-view", activeViewId); }, [activeViewId]);
-  const updateView = (viewId, patch) => setViews((current) => current.map((view) => (view.id === viewId ? { ...view, ...patch } : view)));
-  const createView = (name) => {
-    const id = `view-${Date.now()}`;
+  useEffect(() => {
+    if (views === initialViewsRef.current) return;
+    setStorageError(!writeDemoStorage("ntable:views", JSON.stringify(views)));
+  }, [views]);
+  useEffect(() => {
+    if (activeViewId === initialActiveRef.current) return;
+    if (!writeDemoStorage("ntable:active-view", activeViewId)) setStorageError(true);
+  }, [activeViewId]);
+  const openEditor = (record: Partial<TableRecord>) => {
+    editorReturnFocusRef.current = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+    setEditor(record);
+  };
+  const updateView = (viewId: string, patch: Partial<TableView>) => setViews((current) => current.map((view) => (view.id === viewId ? { ...view, ...patch } : view)));
+  const createView = (name: string) => {
+    const id = crypto.randomUUID();
     setViews((current) => [...current, { ...activeView, id, name, filters: [...activeView.filters], sorts: [...activeView.sorts] }]);
     setActiveViewId(id);
   };
-  const deleteView = (viewId) => {
+  const deleteView = (viewId: string) => {
     if (views.length <= 1) return;
     const nextViews = views.filter((view) => view.id !== viewId);
     setViews(nextViews);
     if (activeViewId === viewId) setActiveViewId(nextViews[0].id);
   };
-  const saveRecord = (record) => {
-    if (record.id) setRows((current) => updateTreeRows(current, record));
-    else if (record.parentId) setRows((current) => insertChildRow(current, record.parentId, { ...record, id: `element-${Date.now()}` }));
-    else setRows((current) => [{ ...record, id: `element-${Date.now()}`, code: record.code || `ACT-${String(current.length + 1).padStart(6, "0")}` }, ...current]);
+  const saveRecord = (record: Partial<TableRecord>) => {
+    if (record.id) setRows((current) => updateTreeRows(current, record as TableRecord));
+    else if (record.parentId) setRows((current) => insertChildRow(current, String(record.parentId), { ...record, id: crypto.randomUUID() }));
+    else setRows((current) => [{ ...record, id: crypto.randomUUID(), code: record.code || `ACT-${String(current.length + 1).padStart(6, "0")}` }, ...current]);
     setEditor(null);
   };
 
   return <div className="app-shell">
-    <main className="workspace"><NTable fields={fields} rows={rows} views={views} activeView={activeView} onActiveViewChange={setActiveViewId} onUpdateView={updateView} onCreateView={createView} onDeleteView={deleteView} onAddRecord={() => setEditor({})} onAddSubRecord={(row) => setEditor({ parentId: row.id, code: String((row.children?.length ?? 0) + 1).padStart(2, "0"), category: row.category })} onOpenRecord={(row) => setEditor(row)} /></main>
-    {editor !== null && <RecordEditor record={editor} onClose={() => setEditor(null)} onSave={saveRecord} />}
+    <main className="workspace"><NTable fields={fields} rows={rows} views={views} activeView={activeView} onActiveViewChange={setActiveViewId} onUpdateView={updateView} onCreateView={createView} onDeleteView={deleteView} onAddRecord={() => openEditor({})} onOpenRecord={openEditor} /></main>
+    {storageError && <div role="status" className="demo-storage-status">浏览器存储不可用，当前修改仅在本次会话保留。</div>}
+    {editor !== null && <RecordEditor record={editor} onClose={() => setEditor(null)} onSave={saveRecord} returnFocus={editorReturnFocusRef.current} />}
   </div>;
 }
 
 // Demo business page only. Never export this editor from the component library.
-// Consumers implement their own forms via onAddRecord/onAddSubRecord/onOpenRecord.
-function RecordEditor({ record, onClose, onSave }: any) {
+// Consumers implement their own forms via onAddRecord/onOpenRecord.
+function RecordEditor({ record, onClose, onSave, returnFocus }: {
+  record: Partial<TableRecord>; onClose: () => void; onSave: (record: Partial<TableRecord>) => void; returnFocus: HTMLElement | null;
+}) {
   const isSubRecord = Boolean(record.parentId);
-  const [draft, setDraft] = useState({ id: record.id, parentId: record.parentId, code: record.code ?? "", name: record.name ?? "", category: record.category ?? "visual", status: record.status ?? "draft", owner: record.owner ?? "", department: record.department ?? "活动运营", startDate: record.startDate ?? "2026-10-01", endDate: record.endDate ?? "2026-11-01", spec: record.spec ?? "", attachment: record.attachment ?? "—" });
-  useEffect(() => {
-    const closeOnEscape = (event) => event.key === "Escape" && onClose();
-    window.addEventListener("keydown", closeOnEscape);
-    return () => window.removeEventListener("keydown", closeOnEscape);
-  }, [onClose]);
-  const set = (key) => (event) => setDraft((value) => ({ ...value, [key]: event.target.value }));
-  return <div className="editor-layer" role="dialog" aria-modal="true" aria-label={record.id ? "编辑活动元素" : isSubRecord ? "添加子规格" : "添加活动元素"}>
-    <div className="editor-header"><div><span className="editor-eyebrow">活动元素库</span><h1>{record.id ? draft.name : isSubRecord ? "添加子规格" : "添加活动元素"}</h1></div><div className="editor-actions"><Button variant="outlined" onClick={onClose}>取消</Button><Button variant="contained" color="primary" onClick={() => onSave({ ...draft, parentId: record.parentId })} disabled={!draft.name.trim()}>保存</Button></div></div>
+  const [draft, setDraft] = useState(() => createRecordDraft(record));
+  const quantityInvalid = Boolean(draft.quantity.trim()) && !Number.isFinite(Number(draft.quantity));
+  const set = (key: keyof typeof draft) => (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => setDraft((value) => ({ ...value, [key]: event.target.value }));
+  return <Dialog.Root open onOpenChange={(open) => { if (!open) onClose(); }}><Dialog.Portal><Dialog.Content className="editor-layer" aria-describedby={undefined} onCloseAutoFocus={(event) => { event.preventDefault(); if (returnFocus?.isConnected) returnFocus.focus(); }} aria-label={record.id ? "编辑活动元素" : isSubRecord ? "添加子规格" : "添加活动元素"}>
+    <div className="editor-header"><div><span className="editor-eyebrow">活动元素库</span><Dialog.Title asChild><h1>{record.id ? draft.name : isSubRecord ? "添加子规格" : "添加活动元素"}</h1></Dialog.Title></div><div className="editor-actions"><Button variant="outlined" onClick={onClose}>取消</Button><Button variant="contained" color="primary" onClick={() => onSave(saveRecordDraft(draft))} disabled={!draft.name.trim() || quantityInvalid}>保存</Button></div></div>
     <div className="editor-body"><section className="editor-card"><h2>基本信息</h2><div className="form-grid">
       <label><span>元素编码</span><input value={draft.code} onChange={set("code")} placeholder="保存后自动生成" /></label><label className="wide"><span>元素名称 *</span><input autoFocus value={draft.name} onChange={set("name")} placeholder="请输入元素名称" /></label>
-      <label><span>元素分类</span><select value={draft.category} onChange={set("category")}>{categoryOptions.map((item) => <option key={item.value} value={item.value}>{item.label}</option>)}</select></label><label><span>当前状态</span><select value={draft.status} onChange={set("status")}>{statusOptions.map((item) => <option key={item.value} value={item.value}>{item.label}</option>)}</select></label>
-      <label><span>负责人</span><input value={draft.owner} onChange={set("owner")} /></label><label><span>关注部门</span><input value={draft.department} onChange={set("department")} /></label><label><span>开始日期</span><input type="date" value={draft.startDate} onChange={set("startDate")} /></label><label><span>结束日期</span><input type="date" value={draft.endDate} onChange={set("endDate")} /></label><label className="wide"><span>规格</span><input value={draft.spec} onChange={set("spec")} /></label>
+      <label><span>元素分类</span><select value={draft.category} onChange={set("category")}><option value="">未设置</option>{categoryOptions.map((item) => <option key={item.value} value={item.value}>{item.label}</option>)}</select></label><label><span>当前状态</span><select value={draft.status} onChange={set("status")}><option value="">未设置</option>{statusOptions.map((item) => <option key={item.value} value={item.value}>{item.label}</option>)}</select></label>
+      <label><span>负责人</span><input value={draft.owner} onChange={set("owner")} /></label><label><span>关注部门</span><input value={draft.department} onChange={set("department")} /></label><label><span>数量</span><input type="number" step="any" value={draft.quantity} onChange={set("quantity")} aria-invalid={quantityInvalid} /></label><label><span>开始日期</span><input type="date" value={draft.startDate} onChange={set("startDate")} /></label><label><span>结束日期</span><input type="date" value={draft.endDate} onChange={set("endDate")} /></label><label className="wide"><span>规格</span><input value={draft.spec} onChange={set("spec")} /></label>
     </div></section></div>
-  </div>;
+  </Dialog.Content></Dialog.Portal></Dialog.Root>;
 }
 
 

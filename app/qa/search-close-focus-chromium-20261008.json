@@ -1,0 +1,17 @@
+{
+  "before": {
+    "tag": "BODY",
+    "name": null,
+    "source": "observed before production fix via locator Enter close"
+  },
+  "after": {
+    "focused": true,
+    "name": "搜索",
+    "tag": "BUTTON",
+    "y": 1162
+  },
+  "scrollBefore": {
+    "y": 1162
+  },
+  "eventRegression": "通过 11 项：输入立即回显，防抖前不提交；快速连续输入只提交最终值；组词取消待提交搜索且不搜索拼音；组词结束后仍等待防抖；组词结束只提交一次完整文字；手动清空立即生效；关闭搜索取消待提交值；关闭搜索恢复触发器焦点；回调移除再恢复不复活待提交查询；同值外部重置取消待提交草稿；组件卸载取消待提交查询"
+}

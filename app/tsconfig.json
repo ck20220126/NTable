@@ -6,8 +6,9 @@
     "moduleResolution": "Bundler",
     "jsx": "react-jsx",
     "noEmit": true,
-    "skipLibCheck": true,
-    "strict": false,
+    "allowImportingTsExtensions": true,
+    "skipLibCheck": false,
+    "strict": true,
     "allowSyntheticDefaultImports": true
   },
   "include": ["src"]

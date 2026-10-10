@@ -1,0 +1,31 @@
+{
+  "kind": "browser-wheel-observation",
+  "inspectDom": false,
+  "valid": true,
+  "wheelEvents": 24,
+  "trustedWheelEvents": 24,
+  "scrollEvents": 24,
+  "activeFrameSamples": 49,
+  "durationMs": 1181,
+  "p50FrameGapMs": 16.7,
+  "p95FrameGapMs": 17.5,
+  "maxFrameGapMs": 116.7,
+  "framesOver50ms": 1,
+  "longTasks": [],
+  "verticalMisses": null,
+  "horizontalMisses": null,
+  "maxCells": null,
+  "initial": {
+    "top": 1920,
+    "left": 1920
+  },
+  "final": {
+    "top": 0,
+    "left": 0
+  },
+  "viewport": {
+    "width": 1774,
+    "height": 1228,
+    "dpr": 2
+  }
+}

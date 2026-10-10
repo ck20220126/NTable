@@ -1,0 +1,129 @@
+{
+  "kind": "programmatic-scroll",
+  "totalRows": 7,
+  "columns": 42,
+  "sampleCount": 22,
+  "axisSamples": {
+    "vertical": 0,
+    "horizontal": 22
+  },
+  "durationMs": 543,
+  "p50FrameGapMs": 16.7,
+  "p95FrameGapMs": 33.3,
+  "maxFrameGapMs": 34,
+  "framesOver50ms": 0,
+  "inspectDom": true,
+  "maxMountedRows": 7,
+  "maxMountedCells": 77,
+  "coverageMisses": 0,
+  "horizontalCoverageMisses": 8,
+  "horizontalGaps": [
+    {
+      "offset": 958,
+      "band": "grid-header",
+      "covered": 724,
+      "expected": 958,
+      "columns": [
+        0,
+        1,
+        2,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ]
+    },
+    {
+      "offset": 958,
+      "band": "grid-row",
+      "covered": 724,
+      "expected": 958,
+      "columns": [
+        0,
+        1,
+        2,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ]
+    },
+    {
+      "offset": 1437,
+      "band": "grid-header",
+      "covered": 665,
+      "expected": 958,
+      "columns": [
+        0,
+        1,
+        2,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14
+      ]
+    },
+    {
+      "offset": 1437,
+      "band": "grid-row",
+      "covered": 665,
+      "expected": 958,
+      "columns": [
+        0,
+        1,
+        2,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14
+      ]
+    },
+    {
+      "offset": 4588,
+      "band": "grid-header",
+      "covered": 422,
+      "expected": 958,
+      "columns": [
+        0,
+        1,
+        2,
+        38,
+        39,
+        40,
+        41,
+        42
+      ]
+    },
+    {
+      "offset": 4588,
+      "band": "grid-row",
+      "covered": 422,
+      "expected": 958,
+      "columns": [
+        0,
+        1,
+        2,
+        38,
+        39,
+        40,
+        41,
+        42
+      ]
+    }
+  ],
+  "longTasks": [],
+  "finalScrollTop": 0,
+  "finalScrollLeft": 0
+}

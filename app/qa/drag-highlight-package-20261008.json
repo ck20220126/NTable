@@ -1,0 +1,10 @@
+{
+  "tarball": "/Users/chengkun/i/space/components/NTable/app/dist/kun-ntable-0.1.0-drag-highlight-20261008.tgz",
+  "consumer": "/private/tmp/ntable-drag-highlight-oq_a_hll",
+  "size": 39727,
+  "files": 28,
+  "shasum": "822272b7f084113fcba0dd1addd200f7d177520e",
+  "types": "Bundler and NodeNext passed",
+  "exports": "four exports passed",
+  "dependencies": "local node_modules reused, not clean network install"
+}

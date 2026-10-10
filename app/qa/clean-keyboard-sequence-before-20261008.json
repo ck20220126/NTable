@@ -1,0 +1,119 @@
+[
+  {
+    "label": "进入视图",
+    "focus": {
+      "expanded": null,
+      "label": null,
+      "tag": "BUTTON",
+      "text": "全部记录"
+    }
+  },
+  {
+    "label": "新建视图",
+    "focus": {
+      "expanded": "false",
+      "label": null,
+      "tag": "BUTTON",
+      "text": "新建视图"
+    }
+  },
+  {
+    "label": "字段配置",
+    "focus": {
+      "expanded": "false",
+      "label": null,
+      "tag": "BUTTON",
+      "text": "字段配置"
+    }
+  },
+  {
+    "label": "字段配置关闭恢复",
+    "focus": {
+      "expanded": "false",
+      "label": null,
+      "tag": "BUTTON",
+      "text": "字段配置"
+    }
+  },
+  {
+    "label": "筛选",
+    "focus": {
+      "expanded": "false",
+      "label": null,
+      "tag": "BUTTON",
+      "text": "筛选"
+    }
+  },
+  {
+    "label": "筛选打开",
+    "focus": {
+      "expanded": "true",
+      "label": null,
+      "tag": "BUTTON",
+      "text": "筛选"
+    }
+  },
+  {
+    "label": "筛选关闭恢复",
+    "focus": {
+      "expanded": "false",
+      "label": null,
+      "tag": "BUTTON",
+      "text": "筛选"
+    }
+  },
+  {
+    "label": "排序打开",
+    "focus": {
+      "expanded": "false",
+      "label": "选择排序字段",
+      "tag": "BUTTON",
+      "text": "选择条件"
+    }
+  },
+  {
+    "label": "排序字段搜索",
+    "focus": {
+      "expanded": null,
+      "label": "搜索字段",
+      "tag": "INPUT",
+      "text": ""
+    }
+  },
+  {
+    "label": "第一字段",
+    "focus": {
+      "expanded": null,
+      "label": "记录名称",
+      "tag": "BUTTON",
+      "text": "记录名称"
+    }
+  },
+  {
+    "label": "数量字段",
+    "focus": {
+      "expanded": null,
+      "label": "数量",
+      "tag": "BUTTON",
+      "text": "数量"
+    }
+  },
+  {
+    "label": "反向返回筛选",
+    "focus": {
+      "expanded": "false",
+      "label": null,
+      "tag": "BUTTON",
+      "text": "筛选"
+    }
+  },
+  {
+    "label": "筛选打开后Tab",
+    "focus": {
+      "expanded": "false",
+      "label": null,
+      "tag": "BUTTON",
+      "text": "排序"
+    }
+  }
+]

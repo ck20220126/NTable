@@ -1,0 +1,181 @@
+{
+  "checks": [
+    {
+      "button": "延迟更新宿主列宽",
+      "preview": {
+        "callbacks": [],
+        "dragging": false,
+        "freezeDragging": false,
+        "resizing": "记录名称",
+        "view": {
+          "columnOrder": [
+            "name",
+            "quantity",
+            "status"
+          ],
+          "deletable": false,
+          "filters": [],
+          "frozenFieldCount": 1,
+          "id": "all",
+          "name": "全部记录",
+          "sorts": [],
+          "visibleFieldIds": [
+            "name",
+            "quantity",
+            "status"
+          ]
+        },
+        "width": 300
+      },
+      "afterHost": {
+        "callbacks": [],
+        "dragging": false,
+        "freezeDragging": false,
+        "resizing": null,
+        "view": {
+          "columnOrder": [
+            "name",
+            "quantity",
+            "status"
+          ],
+          "columnWidths": {
+            "name": 420
+          },
+          "deletable": false,
+          "filters": [],
+          "frozenFieldCount": 1,
+          "id": "all",
+          "name": "全部记录",
+          "sorts": [],
+          "visibleFieldIds": [
+            "name",
+            "quantity",
+            "status"
+          ]
+        },
+        "width": 420
+      },
+      "released": {
+        "callbacks": [],
+        "dragging": false,
+        "freezeDragging": false,
+        "resizing": null,
+        "view": {
+          "columnOrder": [
+            "name",
+            "quantity",
+            "status"
+          ],
+          "columnWidths": {
+            "name": 420
+          },
+          "deletable": false,
+          "filters": [],
+          "frozenFieldCount": 1,
+          "id": "all",
+          "name": "全部记录",
+          "sorts": [],
+          "visibleFieldIds": [
+            "name",
+            "quantity",
+            "status"
+          ]
+        },
+        "width": 420
+      }
+    },
+    {
+      "button": "延迟重建等价视图",
+      "preview": {
+        "callbacks": [],
+        "dragging": false,
+        "freezeDragging": false,
+        "resizing": "记录名称",
+        "view": {
+          "columnOrder": [
+            "name",
+            "quantity",
+            "status"
+          ],
+          "deletable": false,
+          "filters": [],
+          "frozenFieldCount": 1,
+          "id": "all",
+          "name": "全部记录",
+          "sorts": [],
+          "visibleFieldIds": [
+            "name",
+            "quantity",
+            "status"
+          ]
+        },
+        "width": 300
+      },
+      "afterHost": {
+        "callbacks": [],
+        "dragging": false,
+        "freezeDragging": false,
+        "resizing": "记录名称",
+        "view": {
+          "columnOrder": [
+            "name",
+            "quantity",
+            "status"
+          ],
+          "columnWidths": {},
+          "deletable": false,
+          "filters": [],
+          "frozenFieldCount": 1,
+          "id": "all",
+          "name": "全部记录",
+          "sorts": [],
+          "visibleFieldIds": [
+            "name",
+            "quantity",
+            "status"
+          ]
+        },
+        "width": 300
+      },
+      "released": {
+        "callbacks": [
+          {
+            "id": "all",
+            "patch": {
+              "columnWidths": {
+                "name": 310
+              }
+            }
+          }
+        ],
+        "dragging": false,
+        "freezeDragging": false,
+        "resizing": null,
+        "view": {
+          "columnOrder": [
+            "name",
+            "quantity",
+            "status"
+          ],
+          "columnWidths": {
+            "name": 310
+          },
+          "deletable": false,
+          "filters": [],
+          "frozenFieldCount": 1,
+          "id": "all",
+          "name": "全部记录",
+          "sorts": [],
+          "visibleFieldIds": [
+            "name",
+            "quantity",
+            "status"
+          ]
+        },
+        "width": 310
+      }
+    }
+  ],
+  "hostResizeCapture": "[\n  {\n    \"type\": \"got\",\n    \"pointerId\": 1,\n    \"trusted\": true\n  },\n  {\n    \"type\": \"lost\",\n    \"pointerId\": 1,\n    \"trusted\": true\n  }\n]",
+  "equivalentCapture": "[\n  {\n    \"type\": \"got\",\n    \"pointerId\": 1,\n    \"trusted\": true\n  },\n  {\n    \"type\": \"lost\",\n    \"pointerId\": 1,\n    \"trusted\": true\n  }\n]"
+}

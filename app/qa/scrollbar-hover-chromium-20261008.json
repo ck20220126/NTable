@@ -1,0 +1,56 @@
+{
+  "width": {
+    "position": "last",
+    "samples": [
+      {
+        "width": 700,
+        "active": "业务字段 40 / 记录 1999",
+        "scrollLeft": 5322,
+        "visibleWidth": 700,
+        "frozenColumns": 2
+      },
+      {
+        "width": 600,
+        "active": "业务字段 40 / 记录 1999",
+        "scrollLeft": 5422,
+        "visibleWidth": 600,
+        "frozenColumns": 2
+      },
+      {
+        "width": 900,
+        "active": "业务字段 40 / 记录 1999",
+        "scrollLeft": 5125,
+        "visibleWidth": 900,
+        "frozenColumns": 2
+      }
+    ],
+    "checks": [
+      "活动身份不变",
+      "焦点不丢失",
+      "活动列不被冻结区域遮挡"
+    ]
+  },
+  "scroll": {
+    "samples": 262,
+    "axes": {
+      "vertical": 240,
+      "horizontal": 22
+    },
+    "p95": 17.4,
+    "max": 48.1,
+    "slow": 0,
+    "rows": 18,
+    "cells": 162,
+    "verticalMisses": 0,
+    "horizontalMisses": 0,
+    "final": {
+      "top": 0,
+      "left": 0
+    }
+  },
+  "hoverChecks": [
+    "pointer inside adds scrollbars-visible",
+    "pointer outside removes scrollbars-visible"
+  ],
+  "dragClaim": "not proven; old trace lacked capture"
+}

@@ -4,7 +4,10 @@ import { App } from "./App";
 import "./styles.css";
 import "./overrides.css";
 
-createRoot(document.getElementById("root")).render(
+const mountRoot = document.getElementById("root");
+if (!mountRoot) throw new Error("NTable demo requires a #root mount element");
+
+createRoot(mountRoot).render(
   <React.StrictMode>
     <App />
   </React.StrictMode>,

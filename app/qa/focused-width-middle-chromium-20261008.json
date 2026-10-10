@@ -1,0 +1,1 @@
+{ "position": "middle", "samples": [ { "width": 700, "active": "业务字段 39 / 记录 1999", "scrollLeft": 5182, "visibleWidth": 700 }, { "width": 600, "active": "业务字段 39 / 记录 1999", "scrollLeft": 5282, "visibleWidth": 600 }, { "width": 900, "active": "业务字段 39 / 记录 1999", "scrollLeft": 5125, "visibleWidth": 900 } ], "checks": [ "活动身份不变", "焦点不丢失", "活动列不被冻结区域遮挡" ] }

@@ -1,0 +1,209 @@
+{
+  "packageSha1": "0de8ad96e61aefc38654bd57f22cc2b3efa8dd4f",
+  "url": "http://127.0.0.1:5188/",
+  "compact": [
+    {
+      "case": "initial-loading",
+      "result": "{\n  \"checks\": [\n    \"空态不越过记录区底边\",\n    \"内容首部没有落在负滚动区域\",\n    \"状态标题可以完整滚入视口\"\n  ],\n  \"title\": \"正在加载记录…\",\n  \"viewportHeight\": 68,\n  \"overlayHeight\": 32,\n  \"scrollHeight\": 67\n}"
+    },
+    {
+      "case": "initial-error",
+      "result": "{\n  \"checks\": [\n    \"空态不越过记录区底边\",\n    \"内容首部没有落在负滚动区域\",\n    \"空态图标保留自然高度\",\n    \"状态标题可以完整滚入视口\",\n    \"状态操作可以完整滚入空态视口\",\n    \"状态操作没有被宿主容器裁切\"\n  ],\n  \"title\": \"记录加载失败\",\n  \"viewportHeight\": 68,\n  \"overlayHeight\": 32,\n  \"scrollHeight\": 150\n}"
+    },
+    {
+      "case": "empty-data",
+      "result": "{\n  \"checks\": [\n    \"空态不越过记录区底边\",\n    \"内容首部没有落在负滚动区域\",\n    \"空态图标保留自然高度\",\n    \"状态标题可以完整滚入视口\"\n  ],\n  \"title\": \"暂无记录\",\n  \"viewportHeight\": 68,\n  \"overlayHeight\": 32,\n  \"scrollHeight\": 114\n}"
+    },
+    {
+      "case": "compact-last",
+      "result": "{\n  \"active\": \"7\",\n  \"gridHeight\": 68,\n  \"hostHeight\": 120,\n  \"hostScrollTop\": 48,\n  \"checks\": [\n    \"末行挂载\",\n    \"网格内完整可见\",\n    \"组件外层内完整可见\"\n  ]\n}"
+    },
+    {
+      "case": "standalone-100px",
+      "result": "{\n  \"active\": \"7\",\n  \"gridHeight\": 68,\n  \"hostHeight\": 100,\n  \"hostScrollTop\": 4,\n  \"checks\": [\n    \"末行挂载\",\n    \"网格内完整可见\",\n    \"组件外层内完整可见\"\n  ]\n}"
+    },
+    {
+      "case": "wide-responsive-500-320-900",
+      "result": "{\n  \"position\": \"middle\",\n  \"samples\": [\n    {\n      \"width\": 500,\n      \"active\": \"业务字段 39 / 记录 1999\",\n      \"scrollLeft\": 5382,\n      \"visibleWidth\": 500,\n      \"frozenColumns\": 1\n    },\n    {\n      \"width\": 320,\n      \"active\": \"业务字段 39 / 记录 1999\",\n      \"scrollLeft\": 5562,\n      \"visibleWidth\": 320,\n      \"frozenColumns\": 0\n    },\n    {\n      \"width\": 900,\n      \"active\": \"业务字段 39 / 记录 1999\",\n      \"scrollLeft\": 5122,\n      \"visibleWidth\": 900,\n      \"frozenColumns\": 2\n    }\n  ],\n  \"checks\": [\n    \"活动身份不变\",\n    \"焦点不丢失\",\n    \"活动列不被冻结区域遮挡\",\n    \"尺寸变化未调用 onUpdateView\"\n  ]\n}"
+    }
+  ],
+  "large": [
+    {
+      "case": "wide-end",
+      "active": {
+        "id": "_r_5a_-cell-1999-42",
+        "rect": {
+          "bottom": 480.21875,
+          "height": 32,
+          "right": 1111.5,
+          "width": 140,
+          "x": 971.5,
+          "y": 448.21875
+        },
+        "row": "2000多列记录 19991999业务字段 36 / 记录 1999业务字段 37 / 记录 1999业务字段 38 / 记录 1999业务字段 39 / 记录 1999业务字段 40 / 记录 1999",
+        "text": "业务字段 40 / 记录 1999"
+      },
+      "colCount": "43",
+      "focus": true,
+      "grid": {
+        "bottom": 480.21875,
+        "height": 240,
+        "right": 1111.5,
+        "width": 958,
+        "x": 153.5,
+        "y": 240.21875
+      },
+      "host": {
+        "bottom": 512.21875,
+        "height": 342,
+        "right": 1112.5,
+        "width": 960,
+        "x": 152.5,
+        "y": 170.21875
+      },
+      "mountedCells": 88,
+      "mountedRows": 11,
+      "rowCount": "2001",
+      "scroll": {
+        "height": 64036,
+        "left": 5064,
+        "top": 63796,
+        "width": 6022
+      }
+    },
+    {
+      "case": "wide-offscreen-field-search",
+      "active": {
+        "id": "_r_5a_-cell-0-42",
+        "rect": {
+          "bottom": 446.21875,
+          "height": 32,
+          "right": 1111.5,
+          "width": 140,
+          "x": 971.5,
+          "y": 414.21875
+        },
+        "row": "1多列记录 19991999业务字段 36 / 记录 1999业务字段 37 / 记录 1999业务字段 38 / 记录 1999业务字段 39 / 记录 1999业务字段 40 / 记录 1999",
+        "text": "业务字段 40 / 记录 1999"
+      },
+      "colCount": "43",
+      "focus": false,
+      "grid": {
+        "bottom": 618.21875,
+        "height": 240,
+        "right": 1111.5,
+        "width": 958,
+        "x": 153.5,
+        "y": 378.21875
+      },
+      "host": {
+        "bottom": 650.21875,
+        "height": 342,
+        "right": 1112.5,
+        "width": 960,
+        "x": 152.5,
+        "y": 308.21875
+      },
+      "mountedCells": 8,
+      "mountedRows": 1,
+      "rowCount": "2",
+      "scroll": {
+        "height": 240,
+        "left": 5064,
+        "top": 0,
+        "width": 6022
+      }
+    },
+    {
+      "case": "branch-last-end",
+      "active": {
+        "id": "_r_js_-cell-5460-2",
+        "rect": {
+          "bottom": 480.21875,
+          "height": 32,
+          "right": 575.5,
+          "width": 130,
+          "x": 445.5,
+          "y": 448.21875
+        },
+        "row": "分支记录 54605460",
+        "text": "5460"
+      },
+      "colCount": "3",
+      "focus": true,
+      "grid": {
+        "bottom": 480.21875,
+        "height": 240,
+        "right": 1111.5,
+        "width": 958,
+        "x": 153.5,
+        "y": 240.21875
+      },
+      "host": {
+        "bottom": 512.21875,
+        "height": 342,
+        "right": 1112.5,
+        "width": 960,
+        "x": 152.5,
+        "y": 170.21875
+      },
+      "mountedCells": 33,
+      "mountedRows": 11,
+      "rowCount": "5462",
+      "scroll": {
+        "height": 174788,
+        "left": 0,
+        "top": 174548,
+        "width": 958
+      }
+    },
+    {
+      "case": "branch-search-ancestry",
+      "active": {
+        "id": "_r_js_-cell-6-2",
+        "rect": {
+          "bottom": 618.21875,
+          "height": 32,
+          "right": 575.5,
+          "width": 130,
+          "x": 445.5,
+          "y": 586.21875
+        },
+        "row": "分支记录 54605460",
+        "text": "5460"
+      },
+      "colCount": "3",
+      "focus": false,
+      "grid": {
+        "bottom": 618.21875,
+        "height": 240,
+        "right": 1111.5,
+        "width": 958,
+        "x": 153.5,
+        "y": 378.21875
+      },
+      "host": {
+        "bottom": 650.21875,
+        "height": 342,
+        "right": 1112.5,
+        "width": 960,
+        "x": 152.5,
+        "y": 308.21875
+      },
+      "mountedCells": 21,
+      "mountedRows": 7,
+      "rowCount": "8",
+      "scroll": {
+        "height": 260,
+        "left": 0,
+        "top": 20,
+        "width": 958
+      }
+    }
+  ],
+  "logs": [],
+  "notes": [
+    "Layout fixture checks use synthetic key events and explicit fixture focus; wide/branch navigation uses browser keyboard input.",
+    "Initial wide navigation targeted the separate treegrid after the main instance became flat grid; excluded as test selection error."
+  ]
+}

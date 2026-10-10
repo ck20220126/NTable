@@ -1,0 +1,4 @@
+空态布局结果
+							31 text { "checks": [ "空态不越过记录区底边", "内容首部没有落在负滚动区域", "空态图标保留自然高度", "状态标题可以完整滚入视口" ], "title": "暂无记录", "viewportHeight": 68, "overlayHeight": 32, "scrollHeight": 114 }
+						32 text 重试次数： 1
+						33 

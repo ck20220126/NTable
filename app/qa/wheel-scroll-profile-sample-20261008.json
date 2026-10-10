@@ -1,0 +1,55 @@
+{
+  "kind": "browser-wheel-observation",
+  "inspectDom": false,
+  "valid": true,
+  "wheelEvents": 24,
+  "trustedWheelEvents": 24,
+  "scrollEvents": 24,
+  "activeFrameSamples": 54,
+  "durationMs": 1366,
+  "p50FrameGapMs": 16.7,
+  "p95FrameGapMs": 17.6,
+  "maxFrameGapMs": 50.3,
+  "framesOver50ms": 1,
+  "slowFrames": [
+    {
+      "offsetMs": 230,
+      "gapMs": 50.3,
+      "wheelEvents": 2,
+      "scrollEvents": 2
+    }
+  ],
+  "longTasks": [],
+  "longAnimationFrames": [
+    {
+      "name": "long-animation-frame",
+      "entryType": "long-animation-frame",
+      "startTime": 1337.1000001430511,
+      "duration": 108.19999980926514,
+      "navigationId": 5473,
+      "paintTime": 1445.2999999523163,
+      "presentationTime": 1448,
+      "renderStart": 1445.2000000476837,
+      "styleAndLayoutStart": 1445.2999999523163,
+      "firstUIEventTimestamp": 0,
+      "blockingDuration": 0,
+      "scripts": []
+    }
+  ],
+  "verticalMisses": null,
+  "horizontalMisses": null,
+  "maxCells": null,
+  "initial": {
+    "top": 0,
+    "left": 0
+  },
+  "final": {
+    "top": 1920,
+    "left": 1920
+  },
+  "viewport": {
+    "width": 1774,
+    "height": 1228,
+    "dpr": 2
+  }
+}

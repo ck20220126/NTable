@@ -1,0 +1,36 @@
+The following is a diff from the previous accessibility tree for Window: "NTable 干净安装验收" with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.
+Removed element IDs: 269-273
++								276 row (selectable, expanded) Secondary Actions: Collapse
++									277 cell (selectable, settable) 1
++									278 cell (selectable, settable) 收起子规格
+1 个子规格, Value: Alpha
+1
++									279 cell (selectable, settable) 0
++									280 cell (selectable, settable) 待处理
++								281 row (selectable)
++									282 cell (selectable, settable)
++									283 cell (selectable, settable) Child
++									284 cell (selectable, settable) 2
++									285 cell (selectable, settable) 已完成
+~									246 cell (selectable, settable) 2
+~								252 text 3  条记录
+~							254 text {
+  "id": "all",
+  "name": "全部记录",
+  "deletable": false,
+  "visibleFieldIds": [
+    "name",
+    "quantity",
+    "status"
+  ],
+  "columnOrder": [
+    "name",
+    "quantity",
+    "status"
+  ],
+  "filters": [],
+  "sorts": [],
+  "frozenFieldCount": 1
+}
++						286 text 暂无筛选条件
+The focused UI element is 264 container 筛选配置

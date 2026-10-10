@@ -1,0 +1,17 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "noEmit": false,
+    "declaration": true,
+    "emitDeclarationOnly": true,
+    "rootDir": "src",
+    "outDir": "dist/lib/types",
+    "allowImportingTsExtensions": true,
+    "strict": true
+  },
+  "include": [
+    "src/ntable",
+    "src/components",
+    "src/vite-env.d.ts"
+  ]
+}

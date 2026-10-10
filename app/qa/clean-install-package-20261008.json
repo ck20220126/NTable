@@ -1,0 +1,20 @@
+{
+  "consumer": "/private/tmp/ntable-clean-consumer-pm7wf3q3",
+  "tarball": "kun-ntable-0.1.0-pending-source-20261008.tgz",
+  "tarballSha1": "1292796638c922def6e724488e8b88aad085d1da",
+  "installation": "75 packages downloaded; no repository node_modules links; fresh temporary npm cache",
+  "react": {
+    "node_modules/react": "19.2.0",
+    "node_modules/react-dom": "19.2.0"
+  },
+  "strictBundler": "passed",
+  "strictNodeNext": "passed",
+  "productionBuild": "passed",
+  "buildWarnings": [
+    "use client directives ignored for client bundling",
+    "JS chunk exceeds 500 kB"
+  ],
+  "browser": "11 critical interaction checks passed in IAB production preview",
+  "sourceFixture": "app/tests/clean-install-consumer.tsx",
+  "finalFixture": "pale tag backgrounds and labeled host outputs rebuilt; strict Bundler/NodeNext and final visual baseline passed"
+}

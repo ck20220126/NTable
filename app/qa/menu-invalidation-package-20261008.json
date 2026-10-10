@@ -1,0 +1,10 @@
+{
+  "tarball": "/Users/chengkun/i/space/components/NTable/app/dist/kun-ntable-0.1.0-menu-invalidation-20261008.tgz",
+  "consumer": "/private/tmp/ntable-menu-7ykao7gr",
+  "types": "Bundler and NodeNext passed",
+  "exports": "four exports passed",
+  "size": 39608,
+  "files": 28,
+  "shasum": "434fcbb4d4abf8fc01d518fc09a39bbc07dfae7c",
+  "dependencyBoundary": "reused local node_modules; not clean network install"
+}

@@ -1,0 +1,52 @@
+{
+  "idle": {
+    "hintOpacity": "0",
+    "opacity": "1",
+    "pointer": "auto",
+    "rect": {
+      "bottom": 392.5,
+      "height": 39,
+      "left": 742.5,
+      "right": 768.5,
+      "top": 353.5,
+      "width": 26,
+      "x": 742.5,
+      "y": 353.5
+    }
+  },
+  "active": {
+    "active": true,
+    "hintOpacity": "0",
+    "target": "--freeze-target-left: 452px;"
+  },
+  "secondary": {
+    "active": true,
+    "target": "--freeze-target-left: 452px;"
+  },
+  "commit": {
+    "active": "grid-scroll auto-scroll-area",
+    "handleRect": {
+      "bottom": 392.5,
+      "height": 39,
+      "left": 892.5,
+      "right": 918.5,
+      "top": 353.5,
+      "width": 26,
+      "x": 892.5,
+      "y": 353.5
+    },
+    "handleStyle": "--freeze-handle-left: 452px;",
+    "view": "{\n  \"id\": \"all\",\n  \"name\": \"全部记录\",\n  \"deletable\": false,\n  \"visibleFieldIds\": [\n    \"name\",\n    \"quantity\",\n    \"status\"\n  ],\n  \"columnOrder\": [\n    \"name\",\n    \"quantity\",\n    \"status\"\n  ],\n  \"filters\": [],\n  \"sorts\": [],\n  \"frozenFieldCount\": 2\n}"
+  },
+  "cancelPreview": {
+    "active": "grid-scroll auto-scroll-area is-freeze-dragging",
+    "target": "--freeze-target-left: 302px;"
+  },
+  "cancelAfter": {
+    "active": "grid-scroll auto-scroll-area",
+    "handleCenter": 905.5,
+    "handleStyle": "--freeze-handle-left: 452px;",
+    "target": "",
+    "view": "{\n  \"id\": \"all\",\n  \"name\": \"全部记录\",\n  \"deletable\": false,\n  \"visibleFieldIds\": [\n    \"name\",\n    \"quantity\",\n    \"status\"\n  ],\n  \"columnOrder\": [\n    \"name\",\n    \"quantity\",\n    \"status\"\n  ],\n  \"filters\": [],\n  \"sorts\": [],\n  \"frozenFieldCount\": 2\n}"
+  }
+}

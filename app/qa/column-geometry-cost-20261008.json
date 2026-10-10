@@ -1,0 +1,29 @@
+{
+  "environment": "Node isolated geometry benchmark; not browser scroll performance",
+  "results": [
+    {
+      "count": 42,
+      "rounds": 10000,
+      "previous": {
+        "ms": 12.228000000000002,
+        "sum": 53720000
+      },
+      "current": {
+        "ms": 8.610333000000004,
+        "sum": 53720000
+      }
+    },
+    {
+      "count": 1000,
+      "rounds": 500,
+      "previous": {
+        "ms": 124.574666,
+        "sum": 72366000
+      },
+      "current": {
+        "ms": 8.73483299999998,
+        "sum": 72366000
+      }
+    }
+  ]
+}

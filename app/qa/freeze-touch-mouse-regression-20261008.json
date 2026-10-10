@@ -1,0 +1,25 @@
+{
+  "idle": {
+    "coarse": false,
+    "opacity": "0",
+    "pointer": "none"
+  },
+  "hover": {
+    "opacity": "1",
+    "pointer": "auto",
+    "rect": {
+      "bottom": 419.5,
+      "height": 39,
+      "left": 892.5,
+      "right": 918.5,
+      "top": 380.5,
+      "width": 26,
+      "x": 892.5,
+      "y": 380.5
+    }
+  },
+  "away": {
+    "opacity": "0",
+    "pointer": "none"
+  }
+}

@@ -1,0 +1,119 @@
+{
+  "package": "/Users/chengkun/i/space/components/NTable/app/dist/kun-ntable-0.1.0-narrow-filter-20261008.tgz",
+  "sha1": "0de8ad96e61aefc38654bd57f22cc2b3efa8dd4f",
+  "size": 40382,
+  "files": [
+    {
+      "path": "dist/lib/ntable.css",
+      "matches": true
+    },
+    {
+      "path": "dist/lib/index.js",
+      "matches": true
+    },
+    {
+      "path": "package.json",
+      "matches": true
+    },
+    {
+      "path": "README.md",
+      "matches": true
+    },
+    {
+      "path": "dist/lib/types/components/Button.d.ts",
+      "matches": true
+    },
+    {
+      "path": "dist/lib/types/ntable/columnWindow.d.ts",
+      "matches": true
+    },
+    {
+      "path": "dist/lib/types/ntable/dataState.d.ts",
+      "matches": true
+    },
+    {
+      "path": "dist/lib/types/ntable/FieldConfigPanel.d.ts",
+      "matches": true
+    },
+    {
+      "path": "dist/lib/types/ntable/fieldIcons.d.ts",
+      "matches": true
+    },
+    {
+      "path": "dist/lib/types/ntable/filtering.d.ts",
+      "matches": true
+    },
+    {
+      "path": "dist/lib/types/ntable/FilterPanel.d.ts",
+      "matches": true
+    },
+    {
+      "path": "dist/lib/types/components/index.d.ts",
+      "matches": true
+    },
+    {
+      "path": "dist/lib/types/ntable/index.d.ts",
+      "matches": true
+    },
+    {
+      "path": "dist/lib/types/ntable/keyboard.d.ts",
+      "matches": true
+    },
+    {
+      "path": "dist/lib/types/ntable/NTable.d.ts",
+      "matches": true
+    },
+    {
+      "path": "dist/lib/types/ntable/PanelControls.d.ts",
+      "matches": true
+    },
+    {
+      "path": "dist/lib/types/ntable/scrollbar.d.ts",
+      "matches": true
+    },
+    {
+      "path": "dist/lib/types/ntable/sorting.d.ts",
+      "matches": true
+    },
+    {
+      "path": "dist/lib/types/ntable/SortPanel.d.ts",
+      "matches": true
+    },
+    {
+      "path": "dist/lib/style.d.ts",
+      "matches": true
+    },
+    {
+      "path": "dist/lib/types/ntable/Table.d.ts",
+      "matches": true
+    },
+    {
+      "path": "dist/lib/types/ntable/TableToolbar.d.ts",
+      "matches": true
+    },
+    {
+      "path": "dist/lib/types/ntable/ToolbarPopover.d.ts",
+      "matches": true
+    },
+    {
+      "path": "dist/lib/types/components/Tooltip.d.ts",
+      "matches": true
+    },
+    {
+      "path": "dist/lib/types/ntable/tree.d.ts",
+      "matches": true
+    },
+    {
+      "path": "dist/lib/types/ntable/types.d.ts",
+      "matches": true
+    },
+    {
+      "path": "dist/lib/types/ntable/useSearchInput.d.ts",
+      "matches": true
+    },
+    {
+      "path": "dist/lib/types/ntable/ViewBar.d.ts",
+      "matches": true
+    }
+  ]
+}

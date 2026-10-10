@@ -1,0 +1,17 @@
+{
+  "beforeRead": {
+    "descriptionMatches": true,
+    "focused": true,
+    "nameLength": 160,
+    "state": "instant-open"
+  },
+  "afterRead": {
+    "events": [
+      "focusin",
+      "keyup",
+      "focusout"
+    ],
+    "state": "closed",
+    "focused": false
+  }
+}

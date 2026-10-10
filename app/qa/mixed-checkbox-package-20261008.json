@@ -1,0 +1,18 @@
+{
+  "temp": "/private/tmp/ntable-mixed-checkbox-JweauV",
+  "artifact": "dist/kun-ntable-0.1.0-mixed-checkbox-20261008.tgz",
+  "size": 39165,
+  "files": 28,
+  "shasum": "e43ce3828d2c2567edd53963fd9c3cd08afa3202",
+  "typeModes": [
+    "Bundler",
+    "NodeNext"
+  ],
+  "exports": [
+    "NTable",
+    "Table",
+    "TableToolbar",
+    "ViewBar"
+  ],
+  "dependencies": "symlink to existing local tree"
+}

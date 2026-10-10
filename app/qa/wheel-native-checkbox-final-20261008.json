@@ -1,0 +1,326 @@
+[
+  {
+    "mode": "form",
+    "round": 1,
+    "geometry": {
+      "height": 240,
+      "inputs": 1,
+      "left": 0,
+      "rows": 20,
+      "top": 0,
+      "width": 958,
+      "x": 400.5,
+      "y": 494.234375
+    },
+    "deltaMs": {
+      "TaskDuration": 444.37,
+      "ScriptDuration": 113.52,
+      "LayoutDuration": 20.46,
+      "RecalcStyleDuration": 39.46
+    },
+    "report": {
+      "kind": "browser-wheel-observation",
+      "inspectDom": false,
+      "valid": true,
+      "wheelEvents": 23,
+      "trustedWheelEvents": 23,
+      "scrollEvents": 24,
+      "activeFrameSamples": 57,
+      "durationMs": 2918,
+      "p50FrameGapMs": 16.7,
+      "p95FrameGapMs": 66.7,
+      "maxFrameGapMs": 150,
+      "framesOver50ms": 6,
+      "slowFrames": [
+        {
+          "offsetMs": 1047,
+          "gapMs": 150,
+          "wheelEvents": 2,
+          "scrollEvents": 2
+        },
+        {
+          "offsetMs": 1130,
+          "gapMs": 66.7,
+          "wheelEvents": 3,
+          "scrollEvents": 3
+        },
+        {
+          "offsetMs": 1430,
+          "gapMs": 66.6,
+          "wheelEvents": 9,
+          "scrollEvents": 9
+        },
+        {
+          "offsetMs": 1980,
+          "gapMs": 66.6,
+          "wheelEvents": 17,
+          "scrollEvents": 17
+        },
+        {
+          "offsetMs": 2146,
+          "gapMs": 115.7,
+          "wheelEvents": 18,
+          "scrollEvents": 18
+        },
+        {
+          "offsetMs": 2397,
+          "gapMs": 66.7,
+          "wheelEvents": 23,
+          "scrollEvents": 23
+        }
+      ],
+      "longTasks": [],
+      "longAnimationFrames": [
+        {
+          "name": "long-animation-frame",
+          "entryType": "long-animation-frame",
+          "startTime": 124738.90000009537,
+          "duration": 167,
+          "navigationId": 1725,
+          "paintTime": 124905.90000009537,
+          "presentationTime": 124960,
+          "renderStart": 124898.70000004768,
+          "styleAndLayoutStart": 124905.60000014305,
+          "firstUIEventTimestamp": 124710.70000004768,
+          "blockingDuration": 0,
+          "scripts": []
+        },
+        {
+          "name": "long-animation-frame",
+          "entryType": "long-animation-frame",
+          "startTime": 124916.60000014305,
+          "duration": 60.59999990463257,
+          "navigationId": 1725,
+          "paintTime": 124977.20000004768,
+          "presentationTime": 125044,
+          "renderStart": 124970.29999995232,
+          "styleAndLayoutStart": 124976.79999995232,
+          "firstUIEventTimestamp": 124747.29999995232,
+          "blockingDuration": 0,
+          "scripts": []
+        },
+        {
+          "name": "long-animation-frame",
+          "entryType": "long-animation-frame",
+          "startTime": 125214.70000004768,
+          "duration": 55.700000047683716,
+          "navigationId": 1725,
+          "paintTime": 125270.40000009537,
+          "presentationTime": 125328,
+          "renderStart": 125269.79999995232,
+          "styleAndLayoutStart": 125270.29999995232,
+          "firstUIEventTimestamp": 0,
+          "blockingDuration": 0,
+          "scripts": []
+        },
+        {
+          "name": "long-animation-frame",
+          "entryType": "long-animation-frame",
+          "startTime": 125548.5,
+          "duration": 189.40000009536743,
+          "navigationId": 1725,
+          "paintTime": 125737.90000009537,
+          "presentationTime": 125796,
+          "renderStart": 125737.5,
+          "styleAndLayoutStart": 125737.90000009537,
+          "firstUIEventTimestamp": 0,
+          "blockingDuration": 0,
+          "scripts": []
+        },
+        {
+          "name": "long-animation-frame",
+          "entryType": "long-animation-frame",
+          "startTime": 125764.70000004768,
+          "duration": 63.59999990463257,
+          "navigationId": 1725,
+          "paintTime": 125828.29999995232,
+          "presentationTime": 125912,
+          "renderStart": 125827.40000009537,
+          "styleAndLayoutStart": 125828.20000004768,
+          "firstUIEventTimestamp": 125827.40000009537,
+          "blockingDuration": 0,
+          "scripts": []
+        },
+        {
+          "name": "long-animation-frame",
+          "entryType": "long-animation-frame",
+          "startTime": 125880.10000014305,
+          "duration": 111.59999990463257,
+          "navigationId": 1725,
+          "paintTime": 125991.70000004768,
+          "presentationTime": 126044,
+          "renderStart": 125991.20000004768,
+          "styleAndLayoutStart": 125991.70000004768,
+          "firstUIEventTimestamp": 0,
+          "blockingDuration": 0,
+          "scripts": []
+        },
+        {
+          "name": "long-animation-frame",
+          "entryType": "long-animation-frame",
+          "startTime": 126183.29999995232,
+          "duration": 62.10000014305115,
+          "navigationId": 1725,
+          "paintTime": 126245.40000009537,
+          "presentationTime": 126296,
+          "renderStart": 126238.90000009537,
+          "styleAndLayoutStart": 126244.79999995232,
+          "firstUIEventTimestamp": 126151.60000014305,
+          "blockingDuration": 0,
+          "scripts": []
+        }
+      ],
+      "verticalMisses": null,
+      "horizontalMisses": null,
+      "maxCells": null,
+      "initial": {
+        "top": 0,
+        "left": 0
+      },
+      "final": {
+        "top": 1920,
+        "left": 1920
+      },
+      "viewport": {
+        "width": 1774,
+        "height": 1228,
+        "dpr": 2
+      }
+    }
+  },
+  {
+    "mode": "form",
+    "round": 2,
+    "geometry": {
+      "height": 240,
+      "inputs": 1,
+      "left": 0,
+      "rows": 20,
+      "top": 0,
+      "width": 958,
+      "x": 400.5,
+      "y": 494.234375
+    },
+    "deltaMs": {
+      "TaskDuration": 430.91,
+      "ScriptDuration": 103.34,
+      "LayoutDuration": 19.07,
+      "RecalcStyleDuration": 41.08
+    },
+    "report": {
+      "kind": "browser-wheel-observation",
+      "inspectDom": false,
+      "valid": true,
+      "wheelEvents": 24,
+      "trustedWheelEvents": 24,
+      "scrollEvents": 24,
+      "activeFrameSamples": 56,
+      "durationMs": 2485,
+      "p50FrameGapMs": 16.7,
+      "p95FrameGapMs": 66.7,
+      "maxFrameGapMs": 83.6,
+      "framesOver50ms": 4,
+      "slowFrames": [
+        {
+          "offsetMs": 1298,
+          "gapMs": 66.7,
+          "wheelEvents": 11,
+          "scrollEvents": 11
+        },
+        {
+          "offsetMs": 1515,
+          "gapMs": 66.9,
+          "wheelEvents": 15,
+          "scrollEvents": 15
+        },
+        {
+          "offsetMs": 1598,
+          "gapMs": 67.6,
+          "wheelEvents": 16,
+          "scrollEvents": 16
+        },
+        {
+          "offsetMs": 1848,
+          "gapMs": 83.6,
+          "wheelEvents": 20,
+          "scrollEvents": 20
+        }
+      ],
+      "longTasks": [],
+      "longAnimationFrames": [
+        {
+          "name": "long-animation-frame",
+          "entryType": "long-animation-frame",
+          "startTime": 129413.79999995232,
+          "duration": 65.60000014305115,
+          "navigationId": 1725,
+          "paintTime": 129479.40000009537,
+          "presentationTime": 129512,
+          "renderStart": 129478.70000004768,
+          "styleAndLayoutStart": 129479.40000009537,
+          "firstUIEventTimestamp": 0,
+          "blockingDuration": 0,
+          "scripts": []
+        },
+        {
+          "name": "long-animation-frame",
+          "entryType": "long-animation-frame",
+          "startTime": 129497.40000009537,
+          "duration": 64.89999985694885,
+          "navigationId": 1725,
+          "paintTime": 129562.29999995232,
+          "presentationTime": 129596,
+          "renderStart": 129561.90000009537,
+          "styleAndLayoutStart": 129562.29999995232,
+          "firstUIEventTimestamp": 0,
+          "blockingDuration": 0,
+          "scripts": []
+        },
+        {
+          "name": "long-animation-frame",
+          "entryType": "long-animation-frame",
+          "startTime": 129739.40000009537,
+          "duration": 75.20000004768372,
+          "navigationId": 1725,
+          "paintTime": 129814.60000014305,
+          "presentationTime": 129864,
+          "renderStart": 129814,
+          "styleAndLayoutStart": 129814.60000014305,
+          "firstUIEventTimestamp": 0,
+          "blockingDuration": 0,
+          "scripts": []
+        },
+        {
+          "name": "long-animation-frame",
+          "entryType": "long-animation-frame",
+          "startTime": 130006.90000009537,
+          "duration": 130.59999990463257,
+          "navigationId": 1725,
+          "paintTime": 130137.5,
+          "presentationTime": 130196,
+          "renderStart": 130136.90000009537,
+          "styleAndLayoutStart": 130137.29999995232,
+          "firstUIEventTimestamp": 0,
+          "blockingDuration": 0,
+          "scripts": []
+        }
+      ],
+      "verticalMisses": null,
+      "horizontalMisses": null,
+      "maxCells": null,
+      "initial": {
+        "top": 0,
+        "left": 0
+      },
+      "final": {
+        "top": 1920,
+        "left": 1920
+      },
+      "viewport": {
+        "width": 1774,
+        "height": 1228,
+        "dpr": 2
+      }
+    }
+  }
+]

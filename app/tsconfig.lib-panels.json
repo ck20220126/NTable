@@ -1,0 +1,10 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": { "strict": true },
+  "include": [
+    "src/ntable/FieldConfigPanel.tsx",
+    "src/ntable/FilterPanel.tsx",
+    "src/ntable/SortPanel.tsx",
+    "src/vite-env.d.ts"
+  ]
+}

@@ -1,0 +1,208 @@
+[
+  {
+    "kind": "baseline",
+    "round": 1,
+    "initial": {
+      "left": 0,
+      "top": 0,
+      "x": 879.5,
+      "y": 1002.109375
+    },
+    "deltaMs": {
+      "TaskDuration": 23.49,
+      "ScriptDuration": 2.62,
+      "LayoutDuration": 0,
+      "RecalcStyleDuration": 0
+    },
+    "report": {
+      "kind": "browser-wheel-observation",
+      "inspectDom": false,
+      "valid": true,
+      "wheelEvents": 24,
+      "trustedWheelEvents": 24,
+      "scrollEvents": 24,
+      "activeFrameSamples": 33,
+      "durationMs": 1747,
+      "p50FrameGapMs": 16.7,
+      "p95FrameGapMs": 17.5,
+      "maxFrameGapMs": 33.8,
+      "framesOver50ms": 0,
+      "slowFrames": [],
+      "longTasks": [],
+      "longAnimationFrames": [],
+      "verticalMisses": null,
+      "horizontalMisses": null,
+      "maxCells": null,
+      "initial": {
+        "top": 0,
+        "left": 0
+      },
+      "final": {
+        "top": 1920,
+        "left": 1920
+      },
+      "viewport": {
+        "width": 1774,
+        "height": 1228,
+        "dpr": 2
+      }
+    }
+  },
+  {
+    "mode": "form",
+    "round": 1,
+    "geometry": {
+      "height": 240,
+      "inputs": 1,
+      "left": 0,
+      "rows": 20,
+      "top": 0,
+      "width": 958,
+      "x": 400.5,
+      "y": 494.234375
+    },
+    "deltaMs": {
+      "TaskDuration": 344.19,
+      "ScriptDuration": 95.59,
+      "LayoutDuration": 16.15,
+      "RecalcStyleDuration": 34.24
+    },
+    "report": {
+      "kind": "browser-wheel-observation",
+      "inspectDom": false,
+      "valid": true,
+      "wheelEvents": 23,
+      "trustedWheelEvents": 23,
+      "scrollEvents": 24,
+      "activeFrameSamples": 54,
+      "durationMs": 2101,
+      "p50FrameGapMs": 16.7,
+      "p95FrameGapMs": 17.5,
+      "maxFrameGapMs": 33.3,
+      "framesOver50ms": 0,
+      "slowFrames": [],
+      "longTasks": [],
+      "longAnimationFrames": [],
+      "verticalMisses": null,
+      "horizontalMisses": null,
+      "maxCells": null,
+      "initial": {
+        "top": 0,
+        "left": 0
+      },
+      "final": {
+        "top": 1920,
+        "left": 1920
+      },
+      "viewport": {
+        "width": 1774,
+        "height": 1228,
+        "dpr": 2
+      }
+    },
+    "kind": "table"
+  },
+  {
+    "kind": "baseline",
+    "round": 2,
+    "initial": {
+      "left": 1920,
+      "top": 1920,
+      "x": 879.5,
+      "y": 1002.109375
+    },
+    "deltaMs": {
+      "TaskDuration": 29.07,
+      "ScriptDuration": 2.02,
+      "LayoutDuration": 0,
+      "RecalcStyleDuration": 0
+    },
+    "report": {
+      "kind": "browser-wheel-observation",
+      "inspectDom": false,
+      "valid": true,
+      "wheelEvents": 24,
+      "trustedWheelEvents": 24,
+      "scrollEvents": 24,
+      "activeFrameSamples": 32,
+      "durationMs": 1700,
+      "p50FrameGapMs": 16.7,
+      "p95FrameGapMs": 16.8,
+      "maxFrameGapMs": 17.7,
+      "framesOver50ms": 0,
+      "slowFrames": [],
+      "longTasks": [],
+      "longAnimationFrames": [],
+      "verticalMisses": null,
+      "horizontalMisses": null,
+      "maxCells": null,
+      "initial": {
+        "top": 1920,
+        "left": 1920
+      },
+      "final": {
+        "top": 3840,
+        "left": 3840
+      },
+      "viewport": {
+        "width": 1774,
+        "height": 1228,
+        "dpr": 2
+      }
+    }
+  },
+  {
+    "mode": "form",
+    "round": 2,
+    "geometry": {
+      "height": 240,
+      "inputs": 1,
+      "left": 0,
+      "rows": 20,
+      "top": 0,
+      "width": 958,
+      "x": 400.5,
+      "y": 494.234375
+    },
+    "deltaMs": {
+      "TaskDuration": 304.7,
+      "ScriptDuration": 77.66,
+      "LayoutDuration": 13.96,
+      "RecalcStyleDuration": 32.79
+    },
+    "report": {
+      "kind": "browser-wheel-observation",
+      "inspectDom": false,
+      "valid": true,
+      "wheelEvents": 23,
+      "trustedWheelEvents": 23,
+      "scrollEvents": 24,
+      "activeFrameSamples": 53,
+      "durationMs": 2068,
+      "p50FrameGapMs": 16.7,
+      "p95FrameGapMs": 16.8,
+      "maxFrameGapMs": 17.6,
+      "framesOver50ms": 0,
+      "slowFrames": [],
+      "longTasks": [],
+      "longAnimationFrames": [],
+      "verticalMisses": null,
+      "horizontalMisses": null,
+      "maxCells": null,
+      "initial": {
+        "top": 0,
+        "left": 0
+      },
+      "final": {
+        "top": 1920,
+        "left": 1920
+      },
+      "viewport": {
+        "width": 1774,
+        "height": 1228,
+        "dpr": 2
+      }
+    },
+    "kind": "table"
+  }
+]

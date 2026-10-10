@@ -1,0 +1,39 @@
+{
+  "events": [
+    {
+      "type": "pointermove",
+      "trusted": true,
+      "primary": true,
+      "pointerType": "mouse",
+      "id": 1,
+      "button": -1,
+      "buttons": 0,
+      "target": "",
+      "top": 0
+    },
+    {
+      "type": "pointerdown",
+      "trusted": true,
+      "primary": true,
+      "pointerType": "mouse",
+      "id": 1,
+      "button": 0,
+      "buttons": 1,
+      "target": "",
+      "top": 0
+    },
+    {
+      "type": "pointermove",
+      "trusted": true,
+      "primary": true,
+      "pointerType": "mouse",
+      "id": 1,
+      "button": -1,
+      "buttons": 1,
+      "target": "grid-row",
+      "top": 0
+    }
+  ],
+  "validDrag": false,
+  "reason": "no gotpointercapture and no observed scroll displacement"
+}

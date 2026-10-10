@@ -1,0 +1,13 @@
+{
+  "browserChecks": "hidden concurrent width, restore, six lifecycle cases and remount passed",
+  "package": "app/dist/kun-ntable-0.1.0-hidden-width-20261008.tgz",
+  "bytes": 40249,
+  "sha1": "f6a05f1f2d039bf3b337028e2e5fc10d317c16ba",
+  "entryCount": 28,
+  "verify": {
+    "pass": 47,
+    "fail": 0
+  },
+  "consumer": "offline replacement in existing independent dependency environment; strict Bundler/NodeNext and build passed",
+  "input": "IAB CDP mouse; not native device/IME/assistive technology"
+}

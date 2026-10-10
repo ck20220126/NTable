@@ -1,0 +1,118 @@
+{
+  "before": [
+    {
+      "id": "name",
+      "left": 442.5,
+      "width": 250
+    },
+    {
+      "id": "quantity",
+      "left": 692.5,
+      "width": 130
+    },
+    {
+      "id": "wide-35",
+      "left": 655.5,
+      "width": 140
+    },
+    {
+      "id": "wide-36",
+      "left": 795.5,
+      "width": 140
+    },
+    {
+      "id": "wide-37",
+      "left": 935.5,
+      "width": 140
+    },
+    {
+      "id": "wide-38",
+      "left": 1075.5,
+      "width": 140
+    },
+    {
+      "id": "wide-39",
+      "left": 1215.5,
+      "width": 140
+    }
+  ],
+  "afterWidth": [
+    {
+      "id": "name",
+      "left": 442.5,
+      "width": 266
+    },
+    {
+      "id": "quantity",
+      "left": 708.5,
+      "width": 130
+    },
+    {
+      "id": "wide-35",
+      "left": 671.5,
+      "width": 140
+    },
+    {
+      "id": "wide-36",
+      "left": 811.5,
+      "width": 140
+    },
+    {
+      "id": "wide-37",
+      "left": 951.5,
+      "width": 140
+    },
+    {
+      "id": "wide-38",
+      "left": 1091.5,
+      "width": 140
+    },
+    {
+      "id": "wide-39",
+      "left": 1231.5,
+      "width": 140
+    }
+  ],
+  "afterOrder": [
+    {
+      "id": "quantity",
+      "left": 442.5,
+      "width": 130
+    },
+    {
+      "id": "name",
+      "left": 572.5,
+      "width": 266
+    },
+    {
+      "id": "wide-35",
+      "left": 671.5,
+      "width": 140
+    },
+    {
+      "id": "wide-36",
+      "left": 811.5,
+      "width": 140
+    },
+    {
+      "id": "wide-37",
+      "left": 951.5,
+      "width": 140
+    },
+    {
+      "id": "wide-38",
+      "left": 1091.5,
+      "width": 140
+    },
+    {
+      "id": "wide-39",
+      "left": 1231.5,
+      "width": 140
+    }
+  ],
+  "checks": [
+    "width grows 16px",
+    "next column starts at new boundary",
+    "order changes to quantity/name"
+  ]
+}

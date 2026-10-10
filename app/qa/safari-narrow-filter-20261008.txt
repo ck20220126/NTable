@@ -1,0 +1,63 @@
+The following is a diff from the previous accessibility tree for Window: "NTable 干净安装验收" with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.
+Removed element IDs: 235-244
+~									246 cell (selectable, settable) 1
+~								252 text 1  条记录
+~							254 text {
+  "id": "all",
+  "name": "全部记录",
+  "deletable": false,
+  "visibleFieldIds": [
+    "name",
+    "quantity",
+    "status"
+  ],
+  "columnOrder": [
+    "name",
+    "quantity",
+    "status"
+  ],
+  "filters": [
+    {
+      "id": "d9a49c67-f283-4c48-be02-ce79f9f18221",
+      "fieldId": "name",
+      "operator": "contains",
+      "value": "Beta"
+    }
+  ],
+  "sorts": [],
+  "frozenFieldCount": 1
+}
+~							256 text [
+  {
+    "id": "all",
+    "patch": {
+      "filters": [
+        {
+          "id": "d9a49c67-f283-4c48-be02-ce79f9f18221",
+          "fieldId": "name",
+          "operator": "contains",
+          "value": ""
+        }
+      ]
+    }
+  },
+  {
+    "id": "all",
+    "patch": {
+      "filters": [
+        {
+          "id": "d9a49c67-f283-4c48-be02-ce79f9f18221",
+          "fieldId": "name",
+          "operator": "contains",
+          "value": "B"
+        }
+      ]
+    }
+  },
+  {
+    "id": "all",
+    "patch": {
+   
+~						272 text field (settable) 筛选值 1, Value: Beta, Placeholder: 请输入
++					275 text 1Password menu is available. Press down arrow to select.
+The focused UI element is 272 text field (settable) 筛选值 1, Value: Beta, Placeholder: 请输入

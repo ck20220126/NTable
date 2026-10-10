@@ -1,0 +1,13 @@
+{
+  "before": {
+    "focus": "筛选值 1",
+    "scrollY": 62.5
+  },
+  "after": {
+    "expanded": "false",
+    "focus": "BODY",
+    "panel": false,
+    "scrollY": 62.5,
+    "state": "{\n  \"id\": \"all\",\n  \"name\": \"全部\",\n  \"visibleFieldIds\": [\n    \"name\",\n    \"quantity\"\n  ],\n  \"columnOrder\": [\n    \"name\",\n    \"quantity\"\n  ],\n  \"filters\": [\n    {\n      \"id\": \"987f55fc-7eb4-43e7-8546-ae6e49902a04\",\n      \"fieldId\": \"name\",\n      \"operator\": \"contains\",\n      \"value\": \"Beta\"\n    }\n  ],\n  \"sorts\": []\n}"
+  }
+}

@@ -1,0 +1,108 @@
+[
+  {
+    "mode": "form",
+    "round": 1,
+    "geometry": {
+      "height": 240,
+      "inputs": 1,
+      "left": 0,
+      "rows": 12,
+      "top": 0,
+      "width": 958,
+      "x": 400.5,
+      "y": 494.234375
+    },
+    "deltaMs": {
+      "TaskDuration": 256.32,
+      "ScriptDuration": 75.44,
+      "LayoutDuration": 12.86,
+      "RecalcStyleDuration": 27.9
+    },
+    "report": {
+      "kind": "browser-wheel-observation",
+      "inspectDom": false,
+      "valid": true,
+      "wheelEvents": 23,
+      "trustedWheelEvents": 23,
+      "scrollEvents": 24,
+      "activeFrameSamples": 53,
+      "durationMs": 2066,
+      "p50FrameGapMs": 16.7,
+      "p95FrameGapMs": 16.8,
+      "maxFrameGapMs": 17.3,
+      "framesOver50ms": 0,
+      "slowFrames": [],
+      "longTasks": [],
+      "longAnimationFrames": [],
+      "verticalMisses": null,
+      "horizontalMisses": null,
+      "maxCells": null,
+      "initial": {
+        "top": 0,
+        "left": 0
+      },
+      "final": {
+        "top": 1920,
+        "left": 1920
+      },
+      "viewport": {
+        "width": 1774,
+        "height": 1228,
+        "dpr": 2
+      }
+    }
+  },
+  {
+    "mode": "form",
+    "round": 2,
+    "geometry": {
+      "height": 240,
+      "inputs": 1,
+      "left": 0,
+      "rows": 12,
+      "top": 0,
+      "width": 958,
+      "x": 400.5,
+      "y": 494.234375
+    },
+    "deltaMs": {
+      "TaskDuration": 239.38,
+      "ScriptDuration": 68.43,
+      "LayoutDuration": 11.52,
+      "RecalcStyleDuration": 28.26
+    },
+    "report": {
+      "kind": "browser-wheel-observation",
+      "inspectDom": false,
+      "valid": true,
+      "wheelEvents": 23,
+      "trustedWheelEvents": 23,
+      "scrollEvents": 24,
+      "activeFrameSamples": 53,
+      "durationMs": 2052,
+      "p50FrameGapMs": 16.7,
+      "p95FrameGapMs": 17.3,
+      "maxFrameGapMs": 17.5,
+      "framesOver50ms": 0,
+      "slowFrames": [],
+      "longTasks": [],
+      "longAnimationFrames": [],
+      "verticalMisses": null,
+      "horizontalMisses": null,
+      "maxCells": null,
+      "initial": {
+        "top": 0,
+        "left": 0
+      },
+      "final": {
+        "top": 1920,
+        "left": 1920
+      },
+      "viewport": {
+        "width": 1774,
+        "height": 1228,
+        "dpr": 2
+      }
+    }
+  }
+]

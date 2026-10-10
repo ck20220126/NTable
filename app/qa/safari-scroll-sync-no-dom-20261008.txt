@@ -1,0 +1,25 @@
+container 连续滚动结果
+							39 text {
+  "kind": "programmatic-scroll",
+  "totalRows": 2000,
+  "columns": 42,
+  "sampleCount": 262,
+  "axisSamples": {
+    "vertical": 240,
+    "horizontal": 22
+  },
+  "durationMs": 12452,
+  "p50FrameGapMs": 47,
+  "p95FrameGapMs": 69,
+  "maxFrameGapMs": 99,
+  "framesOver50ms": 94,
+  "inspectDom": false,
+  "maxMountedRows": null,
+  "maxMountedCells": null,
+  "coverageMisses": null,
+  "horizontalCoverageMisses": null,
+  "horizontalGaps": [],
+  "longTasks": "unsupported",
+  "finalScrollTop": 0,
+  "finalScrollLeft":
+						40 

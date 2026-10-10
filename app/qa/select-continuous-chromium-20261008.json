@@ -1,0 +1,492 @@
+{
+  "engine": "Chromium IAB",
+  "construction": "existing production consumer 5188",
+  "observations": [
+    {
+      "name": "single raw draft",
+      "state": {
+        "id": "typed",
+        "name": "字段类型",
+        "visibleFieldIds": [
+          "name",
+          "amount",
+          "status",
+          "tags",
+          "day"
+        ],
+        "columnOrder": [
+          "name",
+          "amount",
+          "status",
+          "tags",
+          "day"
+        ],
+        "filters": [
+          {
+            "id": "15276499-c89a-432a-8c04-82a611ef7c4c",
+            "fieldId": "status",
+            "operator": "contains",
+            "value": "draft"
+          }
+        ],
+        "sorts": []
+      },
+      "rows": [
+        "记录名称数值单选多选日期",
+        "1标准值0待处理网页端移动端2026-10-08"
+      ]
+    },
+    {
+      "name": "single display label",
+      "state": {
+        "id": "typed",
+        "name": "字段类型",
+        "visibleFieldIds": [
+          "name",
+          "amount",
+          "status",
+          "tags",
+          "day"
+        ],
+        "columnOrder": [
+          "name",
+          "amount",
+          "status",
+          "tags",
+          "day"
+        ],
+        "filters": [
+          {
+            "id": "15276499-c89a-432a-8c04-82a611ef7c4c",
+            "fieldId": "status",
+            "operator": "contains",
+            "value": "待处理"
+          }
+        ],
+        "sorts": []
+      },
+      "rows": [
+        "记录名称数值单选多选日期"
+      ]
+    },
+    {
+      "name": "single unmatched option raw",
+      "state": {
+        "id": "typed",
+        "name": "字段类型",
+        "visibleFieldIds": [
+          "name",
+          "amount",
+          "status",
+          "tags",
+          "day"
+        ],
+        "columnOrder": [
+          "name",
+          "amount",
+          "status",
+          "tags",
+          "day"
+        ],
+        "filters": [
+          {
+            "id": "15276499-c89a-432a-8c04-82a611ef7c4c",
+            "fieldId": "status",
+            "operator": "contains",
+            "value": "unknown"
+          }
+        ],
+        "sorts": []
+      },
+      "rows": [
+        "记录名称数值单选多选日期",
+        "1未匹配选项-1.25—网页端legacy2026-10-07"
+      ]
+    },
+    {
+      "name": "multi contains raw web",
+      "state": {
+        "id": "typed",
+        "name": "字段类型",
+        "visibleFieldIds": [
+          "name",
+          "amount",
+          "status",
+          "tags",
+          "day"
+        ],
+        "columnOrder": [
+          "name",
+          "amount",
+          "status",
+          "tags",
+          "day"
+        ],
+        "filters": [
+          {
+            "id": "15276499-c89a-432a-8c04-82a611ef7c4c",
+            "fieldId": "tags",
+            "operator": "contains",
+            "value": "web"
+          }
+        ],
+        "sorts": []
+      },
+      "rows": [
+        "记录名称数值单选多选日期",
+        "1标准值0待处理网页端移动端2026-10-08",
+        "2未匹配选项-1.25—网页端legacy2026-10-07"
+      ]
+    },
+    {
+      "name": "multi display label",
+      "state": {
+        "id": "typed",
+        "name": "字段类型",
+        "visibleFieldIds": [
+          "name",
+          "amount",
+          "status",
+          "tags",
+          "day"
+        ],
+        "columnOrder": [
+          "name",
+          "amount",
+          "status",
+          "tags",
+          "day"
+        ],
+        "filters": [
+          {
+            "id": "15276499-c89a-432a-8c04-82a611ef7c4c",
+            "fieldId": "tags",
+            "operator": "contains",
+            "value": "网页端"
+          }
+        ],
+        "sorts": []
+      },
+      "rows": [
+        "记录名称数值单选多选日期"
+      ]
+    },
+    {
+      "name": "multi empty array",
+      "state": {
+        "id": "typed",
+        "name": "字段类型",
+        "visibleFieldIds": [
+          "name",
+          "amount",
+          "status",
+          "tags",
+          "day"
+        ],
+        "columnOrder": [
+          "name",
+          "amount",
+          "status",
+          "tags",
+          "day"
+        ],
+        "filters": [
+          {
+            "id": "15276499-c89a-432a-8c04-82a611ef7c4c",
+            "fieldId": "tags",
+            "operator": "isEmpty",
+            "value": ""
+          }
+        ],
+        "sorts": []
+      },
+      "rows": [
+        "记录名称数值单选多选日期",
+        "1空值—"
+      ]
+    },
+    {
+      "name": "filter cleared",
+      "state": {
+        "id": "typed",
+        "name": "字段类型",
+        "visibleFieldIds": [
+          "name",
+          "amount",
+          "status",
+          "tags",
+          "day"
+        ],
+        "columnOrder": [
+          "name",
+          "amount",
+          "status",
+          "tags",
+          "day"
+        ],
+        "filters": [],
+        "sorts": []
+      },
+      "rows": [
+        "记录名称数值单选多选日期",
+        "1标准值0待处理网页端移动端2026-10-08",
+        "2空值—",
+        "3未匹配选项-1.25—网页端legacy2026-10-07",
+        "4用于验证截断和完整值提示的长文本记录名称12.5已完成移动端2026-10-08T10:30:00+08:00"
+      ]
+    },
+    {
+      "name": "single ascending",
+      "state": {
+        "id": "typed",
+        "name": "字段类型",
+        "visibleFieldIds": [
+          "name",
+          "amount",
+          "status",
+          "tags",
+          "day"
+        ],
+        "columnOrder": [
+          "name",
+          "amount",
+          "status",
+          "tags",
+          "day"
+        ],
+        "filters": [],
+        "sorts": [
+          {
+            "id": "a81d0500-f03e-4561-8bf9-4c12d97f7807",
+            "fieldId": "status",
+            "direction": "asc"
+          }
+        ]
+      },
+      "rows": [
+        "记录名称数值单选多选日期",
+        "1空值—",
+        "2标准值0待处理网页端移动端2026-10-08",
+        "3用于验证截断和完整值提示的长文本记录名称12.5已完成移动端2026-10-08T10:30:00+08:00",
+        "4未匹配选项-1.25—网页端legacy2026-10-07"
+      ]
+    },
+    {
+      "name": "single descending",
+      "state": {
+        "id": "typed",
+        "name": "字段类型",
+        "visibleFieldIds": [
+          "name",
+          "amount",
+          "status",
+          "tags",
+          "day"
+        ],
+        "columnOrder": [
+          "name",
+          "amount",
+          "status",
+          "tags",
+          "day"
+        ],
+        "filters": [],
+        "sorts": [
+          {
+            "id": "a81d0500-f03e-4561-8bf9-4c12d97f7807",
+            "fieldId": "status",
+            "direction": "desc"
+          }
+        ]
+      },
+      "rows": [
+        "记录名称数值单选多选日期",
+        "1未匹配选项-1.25—网页端legacy2026-10-07",
+        "2用于验证截断和完整值提示的长文本记录名称12.5已完成移动端2026-10-08T10:30:00+08:00",
+        "3标准值0待处理网页端移动端2026-10-08",
+        "4空值—"
+      ]
+    },
+    {
+      "name": "multi preserves descending",
+      "state": {
+        "id": "typed",
+        "name": "字段类型",
+        "visibleFieldIds": [
+          "name",
+          "amount",
+          "status",
+          "tags",
+          "day"
+        ],
+        "columnOrder": [
+          "name",
+          "amount",
+          "status",
+          "tags",
+          "day"
+        ],
+        "filters": [],
+        "sorts": [
+          {
+            "id": "a81d0500-f03e-4561-8bf9-4c12d97f7807",
+            "fieldId": "tags",
+            "direction": "desc"
+          }
+        ]
+      },
+      "rows": [
+        "记录名称数值单选多选日期",
+        "1标准值0待处理网页端移动端2026-10-08",
+        "2未匹配选项-1.25—网页端legacy2026-10-07",
+        "3用于验证截断和完整值提示的长文本记录名称12.5已完成移动端2026-10-08T10:30:00+08:00",
+        "4空值—"
+      ]
+    },
+    {
+      "name": "multi ascending",
+      "state": {
+        "id": "typed",
+        "name": "字段类型",
+        "visibleFieldIds": [
+          "name",
+          "amount",
+          "status",
+          "tags",
+          "day"
+        ],
+        "columnOrder": [
+          "name",
+          "amount",
+          "status",
+          "tags",
+          "day"
+        ],
+        "filters": [],
+        "sorts": [
+          {
+            "id": "a81d0500-f03e-4561-8bf9-4c12d97f7807",
+            "fieldId": "tags",
+            "direction": "asc"
+          }
+        ]
+      },
+      "rows": [
+        "记录名称数值单选多选日期",
+        "1标准值0待处理网页端移动端2026-10-08",
+        "2未匹配选项-1.25—网页端legacy2026-10-07",
+        "3用于验证截断和完整值提示的长文本记录名称12.5已完成移动端2026-10-08T10:30:00+08:00",
+        "4空值—"
+      ]
+    },
+    {
+      "name": "multi ascending settled",
+      "state": {
+        "id": "typed",
+        "name": "字段类型",
+        "visibleFieldIds": [
+          "name",
+          "amount",
+          "status",
+          "tags",
+          "day"
+        ],
+        "columnOrder": [
+          "name",
+          "amount",
+          "status",
+          "tags",
+          "day"
+        ],
+        "filters": [],
+        "sorts": [
+          {
+            "id": "a81d0500-f03e-4561-8bf9-4c12d97f7807",
+            "fieldId": "tags",
+            "direction": "asc"
+          }
+        ]
+      },
+      "rows": [
+        "记录名称数值单选多选日期",
+        "1空值—",
+        "2用于验证截断和完整值提示的长文本记录名称12.5已完成移动端2026-10-08T10:30:00+08:00",
+        "3未匹配选项-1.25—网页端legacy2026-10-07",
+        "4标准值0待处理网页端移动端2026-10-08"
+      ]
+    },
+    {
+      "name": "multi keyboard descending settled",
+      "state": {
+        "id": "typed",
+        "name": "字段类型",
+        "visibleFieldIds": [
+          "name",
+          "amount",
+          "status",
+          "tags",
+          "day"
+        ],
+        "columnOrder": [
+          "name",
+          "amount",
+          "status",
+          "tags",
+          "day"
+        ],
+        "filters": [],
+        "sorts": [
+          {
+            "id": "a81d0500-f03e-4561-8bf9-4c12d97f7807",
+            "fieldId": "tags",
+            "direction": "desc"
+          }
+        ]
+      },
+      "rows": [
+        "记录名称数值单选多选日期",
+        "1标准值0待处理网页端移动端2026-10-08",
+        "2未匹配选项-1.25—网页端legacy2026-10-07",
+        "3用于验证截断和完整值提示的长文本记录名称12.5已完成移动端2026-10-08T10:30:00+08:00",
+        "4空值—"
+      ]
+    },
+    {
+      "name": "all cleared restored",
+      "state": {
+        "id": "typed",
+        "name": "字段类型",
+        "visibleFieldIds": [
+          "name",
+          "amount",
+          "status",
+          "tags",
+          "day"
+        ],
+        "columnOrder": [
+          "name",
+          "amount",
+          "status",
+          "tags",
+          "day"
+        ],
+        "filters": [],
+        "sorts": []
+      },
+      "rows": [
+        "记录名称数值单选多选日期",
+        "1标准值0待处理网页端移动端2026-10-08",
+        "2空值—",
+        "3未匹配选项-1.25—网页端legacy2026-10-07",
+        "4用于验证截断和完整值提示的长文本记录名称12.5已完成移动端2026-10-08T10:30:00+08:00"
+      ]
+    }
+  ],
+  "limits": "Immediate multi ascending read preceded settled virtual row render; final settled observation authoritative",
+  "verifiedChecks": {
+    "recordOrderAndCount": 13,
+    "emptyValueCleared": true,
+    "finalRulesCleared": true,
+    "consoleErrors": []
+  }
+}

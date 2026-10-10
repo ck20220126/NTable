@@ -1,0 +1,6 @@
+{
+  "restored": {
+    "width": 640
+  },
+  "view": "{\n  \"id\": \"all\",\n  \"name\": \"全部记录\",\n  \"deletable\": false,\n  \"visibleFieldIds\": [\n    \"name\",\n    \"quantity\",\n    \"status\"\n  ],\n  \"columnOrder\": [\n    \"name\",\n    \"quantity\",\n    \"status\"\n  ],\n  \"filters\": [],\n  \"sorts\": [],\n  \"frozenFieldCount\": 1,\n  \"columnWidths\": {\n    \"status\": 640,\n    \"name\": 310\n  }\n}"
+}

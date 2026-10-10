@@ -1,0 +1,587 @@
+[
+  {
+    "id": 71,
+    "function": "",
+    "source": {
+      "source": "../../../node_modules/.pnpm/@radix-ui+react-use-size@1.1.4_@types+react@19.3.0_react@19.2.0/node_modules/@radix-ui/react-use-size/dist/index.mjs",
+      "line": 9,
+      "column": 18,
+      "name": null
+    }
+  },
+  {
+    "id": 70,
+    "function": "cs",
+    "source": {
+      "source": "../../../node_modules/.pnpm/react-dom@19.2.0_react@19.2.0/node_modules/react-dom/cjs/react-dom-client.production.js",
+      "line": 8571,
+      "column": 9,
+      "name": "commitHookEffectListMount"
+    }
+  },
+  {
+    "id": 69,
+    "function": "lb",
+    "source": {
+      "source": "../../../node_modules/.pnpm/react-dom@19.2.0_react@19.2.0/node_modules/react-dom/cjs/react-dom-client.production.js",
+      "line": 9008,
+      "column": 9,
+      "name": "commitLayoutEffectOnFiber"
+    }
+  },
+  {
+    "id": 68,
+    "function": "mr",
+    "source": {
+      "source": "../../../node_modules/.pnpm/react-dom@19.2.0_react@19.2.0/node_modules/react-dom/cjs/react-dom-client.production.js",
+      "line": 9901,
+      "column": 9,
+      "name": "recursivelyTraverseLayoutEffects"
+    }
+  },
+  {
+    "id": 67,
+    "function": "lb",
+    "source": {
+      "source": "../../../node_modules/.pnpm/react-dom@19.2.0_react@19.2.0/node_modules/react-dom/cjs/react-dom-client.production.js",
+      "line": 9008,
+      "column": 9,
+      "name": "commitLayoutEffectOnFiber"
+    }
+  },
+  {
+    "id": 66,
+    "function": "mr",
+    "source": {
+      "source": "../../../node_modules/.pnpm/react-dom@19.2.0_react@19.2.0/node_modules/react-dom/cjs/react-dom-client.production.js",
+      "line": 9901,
+      "column": 9,
+      "name": "recursivelyTraverseLayoutEffects"
+    }
+  },
+  {
+    "id": 65,
+    "function": "lb",
+    "source": {
+      "source": "../../../node_modules/.pnpm/react-dom@19.2.0_react@19.2.0/node_modules/react-dom/cjs/react-dom-client.production.js",
+      "line": 9008,
+      "column": 9,
+      "name": "commitLayoutEffectOnFiber"
+    }
+  },
+  {
+    "id": 64,
+    "function": "mr",
+    "source": {
+      "source": "../../../node_modules/.pnpm/react-dom@19.2.0_react@19.2.0/node_modules/react-dom/cjs/react-dom-client.production.js",
+      "line": 9901,
+      "column": 9,
+      "name": "recursivelyTraverseLayoutEffects"
+    }
+  },
+  {
+    "id": 63,
+    "function": "lb",
+    "source": {
+      "source": "../../../node_modules/.pnpm/react-dom@19.2.0_react@19.2.0/node_modules/react-dom/cjs/react-dom-client.production.js",
+      "line": 9008,
+      "column": 9,
+      "name": "commitLayoutEffectOnFiber"
+    }
+  },
+  {
+    "id": 62,
+    "function": "mr",
+    "source": {
+      "source": "../../../node_modules/.pnpm/react-dom@19.2.0_react@19.2.0/node_modules/react-dom/cjs/react-dom-client.production.js",
+      "line": 9901,
+      "column": 9,
+      "name": "recursivelyTraverseLayoutEffects"
+    }
+  },
+  {
+    "id": 61,
+    "function": "lb",
+    "source": {
+      "source": "../../../node_modules/.pnpm/react-dom@19.2.0_react@19.2.0/node_modules/react-dom/cjs/react-dom-client.production.js",
+      "line": 9008,
+      "column": 9,
+      "name": "commitLayoutEffectOnFiber"
+    }
+  },
+  {
+    "id": 60,
+    "function": "mr",
+    "source": {
+      "source": "../../../node_modules/.pnpm/react-dom@19.2.0_react@19.2.0/node_modules/react-dom/cjs/react-dom-client.production.js",
+      "line": 9901,
+      "column": 9,
+      "name": "recursivelyTraverseLayoutEffects"
+    }
+  },
+  {
+    "id": 59,
+    "function": "lb",
+    "source": {
+      "source": "../../../node_modules/.pnpm/react-dom@19.2.0_react@19.2.0/node_modules/react-dom/cjs/react-dom-client.production.js",
+      "line": 9008,
+      "column": 9,
+      "name": "commitLayoutEffectOnFiber"
+    }
+  },
+  {
+    "id": 58,
+    "function": "mr",
+    "source": {
+      "source": "../../../node_modules/.pnpm/react-dom@19.2.0_react@19.2.0/node_modules/react-dom/cjs/react-dom-client.production.js",
+      "line": 9901,
+      "column": 9,
+      "name": "recursivelyTraverseLayoutEffects"
+    }
+  },
+  {
+    "id": 57,
+    "function": "lb",
+    "source": {
+      "source": "../../../node_modules/.pnpm/react-dom@19.2.0_react@19.2.0/node_modules/react-dom/cjs/react-dom-client.production.js",
+      "line": 9008,
+      "column": 9,
+      "name": "commitLayoutEffectOnFiber"
+    }
+  },
+  {
+    "id": 56,
+    "function": "mr",
+    "source": {
+      "source": "../../../node_modules/.pnpm/react-dom@19.2.0_react@19.2.0/node_modules/react-dom/cjs/react-dom-client.production.js",
+      "line": 9901,
+      "column": 9,
+      "name": "recursivelyTraverseLayoutEffects"
+    }
+  },
+  {
+    "id": 55,
+    "function": "lb",
+    "source": {
+      "source": "../../../node_modules/.pnpm/react-dom@19.2.0_react@19.2.0/node_modules/react-dom/cjs/react-dom-client.production.js",
+      "line": 9008,
+      "column": 9,
+      "name": "commitLayoutEffectOnFiber"
+    }
+  },
+  {
+    "id": 54,
+    "function": "mr",
+    "source": {
+      "source": "../../../node_modules/.pnpm/react-dom@19.2.0_react@19.2.0/node_modules/react-dom/cjs/react-dom-client.production.js",
+      "line": 9901,
+      "column": 9,
+      "name": "recursivelyTraverseLayoutEffects"
+    }
+  },
+  {
+    "id": 53,
+    "function": "lb",
+    "source": {
+      "source": "../../../node_modules/.pnpm/react-dom@19.2.0_react@19.2.0/node_modules/react-dom/cjs/react-dom-client.production.js",
+      "line": 9008,
+      "column": 9,
+      "name": "commitLayoutEffectOnFiber"
+    }
+  },
+  {
+    "id": 52,
+    "function": "mr",
+    "source": {
+      "source": "../../../node_modules/.pnpm/react-dom@19.2.0_react@19.2.0/node_modules/react-dom/cjs/react-dom-client.production.js",
+      "line": 9901,
+      "column": 9,
+      "name": "recursivelyTraverseLayoutEffects"
+    }
+  },
+  {
+    "id": 51,
+    "function": "lb",
+    "source": {
+      "source": "../../../node_modules/.pnpm/react-dom@19.2.0_react@19.2.0/node_modules/react-dom/cjs/react-dom-client.production.js",
+      "line": 9008,
+      "column": 9,
+      "name": "commitLayoutEffectOnFiber"
+    }
+  },
+  {
+    "id": 50,
+    "function": "mr",
+    "source": {
+      "source": "../../../node_modules/.pnpm/react-dom@19.2.0_react@19.2.0/node_modules/react-dom/cjs/react-dom-client.production.js",
+      "line": 9901,
+      "column": 9,
+      "name": "recursivelyTraverseLayoutEffects"
+    }
+  },
+  {
+    "id": 49,
+    "function": "lb",
+    "source": {
+      "source": "../../../node_modules/.pnpm/react-dom@19.2.0_react@19.2.0/node_modules/react-dom/cjs/react-dom-client.production.js",
+      "line": 9008,
+      "column": 9,
+      "name": "commitLayoutEffectOnFiber"
+    }
+  },
+  {
+    "id": 48,
+    "function": "mr",
+    "source": {
+      "source": "../../../node_modules/.pnpm/react-dom@19.2.0_react@19.2.0/node_modules/react-dom/cjs/react-dom-client.production.js",
+      "line": 9901,
+      "column": 9,
+      "name": "recursivelyTraverseLayoutEffects"
+    }
+  },
+  {
+    "id": 47,
+    "function": "lb",
+    "source": {
+      "source": "../../../node_modules/.pnpm/react-dom@19.2.0_react@19.2.0/node_modules/react-dom/cjs/react-dom-client.production.js",
+      "line": 9008,
+      "column": 9,
+      "name": "commitLayoutEffectOnFiber"
+    }
+  },
+  {
+    "id": 46,
+    "function": "mr",
+    "source": {
+      "source": "../../../node_modules/.pnpm/react-dom@19.2.0_react@19.2.0/node_modules/react-dom/cjs/react-dom-client.production.js",
+      "line": 9901,
+      "column": 9,
+      "name": "recursivelyTraverseLayoutEffects"
+    }
+  },
+  {
+    "id": 45,
+    "function": "lb",
+    "source": {
+      "source": "../../../node_modules/.pnpm/react-dom@19.2.0_react@19.2.0/node_modules/react-dom/cjs/react-dom-client.production.js",
+      "line": 9008,
+      "column": 9,
+      "name": "commitLayoutEffectOnFiber"
+    }
+  },
+  {
+    "id": 44,
+    "function": "mr",
+    "source": {
+      "source": "../../../node_modules/.pnpm/react-dom@19.2.0_react@19.2.0/node_modules/react-dom/cjs/react-dom-client.production.js",
+      "line": 9901,
+      "column": 9,
+      "name": "recursivelyTraverseLayoutEffects"
+    }
+  },
+  {
+    "id": 43,
+    "function": "lb",
+    "source": {
+      "source": "../../../node_modules/.pnpm/react-dom@19.2.0_react@19.2.0/node_modules/react-dom/cjs/react-dom-client.production.js",
+      "line": 9008,
+      "column": 9,
+      "name": "commitLayoutEffectOnFiber"
+    }
+  },
+  {
+    "id": 42,
+    "function": "mr",
+    "source": {
+      "source": "../../../node_modules/.pnpm/react-dom@19.2.0_react@19.2.0/node_modules/react-dom/cjs/react-dom-client.production.js",
+      "line": 9901,
+      "column": 9,
+      "name": "recursivelyTraverseLayoutEffects"
+    }
+  },
+  {
+    "id": 41,
+    "function": "lb",
+    "source": {
+      "source": "../../../node_modules/.pnpm/react-dom@19.2.0_react@19.2.0/node_modules/react-dom/cjs/react-dom-client.production.js",
+      "line": 9008,
+      "column": 9,
+      "name": "commitLayoutEffectOnFiber"
+    }
+  },
+  {
+    "id": 40,
+    "function": "mr",
+    "source": {
+      "source": "../../../node_modules/.pnpm/react-dom@19.2.0_react@19.2.0/node_modules/react-dom/cjs/react-dom-client.production.js",
+      "line": 9901,
+      "column": 9,
+      "name": "recursivelyTraverseLayoutEffects"
+    }
+  },
+  {
+    "id": 39,
+    "function": "lb",
+    "source": {
+      "source": "../../../node_modules/.pnpm/react-dom@19.2.0_react@19.2.0/node_modules/react-dom/cjs/react-dom-client.production.js",
+      "line": 9008,
+      "column": 9,
+      "name": "commitLayoutEffectOnFiber"
+    }
+  },
+  {
+    "id": 38,
+    "function": "mr",
+    "source": {
+      "source": "../../../node_modules/.pnpm/react-dom@19.2.0_react@19.2.0/node_modules/react-dom/cjs/react-dom-client.production.js",
+      "line": 9901,
+      "column": 9,
+      "name": "recursivelyTraverseLayoutEffects"
+    }
+  },
+  {
+    "id": 37,
+    "function": "lb",
+    "source": {
+      "source": "../../../node_modules/.pnpm/react-dom@19.2.0_react@19.2.0/node_modules/react-dom/cjs/react-dom-client.production.js",
+      "line": 9008,
+      "column": 9,
+      "name": "commitLayoutEffectOnFiber"
+    }
+  },
+  {
+    "id": 36,
+    "function": "mr",
+    "source": {
+      "source": "../../../node_modules/.pnpm/react-dom@19.2.0_react@19.2.0/node_modules/react-dom/cjs/react-dom-client.production.js",
+      "line": 9901,
+      "column": 9,
+      "name": "recursivelyTraverseLayoutEffects"
+    }
+  },
+  {
+    "id": 35,
+    "function": "lb",
+    "source": {
+      "source": "../../../node_modules/.pnpm/react-dom@19.2.0_react@19.2.0/node_modules/react-dom/cjs/react-dom-client.production.js",
+      "line": 9008,
+      "column": 9,
+      "name": "commitLayoutEffectOnFiber"
+    }
+  },
+  {
+    "id": 34,
+    "function": "mr",
+    "source": {
+      "source": "../../../node_modules/.pnpm/react-dom@19.2.0_react@19.2.0/node_modules/react-dom/cjs/react-dom-client.production.js",
+      "line": 9901,
+      "column": 9,
+      "name": "recursivelyTraverseLayoutEffects"
+    }
+  },
+  {
+    "id": 33,
+    "function": "lb",
+    "source": {
+      "source": "../../../node_modules/.pnpm/react-dom@19.2.0_react@19.2.0/node_modules/react-dom/cjs/react-dom-client.production.js",
+      "line": 9008,
+      "column": 9,
+      "name": "commitLayoutEffectOnFiber"
+    }
+  },
+  {
+    "id": 32,
+    "function": "mr",
+    "source": {
+      "source": "../../../node_modules/.pnpm/react-dom@19.2.0_react@19.2.0/node_modules/react-dom/cjs/react-dom-client.production.js",
+      "line": 9901,
+      "column": 9,
+      "name": "recursivelyTraverseLayoutEffects"
+    }
+  },
+  {
+    "id": 31,
+    "function": "lb",
+    "source": {
+      "source": "../../../node_modules/.pnpm/react-dom@19.2.0_react@19.2.0/node_modules/react-dom/cjs/react-dom-client.production.js",
+      "line": 9008,
+      "column": 9,
+      "name": "commitLayoutEffectOnFiber"
+    }
+  },
+  {
+    "id": 30,
+    "function": "mr",
+    "source": {
+      "source": "../../../node_modules/.pnpm/react-dom@19.2.0_react@19.2.0/node_modules/react-dom/cjs/react-dom-client.production.js",
+      "line": 9901,
+      "column": 9,
+      "name": "recursivelyTraverseLayoutEffects"
+    }
+  },
+  {
+    "id": 29,
+    "function": "lb",
+    "source": {
+      "source": "../../../node_modules/.pnpm/react-dom@19.2.0_react@19.2.0/node_modules/react-dom/cjs/react-dom-client.production.js",
+      "line": 9008,
+      "column": 9,
+      "name": "commitLayoutEffectOnFiber"
+    }
+  },
+  {
+    "id": 28,
+    "function": "zb",
+    "source": {
+      "source": "../../../node_modules/.pnpm/react-dom@19.2.0_react@19.2.0/node_modules/react-dom/cjs/react-dom-client.production.js",
+      "line": 11646,
+      "column": 9,
+      "name": "flushLayoutEffects"
+    }
+  },
+  {
+    "id": 26,
+    "function": "Rb",
+    "source": {
+      "source": "../../../node_modules/.pnpm/react-dom@19.2.0_react@19.2.0/node_modules/react-dom/cjs/react-dom-client.production.js",
+      "line": 11457,
+      "column": 9,
+      "name": "commitRoot"
+    }
+  },
+  {
+    "id": 25,
+    "function": "Sb",
+    "source": {
+      "source": "../../../node_modules/.pnpm/react-dom@19.2.0_react@19.2.0/node_modules/react-dom/cjs/react-dom-client.production.js",
+      "line": 10848,
+      "column": 9,
+      "name": "commitRootWhenReady"
+    }
+  },
+  {
+    "id": 15,
+    "function": "wb",
+    "source": {
+      "source": "../../../node_modules/.pnpm/react-dom@19.2.0_react@19.2.0/node_modules/react-dom/cjs/react-dom-client.production.js",
+      "line": 10681,
+      "column": 9,
+      "name": "performWorkOnRoot"
+    }
+  },
+  {
+    "id": 14,
+    "function": "Bb",
+    "source": {
+      "source": "../../../node_modules/.pnpm/react-dom@19.2.0_react@19.2.0/node_modules/react-dom/cjs/react-dom-client.production.js",
+      "line": 12084,
+      "column": 9,
+      "name": "performSyncWorkOnRoot"
+    }
+  },
+  {
+    "id": 13,
+    "function": "gs",
+    "source": {
+      "source": "../../../node_modules/.pnpm/react-dom@19.2.0_react@19.2.0/node_modules/react-dom/cjs/react-dom-client.production.js",
+      "line": 11918,
+      "column": 9,
+      "name": "flushSyncWorkAcrossRoots_impl"
+    }
+  },
+  {
+    "id": 12,
+    "function": "yu",
+    "source": {
+      "source": "../../../node_modules/.pnpm/react-dom@19.2.0_react@19.2.0/node_modules/react-dom/cjs/react-dom-client.production.js",
+      "line": 10987,
+      "column": 9,
+      "name": "flushSyncWork$1"
+    }
+  },
+  {
+    "id": 11,
+    "function": "AO",
+    "source": {
+      "source": "../../../node_modules/.pnpm/react-dom@19.2.0_react@19.2.0/node_modules/react-dom/cjs/react-dom-client.production.js",
+      "line": 14359,
+      "column": 9,
+      "name": "flushSyncWork"
+    }
+  },
+  {
+    "id": 10,
+    "function": "hn.flushSync",
+    "source": {
+      "source": "../../../node_modules/.pnpm/react-dom@19.2.0_react@19.2.0/node_modules/react-dom/cjs/react-dom.production.js",
+      "line": 79,
+      "column": 20,
+      "name": null
+    }
+  },
+  {
+    "id": 9,
+    "function": "onChange",
+    "source": {
+      "source": "../../../node_modules/.pnpm/@tanstack+react-virtual@3.14.13_react-dom@19.2.0_react@19.2.0__react@19.2.0/node_modules/@tanstack/react-virtual/dist/esm/index.js",
+      "line": 61,
+      "column": 14,
+      "name": null
+    }
+  },
+  {
+    "id": 8,
+    "function": "C4.notify",
+    "source": {
+      "source": "../../../node_modules/.pnpm/@tanstack+virtual-core@3.17.11/node_modules/@tanstack/virtual-core/dist/esm/index.js",
+      "line": 377,
+      "column": 19,
+      "name": "sync"
+    }
+  },
+  {
+    "id": 7,
+    "function": "C4.maybeNotify.Ja.key",
+    "source": {
+      "source": "../../../node_modules/.pnpm/@tanstack+virtual-core@3.17.11/node_modules/@tanstack/virtual-core/dist/esm/index.js",
+      "line": 390,
+      "column": 7,
+      "name": "isScrolling"
+    }
+  },
+  {
+    "id": 6,
+    "function": "u",
+    "source": {
+      "source": "../../../node_modules/.pnpm/@tanstack+virtual-core@3.17.11/node_modules/@tanstack/virtual-core/dist/esm/utils.js",
+      "line": 5,
+      "column": 11,
+      "name": "memoizedFunction"
+    }
+  },
+  {
+    "id": 5,
+    "function": "",
+    "source": {
+      "source": "../../../node_modules/.pnpm/@tanstack+virtual-core@3.17.11/node_modules/@tanstack/virtual-core/dist/esm/index.js",
+      "line": 451,
+      "column": 50,
+      "name": null
+    }
+  },
+  {
+    "id": 4,
+    "function": "",
+    "source": {
+      "source": "../../../node_modules/.pnpm/@tanstack+virtual-core@3.17.11/node_modules/@tanstack/virtual-core/dist/esm/index.js",
+      "line": 100,
+      "column": 41,
+      "name": null
+    }
+  },
+  {
+    "id": 1,
+    "function": "(root)",
+    "source": null
+  }
+]

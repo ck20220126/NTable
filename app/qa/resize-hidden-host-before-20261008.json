@@ -1,0 +1,89 @@
+{
+  "preview": {
+    "callbacks": [],
+    "dragging": false,
+    "freezeDragging": false,
+    "resizing": "记录名称",
+    "view": {
+      "columnOrder": [
+        "name",
+        "quantity",
+        "status"
+      ],
+      "deletable": false,
+      "filters": [],
+      "frozenFieldCount": 1,
+      "id": "all",
+      "name": "全部记录",
+      "sorts": [],
+      "visibleFieldIds": [
+        "name",
+        "quantity"
+      ]
+    },
+    "width": 300
+  },
+  "host": {
+    "callbacks": [],
+    "dragging": false,
+    "freezeDragging": false,
+    "resizing": "记录名称",
+    "view": {
+      "columnOrder": [
+        "name",
+        "quantity",
+        "status"
+      ],
+      "columnWidths": {
+        "status": 640
+      },
+      "deletable": false,
+      "filters": [],
+      "frozenFieldCount": 1,
+      "id": "all",
+      "name": "全部记录",
+      "sorts": [],
+      "visibleFieldIds": [
+        "name",
+        "quantity"
+      ]
+    },
+    "width": 300
+  },
+  "released": {
+    "callbacks": [
+      {
+        "id": "all",
+        "patch": {
+          "columnWidths": {
+            "name": 310
+          }
+        }
+      }
+    ],
+    "dragging": false,
+    "freezeDragging": false,
+    "resizing": null,
+    "view": {
+      "columnOrder": [
+        "name",
+        "quantity",
+        "status"
+      ],
+      "columnWidths": {
+        "name": 310
+      },
+      "deletable": false,
+      "filters": [],
+      "frozenFieldCount": 1,
+      "id": "all",
+      "name": "全部记录",
+      "sorts": [],
+      "visibleFieldIds": [
+        "name",
+        "quantity"
+      ]
+    },
+    "width": 310
+  }
+}

@@ -1,0 +1,86 @@
+{
+  "kind": "browser-wheel-observation",
+  "inspectDom": true,
+  "valid": true,
+  "wheelEvents": 5,
+  "trustedWheelEvents": 5,
+  "scrollEvents": 6,
+  "activeFrameSamples": 14,
+  "durationMs": 1284,
+  "p50FrameGapMs": 16.7,
+  "p95FrameGapMs": 33.3,
+  "maxFrameGapMs": 132.4,
+  "framesOver50ms": 1,
+  "slowFrames": [
+    {
+      "offsetMs": 913,
+      "gapMs": 132.4,
+      "wheelEvents": 5,
+      "scrollEvents": 6
+    }
+  ],
+  "longTasks": [],
+  "longAnimationFrames": [
+    {
+      "name": "long-animation-frame",
+      "entryType": "long-animation-frame",
+      "startTime": 2772.9000000953674,
+      "duration": 51.40000009536743,
+      "navigationId": 5119,
+      "paintTime": 2824.300000190735,
+      "presentationTime": 2976,
+      "renderStart": 2814.100000143051,
+      "styleAndLayoutStart": 2823.800000190735,
+      "firstUIEventTimestamp": 2743.600000143051,
+      "blockingDuration": 0,
+      "scripts": [
+        {
+          "name": "script",
+          "entryType": "script",
+          "startTime": 2814.600000143051,
+          "duration": 8.599999904632568,
+          "navigationId": 5119,
+          "invoker": "DIV.onscroll",
+          "invokerType": "event-listener",
+          "windowAttribution": "self",
+          "executionStart": 2814.600000143051,
+          "forcedStyleAndLayoutDuration": 2.9,
+          "pauseDuration": 0,
+          "sourceURL": "http://127.0.0.1:5188/assets/index-Dp7GPZEU.js",
+          "sourceFunctionName": "Se",
+          "sourceCharPosition": 312652
+        }
+      ]
+    },
+    {
+      "name": "long-animation-frame",
+      "entryType": "long-animation-frame",
+      "startTime": 2826.9000000953674,
+      "duration": 104.70000004768372,
+      "navigationId": 5119,
+      "paintTime": 2931.600000143051,
+      "presentationTime": 2992,
+      "renderStart": 2931,
+      "styleAndLayoutStart": 2931.5,
+      "firstUIEventTimestamp": 0,
+      "blockingDuration": 0,
+      "scripts": []
+    }
+  ],
+  "verticalMisses": 0,
+  "horizontalMisses": 0,
+  "maxCells": 187,
+  "initial": {
+    "top": 0,
+    "left": 0
+  },
+  "final": {
+    "top": 20000,
+    "left": 0
+  },
+  "viewport": {
+    "width": 1774,
+    "height": 1228,
+    "dpr": 2
+  }
+}

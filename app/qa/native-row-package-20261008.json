@@ -1,0 +1,18 @@
+{
+  "temp": "/private/tmp/ntable-native-row-final-8m8lMB",
+  "artifact": "dist/kun-ntable-0.1.0-native-row-20261008.tgz",
+  "size": 39107,
+  "files": 28,
+  "shasum": "e421db4be11466d59b3e62f81dd497cf075cd5d4",
+  "typeModes": [
+    "Bundler",
+    "NodeNext"
+  ],
+  "exports": [
+    "NTable",
+    "Table",
+    "TableToolbar",
+    "ViewBar"
+  ],
+  "dependencies": "symlink to existing local tree"
+}

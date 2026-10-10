@@ -1,0 +1,11 @@
+{
+  "input": "fixture DOM focus / synthetic keydown; not native keyboard",
+  "checks": [
+    "待打开时 Escape 取消",
+    "待打开时 Enter 取消",
+    "待打开时 Space 取消",
+    "待打开时失焦取消",
+    "重新聚焦可打开",
+    "后续局部滚动正常关闭"
+  ]
+}

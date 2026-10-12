@@ -1,0 +1,71 @@
+{
+  "before": {
+    "dragging": true,
+    "expectedBoundary": 434.234375,
+    "scroll": 180,
+    "targetGuide": 485.734375,
+    "targetStyle": "486.234375px"
+  },
+  "after": [
+    {
+      "dragging": true,
+      "guide": 346.234375,
+      "pointer": 346,
+      "scroll": 180,
+      "visibleBoundary": 434.234375
+    },
+    {
+      "dragging": true,
+      "guide": 346.234375,
+      "pointer": 347,
+      "scroll": 180,
+      "visibleBoundary": 434.234375
+    },
+    {
+      "dragging": true,
+      "guide": 346.234375,
+      "pointer": 389,
+      "scroll": 180,
+      "visibleBoundary": 434.234375
+    },
+    {
+      "dragging": true,
+      "guide": 434.234375,
+      "pointer": 432,
+      "scroll": 180,
+      "visibleBoundary": 434.234375
+    }
+  ],
+  "reverse": {
+    "scroll": 0,
+    "sticky": [
+      "元素编码"
+    ]
+  },
+  "cancel": {
+    "dragging": false,
+    "preview": "",
+    "scroll": 180,
+    "sticky": [
+      "元素编码",
+      "活动元素完整名称"
+    ]
+  },
+  "unscrolled": {
+    "expectedBoundary": 486.234375,
+    "guide": "486.234375px",
+    "scroll": 0
+  },
+  "final": {
+    "preview": "",
+    "scroll": 0,
+    "sticky": [
+      "元素编码",
+      "活动元素完整名称",
+      "元素分类"
+    ]
+  },
+  "console": [],
+  "input": "Browser Use CDP mouse input; DOM geometry read-only",
+  "pass": true
+}

@@ -10,6 +10,10 @@ Build app UI in `src/`. Keep `.openai/hosting.json`, `worker/index.js`, `scripts
 
 ## Product decisions
 
+- Column menus offer freeze-to-field but no cancel-freezing action. Freeze-range adjustment remains available through the boundary handle.
+
+- Freeze-boundary dragging snaps to the visible column edges after horizontal scrolling. Frozen fields use viewport coordinates; ordinary fields subtract the current scroll offset. Skip ordinary fields occluded by the frozen prefix, preserve the original boundary on press, and use the visible portion of a partially clipped field for its midpoint. On release, transition the same guide to the committed frozen-prefix boundary.
+
 - Local delivery bundles live under generated `dist/release/<version>-<candidate>/`, with the actual tarball at the root, integration documents in `docs/`, read-only contract references in `contract/`, and selected current acceptance evidence in `qa/`. A bundle includes an index and SHA256 manifest, excludes dependencies/secrets/demo/CI, and is labelled candidate until remaining delivery gates are resolved. Never overwrite or remove an existing candidate directory; produce a separately named archive when needed.
 
 - Filter panels whose content width is below 400px use two lines per condition: field and remove control first, operator and value second. Preserve 150px field and 84px operator widths, natural keyboard order, and usable value-input space. Empty operators retain the same remove-control position; ordinary panels keep their single-line geometry.

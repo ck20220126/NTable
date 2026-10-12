@@ -52,3 +52,28 @@ export function columnDropTarget(offsets: number[], frozenCount: number, scrollL
     : offsets[slot];
   return { slot, left };
 }
+
+/** Freeze count and viewport guide position for a boundary gesture. */
+export function freezeDropTarget(offsets: number[], frozenCount: number, scrollLeft: number, viewportX: number) {
+  const maxCount = Math.max(0, offsets.length - 2);
+  const frozenEdge = offsets[frozenCount];
+  let count = 0;
+  if (viewportX <= frozenEdge) {
+    for (let index = 0; index < frozenCount; index++) {
+      if (viewportX < (offsets[index] + offsets[index + 1]) / 2) break;
+      count = index + 1;
+    }
+  } else {
+    count = frozenCount;
+    for (let index = frozenCount; index < maxCount; index++) {
+      const right = offsets[index + 1] - scrollLeft;
+      // Occluded fields have no visible target; use the remaining portion's midpoint.
+      if (right <= frozenEdge) continue;
+      const left = Math.max(frozenEdge, offsets[index] - scrollLeft);
+      if (viewportX < (left + right) / 2) break;
+      count = index + 1;
+    }
+  }
+  count = Math.min(count, maxCount);
+  return { count, left: count <= frozenCount ? offsets[count] : offsets[count] - scrollLeft };
+}

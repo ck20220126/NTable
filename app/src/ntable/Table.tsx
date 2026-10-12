@@ -1,4 +1,4 @@
-import { windowedColumns, fittingFrozenCount, columnGeometry, columnDropTarget } from "./columnWindow";
+import { windowedColumns, fittingFrozenCount, columnGeometry, columnDropTarget, freezeDropTarget } from "./columnWindow";
 import { projectTree, TreeProjectionCache, collectRecordIds, collectDefaultExpanded, selectionState, toggleVisibleSelection } from "./tree";
 import { forwardRef, memo, useCallback, useId, useDeferredValue, useEffect, useImperativeHandle, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { flushSync } from "react-dom";
@@ -415,16 +415,9 @@ export function Table({ fields, rows, activeView, onUpdateView, onOpenRecord, se
     let nextCount = frozenCount;
     const update = (clientX: number) => {
       const x = clientX - viewport.getBoundingClientRect().left;
-      let edge = 42;
-      nextCount = 0;
-      for (let index = 0; index < orderedFields.length; index++) {
-        edge += widths[orderedFields[index].id] ?? orderedFields[index].width ?? 140;
-        if (x >= edge - (widths[orderedFields[index].id] ?? orderedFields[index].width ?? 140) / 2) nextCount = index + 1;
-        else break;
-      }
-      nextCount = Math.min(nextCount, Math.max(0, orderedFields.length - 1));
-      const targetLeft = 42 + orderedFields.slice(0, nextCount).reduce((sum, field) => sum + (widths[field.id] ?? field.width ?? 140), 0);
-      viewport.parentElement?.style.setProperty("--freeze-target-left", `${targetLeft}px`);
+      const target = freezeDropTarget(geometry.offsets, frozenCount, viewport.scrollLeft, x);
+      nextCount = target.count;
+      viewport.parentElement?.style.setProperty("--freeze-target-left", `${target.left}px`);
       const pointerLeft = Math.max(42, Math.min(viewport.clientWidth, x));
       viewport.style.setProperty("--freeze-pointer-left", `${viewport.scrollLeft + pointerLeft}px`);
       viewport.style.setProperty("--freeze-preview-top", `${viewport.scrollTop}px`);
@@ -445,6 +438,8 @@ export function Table({ fields, rows, activeView, onUpdateView, onOpenRecord, se
       if (changed) {
         // Keep the target guide until the deferred view has committed its new boundary.
         pendingFreezeRef.current = { viewId: tableView.id, count: nextCount };
+        const committedCount = fittingFrozenCount(fieldWidths, nextCount, viewport.clientWidth);
+        viewport.parentElement?.style.setProperty("--freeze-target-left", `${geometry.offsets[committedCount]}px`);
         viewport.classList.add("is-freeze-settling");
       }
       viewport.classList.remove("is-freeze-dragging");
@@ -603,7 +598,7 @@ export function Table({ fields, rows, activeView, onUpdateView, onOpenRecord, se
       const current = buttons.indexOf(document.activeElement as HTMLButtonElement);
       const next = event.key === "Home" ? 0 : event.key === "End" ? buttons.length - 1 : (current + (event.key === "ArrowDown" ? 1 : -1) + buttons.length) % buttons.length;
       buttons[next]?.focus();
-    }} style={{ left: headerMenu.x, top: headerMenu.y }} onPointerDown={(event) => event.stopPropagation()}><button type="button" role="menuitem" disabled={headerMenu.index === orderedFields.length - 1 || requestedFrozenCount === headerMenu.index + 1} onClick={() => { setFrozenCount(headerMenu.index + 1); closeMenu(); }}>冻结至「{headerMenu.field.title}」</button>{requestedFrozenCount > 0 && <><span className="menu-separator" /><button type="button" role="menuitem" onClick={() => { setFrozenCount(0); closeMenu(); }}>取消冻结</button></>}<span className="menu-separator" />
+    }} style={{ left: headerMenu.x, top: headerMenu.y }} onPointerDown={(event) => event.stopPropagation()}><button type="button" role="menuitem" disabled={headerMenu.index === orderedFields.length - 1 || requestedFrozenCount === headerMenu.index + 1} onClick={() => { setFrozenCount(headerMenu.index + 1); closeMenu(); }}>冻结至「{headerMenu.field.title}」</button><span className="menu-separator" />
       <button type="button" role="menuitem" disabled={headerMenu.index === 0} onClick={() => { reorderColumn(headerMenu.index, -1); closeMenu(); }}>向左移动列</button>
       <button type="button" role="menuitem" disabled={headerMenu.index === orderedFields.length - 1} onClick={() => { reorderColumn(headerMenu.index, 1); closeMenu(); }}>向右移动列</button>
       <button type="button" role="menuitem" onClick={() => { resizeColumn(headerMenu.index, -16); closeMenu(); }}>缩小列宽</button>

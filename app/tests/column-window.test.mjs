@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { windowedColumns, fittingFrozenCount, columnGeometry, columnDropTarget, freezeDropTarget } from '../src/ntable/columnWindow.ts';
+import { windowedColumns, fittingFrozenCount, columnGeometry, columnDropTarget, freezeDropTarget, frozenCountAfterMove } from '../src/ntable/columnWindow.ts';
 
 test('column window retains frozen and active columns while limiting offscreen mounting', () => {
   const widths = Array(42).fill(140);
@@ -106,4 +106,34 @@ test('freeze targets exclude occluded fields and remain aligned with fractional 
   assert.deepEqual(freezeDropTarget(offsets, 0, 60, 120), { count: 1, left: 82 });
   assert.deepEqual(freezeDropTarget(offsets, 2, 400, 100), { count: 1, left: 142 });
   assert.deepEqual(freezeDropTarget(offsets, 2, 0, -10), { count: 0, left: 42 });
+});
+
+test('reordering across the freeze boundary keeps the frozen field set intact', () => {
+  // 冻结前 3 列 [A B C]，把 B（下标 1）拖到下标 4。
+  // 旧行为数量不变，原第 4 列顶上来凭空变成冻结列；现在数量减一，冻结集合仍是 {A, C}。
+  assert.equal(frozenCountAfterMove(3, 1, 4), 2);
+  // 拖走最后一个冻结列同理
+  assert.equal(frozenCountAfterMove(3, 2, 5), 2);
+  // 未冻结列拖进冻结区 → 数量加一，它成为冻结列而不是顶掉别人
+  assert.equal(frozenCountAfterMove(3, 5, 0), 4);
+  assert.equal(frozenCountAfterMove(3, 3, 2), 4);
+});
+
+test('reordering inside one side of the freeze boundary leaves the count alone', () => {
+  // 冻结区内部调序
+  assert.equal(frozenCountAfterMove(3, 0, 2), 3);
+  assert.equal(frozenCountAfterMove(3, 2, 0), 3);
+  // 非冻结区内部调序
+  assert.equal(frozenCountAfterMove(3, 4, 7), 3);
+  assert.equal(frozenCountAfterMove(3, 7, 3), 3);
+  // 原地不动
+  assert.equal(frozenCountAfterMove(3, 1, 1), 3);
+});
+
+test('freeze count stays valid at the edges', () => {
+  // 没有冻结列时怎么拖都不会冒出冻结列
+  assert.equal(frozenCountAfterMove(0, 0, 3), 0);
+  assert.equal(frozenCountAfterMove(0, 3, 0), 0);
+  // 只冻结一列，把它拖走 → 取消冻结
+  assert.equal(frozenCountAfterMove(1, 0, 4), 0);
 });

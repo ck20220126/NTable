@@ -1,4 +1,4 @@
-import { windowedColumns, fittingFrozenCount, columnGeometry, columnDropTarget, freezeDropTarget } from "./columnWindow";
+import { windowedColumns, fittingFrozenCount, columnGeometry, columnDropTarget, freezeDropTarget, frozenCountAfterMove } from "./columnWindow";
 import { projectTree, TreeProjectionCache, collectRecordIds, collectDefaultExpanded, selectionState, toggleVisibleSelection } from "./tree";
 import { forwardRef, memo, useCallback, useId, useDeferredValue, useEffect, useImperativeHandle, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { flushSync } from "react-dom";
@@ -102,6 +102,9 @@ export function Table({ fields, rows, activeView, onUpdateView, onOpenRecord, se
     if (!viewport) return;
     let left = -1, width = -1;
     const update = (synchronous = false) => {
+      // 冻结列的选中浮层用它把内容坐标补成视口坐标。直接写样式而不是过 React：
+      // 渲染链路跟不上逐帧滚动，浮层会从冻结列上滑开。
+      viewport.style.setProperty("--grid-scroll-left", `${viewport.scrollLeft}px`);
       if (left === viewport.scrollLeft && width === viewport.clientWidth) return;
       left = viewport.scrollLeft; width = viewport.clientWidth;
       const commit = () => setColumnViewport({left, width});
@@ -260,6 +263,9 @@ export function Table({ fields, rows, activeView, onUpdateView, onOpenRecord, se
     index < frozenCount ? { left: geometry.offsets[index] } : undefined
   ), [orderedFields, geometry, frozenCount]);
   const highlightedFieldIndex = orderedFields.findIndex((field) => field.id === highlightedFieldId);
+  // 冻结列的浮层靠 CSS 的 --grid-scroll-left 补偿（见滚动监听），这里只给内容坐标。
+  // 不在渲染里加 scrollLeft：那条链路是 滚动 → flushSync → 渲染，跟不上逐帧，
+  // 连续拖动滚动条时浮层会滞后（实测 41 帧里 40 帧有偏差，最大 9px）。
   const highlightedColumnLeft = highlightedFieldIndex >= 0 ? frozenLefts[highlightedFieldIndex] : 0;
   const highlightedColumnWidth = highlightedFieldIndex >= 0 ? (widths[orderedFields[highlightedFieldIndex].id] ?? orderedFields[highlightedFieldIndex].width ?? 140) : 0;
   const gridTemplate = geometry.gridTemplate;
@@ -357,8 +363,12 @@ export function Table({ fields, rows, activeView, onUpdateView, onOpenRecord, se
       next.splice(to, 0, next.splice(index, 1)[0]);
       // Keep hidden fields in their existing slots in the saved view.
       let visibleIndex = 0;
-      onUpdateView(activeView.id, { columnOrder: activeView.columnOrder.map((id) =>
-        activeView.visibleFieldIds.includes(id) ? next[visibleIndex++] : id) });
+      const nextFrozen = frozenCountAfterMove(frozenCount, index, to);
+      onUpdateView(activeView.id, {
+        columnOrder: activeView.columnOrder.map((id) =>
+          activeView.visibleFieldIds.includes(id) ? next[visibleIndex++] : id),
+        ...(nextFrozen === frozenCount ? {} : { frozenFieldCount: nextFrozen }),
+      });
     };
     const up = (e: PointerEvent) => { if (e.pointerId === pointerId) { x = e.clientX; y = e.clientY; if (active) update(); finish(true); } };
     const cancel = (cancelEvent?: Event) => {
@@ -498,7 +508,11 @@ export function Table({ fields, rows, activeView, onUpdateView, onOpenRecord, se
     const from = order.indexOf(orderedFields[index].id);
     const to = order.indexOf(neighbour.id);
     [order[from], order[to]] = [order[to], order[from]];
-    onUpdateView(tableView.id, { columnOrder: order });
+    const nextFrozen = frozenCountAfterMove(frozenCount, index, index + delta);
+    onUpdateView(tableView.id, {
+      columnOrder: order,
+      ...(nextFrozen === frozenCount ? {} : { frozenFieldCount: nextFrozen }),
+    });
   };
   const resizeColumn = (index: number, delta: number) => {
     const field = orderedFields[index];

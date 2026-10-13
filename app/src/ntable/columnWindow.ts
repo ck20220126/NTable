@@ -77,3 +77,20 @@ export function freezeDropTarget(offsets: number[], frozenCount: number, scrollL
   count = Math.min(count, maxCount);
   return { count, left: count <= frozenCount ? offsets[count] : offsets[count] - scrollLeft };
 }
+
+/**
+ * 列跨越冻结边界后，新的冻结列数。
+ *
+ * 冻结状态存的是「前几列」而不是「哪些字段」。只改 columnOrder 不动数量的话，
+ * 把一个冻结列拖出去，顶替到它位置上的那一列就凭空变成了冻结列
+ * （冻结到第 3 列、把第 2 列拖走 → 原第 4 列成了新的冻结列）。
+ * 按「移动的这一列是否跨过边界」增减数量，冻结的字段集合才保持不变。
+ *
+ * @param from 移动前在可见列中的下标
+ * @param to   移动后在可见列中的下标
+ */
+export function frozenCountAfterMove(frozenCount: number, from: number, to: number): number {
+  if (from < frozenCount && to >= frozenCount) return frozenCount - 1;
+  if (from >= frozenCount && to < frozenCount) return frozenCount + 1;
+  return frozenCount;
+}

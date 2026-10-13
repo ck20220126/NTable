@@ -16,6 +16,10 @@ Build app UI in `src/`. Keep `.openai/hosting.json`, `worker/index.js`, `scripts
 
 - Local delivery bundles live under generated `dist/release/<version>-<candidate>/`, with the actual tarball at the root, integration documents in `docs/`, read-only contract references in `contract/`, and selected current acceptance evidence in `qa/`. A bundle includes an index and SHA256 manifest, excludes dependencies/secrets/demo/CI, and is labelled candidate until remaining delivery gates are resolved. Never overwrite or remove an existing candidate directory; produce a separately named archive when needed.
 
+- The selected-column mask is absolutely positioned in scrolled content coordinates, while frozen columns are sticky in viewport coordinates. For a frozen column the mask adds back `--grid-scroll-left`, a custom property the scroll listener writes directly on the viewport. Do not derive it from React state: the scroll → render path cannot keep up frame by frame and the mask slides off the frozen column while the scrollbar is dragged.
+
+- Freezing is stored as a column count, not as field identities, so any reorder must keep the frozen field set intact. `frozenCountAfterMove` adjusts the count whenever a moved column crosses the freeze boundary; without it, dragging a frozen column out promotes whichever column slides into its slot.
+
 - Empty cells render as empty. Select-type fields with no matching option, and multi-select fields without an array value, render nothing rather than a dash placeholder; the column stays visually blank so real values and absent ones are distinguishable at a glance.
 
 - Filter panels whose content width is below 400px use two lines per condition: field and remove control first, operator and value second. Preserve 150px field and 84px operator widths, natural keyboard order, and usable value-input space. Empty operators retain the same remove-control position; ordinary panels keep their single-line geometry.

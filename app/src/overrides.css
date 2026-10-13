@@ -775,6 +775,15 @@ body {
   z-index: 6;
 }
 
+/*
+ * 冻结列的浮层：内容坐标 + scrollLeft = 视口坐标，和冻结单元格的 sticky 对齐。
+ * --grid-scroll-left 由滚动监听直接写在 .grid-scroll 上，不经过 React 渲染，
+ * 这样连续拖动滚动条时浮层不会滞后。
+ */
+.selected-column-mask.frozen {
+  transform: translateX(var(--grid-scroll-left, 0px));
+}
+
 .selected-column-mask {
   position: absolute;
   top: 0;

@@ -521,9 +521,24 @@
   color: #245bdb;
   background: rgba(31, 35, 41, .08);
   outline: 0;
-}:where(.ntable, .ntable-scope, .ntable-portal).grid-cell.highlighted-column, :where(.ntable, .ntable-scope, .ntable-portal) .grid-cell.highlighted-column {
-  background: inherit;
+}/*
+ * 选中列的着色按单元格来，不用整列浮层。
+ *
+ * 浮层做不到「只被冻结列挡住」：行是 position:absolute + contain:layout paint，
+ * 每行自成层叠上下文且有不透明白底，浮层 z 调高会盖住所有冻结元素
+ * （普通列滚到冻结区后面时，色带浮在冻结列上，像选中了一个空列），
+ * 调低又会被整行白底吃掉。
+ *
+ * 着色落到单元格上之后：冻结单元格在行内 z-index 更高且不透明，
+ * 天然盖住滑到它后面的普通单元格；冻结列自己被选中时，着色的就是那些
+ * sticky 单元格本身，不存在坐标换算，也就不会随滚动漂移。
+ *
+ * 半透明是刻意的：这样行自身的底色（如选中行）仍能透出来。
+ */:where(.ntable, .ntable-scope, .ntable-portal).grid-cell.highlighted-column, :where(.ntable, .ntable-scope, .ntable-portal) .grid-cell.highlighted-column {
+  background: rgba(51, 112, 255, .11);
   box-shadow: none;
+}/* 冻结列必须保持不透明，否则滚到它下面的内容会透出来 */:where(.ntable, .ntable-scope, .ntable-portal).grid-cell.frozen-column.highlighted-column, :where(.ntable, .ntable-scope, .ntable-portal) .grid-cell.frozen-column.highlighted-column {
+  background: linear-gradient(rgba(51, 112, 255, .11), rgba(51, 112, 255, .11)), #fff;
 }:where(.ntable, .ntable-scope, .ntable-portal).view-tab-wrap, :where(.ntable, .ntable-scope, .ntable-portal) .view-tab-wrap {
   display: flex;
   align-items: stretch;
@@ -571,33 +586,6 @@
   z-index: 17;
 }:where(.ntable, .ntable-scope, .ntable-portal).grid-cell.frozen-column, :where(.ntable, .ntable-scope, .ntable-portal) .grid-cell.frozen-column {
   z-index: 6;
-}/*
- * 冻结列的浮层。
- *
- * 外层随内容滚动（绝对定位、铺满内容区），只为给 sticky 一个有确定高度的包含块；
- * 浮层自身 sticky 在 left:<列起点>，于是和冻结单元格一样被合成器钉在视口坐标。
- * 不要退回成「内容坐标 + JS 补 scrollLeft」：滚动由合成器驱动，主线程补偿慢一拍，
- * 快速拖动滚动条时浮层会相对冻结列抖动。
- */:where(.ntable, .ntable-scope, .ntable-portal).selected-column-mask-layer, :where(.ntable, .ntable-scope, .ntable-portal) .selected-column-mask-layer {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  z-index: 19;
-}:where(.ntable, .ntable-scope, .ntable-portal).selected-column-mask.frozen, :where(.ntable, .ntable-scope, .ntable-portal) .selected-column-mask.frozen {
-  position: sticky;
-  top: 0;
-  height: 100%;
-}:where(.ntable, .ntable-scope, .ntable-portal).selected-column-mask, :where(.ntable, .ntable-scope, .ntable-portal) .selected-column-mask {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  z-index: 19;
-  pointer-events: none;
-  background: rgba(51, 112, 255, .11);
-  animation: ntable-selected-column-mask-in .18s ease-out;
-}@keyframes ntable-selected-column-mask-in {
-  from { opacity: 0; }
-  to { opacity: 1; }
 }:where(.ntable, .ntable-scope, .ntable-portal).grid-scroll:not(.is-freeze-dragging) .grid-head-cell.last-frozen,
 :where(.ntable, .ntable-scope, .ntable-portal) .grid-scroll:not(.is-freeze-dragging) .grid-head-cell.last-frozen,
 :where(.ntable, .ntable-scope, .ntable-portal).grid-scroll:not(.is-freeze-dragging) .grid-cell.last-frozen,

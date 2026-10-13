@@ -16,6 +16,8 @@ Build app UI in `src/`. Keep `.openai/hosting.json`, `worker/index.js`, `scripts
 
 - Local delivery bundles live under generated `dist/release/<version>-<candidate>/`, with the actual tarball at the root, integration documents in `docs/`, read-only contract references in `contract/`, and selected current acceptance evidence in `qa/`. A bundle includes an index and SHA256 manifest, excludes dependencies/secrets/demo/CI, and is labelled candidate until remaining delivery gates are resolved. Never overwrite or remove an existing candidate directory; produce a separately named archive when needed.
 
+- Empty cells render as empty. Select-type fields with no matching option, and multi-select fields without an array value, render nothing rather than a dash placeholder; the column stays visually blank so real values and absent ones are distinguishable at a glance.
+
 - Filter panels whose content width is below 400px use two lines per condition: field and remove control first, operator and value second. Preserve 150px field and 84px operator widths, natural keyboard order, and usable value-input space. Empty operators retain the same remove-control position; ordinary panels keep their single-line geometry.
 
 - A resize commit merges only its field width into the latest committed host width map, preserving concurrent hidden-column settings. A hidden-only width update does not cancel the visible gesture or change its live preview.

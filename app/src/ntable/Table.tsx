@@ -803,11 +803,11 @@ const Cell = memo(function Cell({ cellId, columnIndex, active, field, value, col
   </span> : null;
   let tooltipText = value == null ? "" : String(value);
   let content: import("react").ReactNode = tooltipText;
-  if (field.type === "singleSelect") { const item = field.options?.find((option) => option.value === value); tooltipText = item?.label ?? ""; content = item ? <span className="tag" style={{ background: item.color }}>{item.label}</span> : "—"; }
+  if (field.type === "singleSelect") { const item = field.options?.find((option) => option.value === value); tooltipText = item?.label ?? ""; content = item ? <span className="tag" style={{ background: item.color }}>{item.label}</span> : null; }
   if (field.type === "multiSelect") {
     const labels = Array.isArray(value) ? value.map((item) => field.options?.find((option) => option.value === item)?.label ?? String(item)) : [];
     tooltipText = labels.join("、");
-    content = Array.isArray(value) ? value.map((item, index) => <span className="tag" key={item}>{labels[index]}</span>) : "—";
+    content = Array.isArray(value) ? value.map((item, index) => <span className="tag" key={item}>{labels[index]}</span>) : null;
   }
   return <div className={`${className}${cellProps?.className ? ` ${cellProps.className}` : ""}`} style={{ ...cellProps?.style, ...style, gridColumn:columnIndex+1 }} role="gridcell" id={cellId} data-grid-column={columnIndex} data-active={active || undefined} aria-colindex={columnIndex + 1}>{tree && dividerInset > 0 && <span className="tree-row-divider" style={{ left: dividerInset }} />}{treePrefix}<Tooltip content={tooltipText}><span className={tree ? "tree-value" : undefined}>{content}</span></Tooltip>{tree?.hasChildren && <span className="tree-row-actions">{tree.hasChildren && <span className="tree-child-count" aria-label={`${tree.childCount} 个子规格`}><ListTree size={14} />{tree.childCount}</span>}</span>}</div>;
 });

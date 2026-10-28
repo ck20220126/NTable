@@ -109,7 +109,9 @@ patch 中的数组和 `columnWidths` 是整体替换值。不要把它们作为�
 | `fields`、`activeView`、`onUpdateView` | NTable、TableToolbar、Table | 必填；字段 schema、当前视图及 `(id, patch)` 更新回调 |
 | `rows`、`onOpenRecord` | NTable、Table | 必填；完整记录范围及打开记录回调，参数为原始记录对象 |
 | `views`、`onActiveViewChange`、`onCreateView` | NTable、ViewBar | 必填；切换传视图 ID，创建传名称 |
-| `onDeleteView` | NTable、ViewBar | 可选，传视图 ID；不传则隐藏视图菜单，最后一个视图禁止删除；`view.deletable: false` 隐藏该视图删除菜单 |
+| `onDeleteView` | NTable、ViewBar | 可选，传视图 ID；不传则隐藏删除项，最后一个视图禁止删除；`view.deletable: false` 隐藏该视图删除菜单 |
+| `viewManagement` | NTable、ViewBar | 可选，默认 `false`；为 `true` 时当前视图菜单在删除项上方显示「视图管理」，在浮层内改名称（及可视范围），通过 `onUpdateView(id, { name, visibility })` 保存；`view.manageable: false` 隐藏该视图的管理项。管理与删除都不可用时不显示视图菜单 |
+| `viewVisibilityEditable` | NTable、ViewBar | 可选，默认 `false`；为 `true` 时新建视图与视图管理面板在名称下方显示「可视范围」（仅自己 / 所有人，新建默认仅自己），新建时以 `onCreateView(name, { visibility })` 回传。可视范围的存储与权限由宿主负责 |
 | `onAddRecord` | NTable、TableToolbar | 可选；不传则隐藏添加记录入口 |
 | `getSubRows` | NTable、Table | 可选；同步返回子记录数组，默认读取 `row.children`，不用于远程加载 |
 | `getCellProps` | NTable、Table | 可选；`(row, field) => { className?, style? }` 或 undefined，定制单元格样式；内部必要的定位样式优先生效 |

@@ -23,6 +23,8 @@ export interface FilterRule {
   /** Select filters accept option value arrays; legacy strings represent one option. Other fields use strings. */
   value: string | string[];
 }
+export type ViewVisibility = "private" | "public";
+export type CreateViewOptions = { visibility?: ViewVisibility };
 export interface SortRule { id?: string; fieldId: string; direction: SortDirection; }
 
 export interface TableView {
@@ -30,6 +32,10 @@ export interface TableView {
   name: string;
   /** False hides deletion actions for this view. Defaults to true; hosts enforce authorization. */
   deletable?: boolean;
+  /** False hides the "视图管理" action (rename / visibility) for this view. Defaults to true; hosts enforce authorization. */
+  manageable?: boolean;
+  /** Who can see the view. Shown and editable only when NTable's viewVisibilityEditable is true; hosts persist and enforce it. */
+  visibility?: ViewVisibility;
   visibleFieldIds: string[];
   columnOrder: string[];
   columnWidths?: Record<string, number>;
@@ -65,8 +71,13 @@ export interface NTableProps {
   activeView: TableView;
   onActiveViewChange: (id: string) => void;
   onUpdateView: (id: string, patch: Partial<TableView>) => void;
-  onCreateView: (name: string) => void;
+  /** options.visibility is passed only when viewVisibilityEditable is true. */
+  onCreateView: (name: string, options?: CreateViewOptions) => void;
   onDeleteView?: (id: string) => void;
+  /** Adds "视图管理" (rename, plus visibility when enabled) above deletion in the active view's menu; saves through onUpdateView. Defaults to false. */
+  viewManagement?: boolean;
+  /** Shows "可视范围"（仅自己 / 所有人）in the new-view panel and the view manage panel. Defaults to false. */
+  viewVisibilityEditable?: boolean;
   onAddRecord?: () => void;
   onOpenRecord: (row: TableRecord) => void;
   getSubRows?: (row: TableRecord) => TableRecord[];
@@ -80,7 +91,7 @@ export interface NTableProps {
 }
 
 export type ViewBarProps = Pick<NTableProps,
-  "views" | "activeView" | "onActiveViewChange" | "onCreateView" | "onDeleteView">;
+  "views" | "activeView" | "onActiveViewChange" | "onCreateView" | "onDeleteView" | "viewManagement" | "viewVisibilityEditable"> & Partial<Pick<NTableProps, "onUpdateView">>;
 
 export type TableToolbarProps = Pick<NTableProps,
   "fields" | "activeView" | "onUpdateView" | "onAddRecord" | "searchDebounceMs"> & {

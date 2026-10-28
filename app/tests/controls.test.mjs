@@ -13,9 +13,9 @@ import { ViewBar } from './src/ntable/ViewBar';
 import { TableToolbar } from './src/ntable/TableToolbar';
 const view = {id:'v', name:'全部', visibleFieldIds:['name'], columnOrder:['name'], filters:[], sorts:[]};
 const props = {views:[view, {...view, id:'v2'}], activeView:view, fields:[{id:'name', title:'名称', type:'text'}], onActiveViewChange(){}, onUpdateView(){}, onCreateView(){}};
-export function render(actions, deletable) {
-  const currentView = {...view, deletable};
-  const callbacks = actions ? {onDeleteView(){}, onAddRecord(){}, onSearchChange(){}} : {};
+export function render(actions, deletable, extra = {}) {
+  const currentView = {...view, deletable, ...extra.view};
+  const callbacks = {...(actions ? {onDeleteView(){}, onAddRecord(){}, onSearchChange(){}} : {}), ...extra.props};
   return renderToStaticMarkup(createElement('form', null, createElement(ViewBar, {...props, ...callbacks, views:[currentView, {...view, id:"v2"}], activeView:currentView}), createElement(TableToolbar, {...props, ...callbacks})));
 }`;
 const built = await build({ stdin: {contents: entry, resolveDir: process.cwd(), loader:'ts'}, bundle:true, write:false, platform:'node', format:'cjs', loader:{'.css':'empty'} });
@@ -55,4 +55,18 @@ test("protected views hide deletion without preventing view navigation", () => {
   assert.match(protectedView, /新建视图/);
   assert.match(render(true, true), /全部菜单/);
   assert.match(render(true), /全部菜单/);
+});
+
+test("view management is opt-in and keeps the view menu when deletion is hidden", () => {
+  assert.doesNotMatch(render(false), /全部菜单/);
+  assert.match(render(false, undefined, {props: {viewManagement: true}}), /全部菜单/);
+  assert.match(render(true, false, {props: {viewManagement: true}}), /全部菜单/);
+  assert.doesNotMatch(render(true, false, {props: {viewManagement: true}, view: {manageable: false}}), /全部菜单/);
+});
+
+test("view menu lists management above deletion and both panels share the visibility control", async () => {
+  const source = await readFile(new URL('../src/ntable/ViewBar.tsx', import.meta.url), 'utf8');
+  assert.ok(source.indexOf('>视图管理</button>') > 0 && source.indexOf('>视图管理</button>') < source.indexOf('>删除视图<'));
+  assert.equal(source.match(/<VisibilityControl /g)?.length, 2);
+  assert.match(source, /onCreateView\(newViewName\.trim\(\), \{ visibility: newViewVisibility \}\)/);
 });

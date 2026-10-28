@@ -51,10 +51,45 @@ body {
   width: 280px;
   padding: 16px;
 }
-.new-view-panel input {
+/* 只命中名称输入框，面板里的其它控件不受影响 */
+.new-view-panel > input {
   font-size: 14px;
   border-radius: 6px;
 }
+/* 新建视图与视图管理面板里的附加字段 */
+.panel-field {
+  margin-top: 14px;
+}
+.panel-field-label {
+  margin-bottom: 8px;
+  color: #646a73;
+  font-size: 13px;
+}
+/* 可视范围：分段切换，选中项为白底卡片 */
+.view-visibility {
+  display: inline-flex;
+  gap: 2px;
+  padding: 2px;
+  border-radius: 6px;
+  background: #f2f3f5;
+}
+.view-visibility-item {
+  height: 26px;
+  padding: 0 12px;
+  border: 0;
+  border-radius: 4px;
+  background: transparent;
+  color: #646a73;
+  font-size: 13px;
+  cursor: pointer;
+}
+.view-visibility-item:hover { color: #1f2329; }
+.view-visibility-item[data-state="checked"] {
+  background: #fff;
+  color: #1f2329;
+  box-shadow: 0 1px 2px rgba(31, 35, 41, .12);
+}
+.view-visibility-item:focus-visible { outline: 2px solid var(--blue); outline-offset: 1px; }
 .ui-button.add-condition {
   padding: 0 8px;
   border-radius: 6px;

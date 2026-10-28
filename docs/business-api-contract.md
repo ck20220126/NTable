@@ -103,6 +103,8 @@
 | --- | --- | --- |
 | `id` / `name` | 是 | 稳定视图 ID / 显示名称 |
 | `deletable` | 否 | 默认 `true`；`false` 隐藏此视图的删除菜单，业务端同步校验删除权限 |
+| `manageable` | 否 | 默认 `true`；开启 `viewManagement` 时，`false` 隐藏此视图的「视图管理」，业务端同步校验修改权限 |
+| `visibility` | 否 | `private`（仅自己）或 `public`（所有人）；开启 `viewVisibilityEditable` 时在新建与视图管理面板展示和修改，业务端负责存储与可见性过滤 |
 | `visibleFieldIds` | 是 | 至少一个有效字段，不能重复 |
 | `columnOrder` | 是 | 全部字段 ID 各一次；隐藏字段也要保留 |
 | `columnWidths` | 否 | `{ "fieldId": width }`，优先于 Field.width |
@@ -168,7 +170,7 @@ number 字段按有限数值排序，支持负数、小数和零；空值、空�
 | --- | --- | --- |
 | onActiveViewChange | `(viewId: string)` | 更新 activeView，按需保存用户偏好 |
 | onUpdateView | `(viewId: string, patch: Partial<TableView>)` | 立即更新本地视图，再异步持久化 |
-| onCreateView | `(name: string)` | 生成稳定 ID，完整初始化视图并保存，切换到新视图 |
+| onCreateView | `(name: string, options?: { visibility })` | 生成稳定 ID，完整初始化视图并保存，切换到新视图 |
 | onDeleteView | `(viewId: string)` | 删除视图，拒绝删除 `deletable: false` 的视图，至少保留一个，并处理当前视图回退 |
 | onAddRecord | `()` | 打开业务新增页面，保存成功后更新 rows |
 | onOpenRecord | `(record: TableRecord)` | 双击打开业务详情页；使用 record.id 请求详情 |

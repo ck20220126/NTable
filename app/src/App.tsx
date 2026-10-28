@@ -1,5 +1,5 @@
 import { Button } from "./components/Button";
-import type { Field, TableRecord, TableView } from "./ntable/types";
+import type { Field, TableRecord, TableView, CreateViewOptions } from "./ntable/types";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { NTable } from "./ntable";
 import { MultiSelectControl } from "./ntable/PanelControls";
@@ -123,9 +123,9 @@ export function App() {
     setEditor(record);
   };
   const updateView = (viewId: string, patch: Partial<TableView>) => setViews((current) => current.map((view) => (view.id === viewId ? { ...view, ...patch } : view)));
-  const createView = (name: string) => {
+  const createView = (name: string, options?: CreateViewOptions) => {
     const id = crypto.randomUUID();
-    setViews((current) => [...current, { ...activeView, id, name, filters: [...activeView.filters], sorts: [...activeView.sorts] }]);
+    setViews((current) => [...current, { ...activeView, id, name, visibility: options?.visibility ?? "private", filters: [...activeView.filters], sorts: [...activeView.sorts] }]);
     setActiveViewId(id);
   };
   const deleteView = (viewId: string) => {
@@ -142,7 +142,7 @@ export function App() {
   };
 
   return <div className="app-shell">
-    <main className="workspace"><NTable fields={fields} rows={rows} views={views} activeView={activeView} onActiveViewChange={setActiveViewId} onUpdateView={updateView} onCreateView={createView} onDeleteView={deleteView} onAddRecord={() => openEditor({})} onOpenRecord={openEditor} /></main>
+    <main className="workspace"><NTable fields={fields} rows={rows} views={views} activeView={activeView} onActiveViewChange={setActiveViewId} onUpdateView={updateView} onCreateView={createView} onDeleteView={deleteView} viewManagement viewVisibilityEditable onAddRecord={() => openEditor({})} onOpenRecord={openEditor} /></main>
     {storageError && <div role="status" className="demo-storage-status">浏览器存储不可用，当前修改仅在本次会话保留。</div>}
     {editor !== null && <RecordEditor record={editor} onClose={() => setEditor(null)} onSave={saveRecord} returnFocus={editorReturnFocusRef.current} />}
   </div>;

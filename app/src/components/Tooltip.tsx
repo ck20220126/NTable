@@ -7,6 +7,8 @@ interface TooltipProps {
   side?: "top" | "right" | "bottom" | "left";
   enabled?: boolean;
   settleFocus?: boolean;
+  /** Open on pointer hover only. For tooltips that repeat a label the control already exposes, so focus moves (including a menu's automatic focus) stay quiet. */
+  hoverOnly?: boolean;
 }
 
 function FocusSettledTooltip({ children, portal }: { children: ReactElement; portal: ReactNode }) {
@@ -40,7 +42,7 @@ function FocusSettledTooltip({ children, portal }: { children: ReactElement; por
   </RadixTooltip.Root>;
 }
 
-export function Tooltip({ children, content, side = "top", enabled = true, settleFocus = false }: TooltipProps) {
+export function Tooltip({ children, content, side = "top", enabled = true, settleFocus = false, hoverOnly = false }: TooltipProps) {
   if (!enabled || !content) return children;
   const portal = <RadixTooltip.Portal>
         <RadixTooltip.Content className="ntable-portal ui-tooltip" side={side} sideOffset={8} collisionPadding={8} hideWhenDetached>
@@ -49,7 +51,8 @@ export function Tooltip({ children, content, side = "top", enabled = true, settl
       </RadixTooltip.Portal>;
   return <RadixTooltip.Provider delayDuration={400}>
     {settleFocus ? <FocusSettledTooltip portal={portal}>{children}</FocusSettledTooltip> : <RadixTooltip.Root>
-      <RadixTooltip.Trigger asChild>{children}</RadixTooltip.Trigger>
+      {/* preventDefault skips Radix's composed focus handler, which would open the tooltip immediately. */}
+      <RadixTooltip.Trigger asChild onFocus={hoverOnly ? (event) => event.preventDefault() : undefined}>{children}</RadixTooltip.Trigger>
       {portal}
     </RadixTooltip.Root>}
   </RadixTooltip.Provider>;

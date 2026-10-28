@@ -1,4 +1,4 @@
-import type { Field, TableView, TableRecord, FilterOperator } from "./types";
+import type { Field, TableView, TableRecord, FilterOperator, FilterRule } from "./types";
 
 const emptyOperators: { value: FilterOperator; label: string }[] = [
   { value: "isEmpty", label: "为空" },
@@ -9,8 +9,9 @@ export function isEmptyOperator(operator: string) {
   return operator === "isEmpty" || operator === "isNotEmpty";
 }
 
-export function isActiveFilter(filter: { fieldId: string; operator: string; value: string }) {
-  return Boolean(filter.fieldId && (isEmptyOperator(filter.operator) || filter.value !== ""));
+export function isActiveFilter(filter: { fieldId: string; operator: string; value: FilterRule["value"] }) {
+  const hasValue = Array.isArray(filter.value) ? filter.value.length > 0 : filter.value !== "";
+  return Boolean(filter.fieldId && (isEmptyOperator(filter.operator) || hasValue));
 }
 
 const commonOperators: { value: FilterOperator; label: string }[] = [
@@ -26,15 +27,39 @@ const numberOperators: { value: FilterOperator; label: string }[] = [
   { value: "lessThan", label: "小于" },
 ];
 
-export function filterOperators(type?: Field["type"]) {
-  return [...(type === "number" ? numberOperators : commonOperators), ...emptyOperators];
+const singleSelectOperators: { value: FilterOperator; label: string }[] = [
+  { value: "equals", label: "等于" },
+  { value: "notEquals", label: "不等于" },
+];
+const multiSelectOperators: { value: FilterOperator; label: string }[] = [
+  { value: "contains", label: "包含" },
+  { value: "notContains", label: "不包含" },
+];
+
+export function isSelectType(type?: Field["type"]): type is "singleSelect" | "multiSelect" {
+  return type === "singleSelect" || type === "multiSelect";
 }
 
-export function matchesFilter(value: unknown, operator: string, query: string, type?: Field["type"]) {
+export function filterOperators(type?: Field["type"]) {
+  const operators = type === "number" ? numberOperators : type === "singleSelect" ? singleSelectOperators : type === "multiSelect" ? multiSelectOperators : commonOperators;
+  return [...operators, ...emptyOperators];
+}
+
+export function matchesFilter(value: unknown, operator: string, query: FilterRule["value"], type?: Field["type"]) {
   if (isEmptyOperator(operator)) {
     const empty = value == null || value === "" || (Array.isArray(value) && value.length === 0);
     return operator === "isEmpty" ? empty : !empty;
   }
+  if (isSelectType(type)) {
+    const queries = Array.isArray(query) ? query : query === "" ? [] : [query];
+    if (!queries.length) return false;
+    // Choices within one condition are OR; negating the condition excludes every chosen option.
+    const selected = queries.some((option) => type === "singleSelect" ? value === option : Array.isArray(value) && value.includes(option));
+    if (operator === "equals" || operator === "contains") return selected;
+    if (operator === "notEquals" || operator === "notContains") return !selected;
+    return false;
+  }
+  if (typeof query !== "string") return false;
   const text = String(value ?? "");
   if (operator === "contains" || operator === "notContains") {
     const contains = text.toLocaleLowerCase().includes(query.toLocaleLowerCase());
@@ -59,6 +84,6 @@ export function matchesFilter(value: unknown, operator: string, query: string, t
 export function matchesFilters(row: TableRecord, filters: TableView["filters"], fieldById: Map<string, Field>, mode: TableView["filterMode"] = "all") {
   const active = filters.filter(isActiveFilter);
   if (!active.length) return true;
-  const matches = (filter: TableView["filters"][number]) => matchesFilter(row[filter.fieldId], filter.operator, String(filter.value), fieldById.get(filter.fieldId)?.type);
+  const matches = (filter: TableView["filters"][number]) => matchesFilter(row[filter.fieldId], filter.operator, filter.value, fieldById.get(filter.fieldId)?.type);
   return mode === "any" ? active.some(matches) : active.every(matches);
 }

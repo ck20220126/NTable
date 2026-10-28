@@ -6,7 +6,7 @@ NTable 负责表格展示和本地交互；业务系统负责数据加载、状�
 
 ## 1. 安装与导入
 
-当前包名为 `@kun/ntable`，版本为 0.1.0，尚未公开发布。通过团队交付的包文件或工作区依赖接入；不要把包名当作已可从公共 npm 下载的包。
+当前包名为 `@kun/ntable`，版本为 0.1.1，尚未公开发布。通过团队交付的包文件或工作区依赖接入；不要把包名当作已可从公共 npm 下载的包。
 
 宿主必须提供符合包 `peerDependencies` 的 React 与 React DOM：当前均为 `^19.2.0`。其余运行依赖由包管理器解析，业务无需分别手工引入内部控件。
 
@@ -34,7 +34,7 @@ React 与 React DOM 必须解析到宿主使用的同一份实例。软链目录
 
 ### 交付安装包
 
-提供给没有组件源码的开发者时，由维护者在 `app/` 执行 `pnpm pack` 生成 `.tgz`，业务项目执行 `pnpm add ./kun-ntable-0.1.0.tgz`。软链路径用于本地联调；团队 CI 需要可获取的包文件、工作区源码或私有 registry 依赖。
+提供给没有组件源码的开发者时，由维护者在 `app/` 执行 `pnpm pack` 生成 `.tgz`，业务项目执行 `pnpm add ./kun-ntable-0.1.1.tgz`。软链路径用于本地联调；团队 CI 需要可获取的包文件、工作区源码或私有 registry 依赖。
 
 ### 公共导入
 
@@ -84,6 +84,8 @@ export function BusinessTable(props: NTableProps) {
 宿主在列手势期间改变当前视图、可见列的顺序/宽度、冻结配置或容器宽度时，组件会取消旧手势，避免随后释放提交过期配置。等价视图对象和数组的重建不会取消手势或重置缩放预览。取消采用宿主最新的列宽，并且不触发视图更新回调。
 
 仅更新隐藏列宽不会中断可见列缩放。缩放提交会把当前字段的新宽度合并到宿主最新的 `columnWidths`，保留隐藏字段的并发设置。
+
+列右键菜单提供“隐藏当前列”，仅通过 `onUpdateView` 更新当前视图的 `visibleFieldIds`；字段数据、列序和保存的列宽保留，可在字段配置中重新显示。最后一个有效可见字段不能隐藏。列宽通过拖拽边界或表头键盘操作调整。
 4. 新增或编辑记录成功后，以新对象、新数组更新 `rows`；不要原地修改缓存使用的数据。
 
 `onUpdateView` 使用顶层浅合并。以下函数仅说明状态合并，不包含网络保存策略：
@@ -111,6 +113,7 @@ patch 中的数组和 `columnWidths` 是整体替换值。不要把它们作为�
 | `onAddRecord` | NTable、TableToolbar | 可选；不传则隐藏添加记录入口 |
 | `getSubRows` | NTable、Table | 可选；同步返回子记录数组，默认读取 `row.children`，不用于远程加载 |
 | `getCellProps` | NTable、Table | 可选；`(row, field) => { className?, style? }` 或 undefined，定制单元格样式；内部必要的定位样式优先生效 |
+| `getRecordMenuItems`、`onRecordMenuAction` | NTable、Table | 可选；右键记录单元格时的宿主菜单。回调收到 `{ row, field }`（勾选列 `field` 为 null）；返回空数组则不打开菜单。点菜单项后调用 `onRecordMenuAction(key, context)`。删除与复制由宿主实现 |
 | `search`、`onSearchChange` | TableToolbar | 可选；受控搜索，关闭搜索清空搜索词；不传回调则隐藏搜索入口 |
 | `search` | Table | 可选；默认空字符串 |
 | `searchDebounceMs` | NTable、TableToolbar | 可选；默认 300ms，仅延迟查询提交，输入立即回显。负数按 0、非有限值按 300ms 处理 |
@@ -167,6 +170,7 @@ export function ComposedTable(props: NTableProps) {
 - 字段 ID 与记录属性名一致，避开 `id`、`children`、`defaultExpanded`；记录 ID 在所有层级全局唯一且稳定。
 - 字段只支持 text、number、singleSelect、multiSelect、date；日期按原字符串显示，没有内置格式化。单选传选项 value，多选传 value 数组。
 - `activeView` 属于 `views`；`columnOrder` 保留全部字段，`visibleFieldIds` 至少一个有效字段；无筛选/排序传空数组。
+- 选择字段的一条筛选条件可多选，`FilterRule.value` 使用 option.value 字符串数组（兼容旧字符串）；正向命中任一选项，反向排除全部已选项，空数组不筛选。普通字段仍使用字符串。宿主保存/校验筛选配置时需保留数组。
 - 树形数据同步提供，`defaultExpanded` 只在 Table 首次挂载时读取；异步加载后改变该属性不会主动展开新记录。查询保留祖先链，父节点命中时保留其子树，排序仅作用于同级。
 - 筛选、排序、搜索都在浏览器处理传入的记录范围。只传一页数据时结果仅针对该页。当前没有服务端查询、分页、独立 total、窗口占位或按需加载子节点接口；虚拟滚动不减少数据传输和查询计算量。
 - number 字段按有限数值排序，正确处理负数、小数和零；空值及无效数字在顺序/倒序中均排在有效数值之后。其他字段采用中文自然字符串顺序；同值保留原顺序，多规则按优先级比较，排序仅作用于同级。

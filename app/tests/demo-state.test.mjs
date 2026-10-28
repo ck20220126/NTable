@@ -82,3 +82,19 @@ test('restored filter rules receive unique identities and invalid numeric drafts
     assert.throws(() => saveRecordDraft({ ...createRecordDraft({}), quantity }), /有限数字/);
   }
 });
+
+test('select option arrays and legacy strings survive save and restore', () => {
+  const schema = [...fields, { id: 'status', type: 'singleSelect' }, { id: 'tags', type: 'multiSelect' }];
+  const filters = [
+    { id: 'single', fieldId: 'status', operator: 'equals', value: ['draft', 'ready'] },
+    { id: 'multi', fieldId: 'tags', operator: 'notContains', value: ['web', 'app'] },
+    { id: 'legacy', fieldId: 'status', operator: 'notEquals', value: 'draft' },
+    { id: 'cleared', fieldId: 'tags', operator: 'contains', value: [] },
+    { id: 'empty', fieldId: 'status', operator: 'isEmpty', value: ['draft'] },
+    { id: 'invalid-text', fieldId: 'name', operator: 'equals', value: ['a'] },
+    { id: 'invalid-select', fieldId: 'status', operator: 'equals', value: ['draft', 1] },
+  ];
+  const [restored] = normalizeDemoViews(JSON.stringify([{ ...fallback[0], filters }]), schema, fallback);
+  assert.deepEqual(restored.filters, [...filters.slice(0, 4), { ...filters[4], value: '' }]);
+  assert.deepEqual(normalizeDemoViews(JSON.stringify([restored]), schema, fallback)[0], restored);
+});

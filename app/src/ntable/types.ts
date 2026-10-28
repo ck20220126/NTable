@@ -16,7 +16,13 @@ export interface TableRecord {
 }
 export type FilterOperator = "contains" | "notContains" | "equals" | "notEquals" | "greaterThan" | "lessThan" | "isEmpty" | "isNotEmpty";
 export type SortDirection = "asc" | "desc";
-export interface FilterRule { id?: string; fieldId: string; operator: FilterOperator; value: string; }
+export interface FilterRule {
+  id?: string;
+  fieldId: string;
+  operator: FilterOperator;
+  /** Select filters accept option value arrays; legacy strings represent one option. Other fields use strings. */
+  value: string | string[];
+}
 export interface SortRule { id?: string; fieldId: string; direction: SortDirection; }
 
 export interface TableView {
@@ -33,6 +39,17 @@ export interface TableView {
   filters: FilterRule[];
   sorts: SortRule[];
 }
+
+export type RecordMenuContext = {
+  row: TableRecord;
+  /** Null when the checkbox/gutter cell was the target. */
+  field: Field | null;
+};
+
+export type RecordMenuItem =
+  | { type: "separator" }
+  | { key: string; label: string; danger?: boolean; disabled?: boolean };
+
 export interface NTableProps {
   /** Search commits after this idle period; IME composition never commits. Default 300ms. */
   searchDebounceMs?: number;
@@ -57,6 +74,9 @@ export interface NTableProps {
     className?: string;
     style?: CSSProperties;
   } | undefined;
+  /** Host-owned record actions. Empty/omitted hides the body context menu. */
+  getRecordMenuItems?: (context: RecordMenuContext) => RecordMenuItem[];
+  onRecordMenuAction?: (key: string, context: RecordMenuContext) => void;
 }
 
 export type ViewBarProps = Pick<NTableProps,
@@ -71,7 +91,7 @@ export type TableToolbarProps = Pick<NTableProps,
 };
 
 export type TableProps = Pick<NTableProps,
-  "fields" | "rows" | "activeView" | "onUpdateView" | "onOpenRecord" | "getSubRows" | "getCellProps" | "loading" | "error" | "onRetry"> & {
+  "fields" | "rows" | "activeView" | "onUpdateView" | "onOpenRecord" | "getSubRows" | "getCellProps" | "getRecordMenuItems" | "onRecordMenuAction" | "loading" | "error" | "onRetry"> & {
   search?: string;
   /** Clears search and filters together. Omit to leave reset UI to the host. */
   onClearQuery?: () => void;

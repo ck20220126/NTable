@@ -11,11 +11,12 @@ import { Button } from "../components/Button";
 import { moveGridPosition, resolveActiveRow, selectRowRange } from "./keyboard";
 import { tableDataState } from "./dataState";
 import { scrollbarMetrics, scrollFromThumb, resizedScrollOffset } from "./scrollbar";
-import type { TableProps, Field, TableRecord, TableView } from "./types";
+import type { TableProps, Field, TableRecord, TableView, RecordMenuItem } from "./types";
 import type { DisplayRow } from "./tree";
 import type { ScrollbarMetrics } from "./scrollbar";
 import type { CSSProperties, HTMLAttributes, ReactNode, RefObject, MouseEvent as ReactMouseEvent, PointerEvent as ReactPointerEvent } from "react";
 type HeaderMenu = { x: number; y: number; index: number; field: Field };
+type RecordMenu = { x: number; y: number; row: TableRecord; field: Field | null; items: RecordMenuItem[] };
 type ActiveCell = { rowId: string | null; fieldId: string | null };
 interface ScrollMetrics { vertical: ScrollbarMetrics | null; horizontal: ScrollbarMetrics | null; scrollTop: number; scrollLeft: number }
 interface ScrollAreaProps extends HTMLAttributes<HTMLDivElement> {
@@ -63,6 +64,10 @@ function revealActiveInLayouts(viewport: HTMLElement) {
 
 const defaultGetSubRows = (row: TableRecord) => row.children ?? [];
 
+function isRecordMenuSeparator(item: RecordMenuItem): item is { type: "separator" } {
+  return "type" in item && item.type === "separator";
+}
+
 function viewCacheKey(view: TableView, search: string, expanded: Set<string>) {
   return JSON.stringify({
     id: view.id,
@@ -76,7 +81,7 @@ function viewCacheKey(view: TableView, search: string, expanded: Set<string>) {
   });
 }
 
-export function Table({ fields, rows, activeView, onUpdateView, onOpenRecord, search = "", getSubRows = defaultGetSubRows, getCellProps, loading = false, error, onRetry, onClearQuery }: TableProps) {
+export function Table({ fields, rows, activeView, onUpdateView, onOpenRecord, search = "", getSubRows = defaultGetSubRows, getCellProps, getRecordMenuItems, onRecordMenuAction, loading = false, error, onRetry, onClearQuery }: TableProps) {
   const [selected, setSelected] = useState(() => new Set<string>());
   const [draggingFieldId, setDraggingFieldId] = useState<string | null>(null);
   const [pressedFieldId, setPressedFieldId] = useState<string | null>(null);
@@ -88,6 +93,7 @@ export function Table({ fields, rows, activeView, onUpdateView, onOpenRecord, se
   const [liveWidths, setLiveWidths] = useState(activeView.columnWidths ?? {});
   const [highlightedFieldId, setHighlightedFieldId] = useState<string | null>(null);
   const [headerMenu, setHeaderMenu] = useState<HeaderMenu | null>(null);
+  const [recordMenu, setRecordMenu] = useState<RecordMenu | null>(null);
   const gridId = useId();
   const [gridFocused, setGridFocused] = useState(false);
   const [columnViewport, setColumnViewport] = useState({left:0,width:0});
@@ -134,6 +140,7 @@ export function Table({ fields, rows, activeView, onUpdateView, onOpenRecord, se
   const isViewPending = tableView !== activeView;
   useEffect(() => {
     setHeaderMenu(null);
+    setRecordMenu(null);
     setHighlightedFieldId(null);
     scrollRef.current?.classList.remove("is-column-resize-hovered", "is-freeze-boundary-hovered");
   }, [activeView.id]);
@@ -150,14 +157,14 @@ export function Table({ fields, rows, activeView, onUpdateView, onOpenRecord, se
     target?.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "nearest" });
   };
   useEffect(() => {
-    if (!headerMenu) return undefined;
-    const close = () => setHeaderMenu(null);
+    if (!headerMenu && !recordMenu) return undefined;
+    const close = () => { setHeaderMenu(null); setRecordMenu(null); };
     const closeOnEscape = (event: KeyboardEvent) => event.key === "Escape" && close();
     window.addEventListener("pointerdown", close);
     window.addEventListener("keydown", closeOnEscape);
     window.addEventListener("resize", close);
     return () => { window.removeEventListener("pointerdown", close); window.removeEventListener("keydown", closeOnEscape); window.removeEventListener("resize", close); };
-  }, [headerMenu]);
+  }, [headerMenu, recordMenu]);
   useEffect(() => {
     const clearColumnHighlight = (event: PointerEvent) => {
       if (!(event.target instanceof Element) || !event.target.closest(".grid-head-cell")) setHighlightedFieldId(null);
@@ -219,6 +226,15 @@ export function Table({ fields, rows, activeView, onUpdateView, onOpenRecord, se
     if (x !== headerMenu.x || y !== headerMenu.y) setHeaderMenu(current => current ? { ...current, x, y } : current);
     menu.querySelector<HTMLButtonElement>('button:not(:disabled)')?.focus({ preventScroll: true });
   }, [headerMenu]);
+  useLayoutEffect(() => {
+    if (!recordMenu || !menuRef.current) return;
+    const menu = menuRef.current;
+    const rect = menu.getBoundingClientRect();
+    const x = Math.max(8, Math.min(recordMenu.x, window.innerWidth - rect.width - 8));
+    const y = Math.max(8, Math.min(recordMenu.y, window.innerHeight - rect.height - 8));
+    if (x !== recordMenu.x || y !== recordMenu.y) setRecordMenu(current => current ? { ...current, x, y } : current);
+    menu.querySelector<HTMLButtonElement>('button:not(:disabled)')?.focus({ preventScroll: true });
+  }, [recordMenu]);
   const dataState = tableDataState(rows.length, displayedRows.length, loading, error);
   const initialState = dataState === "loading" || dataState === "error";
   const activeCellId = cellId(activeRow, column);
@@ -514,7 +530,12 @@ export function Table({ fields, rows, activeView, onUpdateView, onOpenRecord, se
     const field = orderedFields[index];
     if (field) commitResize(field.id, Math.max(88, Math.min(1200, (widths[field.id] ?? field.width ?? 140) + delta)));
   };
-  const closeMenu = () => { setHeaderMenu(null); scrollRef.current?.focus({ preventScroll: true }); };
+  const canHideColumn = fields.filter(field => activeView.visibleFieldIds.includes(field.id)).length > 1;
+  const hideColumn = (fieldId: string) => {
+    if (!canHideColumn || activeView.id !== tableView.id || !activeView.visibleFieldIds.includes(fieldId)) return;
+    onUpdateView(activeView.id, { visibleFieldIds: activeView.visibleFieldIds.filter(id => id !== fieldId) });
+  };
+  const closeMenu = () => { setHeaderMenu(null); setRecordMenu(null); scrollRef.current?.focus({ preventScroll: true }); };
   const onGridKeyDown = (event: import("react").KeyboardEvent<HTMLDivElement>) => {
     if (event.target !== event.currentTarget || event.nativeEvent.isComposing || initialState) return;
     const edge = event.ctrlKey || event.metaKey;
@@ -546,7 +567,7 @@ export function Table({ fields, rows, activeView, onUpdateView, onOpenRecord, se
       else {
         const cell = document.getElementById(cellId(-1, column));
         const rect = cell?.getBoundingClientRect();
-        if (rect) setHeaderMenu({ x: Math.max(8, Math.min(rect.right - 180, window.innerWidth - 188)), y: rect.bottom + 4, index: column - 1, field: orderedFields[column - 1] });
+        if (rect) { setRecordMenu(null); setHeaderMenu({ x: Math.max(8, Math.min(rect.right - 180, window.innerWidth - 188)), y: rect.bottom + 4, index: column - 1, field: orderedFields[column - 1] }); }
       }
       return;
     }
@@ -581,7 +602,31 @@ export function Table({ fields, rows, activeView, onUpdateView, onOpenRecord, se
     const r = Number(row.dataset.gridRow), c = Number(cell.dataset.gridColumn);
     setActiveCell({ rowId: displayedRows[r]?.row.id ?? null, fieldId: orderedFields[c - 1]?.id ?? null });
     selectionAnchor.current = null;
+    // 点记录单元格是激活，不是勾选；已选中的行要让出来。
+    if (r >= 0) setSelected(current => current.size === 0 ? current : new Set());
     if (!target.closest(".header-action, .resize-handle")) scrollRef.current?.focus({ preventScroll: true });
+  };
+  const onGridContextMenu = (event: import("react").MouseEvent<HTMLDivElement>) => {
+    if (!getRecordMenuItems) return;
+    const target = event.target as HTMLElement;
+    if (target.closest(".header-action, .resize-handle, .freeze-handle, .header-context-menu, .tree-toggle")) return;
+    const cell = target.closest<HTMLElement>("[data-grid-column]");
+    const rowEl = cell?.closest<HTMLElement>("[data-grid-row]");
+    if (!cell || !rowEl) return;
+    const r = Number(rowEl.dataset.gridRow), c = Number(cell.dataset.gridColumn);
+    if (r < 0) return;
+    const row = displayedRows[r]?.row;
+    if (!row) return;
+    const field = c > 0 ? orderedFields[c - 1] ?? null : null;
+    const items = getRecordMenuItems({ row, field });
+    if (items.length === 0) return;
+    event.preventDefault();
+    event.stopPropagation();
+    setActiveCell({ rowId: row.id, fieldId: field?.id ?? null });
+    selectionAnchor.current = null;
+    setHeaderMenu(null);
+    setRecordMenu({ x: event.clientX, y: event.clientY, row, field, items });
+    scrollRef.current?.focus({ preventScroll: true });
   };
   useLayoutEffect(() => {
     if (document.activeElement === scrollRef.current) focusCell(activeRow, column);
@@ -596,7 +641,7 @@ export function Table({ fields, rows, activeView, onUpdateView, onOpenRecord, se
     {(dataState === "refreshing" || dataState === "refreshError") && <div className="table-data-status" role={loading ? "status" : "alert"}>
       {loading ? <><span className="view-loading-spinner" />正在更新数据…</> : <><span>更新失败：{error}</span>{onRetry && <Button size="small" onClick={() => { onRetry(); scrollRef.current?.focus({ preventScroll: true }); }}>重试</Button>}</>}
     </div>}
-    <AutoHideScrollArea overlay={emptyContent} onBoundaryPointerMove={updateFreezeHandle} onBoundaryPointerLeave={hideFreezeHandle} freezeHandleRef={freezeHandleRef} onFreezeHandlePointerDown={startFreezeDrag} freezeBoundaryLeft={frozenCount > 0 ? frozenLefts[frozenCount - 1] + (widths[orderedFields[frozenCount - 1].id] ?? orderedFields[frozenCount - 1].width ?? 140) : null} className={`grid-scroll${draggingFieldId ? " is-column-dragging" : ""}${resizingFieldId ? " is-column-resizing" : ""}`} ref={scrollRef} role={hasHierarchy ? "treegrid" : "grid"} aria-label="记录表格" aria-describedby={`${gridId}-help`} tabIndex={0} aria-multiselectable="true" aria-busy={loading || isViewPending} aria-activedescendant={activeCellId} onKeyDown={onGridKeyDown} onFocus={(event) => { if (event.target === event.currentTarget) setGridFocused(true); }} onBlur={() => setGridFocused(false)} onClickCapture={onGridClick} aria-rowcount={displayedRows.length + 1} aria-colcount={orderedFields.length + 1}><div className="grid-inner" style={{ minWidth }}>{draggedField && <div className="column-drag-layer" aria-hidden="true" style={{ top: dragGeometry.top, height: dragGeometry.height }}><div className="column-drag-highlight" style={{ left: draggedColumnLeft, width: widths[draggedField.id] ?? draggedField.width ?? 140, clipPath: `inset(0 0 0 var(--column-drag-source-clip, ${draggedColumnClip}px))` }} /><div className="column-drag-mask" style={{ left: dragGeometry.left, width: widths[draggedField.id] ?? draggedField.width ?? 140 }} />{dragTargetIndex >= 0 && <div className="column-drop-indicator" style={{ left: dropIndicatorLeft }} />}</div>}<div className="grid-header" role="row" data-grid-row={-1} aria-rowindex={1} style={{ gridTemplateColumns: gridTemplate }}><div className={`row-check header-check${frozenCount ? " frozen-row-check" : ""}`} role="columnheader" aria-colindex={1} data-grid-column={0} id={cellId(-1, 0)} data-active={activeRow === -1 && column === 0 || undefined}><Checkbox.Root tabIndex={-1} className="checkbox" aria-label="选择全部可见记录" checked={allSelectionState} onCheckedChange={toggleAll}><Checkbox.Indicator>{allSelectionState === "indeterminate" ? <Minus size={12} /> : <Check size={12} />}</Checkbox.Indicator></Checkbox.Root></div>{renderedFields.map(({field, index}) => <HeaderCell key={field.id} cellId={cellId(-1, index + 1)} columnIndex={index + 1} active={activeRow === -1 && column === index + 1} gestureScope={gestureScope} field={field} width={widths[field.id] ?? field.width ?? 140} isDragging={draggingFieldId === field.id} isHighlighted={highlightedFieldId === field.id} isResizing={resizingFieldId === field.id} frozen={index < frozenCount} lastFrozen={index === frozenCount - 1} terminal={index === orderedFields.length - 1} stickyLeft={frozenLefts[index]} onClick={(event) => { if (!(event.target instanceof Element && event.target.closest(".resize-handle, .freeze-handle, .header-action"))) highlightColumn(field.id, index); }} onContextMenu={(event) => { event.preventDefault(); event.stopPropagation(); setHeaderMenu({ x: event.clientX, y: event.clientY, index, field }); }} onOpenMenu={(event) => { const rect = event.currentTarget.getBoundingClientRect(); setHeaderMenu({ x: Math.max(8, Math.min(rect.right - 180, window.innerWidth - 188)), y: rect.bottom + 4, index, field }); }} onPointerDown={(event) => startColumnDrag(event, field, index)} onResizeStart={() => setResizingFieldId(field.id)} onResize={(width) => previewResize(field.id, width)} onResizeEnd={(width) => commitResize(field.id, width)} onResizeCancel={() => { setLiveWidths(committedWidthsRef.current); setResizingFieldId(null); }} />)}</div>
+    <AutoHideScrollArea overlay={emptyContent} onBoundaryPointerMove={updateFreezeHandle} onBoundaryPointerLeave={hideFreezeHandle} freezeHandleRef={freezeHandleRef} onFreezeHandlePointerDown={startFreezeDrag} freezeBoundaryLeft={frozenCount > 0 ? frozenLefts[frozenCount - 1] + (widths[orderedFields[frozenCount - 1].id] ?? orderedFields[frozenCount - 1].width ?? 140) : null} className={`grid-scroll${draggingFieldId ? " is-column-dragging" : ""}${resizingFieldId ? " is-column-resizing" : ""}`} ref={scrollRef} role={hasHierarchy ? "treegrid" : "grid"} aria-label="记录表格" aria-describedby={`${gridId}-help`} tabIndex={0} aria-multiselectable="true" aria-busy={loading || isViewPending} aria-activedescendant={activeCellId} onKeyDown={onGridKeyDown} onFocus={(event) => { if (event.target === event.currentTarget) setGridFocused(true); }} onBlur={() => setGridFocused(false)} onClickCapture={onGridClick} onContextMenu={onGridContextMenu} aria-rowcount={displayedRows.length + 1} aria-colcount={orderedFields.length + 1}><div className="grid-inner" style={{ minWidth }}>{draggedField && <div className="column-drag-layer" aria-hidden="true" style={{ top: dragGeometry.top, height: dragGeometry.height }}><div className="column-drag-highlight" style={{ left: draggedColumnLeft, width: widths[draggedField.id] ?? draggedField.width ?? 140, clipPath: `inset(0 0 0 var(--column-drag-source-clip, ${draggedColumnClip}px))` }} /><div className="column-drag-mask" style={{ left: dragGeometry.left, width: widths[draggedField.id] ?? draggedField.width ?? 140 }} />{dragTargetIndex >= 0 && <div className="column-drop-indicator" style={{ left: dropIndicatorLeft }} />}</div>}<div className="grid-header" role="row" data-grid-row={-1} aria-rowindex={1} style={{ gridTemplateColumns: gridTemplate }}><div className={`row-check header-check${frozenCount ? " frozen-row-check" : ""}`} role="columnheader" aria-colindex={1} data-grid-column={0} id={cellId(-1, 0)} data-active={activeRow === -1 && column === 0 || undefined}><Checkbox.Root tabIndex={-1} className="checkbox" aria-label="选择全部可见记录" checked={allSelectionState} onCheckedChange={toggleAll}><Checkbox.Indicator>{allSelectionState === "indeterminate" ? <Minus size={12} /> : <Check size={12} />}</Checkbox.Indicator></Checkbox.Root></div>{renderedFields.map(({field, index}) => <HeaderCell key={field.id} cellId={cellId(-1, index + 1)} columnIndex={index + 1} active={activeRow === -1 && column === index + 1} gestureScope={gestureScope} field={field} width={widths[field.id] ?? field.width ?? 140} isDragging={draggingFieldId === field.id} isHighlighted={highlightedFieldId === field.id} isResizing={resizingFieldId === field.id} frozen={index < frozenCount} lastFrozen={index === frozenCount - 1} terminal={index === orderedFields.length - 1} stickyLeft={frozenLefts[index]} onClick={(event) => { if (!(event.target instanceof Element && event.target.closest(".resize-handle, .freeze-handle, .header-action"))) highlightColumn(field.id, index); }} onContextMenu={(event) => { event.preventDefault(); event.stopPropagation(); setRecordMenu(null); setHeaderMenu({ x: event.clientX, y: event.clientY, index, field }); }} onOpenMenu={(event) => { const rect = event.currentTarget.getBoundingClientRect(); setRecordMenu(null); setHeaderMenu({ x: Math.max(8, Math.min(rect.right - 180, window.innerWidth - 188)), y: rect.bottom + 4, index, field }); }} onPointerDown={(event) => startColumnDrag(event, field, index)} onResizeStart={() => setResizingFieldId(field.id)} onResize={(width) => previewResize(field.id, width)} onResizeEnd={(width) => commitResize(field.id, width)} onResizeCancel={() => { setLiveWidths(committedWidthsRef.current); setResizingFieldId(null); }} />)}</div>
       <div className="virtual-body" style={{ height: virtualizer.getTotalSize() }}>{virtualizer.getVirtualItems().map((virtualRow) => { const item = displayedRows[virtualRow.index]; const row = item.row; const checked = selected.has(row.id); const isExpanded = treeState.hasQuery || expanded.has(row.id); const nextDepth = displayedRows[virtualRow.index + 1]?.depth ?? 0; return <div key={row.id} className={`${checked ? "grid-row selected" : "grid-row"}${item.depth ? " child-row" : ""}${nextDepth > 0 ? " nested-divider" : ""}`} role="row" data-grid-row={virtualRow.index} aria-selected={checked} aria-rowindex={virtualRow.index + 2} aria-level={hasHierarchy ? item.depth + 1 : undefined} aria-expanded={item.hasChildren ? isExpanded : undefined} style={{ gridTemplateColumns: gridTemplate, height: virtualRow.size, transform: `translateY(${virtualRow.start}px)` }} onDoubleClick={() => onOpenRecord(row)}><div className={`row-check${frozenCount ? " frozen-row-check" : ""}`} role="gridcell" aria-colindex={1} data-grid-column={0} id={cellId(virtualRow.index, 0)} data-active={activeRow === virtualRow.index && column === 0 || undefined}><span className="row-number">{item.displayIndex}</span><input type="checkbox" tabIndex={-1} className="checkbox row-checkbox native-row-checkbox" aria-label={`选择记录 ${row.id}`} data-state={checked ? "checked" : "unchecked"} onDoubleClick={(event) => event.stopPropagation()} onKeyDown={(event) => { if (event.key === "Enter") event.preventDefault(); }} checked={checked} onChange={(event) => { const nextChecked = event.currentTarget.checked; setActiveCell({ rowId: row.id, fieldId: null }); selectionAnchor.current = null; setSelected((current) => { const next = new Set(current); if (nextChecked) next.add(row.id); else next.delete(row.id); return next; }); scrollRef.current?.focus({ preventScroll: true }); }} /></div>{renderedFields.map(({field, index:fieldIndex}) => <Cell key={field.id} cellId={cellId(virtualRow.index, fieldIndex + 1)} columnIndex={fieldIndex + 1} active={activeRow === virtualRow.index && column === fieldIndex + 1} field={field} value={row[field.id]} cellProps={getCellProps?.(row, field)} style={frozenCellStyles[fieldIndex]} columnState={`${resizingFieldId === field.id ? "resizing-column " : ""}${highlightedFieldId === field.id ? "highlighted-column " : ""}${fieldIndex < frozenCount ? "frozen-column " : ""}${fieldIndex === frozenCount - 1 ? "last-frozen" : ""}`} tree={fieldIndex === 0 ? item : null} dividerInset={fieldIndex === 0 && nextDepth > 0 ? 25 + (nextDepth - 1) * 22 : 0} expanded={fieldIndex === 0 && isExpanded} onToggle={toggleExpanded} />)}</div>; })}</div>
 
     </div>{isViewPending && !loading && <div className="view-loading" role="status" aria-live="polite"><span className="view-loading-spinner" />正在加载视图数据…</div>}</AutoHideScrollArea>
@@ -611,9 +656,18 @@ export function Table({ fields, rows, activeView, onUpdateView, onOpenRecord, se
     }} style={{ left: headerMenu.x, top: headerMenu.y }} onPointerDown={(event) => event.stopPropagation()}><button type="button" role="menuitem" disabled={headerMenu.index === orderedFields.length - 1 || requestedFrozenCount === headerMenu.index + 1} onClick={() => { setFrozenCount(headerMenu.index + 1); closeMenu(); }}>冻结至「{headerMenu.field.title}」</button><span className="menu-separator" />
       <button type="button" role="menuitem" disabled={headerMenu.index === 0} onClick={() => { reorderColumn(headerMenu.index, -1); closeMenu(); }}>向左移动列</button>
       <button type="button" role="menuitem" disabled={headerMenu.index === orderedFields.length - 1} onClick={() => { reorderColumn(headerMenu.index, 1); closeMenu(); }}>向右移动列</button>
-      <button type="button" role="menuitem" onClick={() => { resizeColumn(headerMenu.index, -16); closeMenu(); }}>缩小列宽</button>
-      <button type="button" role="menuitem" onClick={() => { resizeColumn(headerMenu.index, 16); closeMenu(); }}>增大列宽</button>
+      <span className="menu-separator" />
+      <button type="button" role="menuitem" disabled={!canHideColumn} onClick={() => { hideColumn(headerMenu.field.id); closeMenu(); }}>隐藏当前列</button>
     </div>}
+    {recordMenu && <div ref={menuRef} className="header-context-menu ntable-portal" role="menu" aria-label="记录菜单" onKeyDown={(event) => {
+      if (event.key === "Escape" || event.key === "Tab") { event.preventDefault(); event.stopPropagation(); closeMenu(); return; }
+      if (!["ArrowUp", "ArrowDown", "Home", "End"].includes(event.key)) return;
+      event.preventDefault();
+      const buttons = Array.from(event.currentTarget.querySelectorAll<HTMLButtonElement>("button:not(:disabled)"));
+      const current = buttons.indexOf(document.activeElement as HTMLButtonElement);
+      const next = event.key === "Home" ? 0 : event.key === "End" ? buttons.length - 1 : (current + (event.key === "ArrowDown" ? 1 : -1) + buttons.length) % buttons.length;
+      buttons[next]?.focus();
+    }} style={{ left: recordMenu.x, top: recordMenu.y }} onPointerDown={(event) => event.stopPropagation()}>{recordMenu.items.map((item, index) => isRecordMenuSeparator(item) ? <span key={`sep-${index}`} className="menu-separator" /> : <button key={item.key} type="button" role="menuitem" className={item.danger ? "danger" : undefined} disabled={item.disabled} onClick={() => { onRecordMenuAction?.(item.key, { row: recordMenu.row, field: recordMenu.field }); closeMenu(); }}>{item.label}</button>)}</div>}
     <footer className="table-footer"><span>{treeState.matchedCount.toLocaleString()} 条记录</span>{selected.size > 0 && <span className="selection-count">已选择 {selected.size} 条</span>}</footer>
   </div>;
 }

@@ -120,29 +120,30 @@
   "filterMode": "all",
   "filters": [
     { "id": "filter-1", "fieldId": "quantity", "operator": "greaterThan", "value": "10" },
-    { "id": "filter-2", "fieldId": "name", "operator": "isNotEmpty", "value": "" }
+    { "id": "filter-2", "fieldId": "name", "operator": "isNotEmpty", "value": "" },
+    { "id": "filter-3", "fieldId": "status", "operator": "equals", "value": ["draft", "ready"] }
   ]
 }
 ```
 
-`value` **始终是字符串**，数字条件也传 `"10"`；数字记录仍传 number。`id` 在公共类型中可选，建议业务保存时保留稳定 ID，无 ID 条件也可以独立编辑和删除；保存稳定 ID 有助于跨请求追踪规则。
+`value` 为字符串或字符串数组：text、date、number 条件使用字符串，数字条件也传 `"10"`；singleSelect、multiSelect 条件使用 option.value 数组，兼容旧的单个字符串值。数字记录仍传 number。`id` 在公共类型中可选，建议业务保存时保留稳定 ID，无 ID 条件也可以独立编辑和删除；保存稳定 ID 有助于跨请求追踪规则。
 
 | operator | 文案 | 适用类型 | 行为 |
 | --- | --- | --- | --- |
-| contains | 包含 | 除 number 外 | 转字符串后忽略大小写包含 |
-| notContains | 不包含 | 除 number 外 | 上述结果取反 |
-| equals | 等于 | 全部 | number 按数值；其他类型字符串精确比较，区分大小写 |
-| notEquals | 不等于 | 全部 | number 按数值；其他类型字符串不等比较 |
+| contains | 包含 | text、date、multiSelect | multiSelect 记录包含任一已选 option.value；其他类型转字符串后忽略大小写包含 |
+| notContains | 不包含 | text、date、multiSelect | 上述结果取反；未设置的多选值视为不包含 |
+| equals | 等于 | text、date、number、singleSelect | number 按数值；singleSelect 等于任一已选 option.value；其他类型字符串精确比较，区分大小写 |
+| notEquals | 不等于 | text、date、number、singleSelect | 上述结果取反；number 两侧必须是有限数值 |
 | greaterThan | 大于 | number | 数值比较 |
 | lessThan | 小于 | number | 数值比较 |
 | isEmpty | 为空 | 全部 | null、缺失值、空字符串、空数组为空；0 不为空 |
 | isNotEmpty | 不为空 | 全部 | 上述结果取反 |
 
-空值操作符隐藏输入框并清空原值，序列化使用 `value: ""`。切回需要输入的操作符，输入值仍为空。其他操作符的空字符串条件不生效；空白字符不会自动按空字符串处理，数字空白查询比较失败。
+空值操作符隐藏输入框并清空原值，序列化使用 `value: ""`。切回需要输入的操作符，输入值仍为空。其他操作符的空字符串或空数组条件不生效；空白字符不会自动按空字符串处理，数字空白查询比较失败。
 
 `all` 对有效条件做 AND，`any` 做 OR；没有有效条件时都返回全部记录。不要把未完成的条件作为 OR 中的恒真条件。数字比较拒绝空值和非有限数值，包括 `notEquals`。业务 API 应拒绝未知字段、未知 operator 和不适用的 operator/type 组合，当前组件没有完整输入校验器。
 
-选择类型的筛选针对原始 option.value，而非 label。多选当前通过 `String(array)`（逗号连接）比较，尚无集合包含/交集语义；日期没有范围比较。这些限制在服务端复用查询逻辑时必须明确。
+单选和多选的筛选值由面板从字段 `options` 中多选，`value` 保存所选 option.value 数组，而非 label；面板不提供自由文本输入，勾选/取消时菜单保持打开。单选条件只提供等于/不等于，多选条件只提供包含/不包含，二者都保留为空/不为空。一条正向条件命中任一已选项，反向条件要求所有已选项均不命中；条件内多选与条件间 `filterMode` 独立，例如 `all` 可以同时要求状态属于 `["draft", "ready"]` 且数量大于 10。取消全部选项后该条件不生效。旧字符串值仍视为一个选项，下一次更改选择时写入数组。切换字段时，只要原字段或新字段是选择类型，输入值就会清空，因为 option.value 只对定义它的字段有意义。日期没有范围比较。服务端复用查询逻辑时应采用相同语义。
 
 ### 排序规则
 
@@ -234,7 +235,7 @@ Content-Type: application/json
 1. 真实数据源能适配为 fields / rows / views，业务选择的 activeView 是 views 中的有效对象。
 2. 字段、选项、记录、视图与规则 ID 稳定，字段引用有效，树无重复 ID。
 3. 数字 0 与 null、多选空数组、单选原始值、日期字符串验证正确。
-4. filters.value 是字符串，空值条件使用空字符串，all/any 和多条排序优先级正确。
+4. filters.value 在普通字段为字符串、选择字段为 option.value 数组（兼容旧字符串）；空值条件使用空字符串，空数组条件不生效，条件内任一匹配与条件间 all/any 组合正确，多条排序优先级正确。
 5. 视图 patch 使用顶层浅合并；连续保存、失败和权限分支经过验证。
 6. 新增/详情由业务实现，保存后用新对象和新数组更新 rows；避免原地修改影响 memo/cache。
 7. 确认个人筛选隔离、完整数据范围及真实数据量；仅通过构建不代表接口业务验收通过。

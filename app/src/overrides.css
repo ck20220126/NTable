@@ -972,6 +972,8 @@ body {
 }
 
 .header-context-menu button:hover { background: #f2f3f5; }
+.header-context-menu button.danger { color: #d14343; }
+.header-context-menu button.danger:hover { background: #fff1f0; }
 .header-context-menu button:disabled { color: #bbbfc4; cursor: default; background: transparent; }
 .header-context-menu .menu-separator { display: block; height: 1px; margin: 4px; background: #eff0f1; }
 
@@ -1114,6 +1116,8 @@ body {
 .select-label {
   max-width: 8em;
   min-width: 0;
+  /* Buttons center text by default; a fixed-width label must not float its text to the middle. */
+  text-align: left;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -1243,7 +1247,8 @@ body {
   background: rgba(31, 35, 41, .08);
   outline: none;
 }
-.filter-panel .condition-list { gap: 6px; }
+/* The list scrolls, so it clips: widen its padding box past the rows' -2px bleed so focus rings stay visible. */
+.filter-panel .condition-list { gap: 6px; padding-inline: 2px; margin-inline: -2px; }
 .filter-panel .condition-row {
   grid-template-columns: 150px 84px minmax(0, 1fr) 24px;
   gap: 8px;
@@ -1285,7 +1290,7 @@ body {
     grid-column: 1;
     grid-row: 2;
   }
-  .filter-panel .condition-row > input {
+  .filter-panel .condition-row > .filter-value {
     grid-column: 2 / 4;
     grid-row: 2;
   }
@@ -1361,6 +1366,7 @@ body {
   box-shadow: 0 4px 12px rgba(31, 35, 41, .16);
 }
 
+.select-trigger.select-trigger--placeholder .select-label { color: #8f959e; }
 .select-trigger--fluid .select-label,
 .select-menu--fluid .select-label {
   flex: 1;
@@ -1452,9 +1458,9 @@ body {
 /* One grid entry; the active descendant remains mounted during virtualization. */
 .ntable-sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 .grid-scroll:focus-visible { outline: none; }
-.grid-scroll:focus-visible [data-active="true"] { outline: 2px solid var(--blue); outline-offset: -2px; }
-.grid-scroll:focus-visible .grid-row:has([data-active="true"]) .row-number { display: none; }
-.grid-scroll:focus-visible .grid-row:has([data-active="true"]) .row-checkbox { display: flex !important; }
+.grid-scroll:focus [data-active="true"] { outline: 2px solid var(--blue); outline-offset: -2px; }
+.grid-scroll:focus .grid-row:has([data-active="true"]) .row-number { display: none; }
+.grid-scroll:focus .grid-row:has([data-active="true"]) .row-checkbox { display: flex !important; }
 .table-data-status { display: flex; flex: 0 0 auto; align-items: center; gap: 8px; min-height: 36px; padding: 4px 12px; border-bottom: 1px solid var(--line); color: var(--muted); font-size: 12px; }
 .table-data-status[role="alert"] { color: #b42318; background: #fff8f6; }
 .table-data-status > span:not(.view-loading-spinner) { min-width: 0; overflow-wrap: anywhere; }
@@ -1547,3 +1553,6 @@ body {
 
 /* The final hit area must not enlarge the virtual grid's scroll extent. */
 .grid-head-cell.last-column .resize-handle { right: 0; }
+
+/* Demo editor: shared selectors match the native form controls. */
+.form-grid .select-trigger { height: 38px; border-radius: 6px; padding: 0 11px; color: #1f2329; font-size: 12px; }

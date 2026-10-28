@@ -13,7 +13,7 @@ const manifest = JSON.parse(readFileSync(new URL('package.json', app), 'utf8'));
 const read = path => readFileSync(new URL(path, app), 'utf8');
 
 test('release exposes ESM, declarations and opt-in CSS with host React', () => {
-  assert.equal(manifest.version, '0.1.0');
+  assert.match(manifest.version, /^\d+\.\d+\.\d+$/);
   assert.equal(manifest.private, true);
   assert.equal(manifest.type, 'module');
   for (const path of [manifest.exports['.'].import, manifest.exports['.'].types, manifest.exports['./style.css'].default, manifest.exports['./style.css'].types]) {

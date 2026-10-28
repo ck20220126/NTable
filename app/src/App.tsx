@@ -2,6 +2,7 @@ import { Button } from "./components/Button";
 import type { Field, TableRecord, TableView } from "./ntable/types";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { NTable } from "./ntable";
+import { MultiSelectControl } from "./ntable/PanelControls";
 import * as Dialog from "@radix-ui/react-dialog";
 import { createRecordDraft, normalizeDemoViews, readDemoStorage, saveRecordDraft, writeDemoStorage } from "./demoState";
 
@@ -20,11 +21,19 @@ const statusOptions = [
   { value: "online", label: "已上线", color: "#d9e7ff" },
 ];
 
+const channelOptions = [
+  { value: "app", label: "App", color: "#d9e7ff" },
+  { value: "miniProgram", label: "小程序", color: "#d9f4e8" },
+  { value: "web", label: "官网", color: "#eadffd" },
+  { value: "store", label: "门店", color: "#fee7bd" },
+];
+
 export const fields: Field[] = [
   { id: "code", title: "元素编码", type: "text", width: 126, searchable: true },
   { id: "name", title: "活动元素完整名称", type: "text", width: 220, searchable: true },
   { id: "category", title: "元素分类", type: "singleSelect", width: 140, options: categoryOptions },
   { id: "status", title: "当前状态", type: "singleSelect", width: 128, options: statusOptions },
+  { id: "channels", title: "投放渠道", type: "multiSelect", width: 168, options: channelOptions },
   { id: "owner", title: "负责人", type: "text", width: 132, searchable: true },
   { id: "department", title: "关注部门", type: "text", width: 140, searchable: true },
   { id: "quantity", title: "数量", type: "number", width: 112 },
@@ -49,6 +58,7 @@ function createRows(count = 10000) {
       name: `${names[index % names.length]} ${Math.floor(index / names.length) + 1}`,
       category,
       status,
+      channels: channelOptions.filter((_, channel) => (index >> channel) % 2 === 1 || index % channelOptions.length === channel).map((option) => option.value),
       owner: owners[index % owners.length],
       department: departments[index % departments.length],
       quantity: index % 11 === 10 ? null : index % 101,
@@ -152,6 +162,7 @@ function RecordEditor({ record, onClose, onSave, returnFocus }: {
     <div className="editor-body"><section className="editor-card"><h2>基本信息</h2><div className="form-grid">
       <label><span>元素编码</span><input value={draft.code} onChange={set("code")} placeholder="保存后自动生成" /></label><label className="wide"><span>元素名称 *</span><input autoFocus value={draft.name} onChange={set("name")} placeholder="请输入元素名称" /></label>
       <label><span>元素分类</span><select value={draft.category} onChange={set("category")}><option value="">未设置</option>{categoryOptions.map((item) => <option key={item.value} value={item.value}>{item.label}</option>)}</select></label><label><span>当前状态</span><select value={draft.status} onChange={set("status")}><option value="">未设置</option>{statusOptions.map((item) => <option key={item.value} value={item.value}>{item.label}</option>)}</select></label>
+      <label className="wide"><span>投放渠道</span><MultiSelectControl ariaLabel="投放渠道" placeholder="未设置" value={draft.channels} options={channelOptions} onChange={(channels) => setDraft((value) => ({ ...value, channels }))} /></label>
       <label><span>负责人</span><input value={draft.owner} onChange={set("owner")} /></label><label><span>关注部门</span><input value={draft.department} onChange={set("department")} /></label><label><span>数量</span><input type="number" step="any" value={draft.quantity} onChange={set("quantity")} aria-invalid={quantityInvalid} /></label><label><span>开始日期</span><input type="date" value={draft.startDate} onChange={set("startDate")} /></label><label><span>结束日期</span><input type="date" value={draft.endDate} onChange={set("endDate")} /></label><label className="wide"><span>规格</span><input value={draft.spec} onChange={set("spec")} /></label>
     </div></section></div>
   </Dialog.Content></Dialog.Portal></Dialog.Root>;

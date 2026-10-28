@@ -1,5 +1,5 @@
 import type { Field, FilterOperator, TableRecord, TableView } from "./ntable/types";
-import { filterOperators } from "./ntable/filtering.ts";
+import { filterOperators, isSelectType } from "./ntable/filtering.ts";
 
 type StorageReader = Pick<Storage, "getItem">;
 type StorageWriter = Pick<Storage, "setItem">;
@@ -46,12 +46,15 @@ export function normalizeDemoViews(raw: string | null, fields: Field[], fallback
       ruleIds.add(id); return id;
     };
     if (Array.isArray(item.filters)) for (const rule of item.filters) {
-      if (!isObject(rule) || typeof rule.fieldId !== "string" || !fieldSet.has(rule.fieldId) || typeof rule.operator !== "string" || typeof rule.value !== "string") continue;
+      if (!isObject(rule) || typeof rule.fieldId !== "string" || !fieldSet.has(rule.fieldId) || typeof rule.operator !== "string") continue;
+      const field = fields.find(field => field.id === rule.fieldId);
+      const value = rule.value;
+      if (typeof value !== "string" && !(isSelectType(field?.type) && Array.isArray(value) && value.every((option): option is string => typeof option === "string"))) continue;
       const empty = rule.operator === "isEmpty" || rule.operator === "isNotEmpty";
-      const operators = filterOperators(fields.find(field => field.id === rule.fieldId)?.type);
+      const operators = filterOperators(field?.type);
       const operator = operators.find(operator => operator.value === rule.operator);
       if (!operator) continue;
-      filters.push({ id: uniqueRuleId(rule.id), fieldId: rule.fieldId, operator: operator.value as FilterOperator, value: empty ? "" : rule.value });
+      filters.push({ id: uniqueRuleId(rule.id), fieldId: rule.fieldId, operator: operator.value as FilterOperator, value: empty ? "" : value });
     }
     const sorts: TableView["sorts"] = [];
     const sortedFields = new Set<string>();
@@ -74,6 +77,7 @@ export function createRecordDraft(record: Partial<TableRecord>) {
     owner: String(record.owner ?? ""), department: String(record.department ?? (existing ? "" : "活动运营")),
     quantity: record.quantity == null ? "" : String(record.quantity),
     startDate: String(record.startDate ?? (existing ? "" : "2026-10-01")), endDate: String(record.endDate ?? (existing ? "" : "2026-11-01")),
+    channels: Array.isArray(record.channels) ? record.channels.filter((item): item is string => typeof item === "string") : [],
     spec: String(record.spec ?? ""), attachment: String(record.attachment ?? "—") };
 }
 

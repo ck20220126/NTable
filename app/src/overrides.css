@@ -110,7 +110,8 @@ body {
 }
 
 .toolbar-left > .add-record > svg:first-child {
-  transform: translateY(2px) scale(1.275);
+  /* 只放大不下移：按钮是 flex 居中，下移会让「+」比文字和旁边的工具栏图标低 2px */
+  transform: scale(1.275);
 }
 
 .toolbar-action:not(.active),

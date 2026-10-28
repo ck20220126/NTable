@@ -1,11 +1,11 @@
 # @kun/ntable
 
-React 组件库，本地 release 0.1.0，尚未公开发布。宿主提供 React / React DOM 19.2，并设置明确高度的容器。
+React 组件库，本地 release 0.1.2，尚未公开发布。宿主提供 React / React DOM 19.2，并设置明确高度的容器。
 
 从交付的本地包安装，不要把包名当作公共 npm 上已发布的包。将下面路径替换为实际收到的文件：
 
 ```sh
-npm install ./kun-ntable-0.1.0.tgz
+npm install ./kun-ntable-0.1.2.tgz
 ```
 
 宿主项目需已安装 React 和 React DOM 19.2；两者必须各自解析到同一实例。组件使用 ESM，并需要浏览器 DOM、ResizeObserver、Pointer Events、requestAnimationFrame 和 crypto.randomUUID，因此运行在 HTTPS 或 localhost。

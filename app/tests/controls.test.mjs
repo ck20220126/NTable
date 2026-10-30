@@ -70,3 +70,19 @@ test("view menu lists management above deletion and both panels share the visibi
   assert.equal(source.match(/<VisibilityControl /g)?.length, 2);
   assert.match(source, /onCreateView\(newViewName\.trim\(\), \{ visibility: newViewVisibility \}\)/);
 });
+
+test("view tab reordering is opt-in and keeps tab markup and navigation", () => {
+  const fixed = render(true);
+  const sortable = render(true, undefined, {props: {onReorderViews(){}}});
+  // 拖拽只挂在已有的标签外层上，不额外加按钮或改动标签内容
+  assert.equal(sortable.match(/class="view-tab-wrap/g)?.length, fixed.match(/class="view-tab-wrap/g)?.length);
+  assert.match(sortable, /<button\b[^>]*aria-pressed="true"[^>]*>/);
+  assert.match(sortable, /全部菜单/);
+});
+
+test("view tab dragging uses pointer only and never starts from the view menu button", async () => {
+  const source = await readFile(new URL('../src/ntable/ViewBar.tsx', import.meta.url), 'utf8');
+  assert.match(source, /sensors=\{VIEW_TAB_SENSORS\}/);
+  assert.match(source, /const VIEW_TAB_SENSORS = \[PointerSensor\.configure\(/);
+  assert.match(source, /closest\("\.view-menu-button"\)/);
+});

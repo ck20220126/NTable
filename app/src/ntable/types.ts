@@ -78,6 +78,8 @@ export interface NTableProps {
   viewManagement?: boolean;
   /** Shows "可视范围"（仅自己 / 所有人）in the new-view panel and the view manage panel. Defaults to false. */
   viewVisibilityEditable?: boolean;
+  /** Enables dragging view tabs to reorder them; receives every view id in the new order. Hosts decide where the order is kept. Omit to keep tabs fixed. */
+  onReorderViews?: (ids: string[]) => void;
   onAddRecord?: () => void;
   onOpenRecord: (row: TableRecord) => void;
   getSubRows?: (row: TableRecord) => TableRecord[];
@@ -91,7 +93,7 @@ export interface NTableProps {
 }
 
 export type ViewBarProps = Pick<NTableProps,
-  "views" | "activeView" | "onActiveViewChange" | "onCreateView" | "onDeleteView" | "viewManagement" | "viewVisibilityEditable"> & Partial<Pick<NTableProps, "onUpdateView">>;
+  "views" | "activeView" | "onActiveViewChange" | "onCreateView" | "onDeleteView" | "viewManagement" | "viewVisibilityEditable" | "onReorderViews"> & Partial<Pick<NTableProps, "onUpdateView">>;
 
 export type TableToolbarProps = Pick<NTableProps,
   "fields" | "activeView" | "onUpdateView" | "onAddRecord" | "searchDebounceMs"> & {

@@ -779,8 +779,14 @@
 }:where(.ntable, .ntable-scope, .ntable-portal).view-menu-button > svg, :where(.ntable, .ntable-scope, .ntable-portal) .view-menu-button > svg {
   display: block;
   margin: 0;
-}:where(.ntable, .ntable-scope, .ntable-portal).view-tab-wrap.active .view-tab, :where(.ntable, .ntable-scope, .ntable-portal) .view-tab-wrap.active .view-tab {
+}/* 右侧只留 4px 给紧跟的视图菜单按钮；没有菜单按钮（无权限）时保持两侧对称 */:where(.ntable, .ntable-scope, .ntable-portal).view-tab-wrap.active:has(.view-menu-button) .view-tab, :where(.ntable, .ntable-scope, .ntable-portal) .view-tab-wrap.active:has(.view-menu-button) .view-tab {
   padding-right: 4px;
+}/* 视图标签拖拽排序：拖动中的标签浮起，落点左侧画插入线 */:where(.ntable, .ntable-scope, .ntable-portal).view-tab-wrap.dragging, :where(.ntable, .ntable-scope, .ntable-portal) .view-tab-wrap.dragging {
+  z-index: 2;
+  opacity: .72;
+  box-shadow: 0 5px 12px rgba(31, 35, 41, .16);
+}:where(.ntable, .ntable-scope, .ntable-portal).view-tab-wrap.dragging .view-tab, :where(.ntable, .ntable-scope, .ntable-portal) .view-tab-wrap.dragging .view-tab {
+  cursor: grabbing;
 }:where(.ntable, .ntable-scope, .ntable-portal).view-menu-button:hover,
 :where(.ntable, .ntable-scope, .ntable-portal) .view-menu-button:hover,
 :where(.ntable, .ntable-scope, .ntable-portal).view-menu-button:focus-visible,

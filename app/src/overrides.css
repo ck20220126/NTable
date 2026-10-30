@@ -1555,6 +1555,9 @@ body {
 .table-toolbar .search-box input { width: 0; min-width: 0; flex: 1 1 auto; }
 .table-toolbar .search-box > svg,
 .table-toolbar .search-box > .ui-button { flex-shrink: 0; }
+/* 和其它输入框一样分常规态与聚焦态：失焦（如按 Esc）后回到灰色描边，悬停加深，聚焦才是蓝色描边加光晕 */
+.table-toolbar .search-box:not(:focus-within) { border-color: #d9dde4; box-shadow: none; }
+.table-toolbar .search-box:not(:focus-within):hover { border-color: #b6bdc8; }
 
 .viewbar { min-width: 0; }
 .viewbar .view-tabs { min-width: 0; max-width: 100%; }
@@ -1604,3 +1607,10 @@ body {
 
 /* Demo editor: shared selectors match the native form controls. */
 .form-grid .select-trigger { height: 38px; border-radius: 6px; padding: 0 11px; color: #1f2329; font-size: 12px; }
+
+/* 多选标签：放不下的隐藏（仍保留在 DOM 里供测量），末尾灰色「+n」；只剩一个也放不下时它自己截断 */
+.tag-list { display: flex; align-items: center; gap: 4px; min-width: 0; max-width: 100%; overflow: hidden; position: relative; }
+.tag-list > .tag { flex: none; overflow: hidden; text-overflow: ellipsis; }
+.tag-list > .tag-item:first-child { flex: 0 1 auto; min-width: 0; }
+.tag-list > .tag-hidden,
+.tag-list > .tag-measure { position: absolute; visibility: hidden; pointer-events: none; }

@@ -93,4 +93,7 @@ test("find shortcut is opt-in, yields to modal dialogs, and Escape only blurs th
   assert.match(source, /if \(!captureFindShortcut \|\| !searchEnabled\) return;/);
   assert.match(source, /querySelector\('\[aria-modal="true"\]'\)/);
   assert.match(source, /event\.key === "Escape"[^}]*event\.currentTarget\.blur\(\)/);
+  assert.match(source, /event\.currentTarget\.contains\(event\.relatedTarget as Node \| null\) \|\| input\.draft\.trim\(\)\) return;\n    input\.clear\(\);\n    setSearchOpen\(false\);/);
+  const css = await readFile(new URL('../src/overrides.css', import.meta.url), 'utf8');
+  assert.match(css, /\.search-box:not\(:focus-within\) \{ border-color: #d9dde4; box-shadow: none; \}/);
 });

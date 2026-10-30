@@ -12,7 +12,7 @@ import { moveGridPosition, resolveActiveRow, selectRowRange } from "./keyboard";
 import { tableDataState } from "./dataState";
 import { scrollbarMetrics, scrollFromThumb, resizedScrollOffset } from "./scrollbar";
 import type { TableProps, Field, TableRecord, TableView, RecordMenuItem } from "./types";
-import { optionTagColor } from "./tagColors";
+import { optionTagColor, TAG_COLORS } from "./tagColors";
 import { BOOLEAN_OPTIONS, booleanKey } from "./booleanOptions";
 /** 标签底色走 --tag-bg，文字色由 CSS contrast-color() 按底色自动取黑或白 */
 const tagStyle = (color: string) => ({ "--tag-bg": color }) as import("react").CSSProperties;
@@ -866,6 +866,45 @@ function HeaderCell({ cellId, columnIndex, active, field, gestureScope, width, i
   return <div draggable={false} data-field-id={field.id} style={{gridColumn:columnIndex+1, ...(frozen ? {left:stickyLeft} : {})}} className={`grid-head-cell${isDragging ? " dragging" : ""}${isHighlighted ? " highlighted" : ""}${isResizing ? " resizing" : ""}${frozen ? " frozen-column" : ""}${lastFrozen ? " last-frozen" : ""}${terminal ? " last-column" : ""}`} role="columnheader" id={cellId} data-grid-column={columnIndex} data-active={active || undefined} aria-colindex={columnIndex + 1} onClick={onClick} onContextMenu={onContextMenu} onPointerDown={onPointerDown}><Icon size={15} /><span>{field.title}</span><button type="button" tabIndex={-1} className="header-action" aria-label={`${field.title}列菜单`} onPointerDown={(event) => event.stopPropagation()} onClick={(event) => { event.stopPropagation(); onOpenMenu(event); }}><ChevronDown size={13} /></button><button type="button" tabIndex={-1} className="resize-handle" draggable="false" aria-label={`调整${field.title}列宽`} onPointerEnter={hoverResize} onPointerLeave={leaveResize} onPointerDown={startResize} /></div>;
 }
 
+type TagItem = { key: string; label: string; color: string };
+
+/** 多选标签放不下时只显示放得下的，末尾用灰色「+n」标出隐藏的个数（至少显示一个）；列宽变化时重算。 */
+function TagList({ tags }: { tags: TagItem[] }) {
+  const ref = useRef<HTMLSpanElement>(null);
+  const [visible, setVisible] = useState(tags.length);
+  const signature = tags.map((tag) => `${tag.key}\u0000${tag.label}`).join("\u0001");
+  useLayoutEffect(() => {
+    const box = ref.current;
+    if (!box) return;
+    const measure = () => {
+      // 隐藏的标签与测量用的「+n」都在 DOM 里（绝对定位、不可见），宽度照样量得到
+      const items = Array.from(box.querySelectorAll<HTMLElement>(":scope > .tag-item"));
+      const more = box.querySelector<HTMLElement>(":scope > .tag-measure")?.offsetWidth ?? 0;
+      const gap = Number.parseFloat(getComputedStyle(box).columnGap) || 0;
+      let used = 0, fit = 0;
+      for (let index = 0; index < items.length; index++) {
+        // 第一个标签允许收缩，offsetWidth 可能是压窄后的宽度；scrollWidth 才是它完整显示需要的宽度
+        const next = used + (index ? gap : 0) + Math.max(items[index]!.offsetWidth, items[index]!.scrollWidth);
+        const reserve = index < items.length - 1 ? gap + more : 0;
+        if (next + reserve > box.clientWidth) break;
+        used = next; fit = index + 1;
+      }
+      setVisible(Math.max(1, fit));
+    };
+    measure();
+    if (typeof ResizeObserver === "undefined") return;
+    const observer = new ResizeObserver(measure);
+    observer.observe(box);
+    return () => observer.disconnect();
+  }, [signature]);
+  const hidden = tags.length - Math.min(visible, tags.length);
+  return <span ref={ref} className="tag-list">
+    {tags.map((tag, index) => <span key={tag.key} className={`tag tag-item${index >= tags.length - hidden ? " tag-hidden" : ""}`} aria-hidden={index >= tags.length - hidden || undefined} style={tagStyle(tag.color)}>{tag.label}</span>)}
+    {hidden > 0 && <span className="tag tag-more" style={tagStyle(TAG_COLORS[TAG_COLORS.length - 1]!)}>+{hidden}</span>}
+    <span className="tag tag-more tag-measure" aria-hidden="true">+{tags.length}</span>
+  </span>;
+}
+
 const Cell = memo(function Cell({ cellId, columnIndex, active, field, value, columnState, tree, dividerInset, expanded, onToggle, style, cellProps }: CellProps) {
   const className = `grid-cell${columnState ? ` ${columnState}` : ""}${tree ? " tree-cell" : ""}`;
   const treePrefix = tree ? <span className="tree-prefix" style={{ width: tree.depth * 22 + 18 }}>
@@ -881,7 +920,7 @@ const Cell = memo(function Cell({ cellId, columnIndex, active, field, value, col
   if (field.type === "multiSelect") {
     const labels = Array.isArray(value) ? value.map((item) => field.options?.find((option) => option.value === item)?.label ?? String(item)) : [];
     tooltipText = labels.join("、");
-    content = Array.isArray(value) ? value.map((item, index) => <span className="tag" key={item} style={tagStyle(optionTagColor(field.options, String(item)))}>{labels[index]}</span>) : null;
+    content = Array.isArray(value) && value.length ? <TagList tags={value.map((item, index) => ({ key: String(item), label: labels[index]!, color: optionTagColor(field.options, String(item)) }))} /> : null;
   }
   return <div className={`${className}${cellProps?.className ? ` ${cellProps.className}` : ""}`} style={{ ...cellProps?.style, ...style, gridColumn:columnIndex+1 }} role="gridcell" id={cellId} data-grid-column={columnIndex} data-active={active || undefined} aria-colindex={columnIndex + 1}>{tree && dividerInset > 0 && <span className="tree-row-divider" style={{ left: dividerInset }} />}{treePrefix}<Tooltip content={tooltipText}><span className={tree ? "tree-value" : undefined}>{content}</span></Tooltip>{tree?.hasChildren && <span className="tree-row-actions">{tree.hasChildren && <span className="tree-child-count" aria-label={`${tree.childCount} 个子规格`}><ListTree size={14} />{tree.childCount}</span>}</span>}</div>;
 });

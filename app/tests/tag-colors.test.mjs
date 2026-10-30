@@ -22,5 +22,14 @@ test('explicit option colors win; defaults follow option order; unknown values a
 test('multi-select tags use option colors like single-select tags', async () => {
   const { readFile } = await import('node:fs/promises');
   const source = await readFile(new URL('../src/ntable/Table.tsx', import.meta.url), 'utf8');
-  assert.equal(source.match(/style=\{tagStyle\(optionTagColor\(field\.options,/g)?.length, 2);
+  assert.match(source, /style=\{tagStyle\(optionTagColor\(field\.options, item\.value\)\)\}/);
+  assert.match(source, /color: optionTagColor\(field\.options, String\(item\)\)/);
+});
+
+test('multi-select overflow shows a grey +n tag instead of an ellipsis and always keeps one tag', async () => {
+  const { readFile } = await import('node:fs/promises');
+  const source = await readFile(new URL('../src/ntable/Table.tsx', import.meta.url), 'utf8');
+  assert.match(source, /className="tag tag-more" style=\{tagStyle\(TAG_COLORS\[TAG_COLORS\.length - 1\]!\)\}>\+\{hidden\}/);
+  assert.match(source, /setVisible\(Math\.max\(1, fit\)\)/);
+  assert.match(source, /new ResizeObserver\(measure\)/);
 });

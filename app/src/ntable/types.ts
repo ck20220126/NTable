@@ -25,6 +25,7 @@ export interface FilterRule {
   /** Select and boolean filters accept option value arrays ("true" / "false" for boolean); legacy strings represent one option. Other fields use strings. */
   value: string | string[];
 }
+export type OpenRecordContext = { fieldId: string | null };
 export type ViewVisibility = "private" | "public";
 export type CreateViewOptions = { visibility?: ViewVisibility };
 export interface SortRule { id?: string; fieldId: string; direction: SortDirection; }
@@ -83,7 +84,8 @@ export interface NTableProps {
   /** Enables dragging view tabs to reorder them; receives every view id in the new order. Hosts decide where the order is kept. Omit to keep tabs fixed. */
   onReorderViews?: (ids: string[]) => void;
   onAddRecord?: () => void;
-  onOpenRecord: (row: TableRecord) => void;
+  /** fieldId: the column the record was opened from (double-clicked cell or active cell on Enter); null from the row-number column. */
+  onOpenRecord: (row: TableRecord, context: OpenRecordContext) => void;
   getSubRows?: (row: TableRecord) => TableRecord[];
   getCellProps?: (row: TableRecord, field: Field) => {
     className?: string;

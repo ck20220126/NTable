@@ -174,7 +174,7 @@ number 字段按有限数值排序，支持负数、小数和零；空值、空�
 | onCreateView | `(name: string, options?: { visibility })` | 生成稳定 ID，完整初始化视图并保存，切换到新视图 |
 | onDeleteView | `(viewId: string)` | 删除视图，拒绝删除 `deletable: false` 的视图，至少保留一个，并处理当前视图回退 |
 | onAddRecord | `()` | 打开业务新增页面，保存成功后更新 rows |
-| onOpenRecord | `(record: TableRecord)` | 双击打开业务详情页；使用 record.id 请求详情 |
+| onOpenRecord | `(record: TableRecord, context: { fieldId: string \| null })` | 双击打开业务详情页；使用 record.id 请求详情。`fieldId` 是双击的单元格或按 Enter 时激活单元格所在的字段，从行号列打开为 null，宿主可据此在详情里定位到该字段 |
 
 以上回调返回类型为 void，组件不会等待 Promise，也不会自行恢复请求失败。宿主可向 NTable/Table 传 `loading?: boolean`、`error?: string | null`、`onRetry?: () => void` 展示请求状态并接收重试意图；宿主负责立即进入 loading、完成后更新 rows/error，刷新期间保留旧 rows。loading 优先于旧 error；没有 onRetry 时只展示错误。子元素在业务详情页新增，不提供行内新增子元素动作。
 

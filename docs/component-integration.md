@@ -107,7 +107,7 @@ patch 中的数组和 `columnWidths` 是整体替换值。不要把它们作为�
 | Prop / 回调 | 适用组件 | 说明 |
 | --- | --- | --- |
 | `fields`、`activeView`、`onUpdateView` | NTable、TableToolbar、Table | 必填；字段 schema、当前视图及 `(id, patch)` 更新回调 |
-| `rows`、`onOpenRecord` | NTable、Table | 必填；完整记录范围及打开记录回调，参数为原始记录对象 |
+| `rows`、`onOpenRecord` | NTable、Table | 必填；完整记录范围及打开记录回调，参数为原始记录对象和 `{ fieldId }`（从哪个字段打开，行号列为 null） |
 | `views`、`onActiveViewChange`、`onCreateView` | NTable、ViewBar | 必填；切换传视图 ID，创建传名称 |
 | `onDeleteView` | NTable、ViewBar | 可选，传视图 ID；不传则隐藏删除项，最后一个视图禁止删除；`view.deletable: false` 隐藏该视图删除菜单 |
 | `viewManagement` | NTable、ViewBar | 可选，默认 `false`；为 `true` 时当前视图菜单在删除项上方显示「视图管理」，在浮层内改名称（及可视范围），通过 `onUpdateView(id, { name, visibility })` 保存；`view.manageable: false` 隐藏该视图的管理项。管理与删除都不可用时不显示视图菜单 |

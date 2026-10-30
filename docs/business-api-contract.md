@@ -68,12 +68,12 @@
 | --- | --- | --- | --- |
 | `id` | string | 是 | 稳定且唯一，与记录属性名及视图字段引用一致；不要使用 `id`、`children`、`defaultExpanded` |
 | `title` | string | 是 | 显示名称；改名不改变 id |
-| `type` | string | 是 | `text`、`number`、`singleSelect`、`multiSelect`、`date` |
+| `type` | string | 是 | `text`、`number`、`singleSelect`、`multiSelect`、`boolean`、`date` |
 | `width` | number | 否 | 默认列宽，单位 px；默认 140，业务输入建议限制在 88–1200 |
 | `searchable` | boolean | 否 | 默认参与搜索；false 排除该字段 |
 | `options` | array | 选择类型需要 | 每项为 `{ "value": string, "label": string, "color"?: string }`；value 唯一且稳定 |
 
-选项颜色是显示元数据，当前单选使用其背景色，多选尚未使用每项颜色。字段 schema 由业务系统提供；组件不负责字段增删或类型编辑。
+选项颜色是显示元数据，单选、多选标签都用它做底色；未给颜色时按选项顺序从飞书浅色色板循环分配。boolean 不需要 options，固定显示「是」（浅蓝）/「否」（浅灰）两个标签，所有布尔列一致；表头图标为方框打勾，单选为下拉圆圈。字段 schema 由业务系统提供；组件不负责字段增删或类型编辑。
 
 ### 记录 TableRecord
 
@@ -85,6 +85,7 @@
 | number | 有限 number | `0`、`12.5`、`-3` | null；不要以 0 代表空 |
 | singleSelect | option.value 字符串 | `"draft"` | null 或 `""` |
 | multiSelect | option.value 字符串数组 | `["web"]` | `[]` 或 null |
+| boolean | `true` / `false` | `false` | null；false 是「否」，不是空 |
 | date | 日期字符串 | `"2026-10-01"` | null 或 `""` |
 
 约束：
@@ -128,14 +129,14 @@
 }
 ```
 
-`value` 为字符串或字符串数组：text、date、number 条件使用字符串，数字条件也传 `"10"`；singleSelect、multiSelect 条件使用 option.value 数组，兼容旧的单个字符串值。数字记录仍传 number。`id` 在公共类型中可选，建议业务保存时保留稳定 ID，无 ID 条件也可以独立编辑和删除；保存稳定 ID 有助于跨请求追踪规则。
+`value` 为字符串或字符串数组：text、date、number 条件使用字符串，数字条件也传 `"10"`；singleSelect、multiSelect 条件使用 option.value 数组，兼容旧的单个字符串值；boolean 条件使用 `["true"]`、`["false"]` 或两者。数字记录仍传 number。`id` 在公共类型中可选，建议业务保存时保留稳定 ID，无 ID 条件也可以独立编辑和删除；保存稳定 ID 有助于跨请求追踪规则。
 
 | operator | 文案 | 适用类型 | 行为 |
 | --- | --- | --- | --- |
 | contains | 包含 | text、date、multiSelect | multiSelect 记录包含任一已选 option.value；其他类型转字符串后忽略大小写包含 |
 | notContains | 不包含 | text、date、multiSelect | 上述结果取反；未设置的多选值视为不包含 |
-| equals | 等于 | text、date、number、singleSelect | number 按数值；singleSelect 等于任一已选 option.value；其他类型字符串精确比较，区分大小写 |
-| notEquals | 不等于 | text、date、number、singleSelect | 上述结果取反；number 两侧必须是有限数值 |
+| equals | 等于 | text、date、number、singleSelect、boolean | number 按数值；singleSelect 等于任一已选 option.value；boolean 记录 true/false 与所选「是/否」一致，null 不匹配；其他类型字符串精确比较，区分大小写 |
+| notEquals | 不等于 | text、date、number、singleSelect、boolean | 上述结果取反；number 两侧必须是有限数值 |
 | greaterThan | 大于 | number | 数值比较 |
 | lessThan | 小于 | number | 数值比较 |
 | isEmpty | 为空 | 全部 | null、缺失值、空字符串、空数组为空；0 不为空 |

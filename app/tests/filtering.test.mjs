@@ -96,3 +96,14 @@ test('cleared option arrays are inactive in both conjunction modes', () => {
   assert.equal(matchesFilter('a,b', 'equals', ['a', 'b'], 'text'), false);
   assert.equal(matchesFilter(1, 'equals', ['1'], 'number'), false);
 });
+
+test('boolean filters match true / false and leave unset rows to isEmpty', async () => {
+  assert.deepEqual(filterOperators('boolean').map((item) => item.value), ['equals', 'notEquals', 'isEmpty', 'isNotEmpty']);
+  assert.equal(matchesFilter(true, 'equals', ['true'], 'boolean'), true);
+  assert.equal(matchesFilter(false, 'equals', ['true'], 'boolean'), false);
+  assert.equal(matchesFilter(false, 'equals', ['false'], 'boolean'), true);
+  assert.equal(matchesFilter(null, 'equals', ['false'], 'boolean'), false);
+  assert.equal(matchesFilter(null, 'notEquals', ['true'], 'boolean'), true);
+  assert.equal(matchesFilter(false, 'isEmpty', '', 'boolean'), false);
+  assert.equal(matchesFilter(null, 'isEmpty', '', 'boolean'), true);
+});

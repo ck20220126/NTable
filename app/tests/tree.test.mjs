@@ -126,3 +126,12 @@ test('selection checks IDs and toggles only visible records', () => {
   assert.deepEqual([...toggleVisibleSelection(['b'], all)], ['a']);
   assert.deepEqual([...selected], ['a']);
 });
+
+test('boolean sort puts 是 before 否 and keeps unset last in both directions', async () => {
+  const { recordComparator } = await import('../src/ntable/sorting.ts');
+  const fields = new Map([['flag', { id: 'flag', title: 'flag', type: 'boolean' }]]);
+  const rows = [{ id: 'n', flag: null }, { id: 'f', flag: false }, { id: 't', flag: true }];
+  const ids = (direction) => [...rows].sort(recordComparator([{ fieldId: 'flag', direction }], fields)).map((row) => row.id);
+  assert.deepEqual(ids('asc'), ['t', 'f', 'n']);
+  assert.deepEqual(ids('desc'), ['f', 't', 'n']);
+});

@@ -3,7 +3,8 @@ import type { CSSProperties } from "react";
 export interface Field {
   id: string;
   title: string;
-  type: "text" | "number" | "singleSelect" | "multiSelect" | "date";
+  /** boolean: cell values are true / false / null, shown as fixed 是 / 否 tags (see BOOLEAN_OPTIONS). */
+  type: "text" | "number" | "singleSelect" | "multiSelect" | "boolean" | "date";
   width?: number;
   searchable?: boolean;
   /** color omitted: NTable assigns one by option order from the Feishu tag palette (see tagColor). */
@@ -21,7 +22,7 @@ export interface FilterRule {
   id?: string;
   fieldId: string;
   operator: FilterOperator;
-  /** Select filters accept option value arrays; legacy strings represent one option. Other fields use strings. */
+  /** Select and boolean filters accept option value arrays ("true" / "false" for boolean); legacy strings represent one option. Other fields use strings. */
   value: string | string[];
 }
 export type ViewVisibility = "private" | "public";

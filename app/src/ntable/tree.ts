@@ -1,5 +1,6 @@
 import { isActiveFilter, matchesFilters } from "./filtering.ts";
 import { recordComparator } from "./sorting.ts";
+import { booleanKey, fieldOptions } from "./booleanOptions.ts";
 import type { Field, TableRecord, TableView } from "./types";
 
 export interface DisplayRow {
@@ -20,10 +21,11 @@ export function projectTree(rows: TableRecord[], tableView: TableView, orderedFi
     const hasQuery = Boolean(term || activeFilters.length);
     const searchableFields = term ? orderedFields.filter(field => field.searchable !== false).map(field => ({
       field,
-      labels: new Map((field.type === "singleSelect" || field.type === "multiSelect" ? field.options ?? [] : []).map(option => [option.value, option.label.toLocaleLowerCase()])),
+      labels: new Map(fieldOptions(field).map(option => [option.value, option.label.toLocaleLowerCase()])),
     })) : [];
     const matches = (row: TableRecord) => matchesFilters(row, activeFilters, fieldById, tableView.filterMode) && (!term || searchableFields.some(({ field, labels }) => {
       const value = row[field.id];
+      if (field.type === "boolean") return Boolean(labels.get(booleanKey(value) ?? "")?.includes(term));
       if (String(value ?? "").toLocaleLowerCase().includes(term)) return true;
       if (field.type === "singleSelect") return typeof value === "string" && Boolean(labels.get(value)?.includes(term));
       return field.type === "multiSelect" && Array.isArray(value) && value.some(item => typeof item === "string" && labels.get(item)?.includes(term));

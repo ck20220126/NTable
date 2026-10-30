@@ -51,6 +51,6 @@ export function Example() {
 
 每个记录 ID 和视图 ID 必须唯一且稳定。`onUpdateView` 的 patch 应合并到对应视图；示例只更新本地状态，业务系统还需处理后台持久化、失败反馈及权限。`onOpenRecord` 由宿主打开记录详情，组件没有内置编辑器。请求状态通过 `loading`、`error`、`onRetry` 接入；刷新时保留已有 rows 可保持记录可操作。
 
-NTable 提供受控视图、筛选、排序、搜索、列操作与层级记录；数据加载、持久化、权限与编辑页面由宿主实现。字段类型为 text、number、singleSelect、multiSelect、date，层级记录使用 children。CSS 限于 `.ntable`、`.ntable-scope`、`.ntable-portal`。也可从公共入口导入 ViewBar、TableToolbar、Table 进行独立组合，并用 `.ntable-scope` 包裹共享控件。不要导入内部源码路径。
+NTable 提供受控视图、筛选、排序、搜索、列操作与层级记录；数据加载、持久化、权限与编辑页面由宿主实现。字段类型为 text、number、singleSelect、multiSelect、boolean、date，层级记录使用 children。CSS 限于 `.ntable`、`.ntable-scope`、`.ntable-portal`。也可从公共入口导入 ViewBar、TableToolbar、Table 进行独立组合，并用 `.ntable-scope` 包裹共享控件。不要导入内部源码路径。
 
 源码工作区执行 `npm run verify` 和 `npm pack --dry-run`。更完整的接入说明、业务接口示例与当前验收范围位于源码仓库的 `docs/component-integration.md`、`docs/business-api-contract.md` 和 `docs/delivery-readiness-2026-10-08.md`；这些仓库文档不包含在 npm 包内，团队交付时应一并提供。公共类型声明随包提供。

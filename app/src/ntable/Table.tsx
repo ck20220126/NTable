@@ -13,6 +13,7 @@ import { tableDataState } from "./dataState";
 import { scrollbarMetrics, scrollFromThumb, resizedScrollOffset } from "./scrollbar";
 import type { TableProps, Field, TableRecord, TableView, RecordMenuItem } from "./types";
 import { optionTagColor } from "./tagColors";
+import { BOOLEAN_OPTIONS, booleanKey } from "./booleanOptions";
 /** 标签底色走 --tag-bg，文字色由 CSS contrast-color() 按底色自动取黑或白 */
 const tagStyle = (color: string) => ({ "--tag-bg": color }) as import("react").CSSProperties;
 import type { DisplayRow } from "./tree";
@@ -871,6 +872,7 @@ const Cell = memo(function Cell({ cellId, columnIndex, active, field, value, col
   let tooltipText = value == null ? "" : String(value);
   let content: import("react").ReactNode = tooltipText;
   if (field.type === "singleSelect") { const item = field.options?.find((option) => option.value === value); tooltipText = item?.label ?? ""; content = item ? <span className="tag" style={tagStyle(optionTagColor(field.options, item.value))}>{item.label}</span> : null; }
+  if (field.type === "boolean") { const item = BOOLEAN_OPTIONS.find((option) => option.value === booleanKey(value)); tooltipText = item?.label ?? ""; content = item ? <span className="tag" style={tagStyle(item.color)}>{item.label}</span> : null; }
   if (field.type === "multiSelect") {
     const labels = Array.isArray(value) ? value.map((item) => field.options?.find((option) => option.value === item)?.label ?? String(item)) : [];
     tooltipText = labels.join("、");

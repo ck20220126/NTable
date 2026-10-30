@@ -2,7 +2,8 @@ import { useId, useRef } from "react";
 import type { Field, FilterRule, TableView } from "./types";
 import { Tooltip } from "../components/Tooltip";
 import { iconForType } from "./fieldIcons";
-import { filterOperators, isActiveFilter, isEmptyOperator, isSelectType } from "./filtering";
+import { filterOperators, isActiveFilter, isEmptyOperator, isOptionType } from "./filtering";
+import { fieldOptions } from "./booleanOptions";
 import { Button } from "../components/Button";
 import { Filter, Info, Plus, X } from "lucide-react";
 import { ToolbarPopover } from "./ToolbarPopover";
@@ -27,7 +28,7 @@ export function FilterPanel({ fields, filters, onChange, filterMode = "all", onM
     const operators = filterOperators(next?.type);
     const operator = operators.some((option) => option.value === current.operator) ? current.operator : operators[0].value;
     // An option value only means something to the field that defines it; typed text does not carry into a select either.
-    const keepValue = !isSelectType(previous?.type) && !isSelectType(next?.type);
+    const keepValue = !isOptionType(previous?.type) && !isOptionType(next?.type);
     patch(index, { fieldId, operator, value: keepValue && !isEmptyOperator(operator) ? current.value : "" });
   };
   const fieldOptions = fields.map((field) => ({ value: field.id, label: field.title, icon: iconForType[field.type] }));
@@ -36,6 +37,6 @@ export function FilterPanel({ fields, filters, onChange, filterMode = "all", onM
 
 function FilterValue({ field, value, index, onChange }: { field?: Field; value: FilterRule["value"]; index: number; onChange: (value: FilterRule["value"]) => void }) {
   const label = `筛选值 ${index + 1}`;
-  if (field && isSelectType(field.type)) return <MultiSelectControl className="filter-value" value={Array.isArray(value) ? value : value === "" ? [] : [value]} placeholder="请选择" options={field.options ?? []} onChange={onChange} ariaLabel={label} />;
+  if (field && isOptionType(field.type)) return <MultiSelectControl className="filter-value" value={Array.isArray(value) ? value : value === "" ? [] : [value]} placeholder="请选择" options={[...fieldOptions(field)]} onChange={onChange} ariaLabel={label} />;
   return <input className="filter-value" aria-label={label} value={typeof value === "string" ? value : ""} onChange={(event) => onChange(event.target.value)} placeholder="请输入" />;
 }

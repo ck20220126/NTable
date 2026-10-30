@@ -1,4 +1,5 @@
 import type { Field, TableView, TableRecord, FilterOperator, FilterRule } from "./types";
+import { booleanKey } from "./booleanOptions.ts";
 
 const emptyOperators: { value: FilterOperator; label: string }[] = [
   { value: "isEmpty", label: "为空" },
@@ -40,8 +41,13 @@ export function isSelectType(type?: Field["type"]): type is "singleSelect" | "mu
   return type === "singleSelect" || type === "multiSelect";
 }
 
+/** Fields whose filter value is a list of option values: select fields and boolean (是 / 否). */
+export function isOptionType(type?: Field["type"]): type is "singleSelect" | "multiSelect" | "boolean" {
+  return isSelectType(type) || type === "boolean";
+}
+
 export function filterOperators(type?: Field["type"]) {
-  const operators = type === "number" ? numberOperators : type === "singleSelect" ? singleSelectOperators : type === "multiSelect" ? multiSelectOperators : commonOperators;
+  const operators = type === "number" ? numberOperators : type === "singleSelect" || type === "boolean" ? singleSelectOperators : type === "multiSelect" ? multiSelectOperators : commonOperators;
   return [...operators, ...emptyOperators];
 }
 
@@ -50,11 +56,11 @@ export function matchesFilter(value: unknown, operator: string, query: FilterRul
     const empty = value == null || value === "" || (Array.isArray(value) && value.length === 0);
     return operator === "isEmpty" ? empty : !empty;
   }
-  if (isSelectType(type)) {
+  if (isOptionType(type)) {
     const queries = Array.isArray(query) ? query : query === "" ? [] : [query];
     if (!queries.length) return false;
     // Choices within one condition are OR; negating the condition excludes every chosen option.
-    const selected = queries.some((option) => type === "singleSelect" ? value === option : Array.isArray(value) && value.includes(option));
+    const selected = type === "boolean" ? queries.includes(booleanKey(value) ?? "") : queries.some((option) => type === "singleSelect" ? value === option : Array.isArray(value) && value.includes(option));
     if (operator === "equals" || operator === "contains") return selected;
     if (operator === "notEquals" || operator === "notContains") return !selected;
     return false;

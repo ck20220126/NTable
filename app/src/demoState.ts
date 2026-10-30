@@ -1,5 +1,5 @@
 import type { Field, FilterOperator, TableRecord, TableView } from "./ntable/types";
-import { filterOperators, isSelectType } from "./ntable/filtering.ts";
+import { filterOperators, isOptionType } from "./ntable/filtering.ts";
 
 type StorageReader = Pick<Storage, "getItem">;
 type StorageWriter = Pick<Storage, "setItem">;
@@ -49,7 +49,7 @@ export function normalizeDemoViews(raw: string | null, fields: Field[], fallback
       if (!isObject(rule) || typeof rule.fieldId !== "string" || !fieldSet.has(rule.fieldId) || typeof rule.operator !== "string") continue;
       const field = fields.find(field => field.id === rule.fieldId);
       const value = rule.value;
-      if (typeof value !== "string" && !(isSelectType(field?.type) && Array.isArray(value) && value.every((option): option is string => typeof option === "string"))) continue;
+      if (typeof value !== "string" && !(isOptionType(field?.type) && Array.isArray(value) && value.every((option): option is string => typeof option === "string"))) continue;
       const empty = rule.operator === "isEmpty" || rule.operator === "isNotEmpty";
       const operators = filterOperators(field?.type);
       const operator = operators.find(operator => operator.value === rule.operator);

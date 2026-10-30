@@ -1,4 +1,5 @@
 import type { Field, SortRule, TableRecord } from "./types";
+import { booleanKey } from "./booleanOptions.ts";
 
 const textOrder = new Intl.Collator("zh-CN", { numeric: true });
 
@@ -15,7 +16,16 @@ export function recordComparator(sorts: SortRule[], fields: Map<string, Field>) 
     for (const sort of sorts) {
       const left = a[sort.fieldId], right = b[sort.fieldId];
       let comparison: number;
-      if (fields.get(sort.fieldId)?.type === "number") {
+      const type = fields.get(sort.fieldId)?.type;
+      if (type === "boolean") {
+        const leftKey = booleanKey(left), rightKey = booleanKey(right);
+        // Unset stays last regardless of direction, like missing numbers; ascending puts 是 before 否.
+        if (leftKey === null || rightKey === null) {
+          if (leftKey !== rightKey) return leftKey === null ? 1 : -1;
+          continue;
+        }
+        comparison = leftKey === rightKey ? 0 : leftKey === "true" ? -1 : 1;
+      } else if (type === "number") {
         const leftNumber = numericValue(left), rightNumber = numericValue(right);
         // Missing numbers stay last regardless of direction; two missing values tie.
         if (leftNumber === null || rightNumber === null) {

@@ -97,3 +97,13 @@ test("find shortcut is opt-in, yields to modal dialogs, and Escape only blurs th
   const css = await readFile(new URL('../src/overrides.css', import.meta.url), 'utf8');
   assert.match(css, /\.search-box:not\(:focus-within\) \{ border-color: #d9dde4; box-shadow: none; \}/);
 });
+
+test("header titles show the full title on hover, not while dragging or resizing a column", async () => {
+  const source = await readFile(new URL('../src/ntable/Table.tsx', import.meta.url), 'utf8');
+  assert.match(source, /<Tooltip content=\{field\.title\} hoverOnly enabled=\{!isDragging && !isResizing\}><span>\{field\.title\}<\/span><\/Tooltip>/);
+});
+
+test("header title keeps the same 6px visual gap to the action chevron as to the type icon", async () => {
+  const css = await readFile(new URL('../src/overrides.css', import.meta.url), 'utf8');
+  assert.match(css, /\.grid-head-cell > span:has\(\+ \.header-action\) \{ margin-right: -4\.5px; \}/);
+});

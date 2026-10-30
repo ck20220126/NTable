@@ -732,6 +732,9 @@ body {
   opacity: 1;
 }
 
+/* 箭头 13px 居中在 22px 按钮里，两侧各空 4.5px；标题让出这段，文字到箭头的距离与图标到文字一样是 6px，省略号也从这里开始 */
+.grid-head-cell > span:has(+ .header-action) { margin-right: -4.5px; }
+
 .header-action:hover,
 .header-action:focus-visible {
   color: #245bdb;

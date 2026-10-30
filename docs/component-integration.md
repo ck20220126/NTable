@@ -107,6 +107,7 @@ patch 中的数组和 `columnWidths` 是整体替换值。不要把它们作为�
 | Prop / 回调 | 适用组件 | 说明 |
 | --- | --- | --- |
 | `fields`、`activeView`、`onUpdateView` | NTable、TableToolbar、Table | 必填；字段 schema、当前视图及 `(id, patch)` 更新回调 |
+| `captureFindShortcut` | NTable、TableToolbar | 可选，默认 false。开启后 Cmd/Ctrl+F 不再打开浏览器查找，而是展开并聚焦工具栏搜索框（已展开则选中原搜索词），直接输入即搜索；页面有模态弹窗（`aria-modal="true"`）时不拦截。监听在 window 上，同一页面只给一个表格开启。搜索框里按 Esc 只失去焦点，保留搜索词 |
 | `rows`、`onOpenRecord` | NTable、Table | 必填；完整记录范围及打开记录回调，参数为原始记录对象和 `{ fieldId }`（从哪个字段打开，行号列为 null） |
 | `views`、`onActiveViewChange`、`onCreateView` | NTable、ViewBar | 必填；切换传视图 ID，创建传名称 |
 | `onDeleteView` | NTable、ViewBar | 可选，传视图 ID；不传则隐藏删除项，最后一个视图禁止删除；`view.deletable: false` 隐藏该视图删除菜单 |

@@ -61,6 +61,8 @@ export type RecordMenuItem =
 
 export interface NTableProps {
   /** Search commits after this idle period; IME composition never commits. Default 300ms. */
+  /** Cmd/Ctrl+F opens and focuses the toolbar search instead of the browser's find bar; ignored while a modal dialog is open. Page-wide, so enable it on one table per page. Defaults to false. */
+  captureFindShortcut?: boolean;
   searchDebounceMs?: number;
   /** External request state. Keep previous rows during a refresh. */
   loading?: boolean;
@@ -100,7 +102,7 @@ export type ViewBarProps = Pick<NTableProps,
   "views" | "activeView" | "onActiveViewChange" | "onCreateView" | "onDeleteView" | "viewManagement" | "viewVisibilityEditable" | "onReorderViews"> & Partial<Pick<NTableProps, "onUpdateView">>;
 
 export type TableToolbarProps = Pick<NTableProps,
-  "fields" | "activeView" | "onUpdateView" | "onAddRecord" | "searchDebounceMs"> & {
+  "fields" | "activeView" | "onUpdateView" | "onAddRecord" | "searchDebounceMs" | "captureFindShortcut"> & {
   search?: string;
   /** Change this key to discard a pending draft even when search is already empty. */
   searchResetKey?: number;

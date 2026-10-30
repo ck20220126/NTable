@@ -86,3 +86,11 @@ test("view tab dragging uses pointer only and never starts from the view menu bu
   assert.match(source, /const VIEW_TAB_SENSORS = \[PointerSensor\.configure\(/);
   assert.match(source, /closest\("\.view-menu-button"\)/);
 });
+
+test("find shortcut is opt-in, yields to modal dialogs, and Escape only blurs the search box", async () => {
+  const source = await readFile(new URL('../src/ntable/TableToolbar.tsx', import.meta.url), 'utf8');
+  assert.match(source, /captureFindShortcut = false/);
+  assert.match(source, /if \(!captureFindShortcut \|\| !searchEnabled\) return;/);
+  assert.match(source, /querySelector\('\[aria-modal="true"\]'\)/);
+  assert.match(source, /event\.key === "Escape"[^}]*event\.currentTarget\.blur\(\)/);
+});

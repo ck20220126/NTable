@@ -145,7 +145,7 @@ export function App() {
   };
 
   return <div className="app-shell">
-    <main className="workspace"><NTable fields={fields} rows={rows} views={views} activeView={activeView} onActiveViewChange={setActiveViewId} onUpdateView={updateView} onCreateView={createView} onDeleteView={deleteView} onReorderViews={reorderViews} viewManagement viewVisibilityEditable onAddRecord={() => openEditor({})} onOpenRecord={openEditor} /></main>
+    <main className="workspace"><NTable fields={fields} rows={rows} views={views} activeView={activeView} onActiveViewChange={setActiveViewId} onUpdateView={updateView} onCreateView={createView} onDeleteView={deleteView} onReorderViews={reorderViews} viewManagement viewVisibilityEditable onAddRecord={() => openEditor({})} onOpenRecord={openEditor} captureFindShortcut /></main>
     {storageError && <div role="status" className="demo-storage-status">浏览器存储不可用，当前修改仅在本次会话保留。</div>}
     {editor !== null && <RecordEditor record={editor} onClose={() => setEditor(null)} onSave={saveRecord} returnFocus={editorReturnFocusRef.current} />}
   </div>;

@@ -6,6 +6,7 @@ export interface Field {
   type: "text" | "number" | "singleSelect" | "multiSelect" | "date";
   width?: number;
   searchable?: boolean;
+  /** color omitted: NTable assigns one by option order from the Feishu tag palette (see tagColor). */
   options?: { value: string; label: string; color?: string }[];
 }
 export interface TableRecord {

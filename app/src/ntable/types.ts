@@ -83,9 +83,11 @@ export interface NTableProps {
   /** options.visibility is passed only when viewVisibilityEditable is true. */
   onCreateView: (name: string, options?: CreateViewOptions) => void;
   onDeleteView?: (id: string) => void;
-  /** Adds "视图管理" (rename, plus visibility when enabled) above deletion in the active view's menu; saves through onUpdateView. Defaults to false. */
+  /** Adds "复制视图" to the active view's menu; the host creates the copy (name, visibility, config) and usually activates it. Omit to hide. */
+  onDuplicateView?: (id: string) => void;
+  /** Adds "重命名" (inline on the tab: Enter or blur saves, Esc cancels) and, with viewVisibilityEditable, the "可见范围" submenu to the active view's menu; both save through onUpdateView. Defaults to false. */
   viewManagement?: boolean;
-  /** Shows "可视范围"（仅自己 / 所有人）in the new-view panel and the view manage panel. Defaults to false. */
+  /** Shows "可视范围"（仅自己 / 所有人）in the new-view panel and the "可见范围" submenu（公共视图 / 个人视图）in the view menu. Defaults to false. */
   viewVisibilityEditable?: boolean;
   /** Enables dragging view tabs to reorder them; receives every view id in the new order. Hosts decide where the order is kept. Omit to keep tabs fixed. */
   onReorderViews?: (ids: string[]) => void;
@@ -105,7 +107,7 @@ export interface NTableProps {
 }
 
 export type ViewBarProps = Pick<NTableProps,
-  "views" | "activeView" | "onActiveViewChange" | "onCreateView" | "onDeleteView" | "viewManagement" | "viewVisibilityEditable" | "onReorderViews"> & Partial<Pick<NTableProps, "onUpdateView">>;
+  "views" | "activeView" | "onActiveViewChange" | "onCreateView" | "onDeleteView" | "onDuplicateView" | "viewManagement" | "viewVisibilityEditable" | "onReorderViews"> & Partial<Pick<NTableProps, "onUpdateView">>;
 
 export type TableToolbarProps = Pick<NTableProps,
   "fields" | "activeView" | "onUpdateView" | "onAddRecord" | "searchDebounceMs" | "captureFindShortcut"> & {

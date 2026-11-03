@@ -179,3 +179,4 @@ Build app UI in `src/`. Keep `.openai/hosting.json`, `worker/index.js`, `scripts
 
 - Data cell text uses the shared Radix Tooltip to show its complete displayed value on hover. Select fields show option labels; empty values have no tooltip. Preserve truncation and hierarchy controls.
 - 底部计数文字可由宿主通过 `renderFooterSummary` 接管：组件给出筛选和搜索后保留的顶层记录（`matchedRows`）与含子记录的总数（`matchedCount`），按什么口径计数、是否放快捷筛选由宿主决定；不传时仍显示「N 条记录」。
+- 当前视图菜单参照飞书：重命名、复制视图、可见范围（二级菜单：公共视图 / 个人视图，带说明与勾选）、删除视图（前有分隔线）。重命名在标签上就地编辑，不弹面板：输入框固定可放 10 个汉字、名字更长也不撑宽，打开即聚焦全选，Enter、失焦或在别处按下即保存，Esc 放弃。视图标签名称最多显示 10 个字，超出用省略号，悬停看完整名称。

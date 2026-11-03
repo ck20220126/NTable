@@ -1092,6 +1092,52 @@ body {
 .view-action-item.danger { color: #d14343; }
 .view-action-item:disabled { color: #a4a9b0; cursor: not-allowed; }
 
+/* 视图菜单：图标 + 文字，可见范围带二级菜单箭头，删除前加分隔线 */
+.view-actions-menu { min-width: 160px; }
+.view-action-item { display: flex; align-items: center; gap: 8px; color: #1f2329; }
+.view-action-item svg { flex: none; color: #646a73; }
+.view-action-item.danger svg { color: inherit; }
+.view-action-item:disabled svg { color: inherit; }
+.view-action-item.has-submenu.open { background: #f2f4f7; }
+.view-action-arrow { margin-left: auto; }
+.view-action-separator { height: 1px; margin: 4px 0; background: #e5e6eb; }
+.view-visibility-menu { min-width: 220px; }
+.view-visibility-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 8px 10px;
+  border: 0;
+  border-radius: 4px;
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+}
+.view-visibility-option:hover, .view-visibility-option:focus-visible { background: #f2f4f7; outline: 0; }
+.view-visibility-icon { flex: none; color: #3370ff; }
+.view-visibility-option[aria-checked="false"] .view-visibility-icon { color: #8f959e; }
+.view-visibility-text { display: flex; flex: 1; flex-direction: column; gap: 2px; min-width: 0; }
+.view-visibility-label { color: #1f2329; font-size: 14px; font-weight: 500; line-height: 20px; }
+.view-visibility-hint { color: #8f959e; font-size: 12px; line-height: 18px; }
+.view-visibility-check { flex: none; color: #3370ff; }
+
+/* 视图标签就地改名：固定能放下 10 个汉字，更长的名字在框内滚动，不撑宽标签 */
+.view-tab-renaming { cursor: text; }
+.view-rename-input {
+  box-sizing: border-box;
+  width: calc(10em + 14px);
+  height: 24px;
+  padding: 0 6px;
+  border: 1px solid #3370ff;
+  border-radius: 4px;
+  outline: 0;
+  box-shadow: 0 0 0 2px rgba(51, 112, 255, .16);
+  background: #fff;
+  color: #1f2329;
+  font: inherit;
+}
+
 @keyframes column-highlight {
   0%, 100% {
     background: #f7f8fa;
@@ -1569,10 +1615,11 @@ body {
 .viewbar .view-tab { min-width: 0; }
 .viewbar .view-tab > svg,
 .viewbar .view-menu-button { flex-shrink: 0; }
+/* 视图名最多显示 10 个字，超出用省略号，悬停看完整名称 */
 .view-tab-label {
   display: block;
   min-width: 0;
-  max-width: 12em;
+  max-width: 10em;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;

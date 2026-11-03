@@ -64,11 +64,31 @@ test("view management is opt-in and keeps the view menu when deletion is hidden"
   assert.doesNotMatch(render(true, false, {props: {viewManagement: true}, view: {manageable: false}}), /全部菜单/);
 });
 
-test("view menu lists management above deletion and both panels share the visibility control", async () => {
+test("view menu orders rename, duplicate, visibility submenu, then deletion; new view keeps the visibility control", async () => {
   const source = await readFile(new URL('../src/ntable/ViewBar.tsx', import.meta.url), 'utf8');
-  assert.ok(source.indexOf('>视图管理</button>') > 0 && source.indexOf('>视图管理</button>') < source.indexOf('>删除视图<'));
-  assert.equal(source.match(/<VisibilityControl /g)?.length, 2);
+  const positions = ['重命名</button>', '复制视图</button>', '可见范围<ChevronRight', '删除视图</button>'].map((label) => source.indexOf(label));
+  assert.ok(positions.every((position) => position > 0));
+  assert.deepEqual([...positions].sort((a, b) => a - b), positions);
+  // 可见范围是二级菜单，选项选中即保存
+  assert.match(source, /role="menuitemradio" aria-checked=\{current === value\}/);
+  assert.match(source, /if \(value !== current\) onSave\?\.\(\{ visibility: value \}\)/);
+  assert.equal(source.match(/<VisibilityControl /g)?.length, 1);
   assert.match(source, /onCreateView\(newViewName\.trim\(\), \{ visibility: newViewVisibility \}\)/);
+});
+
+test("duplicate view is opt-in and shows the view menu on its own", () => {
+  assert.doesNotMatch(render(false), /全部菜单/);
+  assert.match(render(false, undefined, {props: {onDuplicateView(){}}}), /全部菜单/);
+});
+
+test("rename edits the tab in place: focus and select all, Enter or blur saves, Escape cancels", async () => {
+  const source = await readFile(new URL('../src/ntable/ViewBar.tsx', import.meta.url), 'utf8');
+  assert.match(source, /inputRef\.current\?\.focus\(\{ preventScroll: true \}\); inputRef\.current\?\.select\(\)/);
+  assert.match(source, /onBlur=\{commit\}/);
+  assert.match(source, /document\.addEventListener\("pointerdown", onPointerDown, true\)/);
+  assert.match(source, /event\.key === "Escape"\) \{ event\.preventDefault\(\); done\.current = true; onCancel\(\)/);
+  // 菜单关闭会把焦点还给「…」按钮，重命名时阻止，避免抢走输入框焦点
+  assert.match(source, /onCloseAutoFocus=\{\(event\) => \{ if \(renaming\.current\) \{ event\.preventDefault\(\)/);
 });
 
 test("view tab reordering is opt-in and keeps tab markup and navigation", () => {
@@ -84,7 +104,7 @@ test("view tab dragging uses pointer only and never starts from the view menu bu
   const source = await readFile(new URL('../src/ntable/ViewBar.tsx', import.meta.url), 'utf8');
   assert.match(source, /sensors=\{VIEW_TAB_SENSORS\}/);
   assert.match(source, /const VIEW_TAB_SENSORS = \[PointerSensor\.configure\(/);
-  assert.match(source, /closest\("\.view-menu-button"\)/);
+  assert.match(source, /closest\("\.view-menu-button, \.view-rename-input"\)/);
 });
 
 test("find shortcut is opt-in, yields to modal dialogs, and Escape only blurs the search box", async () => {

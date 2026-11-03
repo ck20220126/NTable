@@ -812,7 +812,30 @@
   text-align: left;
   font-size: 12px;
   cursor: pointer;
-}:where(.ntable, .ntable-scope, .ntable-portal).view-action-item:hover, :where(.ntable, .ntable-scope, .ntable-portal) .view-action-item:hover { background: #f2f4f7; }:where(.ntable, .ntable-scope, .ntable-portal).view-action-item.danger, :where(.ntable, .ntable-scope, .ntable-portal) .view-action-item.danger { color: #d14343; }:where(.ntable, .ntable-scope, .ntable-portal).view-action-item:disabled, :where(.ntable, .ntable-scope, .ntable-portal) .view-action-item:disabled { color: #a4a9b0; cursor: not-allowed; }@keyframes ntable-column-highlight {
+}:where(.ntable, .ntable-scope, .ntable-portal).view-action-item:hover, :where(.ntable, .ntable-scope, .ntable-portal) .view-action-item:hover { background: #f2f4f7; }:where(.ntable, .ntable-scope, .ntable-portal).view-action-item.danger, :where(.ntable, .ntable-scope, .ntable-portal) .view-action-item.danger { color: #d14343; }:where(.ntable, .ntable-scope, .ntable-portal).view-action-item:disabled, :where(.ntable, .ntable-scope, .ntable-portal) .view-action-item:disabled { color: #a4a9b0; cursor: not-allowed; }/* 视图菜单：图标 + 文字，可见范围带二级菜单箭头，删除前加分隔线 */:where(.ntable, .ntable-scope, .ntable-portal).view-actions-menu, :where(.ntable, .ntable-scope, .ntable-portal) .view-actions-menu { min-width: 160px; }:where(.ntable, .ntable-scope, .ntable-portal).view-action-item, :where(.ntable, .ntable-scope, .ntable-portal) .view-action-item { display: flex; align-items: center; gap: 8px; color: #1f2329; }:where(.ntable, .ntable-scope, .ntable-portal).view-action-item svg, :where(.ntable, .ntable-scope, .ntable-portal) .view-action-item svg { flex: none; color: #646a73; }:where(.ntable, .ntable-scope, .ntable-portal).view-action-item.danger svg, :where(.ntable, .ntable-scope, .ntable-portal) .view-action-item.danger svg { color: inherit; }:where(.ntable, .ntable-scope, .ntable-portal).view-action-item:disabled svg, :where(.ntable, .ntable-scope, .ntable-portal) .view-action-item:disabled svg { color: inherit; }:where(.ntable, .ntable-scope, .ntable-portal).view-action-item.has-submenu.open, :where(.ntable, .ntable-scope, .ntable-portal) .view-action-item.has-submenu.open { background: #f2f4f7; }:where(.ntable, .ntable-scope, .ntable-portal).view-action-arrow, :where(.ntable, .ntable-scope, .ntable-portal) .view-action-arrow { margin-left: auto; }:where(.ntable, .ntable-scope, .ntable-portal).view-action-separator, :where(.ntable, .ntable-scope, .ntable-portal) .view-action-separator { height: 1px; margin: 4px 0; background: #e5e6eb; }:where(.ntable, .ntable-scope, .ntable-portal).view-visibility-menu, :where(.ntable, .ntable-scope, .ntable-portal) .view-visibility-menu { min-width: 220px; }:where(.ntable, .ntable-scope, .ntable-portal).view-visibility-option, :where(.ntable, .ntable-scope, .ntable-portal) .view-visibility-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 8px 10px;
+  border: 0;
+  border-radius: 4px;
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+}:where(.ntable, .ntable-scope, .ntable-portal).view-visibility-option:hover, :where(.ntable, .ntable-scope, .ntable-portal) .view-visibility-option:hover, :where(.ntable, .ntable-scope, .ntable-portal).view-visibility-option:focus-visible, :where(.ntable, .ntable-scope, .ntable-portal) .view-visibility-option:focus-visible { background: #f2f4f7; outline: 0; }:where(.ntable, .ntable-scope, .ntable-portal).view-visibility-icon, :where(.ntable, .ntable-scope, .ntable-portal) .view-visibility-icon { flex: none; color: #3370ff; }:where(.ntable, .ntable-scope, .ntable-portal).view-visibility-option[aria-checked="false"] .view-visibility-icon, :where(.ntable, .ntable-scope, .ntable-portal) .view-visibility-option[aria-checked="false"] .view-visibility-icon { color: #8f959e; }:where(.ntable, .ntable-scope, .ntable-portal).view-visibility-text, :where(.ntable, .ntable-scope, .ntable-portal) .view-visibility-text { display: flex; flex: 1; flex-direction: column; gap: 2px; min-width: 0; }:where(.ntable, .ntable-scope, .ntable-portal).view-visibility-label, :where(.ntable, .ntable-scope, .ntable-portal) .view-visibility-label { color: #1f2329; font-size: 14px; font-weight: 500; line-height: 20px; }:where(.ntable, .ntable-scope, .ntable-portal).view-visibility-hint, :where(.ntable, .ntable-scope, .ntable-portal) .view-visibility-hint { color: #8f959e; font-size: 12px; line-height: 18px; }:where(.ntable, .ntable-scope, .ntable-portal).view-visibility-check, :where(.ntable, .ntable-scope, .ntable-portal) .view-visibility-check { flex: none; color: #3370ff; }/* 视图标签就地改名：固定能放下 10 个汉字，更长的名字在框内滚动，不撑宽标签 */:where(.ntable, .ntable-scope, .ntable-portal).view-tab-renaming, :where(.ntable, .ntable-scope, .ntable-portal) .view-tab-renaming { cursor: text; }:where(.ntable, .ntable-scope, .ntable-portal).view-rename-input, :where(.ntable, .ntable-scope, .ntable-portal) .view-rename-input {
+  box-sizing: border-box;
+  width: calc(10em + 14px);
+  height: 24px;
+  padding: 0 6px;
+  border: 1px solid #3370ff;
+  border-radius: 4px;
+  outline: 0;
+  box-shadow: 0 0 0 2px rgba(51, 112, 255, .16);
+  background: #fff;
+  color: #1f2329;
+  font: inherit;
+}@keyframes ntable-column-highlight {
   0%, 100% {
     background: #f7f8fa;
     box-shadow: inset 0 0 0 0 transparent;
@@ -1177,10 +1200,10 @@
 :where(.ntable, .ntable-scope, .ntable-portal) .table-toolbar .search-box > .ui-button { flex-shrink: 0; }/* 和其它输入框一样分常规态与聚焦态：失焦（如按 Esc）后回到灰色描边，悬停加深，聚焦才是蓝色描边加光晕 */:where(.ntable, .ntable-scope, .ntable-portal).table-toolbar .search-box:not(:focus-within), :where(.ntable, .ntable-scope, .ntable-portal) .table-toolbar .search-box:not(:focus-within) { border-color: #d9dde4; box-shadow: none; }:where(.ntable, .ntable-scope, .ntable-portal).table-toolbar .search-box:not(:focus-within):hover, :where(.ntable, .ntable-scope, .ntable-portal) .table-toolbar .search-box:not(:focus-within):hover { border-color: #b6bdc8; }:where(.ntable, .ntable-scope, .ntable-portal).viewbar, :where(.ntable, .ntable-scope, .ntable-portal) .viewbar { min-width: 0; }:where(.ntable, .ntable-scope, .ntable-portal).viewbar .view-tabs, :where(.ntable, .ntable-scope, .ntable-portal) .viewbar .view-tabs { min-width: 0; max-width: 100%; }:where(.ntable, .ntable-scope, .ntable-portal).viewbar .view-tab-wrap, :where(.ntable, .ntable-scope, .ntable-portal) .viewbar .view-tab-wrap { max-width: 100%; flex: 0 0 auto; min-width: 0; }:where(.ntable, .ntable-scope, .ntable-portal).viewbar .view-tab, :where(.ntable, .ntable-scope, .ntable-portal) .viewbar .view-tab { min-width: 0; }:where(.ntable, .ntable-scope, .ntable-portal).viewbar .view-tab > svg,
 :where(.ntable, .ntable-scope, .ntable-portal) .viewbar .view-tab > svg,
 :where(.ntable, .ntable-scope, .ntable-portal).viewbar .view-menu-button,
-:where(.ntable, .ntable-scope, .ntable-portal) .viewbar .view-menu-button { flex-shrink: 0; }:where(.ntable, .ntable-scope, .ntable-portal).view-tab-label, :where(.ntable, .ntable-scope, .ntable-portal) .view-tab-label {
+:where(.ntable, .ntable-scope, .ntable-portal) .viewbar .view-menu-button { flex-shrink: 0; }/* 视图名最多显示 10 个字，超出用省略号，悬停看完整名称 */:where(.ntable, .ntable-scope, .ntable-portal).view-tab-label, :where(.ntable, .ntable-scope, .ntable-portal) .view-tab-label {
   display: block;
   min-width: 0;
-  max-width: 12em;
+  max-width: 10em;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;

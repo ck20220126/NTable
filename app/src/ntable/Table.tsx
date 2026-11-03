@@ -85,7 +85,7 @@ function viewCacheKey(view: TableView, search: string, expanded: Set<string>) {
   });
 }
 
-export function Table({ fields, rows, activeView, onUpdateView, onOpenRecord, search = "", getSubRows = defaultGetSubRows, getCellProps, getRecordMenuItems, onRecordMenuAction, loading = false, error, onRetry, onClearQuery }: TableProps) {
+export function Table({ fields, rows, activeView, onUpdateView, onOpenRecord, search = "", getSubRows = defaultGetSubRows, getCellProps, getRecordMenuItems, onRecordMenuAction, renderFooterSummary, loading = false, error, onRetry, onClearQuery }: TableProps) {
   const [selected, setSelected] = useState(() => new Set<string>());
   const [draggingFieldId, setDraggingFieldId] = useState<string | null>(null);
   const [pressedFieldId, setPressedFieldId] = useState<string | null>(null);
@@ -677,7 +677,7 @@ export function Table({ fields, rows, activeView, onUpdateView, onOpenRecord, se
       const next = event.key === "Home" ? 0 : event.key === "End" ? buttons.length - 1 : (current + (event.key === "ArrowDown" ? 1 : -1) + buttons.length) % buttons.length;
       buttons[next]?.focus();
     }} style={{ left: recordMenu.x, top: recordMenu.y }} onPointerDown={(event) => event.stopPropagation()}>{recordMenu.items.map((item, index) => isRecordMenuSeparator(item) ? <span key={`sep-${index}`} className="menu-separator" /> : <button key={item.key} type="button" role="menuitem" className={item.danger ? "danger" : undefined} disabled={item.disabled} onClick={() => { onRecordMenuAction?.(item.key, { row: recordMenu.row, field: recordMenu.field }); closeMenu(); }}>{item.label}</button>)}</div>}
-    <footer className="table-footer"><span>{treeState.matchedCount.toLocaleString()} 条记录</span>{selected.size > 0 && <span className="selection-count">已选择 {selected.size} 条</span>}</footer>
+    <footer className="table-footer"><span>{renderFooterSummary ? renderFooterSummary({ matchedRows: treeState.matchedRoots, matchedCount: treeState.matchedCount }) : `${treeState.matchedCount.toLocaleString()} 条记录`}</span>{selected.size > 0 && <span className="selection-count">已选择 {selected.size} 条</span>}</footer>
   </div>;
 }
 

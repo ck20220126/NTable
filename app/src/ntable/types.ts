@@ -1,4 +1,4 @@
-import type { CSSProperties } from "react";
+import type { CSSProperties, ReactNode } from "react";
 
 export interface Field {
   id: string;
@@ -49,6 +49,10 @@ export interface TableView {
   sorts: SortRule[];
 }
 
+export type FooterSummary = {
+    matchedRows: TableRecord[];
+    matchedCount: number;
+};
 export type RecordMenuContext = {
   row: TableRecord;
   /** Null when the checkbox/gutter cell was the target. */
@@ -94,6 +98,8 @@ export interface NTableProps {
     style?: CSSProperties;
   } | undefined;
   /** Host-owned record actions. Empty/omitted hides the body context menu. */
+  /** Replaces the footer's "N 条记录" text. matchedRows are the top-level records kept by the current filters and search; matchedCount counts every kept record, children included. */
+  renderFooterSummary?: (summary: FooterSummary) => ReactNode;
   getRecordMenuItems?: (context: RecordMenuContext) => RecordMenuItem[];
   onRecordMenuAction?: (key: string, context: RecordMenuContext) => void;
 }
@@ -110,7 +116,7 @@ export type TableToolbarProps = Pick<NTableProps,
 };
 
 export type TableProps = Pick<NTableProps,
-  "fields" | "rows" | "activeView" | "onUpdateView" | "onOpenRecord" | "getSubRows" | "getCellProps" | "getRecordMenuItems" | "onRecordMenuAction" | "loading" | "error" | "onRetry"> & {
+  "fields" | "rows" | "activeView" | "onUpdateView" | "onOpenRecord" | "getSubRows" | "getCellProps" | "getRecordMenuItems" | "onRecordMenuAction" | "renderFooterSummary" | "loading" | "error" | "onRetry"> & {
   search?: string;
   /** Clears search and filters together. Omit to leave reset UI to the host. */
   onClearQuery?: () => void;

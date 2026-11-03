@@ -13,7 +13,8 @@ export interface DisplayRow {
   displayIndex: number | null;
 }
 interface TreeNode { row: TableRecord; children: TreeNode[] }
-export interface TreeProjection { rows: DisplayRow[]; matchedCount: number; hasQuery: boolean }
+/** matchedRoots: top-level records kept by filters and search (a parent stays when any descendant matches), in display order. */
+export interface TreeProjection { rows: DisplayRow[]; matchedCount: number; matchedRoots: TableRecord[]; hasQuery: boolean }
 
 export function projectTree(rows: TableRecord[], tableView: TableView, orderedFields: Field[], fieldById: Map<string, Field>, search: string, expanded: Set<string>, getSubRows: (row: TableRecord) => TableRecord[]): TreeProjection {
     const term = search.trim().toLocaleLowerCase();
@@ -69,7 +70,7 @@ export function projectTree(rows: TableRecord[], tableView: TableView, orderedFi
         levels.push({ nodes: node.children, index: 0, depth: depth + 1, ancestorContinuationLevels: depth > 0 && !isLastChild ? [...ancestorContinuationLevels, depth - 1] : ancestorContinuationLevels });
       }
     }
-    return { rows: flattened, matchedCount, hasQuery };
+    return { rows: flattened, matchedCount, matchedRoots: roots.map(node => node.row), hasQuery };
 }
 
 // Only retain projections for the current data and getter, with bounded view reuse.

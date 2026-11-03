@@ -178,3 +178,4 @@ Build app UI in `src/`. Keep `.openai/hosting.json`, `worker/index.js`, `scripts
 - Sort rows occupy 100% of the list width with border-box sizing and 2px padding on every side. The trailing remove control is a fixed 24px square and ends 2px before the row edge.
 
 - Data cell text uses the shared Radix Tooltip to show its complete displayed value on hover. Select fields show option labels; empty values have no tooltip. Preserve truncation and hierarchy controls.
+- 底部计数文字可由宿主通过 `renderFooterSummary` 接管：组件给出筛选和搜索后保留的顶层记录（`matchedRows`）与含子记录的总数（`matchedCount`），按什么口径计数、是否放快捷筛选由宿主决定；不传时仍显示「N 条记录」。

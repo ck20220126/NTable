@@ -118,6 +118,7 @@ patch 中的数组和 `columnWidths` 是整体替换值。不要把它们作为�
 | `getSubRows` | NTable、Table | 可选；同步返回子记录数组，默认读取 `row.children`，不用于远程加载 |
 | `getCellProps` | NTable、Table | 可选；`(row, field) => { className?, style? }` 或 undefined，定制单元格样式；内部必要的定位样式优先生效 |
 | `getRecordMenuItems`、`onRecordMenuAction` | NTable、Table | 可选；右键记录单元格时的宿主菜单。回调收到 `{ row, field }`（勾选列 `field` 为 null）；返回空数组则不打开菜单。点菜单项后调用 `onRecordMenuAction(key, context)`。删除与复制由宿主实现 |
+| `renderFooterSummary` | NTable、Table | 可选；`({ matchedRows, matchedCount }) => ReactNode`，替换底部「N 条记录」文字（右侧「已选择 n 条」照常显示）。`matchedRows` 是当前筛选和搜索后保留的顶层记录（子记录命中时父记录也保留），顺序同显示；`matchedCount` 是含子记录在内的保留总数。宿主可据此按自己的口径计数，或放可点击的快捷筛选 |
 | `search`、`onSearchChange` | TableToolbar | 可选；受控搜索，关闭搜索清空搜索词；不传回调则隐藏搜索入口 |
 | `search` | Table | 可选；默认空字符串 |
 | `searchDebounceMs` | NTable、TableToolbar | 可选；默认 300ms，仅延迟查询提交，输入立即回显。负数按 0、非有限值按 300ms 处理 |

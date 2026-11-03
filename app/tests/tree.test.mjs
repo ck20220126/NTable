@@ -17,6 +17,11 @@ test('descendant search keeps ancestors and parent search keeps subtree', () => 
   assert.deepEqual(project({}, 'needle').rows.map(item => item.row.id), ['p', 'c1', 'g']);
   assert.deepEqual(project({}, 'parent').rows.map(item => item.row.id), ['p', 'c2', 'c1', 'g']);
 });
+test('matched roots list the kept top-level records in display order', () => {
+  assert.deepEqual(project().matchedRoots.map(row => row.id), ['p', 'q']);
+  assert.deepEqual(project({}, 'needle').matchedRoots.map(row => row.id), ['p']);
+  assert.deepEqual(project({ sorts: [{ fieldId: 'name', direction: 'asc' }] }).matchedRoots.map(row => row.id), ['q', 'p']);
+});
 test('sorting changes siblings without mutating source', () => {
   assert.deepEqual(project({ sorts: [{ fieldId: 'name', direction: 'asc' }] }, '', new Set(['p', 'c1'])).rows.map(item => item.row.id), ['q', 'p', 'c1', 'g', 'c2']);
   assert.deepEqual(rows[0].children.map(row => row.id), ['c2', 'c1']);

@@ -116,6 +116,7 @@ Build app UI in `src/`. Keep `.openai/hosting.json`, `worker/index.js`, `scripts
 - Do not add AI, smart reminders, grouping, fill colors, row-height controls, inline cell editing, field-type editing, or a trailing add-row entry.
 - Field types come from an external schema. View state owns field visibility, column order, column widths, filters, and sorts.
 - The supported field type set is intentionally limited to text, number, single select, multi select, and date. Person and attachment are not field types in this component; legacy example columns using those concepts render as text.
+- Date values stay raw (ISO / YYYY-MM-DD / timestamp) so sorting stays chronological; display, search and text filters use `formatDateValue` (current year omitted, minutes without seconds, date-only without time). Never pre-format dates on the host side, or cross-year sorting breaks once the year is hidden.
 - Double-clicking a record opens a fullscreen editor; it never edits a cell inline.
 - Double-clicking a row checkbox only changes selection and never opens the record; tree controls also retain their own double-click boundary.
 - Column menus stay inside the viewport with an 8px inset. In short viewports they scroll internally so every action remains reachable; long field labels do not widen the menu beyond the screen.

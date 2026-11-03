@@ -1,5 +1,6 @@
 import type { Field, TableView, TableRecord, FilterOperator, FilterRule } from "./types";
 import { booleanKey } from "./booleanOptions.ts";
+import { formatDateValue } from "./dateFormat.ts";
 
 const emptyOperators: { value: FilterOperator; label: string }[] = [
   { value: "isEmpty", label: "为空" },
@@ -66,7 +67,8 @@ export function matchesFilter(value: unknown, operator: string, query: FilterRul
     return false;
   }
   if (typeof query !== "string") return false;
-  const text = String(value ?? "");
+  // Date filters match the text the cell shows, so typing what you see (e.g. "11/3") works
+  const text = type === "date" ? formatDateValue(value) : String(value ?? "");
   if (operator === "contains" || operator === "notContains") {
     const contains = text.toLocaleLowerCase().includes(query.toLocaleLowerCase());
     return operator === "contains" ? contains : !contains;

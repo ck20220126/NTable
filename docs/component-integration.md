@@ -174,7 +174,7 @@ export function ComposedTable(props: NTableProps) {
 详细类型、JSON 和查询行为见 [业务接口契约](./business-api-contract.md)，接入时尤其注意：
 
 - 字段 ID 与记录属性名一致，避开 `id`、`children`、`defaultExpanded`；记录 ID 在所有层级全局唯一且稳定。
-- 字段只支持 text、number、singleSelect、multiSelect、date；日期按原字符串显示，没有内置格式化。单选传选项 value，多选传 value 数组。
+- 字段只支持 text、number、singleSelect、multiSelect、date。日期字段传原始值（ISO 时间字符串、`YYYY-MM-DD` 或时间戳），排序按原始值；显示、搜索、文本筛选按格式化后的文字：与当前同年省略年份，时间只到分钟（如 `11/3 00:53`、`2025/1/5 09:04`），纯日期不带时间，解析不了的原样显示。同一规则以 `formatDateValue` 导出，宿主在表格外显示时间可复用。单选传选项 value，多选传 value 数组。
 - 单选、多选标签的底色：选项给了 `color` 就用它；没给时按选项在 `options` 里的顺序，从飞书多维表格选项色板的 11 个浅色（红、橙、黄、黄绿、绿、青、天蓝、蓝、洋红、紫、灰）循环分配，一轮用完后用同色 50% 透明度的一轮，再往后两轮交替；不在 `options` 里的值用灰色。颜色只由顺序决定，宿主想固定某个选项的颜色就显式传 `color`。文字色由 CSS `contrast-color()` 按底色自动取黑或白，不支持的浏览器兜底 `#1f2329`。色板与分配函数以 `TAG_COLORS`、`tagColor(index)`、`optionTagColor(options, value)` 导出，宿主自己的界面可以用同一套颜色。
 - `activeView` 属于 `views`；`columnOrder` 保留全部字段，`visibleFieldIds` 至少一个有效字段；无筛选/排序传空数组。
 - 选择字段的一条筛选条件可多选，`FilterRule.value` 使用 option.value 字符串数组（兼容旧字符串）；正向命中任一选项，反向排除全部已选项，空数组不筛选。普通字段仍使用字符串。宿主保存/校验筛选配置时需保留数组。

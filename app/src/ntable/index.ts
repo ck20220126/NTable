@@ -4,4 +4,5 @@ export { TableToolbar } from "./TableToolbar";
 export { Table } from "./Table";
 export { TAG_COLORS, tagColor, optionTagColor } from "./tagColors";
 export { BOOLEAN_OPTIONS } from "./booleanOptions";
+export { formatDateValue } from "./dateFormat";
 export type * from "./types";

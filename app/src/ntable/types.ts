@@ -55,6 +55,8 @@ export type FooterSummary = {
 };
 export type RecordMenuContext = {
   row: TableRecord;
+  /** All existing selected records; without a selection, only row. Same snapshot for menu and action. */
+  rows: TableRecord[];
   /** Null when the checkbox/gutter cell was the target. */
   field: Field | null;
 };

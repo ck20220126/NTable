@@ -37,6 +37,6 @@ export function FilterPanel({ fields, filters, onChange, filterMode = "all", onM
 
 function FilterValue({ field, value, index, onChange }: { field?: Field; value: FilterRule["value"]; index: number; onChange: (value: FilterRule["value"]) => void }) {
   const label = `筛选值 ${index + 1}`;
-  if (field && isOptionType(field.type)) return <MultiSelectControl className="filter-value" value={Array.isArray(value) ? value : value === "" ? [] : [value]} placeholder="请选择" options={[...fieldOptions(field)]} onChange={onChange} ariaLabel={label} />;
+  if (field && isOptionType(field.type)) return <MultiSelectControl searchable={field.type !== "boolean"} className="filter-value" value={Array.isArray(value) ? value : value === "" ? [] : [value]} placeholder="请选择" options={[...fieldOptions(field)]} onChange={onChange} ariaLabel={label} />;
   return <input className="filter-value" aria-label={label} value={typeof value === "string" ? value : ""} onChange={(event) => onChange(event.target.value)} placeholder="请输入" />;
 }

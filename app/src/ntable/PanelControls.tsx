@@ -19,7 +19,8 @@ interface SelectControlProps<T extends string> {
 }
 export function SelectControl<T extends string>({ value, options, onChange, ariaLabel, compact = false, inline = false, searchable = false, fluidLabels = false, placeholder, className }: SelectControlProps<T>) {
   const [query, setQuery] = useState("");
-  const visibleOptions = searchable ? options.filter((option) => option.label.toLocaleLowerCase().includes(query.trim().toLocaleLowerCase())) : options;
+  const keyword = query.trim().toLocaleLowerCase();
+  const visibleOptions = searchable ? options.filter((option) => option.label.toLocaleLowerCase().includes(keyword) || option.value.toLocaleLowerCase().includes(keyword)) : options;
   const [open, setOpen] = useState(false);
   const selected = options.find((option) => option.value === value) ?? (placeholder ? undefined : options[0]);
   const changeOpen = (next: boolean) => { setQuery(""); setOpen(next); };
@@ -69,28 +70,37 @@ interface MultiSelectControlProps<T extends string> {
   ariaLabel: string;
   placeholder?: string;
   className?: string;
+  searchable?: boolean;
 }
 /** Multiple-choice counterpart of SelectControl: options toggle in place and the menu stays open. */
-export function MultiSelectControl<T extends string>({ value, options, onChange, ariaLabel, placeholder = "", className }: MultiSelectControlProps<T>) {
+export function MultiSelectControl<T extends string>({ value, options, onChange, ariaLabel, placeholder = "", className, searchable = true }: MultiSelectControlProps<T>) {
   const [open, setOpen] = useState(false);
+  const [query, setQuery] = useState("");
+  const keyword = query.trim().toLocaleLowerCase();
+  const visibleOptions = searchable ? options.filter((option) => option.label.toLocaleLowerCase().includes(keyword) || option.value.toLocaleLowerCase().includes(keyword)) : options;
+  const changeOpen = (next: boolean) => { setQuery(""); setOpen(next); };
   const chosen = new Set(value);
   const summary = options.filter((option) => chosen.has(option.value)).map((option) => option.label).join("、");
   // Keep the host's order of untouched values and append new ones in option order.
   const toggle = (next: T) => onChange(chosen.has(next) ? value.filter((item) => item !== next) : [...value, next]);
   // No Tooltip wrapper: it renders only with content, and remounting the trigger while toggling would drop the open menu's anchor.
-  return <Popover.Root open={open} onOpenChange={setOpen}>
+  return <Popover.Root open={open} onOpenChange={changeOpen}>
     <Popover.Trigger asChild>
       <button type="button" className={`select-trigger select-trigger--fluid${className ? ` ${className}` : ""}${summary ? "" : " select-trigger--placeholder"}${open ? " open" : ""}`} aria-label={ariaLabel} title={summary || undefined}
-        onKeyDown={(event) => { if (event.key === "ArrowDown" || event.key === "ArrowUp") { event.preventDefault(); setOpen(true); } }}>
+        onKeyDown={(event) => { if (event.key === "ArrowDown" || event.key === "ArrowUp") { event.preventDefault(); changeOpen(true); } }}>
         <span className="select-label">{summary || placeholder}</span><ChevronDown size={14} />
       </button>
     </Popover.Trigger>
     <Popover.Portal>
-      <Popover.Content className="ntable-portal select-menu select-menu--fluid" collisionPadding={8} sticky="always" sideOffset={4} align="start" onKeyDown={moveOptionFocus}>
-        {options.map((option) => <button key={option.value} type="button" aria-label={option.label} aria-pressed={chosen.has(option.value)}
+      <Popover.Content className={`ntable-portal select-menu select-menu--fluid${searchable ? " select-menu--fields" : ""}`} collisionPadding={8} sticky="always" sideOffset={4} align="start" onKeyDown={moveOptionFocus}>
+        {searchable && <div className="select-field-search"><Search size={16} /><input aria-label={`搜索${ariaLabel}`} placeholder="搜索" value={query} onChange={(event) => setQuery(event.target.value)} /></div>}
+        <div className={searchable ? "select-field-options" : undefined}>
+        {visibleOptions.map((option) => <button key={option.value} type="button" aria-label={option.label} aria-pressed={chosen.has(option.value)}
           className={chosen.has(option.value) ? "select-option selected" : "select-option"} onClick={() => toggle(option.value)}>
           <span className="select-label">{option.label}</span>{chosen.has(option.value) && <Check size={14} />}
         </button>)}
+        {visibleOptions.length === 0 && <div className="select-no-results">无匹配选项</div>}
+        </div>
       </Popover.Content>
     </Popover.Portal>
   </Popover.Root>;

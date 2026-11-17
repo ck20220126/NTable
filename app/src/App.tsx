@@ -1,5 +1,5 @@
 import { Button } from "./components/Button";
-import type { Field, TableRecord, TableView, CreateViewOptions } from "./ntable/types";
+import type { Field, TableRecord, TableView, CreateViewOptions, SimpleFilterField } from "./ntable/types";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { NTable } from "./ntable";
 import { MultiSelectControl } from "./ntable/PanelControls";
@@ -42,6 +42,14 @@ export const fields: Field[] = [
   { id: "endDate", title: "结束日期", type: "date", width: 132 },
   { id: "spec", title: "规格", type: "text", width: 168, searchable: true },
   { id: "attachment", title: "附件", type: "text", width: 116 },
+];
+
+// 简单筛选：把几个高频字段平铺到工具栏，与「高级」里的筛选面板编辑同一份 filters
+const simpleFilterFields: SimpleFilterField[] = [
+  { fieldId: "category" },
+  { fieldId: "status" },
+  { fieldId: "channels", label: "渠道" },
+  { fieldId: "featured", label: "推荐", trueLabel: "是", falseLabel: "否" },
 ];
 
 const names = ["主视觉 KV", "预约页 Banner", "签到按钮", "积分奖励", "分享文案", "规则弹窗", "抽奖动效", "结果页插画", "短信模板", "渠道二维码", "活动角标", "数据埋点"];
@@ -152,7 +160,7 @@ export function App() {
   };
 
   return <div className="app-shell">
-    <main className="workspace"><NTable fields={fields} rows={rows} views={views} activeView={activeView} onActiveViewChange={setActiveViewId} onUpdateView={updateView} onCreateView={createView} onDeleteView={deleteView} onDuplicateView={duplicateView} onReorderViews={reorderViews} viewManagement viewVisibilityEditable onAddRecord={() => openEditor({})} onOpenRecord={openEditor} captureFindShortcut /></main>
+    <main className="workspace"><NTable fields={fields} rows={rows} views={views} activeView={activeView} onActiveViewChange={setActiveViewId} onUpdateView={updateView} onCreateView={createView} onDeleteView={deleteView} onDuplicateView={duplicateView} onReorderViews={reorderViews} viewManagement viewVisibilityEditable simpleFilterFields={simpleFilterFields} onAddRecord={() => openEditor({})} onOpenRecord={openEditor} captureFindShortcut /></main>
     {storageError && <div role="status" className="demo-storage-status">浏览器存储不可用，当前修改仅在本次会话保留。</div>}
     {editor !== null && <RecordEditor record={editor} onClose={() => setEditor(null)} onSave={saveRecord} returnFocus={editorReturnFocusRef.current} />}
   </div>;

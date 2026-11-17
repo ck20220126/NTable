@@ -1,5 +1,5 @@
 import { windowedColumns, fittingFrozenCount, columnGeometry, columnDropTarget, freezeDropTarget, frozenCountAfterMove } from "./columnWindow";
-import { projectTree, TreeProjectionCache, collectRecordIds, collectDefaultExpanded, selectionState, toggleVisibleSelection } from "./tree";
+import { projectTree, defaultGetSubRows, TreeProjectionCache, collectRecordIds, collectDefaultExpanded, selectionState, toggleVisibleSelection } from "./tree";
 import { forwardRef, memo, useCallback, useId, useDeferredValue, useEffect, useImperativeHandle, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { flushSync } from "react-dom";
 import * as Checkbox from "@radix-ui/react-checkbox";
@@ -67,8 +67,6 @@ function revealActiveInLayouts(viewport: HTMLElement) {
     else if (cell.bottom > bottom) layout.scrollTop += cell.bottom - bottom;
   }
 }
-
-const defaultGetSubRows = (row: TableRecord) => row.children ?? [];
 
 function isRecordMenuSeparator(item: RecordMenuItem): item is { type: "separator" } {
   return "type" in item && item.type === "separator";

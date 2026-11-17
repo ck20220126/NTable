@@ -14,7 +14,7 @@ export function NTable(props: NTableProps) {
   };
   return <section className="ntable">
     <ViewBar {...props} />
-    <TableToolbar {...props} search={search} searchResetKey={searchResetKey} onSearchChange={setSearch} />
+    <TableToolbar {...props} rows={props.rows} getSubRows={props.getSubRows} search={search} searchResetKey={searchResetKey} onSearchChange={setSearch} />
     <Table {...props} search={search} onClearQuery={clearQuery} />
   </section>;
 }

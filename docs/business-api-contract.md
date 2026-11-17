@@ -178,6 +178,8 @@ number 字段按有限数值排序，支持负数、小数和零；空值、空�
 
 以上回调返回类型为 void，组件不会等待 Promise，也不会自行恢复请求失败。宿主可向 NTable/Table 传 `loading?: boolean`、`error?: string | null`、`onRetry?: () => void` 展示请求状态并接收重试意图；宿主负责立即进入 loading、完成后更新 rows/error，刷新期间保留旧 rows。loading 优先于旧 error；没有 onRetry 时只展示错误。子元素在业务详情页新增，不提供行内新增子元素动作。
 
+简单筛选：`simpleFilterFields` 让几个单选、多选、布尔字段在工具栏常驻，直接读写 `activeView.filters`，不引入新的视图字段，宿主无需额外存储；`filterUi` / `onFilterUiChange` 可选，用于受控或持久化「简单 / 高级」选择。简单模式只识别规范规则（单选 `equals`、多选 `contains`、布尔 `equals` 且值为 `"true"`/`"false"` 之一），其它条件会提示用户转到高级筛选。
+
 NTable/TableToolbar 的 `searchDebounceMs` 默认为 300。输入框 onChange 同步回显，中文组词结束后才防抖提交查询；清空立即生效。独立 TableToolbar 接收 `searchResetKey`，外部清空时递增可取消未提交草稿。直接向 Table 传 search 不经过输入防抖。详细空态、键盘及组合回调见 [组件接入文档](./component-integration.md)。
 
 ### 建议 HTTP 接口

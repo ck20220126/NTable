@@ -65,6 +65,17 @@ export type RecordMenuItem =
   | { type: "separator" }
   | { key: string; label: string; danger?: boolean; disabled?: boolean };
 
+/** 工具栏筛选方式：simple 把宿主选定的几个字段平铺成常驻控件，advanced 是完整的筛选面板；两者编辑同一份 activeView.filters。 */
+export type FilterUi = "simple" | "advanced";
+export interface SimpleFilterField {
+  fieldId: string;
+  /** 控件标签，默认取字段标题 */
+  label?: string;
+  /** 仅布尔字段：分段控件的两个选项文案，默认 是 / 否 */
+  trueLabel?: string;
+  falseLabel?: string;
+}
+
 export interface NTableProps {
   /** Search commits after this idle period; IME composition never commits. Default 300ms. */
   /** Cmd/Ctrl+F opens and focuses the toolbar search instead of the browser's find bar; ignored while a modal dialog is open. Page-wide, so enable it on one table per page. Defaults to false. */
@@ -97,6 +108,11 @@ export interface NTableProps {
   /** fieldId: the column the record was opened from (double-clicked cell or active cell on Enter); null from the row-number column. */
   onOpenRecord: (row: TableRecord, context: OpenRecordContext) => void;
   getSubRows?: (row: TableRecord) => TableRecord[];
+  /** 简单筛选字段（仅支持单选、多选、布尔字段，其余及未知字段静默忽略）。不传或为空时工具栏与原来完全一致；传入后工具栏出现「简单 | 高级」切换，简单模式下这些字段以常驻控件的形式直接编辑 activeView.filters。 */
+  simpleFilterFields?: SimpleFilterField[];
+  /** 当前筛选方式，传入即受控；不传时组件内部维护，默认 simple。 */
+  filterUi?: FilterUi;
+  onFilterUiChange?: (ui: FilterUi) => void;
   getCellProps?: (row: TableRecord, field: Field) => {
     className?: string;
     style?: CSSProperties;
@@ -112,7 +128,10 @@ export type ViewBarProps = Pick<NTableProps,
   "views" | "activeView" | "onActiveViewChange" | "onCreateView" | "onDeleteView" | "onDuplicateView" | "viewManagement" | "viewVisibilityEditable" | "onReorderViews"> & Partial<Pick<NTableProps, "onUpdateView">>;
 
 export type TableToolbarProps = Pick<NTableProps,
-  "fields" | "activeView" | "onUpdateView" | "onAddRecord" | "searchDebounceMs" | "captureFindShortcut"> & {
+  "fields" | "activeView" | "onUpdateView" | "onAddRecord" | "searchDebounceMs" | "captureFindShortcut" | "simpleFilterFields" | "filterUi" | "onFilterUiChange"> & {
+  /** 仅用于简单筛选选项后的记录数统计 */
+  rows?: TableRecord[];
+  getSubRows?: NTableProps["getSubRows"];
   search?: string;
   /** Change this key to discard a pending draft even when search is already empty. */
   searchResetKey?: number;

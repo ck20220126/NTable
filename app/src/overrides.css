@@ -29,7 +29,8 @@ body {
 
 /* Feishu drags an empty translucent column mask; content never follows it. */
 .toolbar-left > .add-record,
-.toolbar-left > .toolbar-action {
+.toolbar-left > .toolbar-action,
+.toolbar-right > .toolbar-action {
   height: 26px;
   padding: 0 9px;
   gap: 6px;
@@ -37,7 +38,8 @@ body {
   align-items: center;
 }
 
-.table-toolbar .toolbar-left {
+.table-toolbar .toolbar-left,
+.table-toolbar .toolbar-right {
   gap: 8px;
 }
 
@@ -138,7 +140,8 @@ body {
 }
 
 .toolbar-left > .add-record > svg:first-child,
-.toolbar-left > .toolbar-action > svg:first-child {
+.toolbar-left > .toolbar-action > svg:first-child,
+.toolbar-right > .toolbar-action > svg:first-child {
   width: 16px;
   height: 16px;
   flex: 0 0 16px;
@@ -1607,6 +1610,88 @@ body {
 /* 和其它输入框一样分常规态与聚焦态：失焦（如按 Esc）后回到灰色描边，悬停加深，聚焦才是蓝色描边加光晕 */
 .table-toolbar .search-box:not(:focus-within) { border-color: #d9dde4; box-shadow: none; }
 .table-toolbar .search-box:not(:focus-within):hover { border-color: #b6bdc8; }
+
+/* 简单筛选：常驻控件与「简单 | 高级」切换。控件高度对齐 26px 的工具栏按钮，配色沿用工具栏与选择器已有的色值。 */
+.table-toolbar .toolbar-left > .filter-ui-switch,
+.table-toolbar .toolbar-left > .simple-filters,
+.table-toolbar .toolbar-left > .simple-filter-notice { display: flex; align-items: center; gap: 8px; }
+.filter-ui-switch { color: #646a73; }
+.filter-ui-switch > svg { flex: 0 0 16px; }
+.ntable-segmented {
+  display: flex;
+  align-items: center;
+  height: 26px;
+  padding: 2px;
+  background: #f5f6f7;
+  border-radius: 6px;
+}
+.ntable-segmented button {
+  height: 22px;
+  min-width: 0;
+  padding: 0 8px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  background: transparent;
+  color: #646a73;
+  font-size: 14px;
+  line-height: 20px;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.ntable-segmented button[aria-pressed="true"] {
+  color: #1456f0;
+  background: #fff;
+  border-color: #dee0e3;
+  box-shadow: 0 1px 2px rgba(31, 35, 41, .04);
+}
+.ntable-segmented button:hover:not([aria-pressed="true"]) { background: #eff0f1; }
+.ntable-segmented button:focus-visible { outline: 2px solid #3370ff; outline-offset: -2px; }
+.simple-filter-boolean { display: flex; align-items: center; gap: 6px; }
+.simple-filter-label { color: #646a73; white-space: nowrap; }
+.simple-filter-trigger {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: 26px;
+  padding: 0 8px;
+  border: 1px solid #d9dde4;
+  border-radius: 6px;
+  background: #fff;
+  font-size: 14px;
+  line-height: 20px;
+  cursor: pointer;
+}
+.simple-filter-trigger:hover { border-color: #b6bdc8; }
+.simple-filter-trigger.open,
+.simple-filter-trigger:focus-visible { border-color: #5d83e8; box-shadow: 0 0 0 2px #e0e8ff; outline: 0; }
+.simple-filter-trigger.set { border-color: transparent; background: rgba(20, 86, 240, .2); }
+.simple-filter-trigger.set:hover { background-image: linear-gradient(rgba(31, 35, 41, .08), rgba(31, 35, 41, .08)); }
+.simple-filter-trigger.set .simple-filter-label { color: #1f2329; }
+.simple-filter-value {
+  max-width: 14em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #1f2329;
+}
+.simple-filter-trigger > svg { flex: 0 0 auto; color: #646a73; }
+.simple-filter-trigger.open > svg { transform: rotate(180deg); }
+.select-menu.simple-filter-menu { width: 240px; min-width: 240px; }
+.simple-filter-menu .select-option > svg:last-child:not(.select-field-icon) { margin-left: 0; }
+.simple-filter-count { margin-left: auto; color: #8f959e; font-size: 12px; font-variant-numeric: tabular-nums; }
+.simple-filter-footer { display: flex; justify-content: flex-end; padding: 4px 8px 0; border-top: 1px solid #eff0f1; }
+.table-toolbar .toolbar-left > .simple-filter-notice {
+  flex: 0 1 auto;
+  min-width: 160px;
+  height: 26px;
+  padding: 0 4px 0 10px;
+  gap: 4px;
+  border-radius: 6px;
+  background: #f5f6f7;
+  color: #646a73;
+}
+.simple-filter-notice-text { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.simple-filter-notice > .ui-button { flex: 0 0 auto; height: 22px; }
 
 .viewbar { min-width: 0; }
 .viewbar .view-tabs { min-width: 0; max-width: 100%; }

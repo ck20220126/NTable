@@ -4,6 +4,9 @@ import { booleanKey, fieldOptions } from "./booleanOptions.ts";
 import { formatDateValue } from "./dateFormat.ts";
 import type { Field, TableRecord, TableView } from "./types";
 
+/** 默认子记录读取方式，Table 与简单筛选的选项计数必须一致 */
+export const defaultGetSubRows = (row: TableRecord) => row.children ?? [];
+
 export interface DisplayRow {
   row: TableRecord;
   depth: number;

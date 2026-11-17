@@ -52,7 +52,7 @@ export function SelectControl<T extends string>({ value, options, onChange, aria
   </Popover.Root>;
 }
 
-function moveOptionFocus(event: KeyboardEvent<HTMLDivElement>) {
+export function moveOptionFocus(event: KeyboardEvent<HTMLDivElement>) {
   if (event.nativeEvent.isComposing) return;
   if (event.target instanceof HTMLInputElement && ["Home", "End"].includes(event.key)) return;
   if (!["ArrowDown", "ArrowUp", "Home", "End"].includes(event.key)) return;

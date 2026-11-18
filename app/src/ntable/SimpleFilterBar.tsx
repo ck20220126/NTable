@@ -2,11 +2,11 @@ import { useMemo, useState } from "react";
 import * as Popover from "@radix-ui/react-popover";
 import { Check, ChevronDown, Filter, Search, X } from "lucide-react";
 import { Button } from "../components/Button";
-import type { Field, FilterUi, TableRecord, TableView } from "./types";
+import type { Field, FilterUi, SimpleFilterValues, TableRecord, TableView } from "./types";
 import { fieldOptions } from "./booleanOptions";
 import { moveOptionFocus } from "./PanelControls";
 import { useSearchInput } from "./useSearchInput";
-import { applySimpleFilter, hasSimpleActive, projectSimpleFilters, simpleOptionCounts, summarizeSelection, type ResolvedSimpleField } from "./simpleFilter";
+import { hasSimpleActive, simpleOptionCounts, summarizeSelection, type ResolvedSimpleField } from "./simpleFilter";
 
 /** 「简单 | 高级」切换：小分段控件，放在工具栏最左 */
 export function FilterUiSwitch({ ui, onChange }: { ui: FilterUi; onChange: (ui: FilterUi) => void }) {
@@ -23,25 +23,21 @@ interface SimpleFilterBarProps {
   simpleFields: ResolvedSimpleField[];
   fieldById: Map<string, Field>;
   activeView: TableView;
-  onUpdateView: (id: string, patch: Partial<TableView>) => void;
+  values: SimpleFilterValues;
+  onChange: (values: SimpleFilterValues) => void;
   rows?: TableRecord[];
   getSubRows: (row: TableRecord) => TableRecord[];
   search: string;
-  onShowAdvanced: () => void;
 }
 
-export function SimpleFilterBar({ simpleFields, fieldById, activeView, onUpdateView, rows, getSubRows, search, onShowAdvanced }: SimpleFilterBarProps) {
-  const projection = useMemo(() => projectSimpleFilters(activeView.filters, activeView.filterMode, fieldById, simpleFields), [activeView.filters, activeView.filterMode, fieldById, simpleFields]);
+/** 简单筛选控件：值是临时的，只经 onChange 交给宿主，不改视图；视图自己的条件照常生效，并参与选项计数 */
+export function SimpleFilterBar({ simpleFields, fieldById, activeView, values, onChange, rows, getSubRows, search }: SimpleFilterBarProps) {
   // 与 Table 一致的列顺序：计数里的搜索只看当前可见列
   const orderedFields = useMemo(() => activeView.columnOrder.filter((id) => activeView.visibleFieldIds.includes(id)).map((id) => fieldById.get(id)).filter((field): field is Field => field !== undefined), [activeView.columnOrder, activeView.visibleFieldIds, fieldById]);
-  if (!projection.ok) {
-    const text = `当前条件超出简单筛选：${projection.reasons.join("；")}`;
-    return <div className="simple-filter-notice"><span className="simple-filter-notice-text" title={text}>{text}</span>
-      <Button size="small" color="primary" className="text-button" onClick={onShowAdvanced}>在高级里查看</Button>
-      <Button size="small" color="primary" className="text-button" onClick={() => onUpdateView(activeView.id, { filters: [] })}>清空条件</Button></div>;
-  }
-  const values = projection.values;
-  const write = (fieldId: string, next: string[]) => onUpdateView(activeView.id, applySimpleFilter(activeView.filters, activeView.filterMode, fieldId, next, fieldById));
+  const write = (fieldId: string, next: string[]) => {
+    const { [fieldId]: _previous, ...rest } = values;
+    onChange(next.some((value) => value !== "") ? { ...rest, [fieldId]: next } : rest);
+  };
   return <div className="simple-filters">
     {simpleFields.map((item) => {
       const label = item.label ?? item.field.title;
@@ -50,15 +46,15 @@ export function SimpleFilterBar({ simpleFields, fieldById, activeView, onUpdateV
       return item.field.type === "boolean"
         ? <SimpleBoolean key={item.fieldId} label={label} trueLabel={item.trueLabel ?? "是"} falseLabel={item.falseLabel ?? "否"} value={selected[0]} onChange={(next) => write(item.fieldId, next)} />
         : <SimpleSelect key={item.fieldId} item={item} label={label} selected={selected} onChange={(next) => write(item.fieldId, next)}
-          rows={rows} view={activeView} orderedFields={orderedFields} fieldById={fieldById} search={search} getSubRows={getSubRows} />;
+          rows={rows} view={activeView} values={values} orderedFields={orderedFields} fieldById={fieldById} search={search} getSubRows={getSubRows} />;
     })}
-    {hasSimpleActive(values) && <Button size="small" color="primary" className="text-button" onClick={() => onUpdateView(activeView.id, { filters: [] })}>清空</Button>}
+    {hasSimpleActive(values) && <Button size="small" color="primary" className="text-button" onClick={() => onChange({})}>清空</Button>}
   </div>;
 }
 
 /**
  * 文本字段：带标签的输入框，写「包含」条件。输入停顿 300ms 后提交，输入法组合中不提交；
- * 清空即删掉这条条件。外部改了条件（高级面板、清空）时输入框跟着变。
+ * 清空即删掉这条条件。外部改了值（清空）时输入框跟着变。
  */
 function SimpleText({ label, value, onChange }: { label: string; value: string; onChange: (value: string) => void }) {
   const input = useSearchInput(value, onChange, 300, 0);
@@ -88,18 +84,19 @@ interface SimpleSelectProps {
   onChange: (value: string[]) => void;
   rows?: TableRecord[];
   view: TableView;
+  values: SimpleFilterValues;
   orderedFields: Field[];
   fieldById: Map<string, Field>;
   search: string;
   getSubRows: (row: TableRecord) => TableRecord[];
 }
-function SimpleSelect({ item, label, selected, onChange, rows, view, orderedFields, fieldById, search, getSubRows }: SimpleSelectProps) {
+function SimpleSelect({ item, label, selected, onChange, rows, view, values, orderedFields, fieldById, search, getSubRows }: SimpleSelectProps) {
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
   const options = fieldOptions(item.field);
   // 只在菜单打开时统计，菜单内搜索输入不会重算；没有记录时没有计数，选项全部显示
-  const counts = useMemo(() => open && rows?.length ? simpleOptionCounts(rows, view, orderedFields, fieldById, search, getSubRows, item.fieldId) : undefined,
-    [open, rows, view.filters, view.filterMode, orderedFields, fieldById, search, getSubRows, item.fieldId]);
+  const counts = useMemo(() => open && rows?.length ? simpleOptionCounts(rows, view, orderedFields, fieldById, search, getSubRows, item.fieldId, values) : undefined,
+    [open, rows, view.filters, view.filterMode, values, orderedFields, fieldById, search, getSubRows, item.fieldId]);
   const keyword = query.trim().toLocaleLowerCase();
   const chosen = new Set(selected);
   // 未选且数量为 0 的选项隐藏（天然实现联动）；已选的始终保留，方便取消

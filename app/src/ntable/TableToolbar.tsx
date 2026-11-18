@@ -9,8 +9,8 @@ import { SortPanel } from "./SortPanel";
 import { FilterUiSwitch, SimpleFilterBar } from "./SimpleFilterBar";
 import { resolveSimpleFields } from "./simpleFilter";
 import { defaultGetSubRows } from "./tree";
-import type { FilterUi } from "./types";
-export function TableToolbar({ fields, activeView, onUpdateView, onAddRecord, search = "", onSearchChange, searchDebounceMs = 300, searchResetKey = 0, captureFindShortcut = false, simpleFilterFields, filterUi, onFilterUiChange, rows, getSubRows = defaultGetSubRows }: TableToolbarProps) {
+import type { FilterUi, SimpleFilterValues } from "./types";
+export function TableToolbar({ fields, activeView, onUpdateView, onAddRecord, search = "", onSearchChange, searchDebounceMs = 300, searchResetKey = 0, captureFindShortcut = false, simpleFilterFields, filterUi, onFilterUiChange, simpleFilterValues, onSimpleFilterValuesChange, rows, getSubRows = defaultGetSubRows }: TableToolbarProps) {
   const [searchOpen, setSearchOpen] = useState(false);
   const searchTrigger = useRef<HTMLButtonElement>(null);
   const restoreSearchFocus = useRef(false);
@@ -45,6 +45,10 @@ export function TableToolbar({ fields, activeView, onUpdateView, onAddRecord, se
   const [internalUi, setInternalUi] = useState<FilterUi>("simple");
   const ui = filterUi ?? internalUi;
   const changeUi = (next: FilterUi) => { if (filterUi === undefined) setInternalUi(next); onFilterUiChange?.(next); };
+  // 简单筛选的值同理：传入即受控，否则内部维护；不写进视图
+  const [internalValues, setInternalValues] = useState<SimpleFilterValues>({});
+  const simpleValues = simpleFilterValues ?? internalValues;
+  const changeSimpleValues = (next: SimpleFilterValues) => { if (simpleFilterValues === undefined) setInternalValues(next); onSimpleFilterValuesChange?.(next); };
   const addRecord = onAddRecord && <Button size="small" color="primary" className="add-record" onClick={onAddRecord}><Plus size={17} /> 添加记录</Button>;
   const filterPanel = <FilterPanel key={`filters:${activeView.id}`} filterMode={activeView.filterMode ?? "all"} onModeChange={(filterMode) => onUpdateView(activeView.id, { filterMode })} fields={fields} filters={activeView.filters} onChange={(filters) => onUpdateView(activeView.id, { filters })} />;
   const fieldConfig = <FieldConfigPanel key={`fields:${activeView.id}`} fields={fields} activeView={activeView} onUpdateView={onUpdateView} />;
@@ -73,7 +77,7 @@ export function TableToolbar({ fields, activeView, onUpdateView, onAddRecord, se
   return <div className="ntable-scope table-toolbar"><div className="toolbar-left" onFocusCapture={scrollFocusedIntoView}>
     <FilterUiSwitch ui={ui} onChange={changeUi} />{addRecord}
     {ui === "simple"
-      ? <SimpleFilterBar simpleFields={simpleFields} fieldById={fieldById} activeView={activeView} onUpdateView={onUpdateView} rows={rows} getSubRows={getSubRows} search={search} onShowAdvanced={() => changeUi("advanced")} />
+      ? <SimpleFilterBar simpleFields={simpleFields} fieldById={fieldById} activeView={activeView} values={simpleValues} onChange={changeSimpleValues} rows={rows} getSubRows={getSubRows} search={search} />
       : filterPanel}
     {searchNode}
   </div><div className="toolbar-right">{fieldConfig}{sortPanel}</div></div>;

@@ -1613,8 +1613,7 @@ body {
 
 /* 简单筛选：常驻控件与「简单 | 高级」切换。控件高度对齐 26px 的工具栏按钮，配色沿用工具栏与选择器已有的色值。 */
 .table-toolbar .toolbar-left > .filter-ui-switch,
-.table-toolbar .toolbar-left > .simple-filters,
-.table-toolbar .toolbar-left > .simple-filter-notice { display: flex; align-items: center; gap: 8px; }
+.table-toolbar .toolbar-left > .simple-filters { display: flex; align-items: center; gap: 8px; }
 .filter-ui-switch { color: #646a73; }
 .filter-ui-switch > svg { flex: 0 0 16px; }
 .ntable-segmented {
@@ -1721,18 +1720,6 @@ body {
 .simple-filter-menu .select-option > svg:last-child:not(.select-field-icon) { margin-left: 0; }
 .simple-filter-count { margin-left: auto; color: #8f959e; font-size: 12px; font-variant-numeric: tabular-nums; }
 .simple-filter-footer { display: flex; justify-content: flex-end; padding: 4px 8px 0; border-top: 1px solid #eff0f1; }
-.table-toolbar .toolbar-left > .simple-filter-notice {
-  flex: 0 1 auto;
-  min-width: 160px;
-  height: 26px;
-  padding: 0 4px 0 10px;
-  gap: 4px;
-  border-radius: 6px;
-  background: #f5f6f7;
-  color: #646a73;
-}
-.simple-filter-notice-text { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.simple-filter-notice > .ui-button { flex: 0 0 auto; height: 22px; }
 
 .viewbar { min-width: 0; }
 .viewbar .view-tabs { min-width: 0; max-width: 100%; }

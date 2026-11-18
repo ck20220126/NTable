@@ -2,7 +2,7 @@ import { isActiveFilter, matchesFilters } from "./filtering.ts";
 import { recordComparator } from "./sorting.ts";
 import { booleanKey, fieldOptions } from "./booleanOptions.ts";
 import { formatDateValue } from "./dateFormat.ts";
-import type { Field, TableRecord, TableView } from "./types";
+import type { Field, FilterRule, TableRecord, TableView } from "./types";
 
 /** 默认子记录读取方式，Table 与简单筛选的选项计数必须一致 */
 export const defaultGetSubRows = (row: TableRecord) => row.children ?? [];
@@ -20,15 +20,17 @@ interface TreeNode { row: TableRecord; children: TreeNode[] }
 /** matchedRoots: top-level records kept by filters and search (a parent stays when any descendant matches), in display order. */
 export interface TreeProjection { rows: DisplayRow[]; matchedCount: number; matchedRoots: TableRecord[]; hasQuery: boolean }
 
-export function projectTree(rows: TableRecord[], tableView: TableView, orderedFields: Field[], fieldById: Map<string, Field>, search: string, expanded: Set<string>, getSubRows: (row: TableRecord) => TableRecord[]): TreeProjection {
+/** extraFilters: 视图之外临时叠加的条件（如简单筛选），按「所有」与视图条件同时满足 */
+export function projectTree(rows: TableRecord[], tableView: TableView, orderedFields: Field[], fieldById: Map<string, Field>, search: string, expanded: Set<string>, getSubRows: (row: TableRecord) => TableRecord[], extraFilters: FilterRule[] = []): TreeProjection {
     const term = search.trim().toLocaleLowerCase();
     const activeFilters = tableView.filters.filter(isActiveFilter);
-    const hasQuery = Boolean(term || activeFilters.length);
+    const activeExtra = extraFilters.filter(isActiveFilter);
+    const hasQuery = Boolean(term || activeFilters.length || activeExtra.length);
     const searchableFields = term ? orderedFields.filter(field => field.searchable !== false).map(field => ({
       field,
       labels: new Map(fieldOptions(field).map(option => [option.value, option.label.toLocaleLowerCase()])),
     })) : [];
-    const matches = (row: TableRecord) => matchesFilters(row, activeFilters, fieldById, tableView.filterMode) && (!term || searchableFields.some(({ field, labels }) => {
+    const matches = (row: TableRecord) => matchesFilters(row, activeFilters, fieldById, tableView.filterMode) && matchesFilters(row, activeExtra, fieldById, "all") && (!term || searchableFields.some(({ field, labels }) => {
       const value = row[field.id];
       if (field.type === "boolean") return Boolean(labels.get(booleanKey(value) ?? "")?.includes(term));
       if ((field.type === "date" ? formatDateValue(value) : String(value ?? "")).toLocaleLowerCase().includes(term)) return true;

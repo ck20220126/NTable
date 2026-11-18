@@ -11,7 +11,7 @@ import { Button } from "../components/Button";
 import { moveGridPosition, resolveActiveRow, selectRowRange } from "./keyboard";
 import { tableDataState } from "./dataState";
 import { scrollbarMetrics, scrollFromThumb, resizedScrollOffset } from "./scrollbar";
-import type { TableProps, Field, TableRecord, TableView, RecordMenuItem } from "./types";
+import type { TableProps, Field, FilterRule, TableRecord, TableView, RecordMenuItem } from "./types";
 import { optionTagColor, TAG_COLORS } from "./tagColors";
 import { BOOLEAN_OPTIONS, booleanKey } from "./booleanOptions";
 import { formatDateValue } from "./dateFormat";
@@ -72,7 +72,7 @@ function isRecordMenuSeparator(item: RecordMenuItem): item is { type: "separator
   return "type" in item && item.type === "separator";
 }
 
-function viewCacheKey(view: TableView, search: string, expanded: Set<string>) {
+function viewCacheKey(view: TableView, search: string, expanded: Set<string>, extraFilters: FilterRule[]) {
   return JSON.stringify({
     id: view.id,
     visibleFieldIds: view.visibleFieldIds,
@@ -81,11 +81,14 @@ function viewCacheKey(view: TableView, search: string, expanded: Set<string>) {
     filterMode: view.filterMode ?? "all",
     sorts: view.sorts,
     search,
+    extraFilters,
     expanded: [...expanded].sort(),
   });
 }
 
-export function Table({ fields, rows, activeView, onUpdateView, onOpenRecord, search = "", getSubRows = defaultGetSubRows, getCellProps, getRecordMenuItems, onRecordMenuAction, renderFooterSummary, loading = false, error, onRetry, onClearQuery }: TableProps) {
+const NO_FILTERS: FilterRule[] = [];
+
+export function Table({ fields, rows, activeView, onUpdateView, onOpenRecord, search = "", getSubRows = defaultGetSubRows, getCellProps, getRecordMenuItems, onRecordMenuAction, renderFooterSummary, loading = false, error, onRetry, onClearQuery, extraFilters = NO_FILTERS }: TableProps) {
   const [selected, setSelected] = useState(() => new Set<string>());
   const [draggingFieldId, setDraggingFieldId] = useState<string | null>(null);
   const [pressedFieldId, setPressedFieldId] = useState<string | null>(null);
@@ -201,13 +204,13 @@ export function Table({ fields, rows, activeView, onUpdateView, onOpenRecord, se
     if (ownedFocus) scrollRef.current?.focus({ preventScroll: true });
   }, [headerMenu, orderedFields]);
   const treeState = useMemo(() => {
-    const cacheKey = viewCacheKey(tableView, search, expanded);
+    const cacheKey = viewCacheKey(tableView, search, expanded, extraFilters);
     const cached = viewTreeCacheRef.current.get(cacheKey, rows, fields, getSubRows);
     if (cached) return cached;
-    const tree = projectTree(rows, tableView, orderedFields, fieldById, search, expanded, getSubRows);
+    const tree = projectTree(rows, tableView, orderedFields, fieldById, search, expanded, getSubRows, extraFilters);
     viewTreeCacheRef.current.set(cacheKey, tree);
     return tree;
-  }, [rows, tableView.id, tableView.filters, tableView.filterMode, tableView.sorts, fieldById, orderedFields, search, expanded, getSubRows]);
+  }, [rows, tableView.id, tableView.filters, tableView.filterMode, tableView.sorts, fieldById, orderedFields, search, expanded, getSubRows, extraFilters]);
   const displayedRows = treeState.rows;
   const visibleIds = useMemo(() => displayedRows.map(item => item.row.id), [displayedRows]);
   const allSelectionState = selectionState(visibleIds, selected);

@@ -16,8 +16,9 @@ const rule = (fieldId, operator, value, id = `${fieldId}-${operator}`) => ({ id,
 const project = (filters, mode = 'all') => projectSimpleFilters(filters, mode, fieldById, simple);
 
 test('resolveSimpleFields drops unknown, unsupported and duplicate fields', () => {
-  const result = resolveSimpleFields([{ fieldId: 'nope' }, { fieldId: 'name' }, { fieldId: 'live' }, { fieldId: 'live', label: 'x' }, { fieldId: 'region' }], fieldById);
-  assert.deepEqual(result.map((item) => item.fieldId), ['live', 'region']);
+  const withDate = new Map([...fieldById, ['day', { id: 'day', title: '日期', type: 'date' }]]);
+  const result = resolveSimpleFields([{ fieldId: 'nope' }, { fieldId: 'day' }, { fieldId: 'name' }, { fieldId: 'live' }, { fieldId: 'live', label: 'x' }, { fieldId: 'region' }], withDate);
+  assert.deepEqual(result.map((item) => item.fieldId), ['name', 'live', 'region']);
   assert.deepEqual(resolveSimpleFields(undefined, fieldById), []);
 });
 
@@ -117,4 +118,17 @@ test('option counts match the table projection and cascade with other filters', 
   assert.deepEqual(count(own, 'region'), { n: 2, s: 1, w: 2 });
   // 搜索框里的词也参与：搜到 N（大区「N」的显示标签）
   assert.deepEqual(count(view, 'region', 'n'), { n: 2, s: 0, w: 0 });
+});
+
+test('text fields use a contains rule with a string value', () => {
+  const withText = [...simple, { fieldId: 'name' }];
+  const projectText = (filters, mode = 'all') => projectSimpleFilters(filters, mode, fieldById, withText);
+  assert.deepEqual(projectText([rule('name', 'contains', 'ab')]), { ok: true, values: { name: ['ab'] } });
+  assert.deepEqual(projectText([rule('name', 'equals', 'ab')]), { ok: false, reasons: ['「名称」用了「等于」'] });
+  assert.deepEqual(projectText([rule('name', 'contains', ['ab'])]), { ok: false, reasons: ['「名称」的条件格式不支持'] });
+  // 写回：值是字符串，放在原位置；清空即删掉该字段的规则
+  const written = applySimpleFilter([rule('region', 'equals', ['n']), rule('name', 'contains', 'x')], 'all', 'name', ['ab'], fieldById);
+  assert.deepEqual(written.filters.map(({ id, ...rest }) => rest), [{ fieldId: 'region', operator: 'equals', value: ['n'] }, { fieldId: 'name', operator: 'contains', value: 'ab' }]);
+  assert.deepEqual(applySimpleFilter(written.filters, 'all', 'name', [], fieldById).filters.map((item) => item.fieldId), ['region']);
+  assert.deepEqual(applySimpleFilter(written.filters, 'all', 'name', [''], fieldById).filters.map((item) => item.fieldId), ['region']);
 });

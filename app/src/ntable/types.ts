@@ -108,7 +108,7 @@ export interface NTableProps {
   /** fieldId: the column the record was opened from (double-clicked cell or active cell on Enter); null from the row-number column. */
   onOpenRecord: (row: TableRecord, context: OpenRecordContext) => void;
   getSubRows?: (row: TableRecord) => TableRecord[];
-  /** 简单筛选字段（仅支持单选、多选、布尔字段，其余及未知字段静默忽略）。不传或为空时工具栏与原来完全一致；传入后工具栏出现「简单 | 高级」切换，简单模式下这些字段以常驻控件的形式直接编辑 activeView.filters。 */
+  /** 简单筛选字段（支持文本、单选、多选、布尔字段，其余及未知字段静默忽略；文本字段是「包含」输入框）。不传或为空时工具栏与原来完全一致；传入后工具栏出现「简单 | 高级」切换，简单模式下这些字段以常驻控件的形式直接编辑 activeView.filters。 */
   simpleFilterFields?: SimpleFilterField[];
   /** 当前筛选方式，传入即受控；不传时组件内部维护，默认 simple。 */
   filterUi?: FilterUi;

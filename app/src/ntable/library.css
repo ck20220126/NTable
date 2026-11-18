@@ -1254,7 +1254,39 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   color: #1f2329;
-}:where(.ntable, .ntable-scope, .ntable-portal).simple-filter-trigger > svg, :where(.ntable, .ntable-scope, .ntable-portal) .simple-filter-trigger > svg { flex: 0 0 auto; color: #646a73; }:where(.ntable, .ntable-scope, .ntable-portal).simple-filter-trigger.open > svg, :where(.ntable, .ntable-scope, .ntable-portal) .simple-filter-trigger.open > svg { transform: rotate(180deg); }:where(.ntable, .ntable-scope, .ntable-portal).select-menu.simple-filter-menu, :where(.ntable, .ntable-scope, .ntable-portal) .select-menu.simple-filter-menu { width: 240px; min-width: 240px; }:where(.ntable, .ntable-scope, .ntable-portal).simple-filter-menu .select-option > svg:last-child:not(.select-field-icon), :where(.ntable, .ntable-scope, .ntable-portal) .simple-filter-menu .select-option > svg:last-child:not(.select-field-icon) { margin-left: 0; }:where(.ntable, .ntable-scope, .ntable-portal).simple-filter-count, :where(.ntable, .ntable-scope, .ntable-portal) .simple-filter-count { margin-left: auto; color: #8f959e; font-size: 12px; font-variant-numeric: tabular-nums; }:where(.ntable, .ntable-scope, .ntable-portal).simple-filter-footer, :where(.ntable, .ntable-scope, .ntable-portal) .simple-filter-footer { display: flex; justify-content: flex-end; padding: 4px 8px 0; border-top: 1px solid #eff0f1; }:where(.ntable, .ntable-scope, .ntable-portal).table-toolbar .toolbar-left > .simple-filter-notice, :where(.ntable, .ntable-scope, .ntable-portal) .table-toolbar .toolbar-left > .simple-filter-notice {
+}:where(.ntable, .ntable-scope, .ntable-portal).simple-filter-trigger > svg, :where(.ntable, .ntable-scope, .ntable-portal) .simple-filter-trigger > svg { flex: 0 0 auto; color: #646a73; }:where(.ntable, .ntable-scope, .ntable-portal).simple-filter-trigger.open > svg, :where(.ntable, .ntable-scope, .ntable-portal) .simple-filter-trigger.open > svg { transform: rotate(180deg); }:where(.ntable, .ntable-scope, .ntable-portal).simple-filter-text, :where(.ntable, .ntable-scope, .ntable-portal) .simple-filter-text {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: 26px;
+  padding: 0 4px 0 8px;
+  border: 1px solid #d9dde4;
+  border-radius: 6px;
+  background: #fff;
+  font-size: 14px;
+  line-height: 20px;
+}:where(.ntable, .ntable-scope, .ntable-portal).simple-filter-text:hover, :where(.ntable, .ntable-scope, .ntable-portal) .simple-filter-text:hover { border-color: #b6bdc8; }:where(.ntable, .ntable-scope, .ntable-portal).simple-filter-text:focus-within, :where(.ntable, .ntable-scope, .ntable-portal) .simple-filter-text:focus-within { border-color: #5d83e8; box-shadow: 0 0 0 2px #e0e8ff; }:where(.ntable, .ntable-scope, .ntable-portal).simple-filter-text.set:not(:focus-within), :where(.ntable, .ntable-scope, .ntable-portal) .simple-filter-text.set:not(:focus-within) { border-color: transparent; background: rgba(20, 86, 240, .2); }:where(.ntable, .ntable-scope, .ntable-portal).simple-filter-text.set .simple-filter-label, :where(.ntable, .ntable-scope, .ntable-portal) .simple-filter-text.set .simple-filter-label { color: #1f2329; }:where(.ntable, .ntable-scope, .ntable-portal).simple-filter-text input, :where(.ntable, .ntable-scope, .ntable-portal) .simple-filter-text input {
+  width: 8em;
+  min-width: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: #1f2329;
+  font: inherit;
+}:where(.ntable, .ntable-scope, .ntable-portal).simple-filter-text input::placeholder, :where(.ntable, .ntable-scope, .ntable-portal) .simple-filter-text input::placeholder { color: #8f959e; }:where(.ntable, .ntable-scope, .ntable-portal).simple-filter-text-clear, :where(.ntable, .ntable-scope, .ntable-portal) .simple-filter-text-clear {
+  display: grid;
+  flex: 0 0 auto;
+  place-items: center;
+  width: 18px;
+  height: 18px;
+  padding: 0;
+  border: 0;
+  border-radius: 4px;
+  background: transparent;
+  color: #646a73;
+  cursor: pointer;
+}:where(.ntable, .ntable-scope, .ntable-portal).simple-filter-text-clear:hover, :where(.ntable, .ntable-scope, .ntable-portal) .simple-filter-text-clear:hover { background: rgba(31, 35, 41, .08); }:where(.ntable, .ntable-scope, .ntable-portal).select-menu.simple-filter-menu, :where(.ntable, .ntable-scope, .ntable-portal) .select-menu.simple-filter-menu { width: 240px; min-width: 240px; }:where(.ntable, .ntable-scope, .ntable-portal).simple-filter-menu .select-option > svg:last-child:not(.select-field-icon), :where(.ntable, .ntable-scope, .ntable-portal) .simple-filter-menu .select-option > svg:last-child:not(.select-field-icon) { margin-left: 0; }:where(.ntable, .ntable-scope, .ntable-portal).simple-filter-count, :where(.ntable, .ntable-scope, .ntable-portal) .simple-filter-count { margin-left: auto; color: #8f959e; font-size: 12px; font-variant-numeric: tabular-nums; }:where(.ntable, .ntable-scope, .ntable-portal).simple-filter-footer, :where(.ntable, .ntable-scope, .ntable-portal) .simple-filter-footer { display: flex; justify-content: flex-end; padding: 4px 8px 0; border-top: 1px solid #eff0f1; }:where(.ntable, .ntable-scope, .ntable-portal).table-toolbar .toolbar-left > .simple-filter-notice, :where(.ntable, .ntable-scope, .ntable-portal) .table-toolbar .toolbar-left > .simple-filter-notice {
   flex: 0 1 auto;
   min-width: 160px;
   height: 26px;

@@ -5,10 +5,11 @@ import type { Field, FilterOperator, FilterRule, SimpleFilterField, TableRecord,
 
 /**
  * 简单筛选与 activeView.filters 一一对应：每个简单字段最多一条「规范规则」。
- * 单选 equals、多选 contains、布尔 equals（值为 ["true"] 或 ["false"]），值都是字符串数组。
+ * 单选 equals、多选 contains、布尔 equals（值为 ["true"] 或 ["false"]），值都是字符串数组；
+ * 文本 contains，值是输入的字符串（投影里按单元素数组表示）。
  * 视图里有超出这个形状的条件时，投影失败，由工具栏提示去高级里处理，不做有损转换。
  */
-export type SimpleFilterType = "singleSelect" | "multiSelect" | "boolean";
+export type SimpleFilterType = "text" | "singleSelect" | "multiSelect" | "boolean";
 export type FilterValues = Record<string, string[]>;
 export type SimpleProjection = { ok: true; values: FilterValues } | { ok: false; reasons: string[] };
 export interface ResolvedSimpleField extends SimpleFilterField {
@@ -16,7 +17,7 @@ export interface ResolvedSimpleField extends SimpleFilterField {
 }
 
 export function isSimpleFilterType(type?: Field["type"]): type is SimpleFilterType {
-  return type === "singleSelect" || type === "multiSelect" || type === "boolean";
+  return type === "text" || type === "singleSelect" || type === "multiSelect" || type === "boolean";
 }
 
 /** 丢弃未知字段、不支持的字段类型和重复 id（保留首个），其余保持宿主给的顺序 */
@@ -33,7 +34,7 @@ export function resolveSimpleFields(simpleFields: SimpleFilterField[] | undefine
 }
 
 export function canonicalOperator(type?: Field["type"]): FilterOperator {
-  return type === "multiSelect" ? "contains" : "equals";
+  return type === "multiSelect" || type === "text" ? "contains" : "equals";
 }
 
 function operatorLabel(type: Field["type"] | undefined, operator: string) {
@@ -67,6 +68,10 @@ export function projectSimpleFilters(filters: FilterRule[], filterMode: TableVie
       reasons.push(`「${title}」用了「${operatorLabel(field?.type, rule.operator)}」`);
       continue;
     }
+    if (field?.type === "text" && typeof rule.value !== "string") {
+      reasons.push(`「${title}」的条件格式不支持`);
+      continue;
+    }
     const selected = asValues(rule.value);
     if (field?.type === "boolean" && selected.length !== 1) {
       reasons.push(`「${title}」同时选了是和否`);
@@ -79,7 +84,8 @@ export function projectSimpleFilters(filters: FilterRule[], filterMode: TableVie
 }
 
 export function canonicalRule(field: Pick<Field, "id" | "type"> | undefined, fieldId: string, values: string[]): FilterRule {
-  return { id: crypto.randomUUID(), fieldId, operator: canonicalOperator(field?.type), value: values };
+  // 文本条件的值是字符串，其余是选项数组
+  return { id: crypto.randomUUID(), fieldId, operator: canonicalOperator(field?.type), value: field?.type === "text" ? values[0] ?? "" : values };
 }
 
 /**
@@ -91,7 +97,7 @@ export function applySimpleFilter(filters: FilterRule[], filterMode: TableView["
   const firstIndex = filters.findIndex((rule) => rule.fieldId === fieldId);
   const rest = filters.filter((rule) => rule.fieldId !== fieldId);
   const next = [...rest];
-  if (values.length) next.splice(firstIndex < 0 ? rest.length : firstIndex, 0, canonicalRule(fieldById.get(fieldId), fieldId, values));
+  if (values.some((value) => value !== "")) next.splice(firstIndex < 0 ? rest.length : firstIndex, 0, canonicalRule(fieldById.get(fieldId), fieldId, values));
   return { filters: next, filterMode: filterMode === "any" ? "all" : filterMode };
 }
 

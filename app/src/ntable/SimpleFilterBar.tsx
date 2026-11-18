@@ -1,10 +1,11 @@
 import { useMemo, useState } from "react";
 import * as Popover from "@radix-ui/react-popover";
-import { Check, ChevronDown, Filter, Search } from "lucide-react";
+import { Check, ChevronDown, Filter, Search, X } from "lucide-react";
 import { Button } from "../components/Button";
 import type { Field, FilterUi, TableRecord, TableView } from "./types";
 import { fieldOptions } from "./booleanOptions";
 import { moveOptionFocus } from "./PanelControls";
+import { useSearchInput } from "./useSearchInput";
 import { applySimpleFilter, hasSimpleActive, projectSimpleFilters, simpleOptionCounts, summarizeSelection, type ResolvedSimpleField } from "./simpleFilter";
 
 /** 「简单 | 高级」切换：小分段控件，放在工具栏最左 */
@@ -45,12 +46,30 @@ export function SimpleFilterBar({ simpleFields, fieldById, activeView, onUpdateV
     {simpleFields.map((item) => {
       const label = item.label ?? item.field.title;
       const selected = values[item.fieldId] ?? [];
+      if (item.field.type === "text") return <SimpleText key={item.fieldId} label={label} value={selected[0] ?? ""} onChange={(next) => write(item.fieldId, next ? [next] : [])} />;
       return item.field.type === "boolean"
         ? <SimpleBoolean key={item.fieldId} label={label} trueLabel={item.trueLabel ?? "是"} falseLabel={item.falseLabel ?? "否"} value={selected[0]} onChange={(next) => write(item.fieldId, next)} />
         : <SimpleSelect key={item.fieldId} item={item} label={label} selected={selected} onChange={(next) => write(item.fieldId, next)}
           rows={rows} view={activeView} orderedFields={orderedFields} fieldById={fieldById} search={search} getSubRows={getSubRows} />;
     })}
     {hasSimpleActive(values) && <Button size="small" color="primary" className="text-button" onClick={() => onUpdateView(activeView.id, { filters: [] })}>清空</Button>}
+  </div>;
+}
+
+/**
+ * 文本字段：带标签的输入框，写「包含」条件。输入停顿 300ms 后提交，输入法组合中不提交；
+ * 清空即删掉这条条件。外部改了条件（高级面板、清空）时输入框跟着变。
+ */
+function SimpleText({ label, value, onChange }: { label: string; value: string; onChange: (value: string) => void }) {
+  const input = useSearchInput(value, onChange, 300, 0);
+  return <div className={`simple-filter-text${value ? " set" : ""}`}>
+    <span className="simple-filter-label">{label}</span>
+    <input aria-label={label} placeholder="包含…" value={input.draft}
+      onChange={(event) => input.update(event.target.value)}
+      onCompositionStart={input.startComposition}
+      onCompositionEnd={(event) => input.endComposition(event.currentTarget.value)}
+      onKeyDown={(event) => { if (event.key === "Escape" && !event.nativeEvent.isComposing) { event.preventDefault(); event.stopPropagation(); event.currentTarget.blur(); } }} />
+    {input.draft && <button type="button" className="simple-filter-text-clear" aria-label={`清除${label}`} onClick={input.clear}><X size={12} /></button>}
   </div>;
 }
 

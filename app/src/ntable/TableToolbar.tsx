@@ -49,12 +49,17 @@ export function TableToolbar({ fields, activeView, onUpdateView, onAddRecord, se
   const filterPanel = <FilterPanel key={`filters:${activeView.id}`} filterMode={activeView.filterMode ?? "all"} onModeChange={(filterMode) => onUpdateView(activeView.id, { filterMode })} fields={fields} filters={activeView.filters} onChange={(filters) => onUpdateView(activeView.id, { filters })} />;
   const fieldConfig = <FieldConfigPanel key={`fields:${activeView.id}`} fields={fields} activeView={activeView} onUpdateView={onUpdateView} />;
   const sortPanel = <SortPanel key={`sorts:${activeView.id}`} fields={fields} sorts={activeView.sorts} onChange={(sorts) => onUpdateView(activeView.id, { sorts })} />;
-  const searchNode = onSearchChange && (searchOpen ? <div className="search-box" onBlur={(event) => {
+  // 简单筛选模式下搜索框常驻展开：不自动聚焦、失焦不收起，右侧按钮只在有内容时出现，用来清空
+  const searchPinned = simpleEnabled && ui === "simple";
+  const searchNode = onSearchChange && (searchOpen || searchPinned ? <div className={`search-box${searchPinned ? " search-box--pinned" : ""}`} onBlur={(event) => {
     // 焦点离开整个搜索框（不是移到关闭按钮）且没有有效搜索词：收起成搜索按钮，回到初始状态
-    if (event.currentTarget.contains(event.relatedTarget as Node | null) || input.draft.trim()) return;
+    if (searchPinned || event.currentTarget.contains(event.relatedTarget as Node | null) || input.draft.trim()) return;
     input.clear();
     setSearchOpen(false);
-  }}><Search size={15} /><input ref={searchInput} autoFocus value={input.draft} onKeyDown={(event) => { if (event.key === "Escape" && !event.nativeEvent.isComposing) { event.preventDefault(); event.stopPropagation(); event.currentTarget.blur(); } }} onChange={(event) => input.update(event.target.value)} onCompositionStart={input.startComposition} onCompositionEnd={(event) => input.endComposition(event.currentTarget.value)} aria-label="搜索记录" placeholder="搜索" /><Button size="small" aria-label="关闭搜索" onClick={() => { input.clear(); restoreSearchFocus.current = true; setSearchOpen(false); }}><X size={14} /></Button></div> : <Button ref={searchTrigger} size="small" iconOnly className="toolbar-icon" aria-label="搜索" onClick={() => setSearchOpen(true)}><Search size={18} /></Button>);
+  }}><Search size={15} /><input ref={searchInput} autoFocus={!searchPinned} value={input.draft} onKeyDown={(event) => { if (event.key === "Escape" && !event.nativeEvent.isComposing) { event.preventDefault(); event.stopPropagation(); event.currentTarget.blur(); } }} onChange={(event) => input.update(event.target.value)} onCompositionStart={input.startComposition} onCompositionEnd={(event) => input.endComposition(event.currentTarget.value)} aria-label="搜索记录" placeholder="搜索" />
+    {searchPinned
+      ? input.draft && <Button size="small" aria-label="清空搜索" onClick={() => { input.clear(); searchInput.current?.focus(); }}><X size={14} /></Button>
+      : <Button size="small" aria-label="关闭搜索" onClick={() => { input.clear(); restoreSearchFocus.current = true; setSearchOpen(false); }}><X size={14} /></Button>}</div> : <Button ref={searchTrigger} size="small" iconOnly className="toolbar-icon" aria-label="搜索" onClick={() => setSearchOpen(true)}><Search size={18} /></Button>);
   // 工具栏始终单行：左侧超出时横向滚动，聚焦到被遮住的按钮会把它滚进视野
   const scrollFocusedIntoView = (event: FocusEvent<HTMLDivElement>) => {
     const control = (event.target as HTMLElement).closest<HTMLElement>("button, input");

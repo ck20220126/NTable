@@ -64,11 +64,12 @@ export function TableToolbar({ fields, activeView, onUpdateView, onAddRecord, se
     else if (cell.right > bounds.right) event.currentTarget.scrollLeft += cell.right - bounds.right;
   };
   if (!simpleEnabled) return <div className="ntable-scope table-toolbar"><div className="toolbar-left" onFocusCapture={scrollFocusedIntoView}>{addRecord}{fieldConfig}{filterPanel}{sortPanel}</div><div className="toolbar-right">{searchNode}</div></div>;
-  // 简单筛选：切换、添加记录、搜索、筛选控件依次排在左侧，字段配置和排序留在右侧
+  // 简单筛选：切换、添加记录、筛选控件、搜索依次排在左侧，字段配置和排序留在右侧
   return <div className="ntable-scope table-toolbar"><div className="toolbar-left" onFocusCapture={scrollFocusedIntoView}>
-    <FilterUiSwitch ui={ui} onChange={changeUi} />{addRecord}{searchNode}
+    <FilterUiSwitch ui={ui} onChange={changeUi} />{addRecord}
     {ui === "simple"
       ? <SimpleFilterBar simpleFields={simpleFields} fieldById={fieldById} activeView={activeView} onUpdateView={onUpdateView} rows={rows} getSubRows={getSubRows} search={search} onShowAdvanced={() => changeUi("advanced")} />
       : filterPanel}
+    {searchNode}
   </div><div className="toolbar-right">{fieldConfig}{sortPanel}</div></div>;
 }

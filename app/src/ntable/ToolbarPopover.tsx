@@ -1,8 +1,9 @@
 import * as Popover from "@radix-ui/react-popover";
 import { useEffect, useLayoutEffect, useRef, useState, type ReactNode } from "react";
 import type { LucideIcon } from "lucide-react";
-export function ToolbarPopover({ icon: Icon, label, active, children, width = 340, className = "" }: { icon: LucideIcon; label: string; active: boolean; children: ReactNode; width?: number; className?: string }) {
-  const [open, setOpen] = useState(false);
+/** defaultOpen：挂载时直接打开（如从简单切到高级时自动展开筛选面板），之后照常由用户开关 */
+export function ToolbarPopover({ icon: Icon, label, active, children, width = 340, className = "", defaultOpen = false }: { icon: LucideIcon; label: string; active: boolean; children: ReactNode; width?: number; className?: string; defaultOpen?: boolean }) {
+  const [open, setOpen] = useState(defaultOpen);
   const trigger = useRef<HTMLButtonElement>(null);
   const content = useRef<HTMLDivElement>(null);
   const focusedControl = useRef<Element | null>(null);

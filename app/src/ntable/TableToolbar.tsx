@@ -44,13 +44,20 @@ export function TableToolbar({ fields, activeView, onUpdateView, onAddRecord, se
   // 传入 filterUi 即受控；否则内部维护，默认简单
   const [internalUi, setInternalUi] = useState<FilterUi>("simple");
   const ui = filterUi ?? internalUi;
-  const changeUi = (next: FilterUi) => { if (filterUi === undefined) setInternalUi(next); onFilterUiChange?.(next); };
+  // 用户从简单切到高级时，筛选面板挂载即打开；只管这一次，之后切视图等重新挂载不再自动打开
+  const [autoOpenFilter, setAutoOpenFilter] = useState(false);
+  useEffect(() => { if (autoOpenFilter) setAutoOpenFilter(false); }, [autoOpenFilter]);
+  const changeUi = (next: FilterUi) => {
+    if (next === "advanced" && ui !== "advanced") setAutoOpenFilter(true);
+    if (filterUi === undefined) setInternalUi(next);
+    onFilterUiChange?.(next);
+  };
   // 简单筛选的值同理：传入即受控，否则内部维护；不写进视图
   const [internalValues, setInternalValues] = useState<SimpleFilterValues>({});
   const simpleValues = simpleFilterValues ?? internalValues;
   const changeSimpleValues = (next: SimpleFilterValues) => { if (simpleFilterValues === undefined) setInternalValues(next); onSimpleFilterValuesChange?.(next); };
   const addRecord = onAddRecord && <Button size="small" color="primary" className="add-record" onClick={onAddRecord}><Plus size={17} /> 添加记录</Button>;
-  const filterPanel = <FilterPanel key={`filters:${activeView.id}`} filterMode={activeView.filterMode ?? "all"} onModeChange={(filterMode) => onUpdateView(activeView.id, { filterMode })} fields={fields} filters={activeView.filters} onChange={(filters) => onUpdateView(activeView.id, { filters })} />;
+  const filterPanel = <FilterPanel key={`filters:${activeView.id}`} filterMode={activeView.filterMode ?? "all"} onModeChange={(filterMode) => onUpdateView(activeView.id, { filterMode })} fields={fields} filters={activeView.filters} onChange={(filters) => onUpdateView(activeView.id, { filters })} defaultOpen={autoOpenFilter} />;
   const fieldConfig = <FieldConfigPanel key={`fields:${activeView.id}`} fields={fields} activeView={activeView} onUpdateView={onUpdateView} />;
   const sortPanel = <SortPanel key={`sorts:${activeView.id}`} fields={fields} sorts={activeView.sorts} onChange={(sorts) => onUpdateView(activeView.id, { sorts })} />;
   // 简单筛选模式下搜索框常驻展开：不自动聚焦、失焦不收起，右侧按钮只在有内容时出现，用来清空

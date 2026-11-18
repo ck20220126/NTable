@@ -7,7 +7,7 @@ import { FieldConfigPanel } from "./FieldConfigPanel";
 import { FilterPanel } from "./FilterPanel";
 import { SortPanel } from "./SortPanel";
 import { FilterUiSwitch, SimpleFilterBar } from "./SimpleFilterBar";
-import { resolveSimpleFields } from "./simpleFilter";
+import { hasSimpleActive, resolveSimpleFields } from "./simpleFilter";
 import { defaultGetSubRows } from "./tree";
 import type { FilterUi, SimpleFilterValues } from "./types";
 export function TableToolbar({ fields, activeView, onUpdateView, onAddRecord, search = "", onSearchChange, searchDebounceMs = 300, searchResetKey = 0, captureFindShortcut = false, simpleFilterFields, filterUi, onFilterUiChange, simpleFilterValues, onSimpleFilterValuesChange, rows, getSubRows = defaultGetSubRows }: TableToolbarProps) {
@@ -87,5 +87,7 @@ export function TableToolbar({ fields, activeView, onUpdateView, onAddRecord, se
       ? <SimpleFilterBar simpleFields={simpleFields} fieldById={fieldById} activeView={activeView} values={simpleValues} onChange={changeSimpleValues} rows={rows} getSubRows={getSubRows} search={search} />
       : filterPanel}
     {searchNode}
+    {/* 简单模式的「清空」放在搜索框后面，筛选值和搜索词一起清 */}
+    {ui === "simple" && (hasSimpleActive(simpleValues) || input.draft) && <Button size="small" color="primary" className="text-button simple-filter-clear" onClick={() => { changeSimpleValues({}); input.clear(); }}>清空</Button>}
   </div><div className="toolbar-right">{fieldConfig}{sortPanel}</div></div>;
 }

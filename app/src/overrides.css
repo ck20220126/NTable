@@ -1674,6 +1674,10 @@ body {
   color: #1f2329;
 }
 .simple-filter-trigger > svg { flex: 0 0 auto; color: #646a73; }
+/* 已选值按表格多选列的样子显示成标签（最多两个 + 灰色「+n」），单个标签过长省略 */
+.simple-filter-tags { display: flex; align-items: center; gap: 4px; min-width: 0; }
+.simple-filter-tags > .tag { flex: 0 1 auto; min-width: 0; max-width: 120px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.simple-filter-tags > .tag-more { flex: none; }
 .simple-filter-trigger.open > svg { transform: rotate(180deg); }
 .simple-filter-text {
   display: flex;

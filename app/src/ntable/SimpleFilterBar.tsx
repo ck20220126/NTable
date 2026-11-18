@@ -4,9 +4,10 @@ import { Check, ChevronDown, Filter, Search, X } from "lucide-react";
 import { Button } from "../components/Button";
 import type { Field, FilterUi, SimpleFilterValues, TableRecord, TableView } from "./types";
 import { fieldOptions } from "./booleanOptions";
+import { optionTagColor } from "./tagColors";
 import { moveOptionFocus } from "./PanelControls";
 import { useSearchInput } from "./useSearchInput";
-import { hasSimpleActive, simpleOptionCounts, summarizeSelection, type ResolvedSimpleField } from "./simpleFilter";
+import { simpleOptionCounts, summarizeSelection, type ResolvedSimpleField } from "./simpleFilter";
 
 /** 「简单 | 高级」切换：小分段控件，放在工具栏最左 */
 export function FilterUiSwitch({ ui, onChange }: { ui: FilterUi; onChange: (ui: FilterUi) => void }) {
@@ -48,7 +49,6 @@ export function SimpleFilterBar({ simpleFields, fieldById, activeView, values, o
         : <SimpleSelect key={item.fieldId} item={item} label={label} selected={selected} onChange={(next) => write(item.fieldId, next)}
           rows={rows} view={activeView} values={values} orderedFields={orderedFields} fieldById={fieldById} search={search} getSubRows={getSubRows} />;
     })}
-    {hasSimpleActive(values) && <Button size="small" color="primary" className="text-button" onClick={() => onChange({})}>清空</Button>}
   </div>;
 }
 
@@ -101,7 +101,8 @@ function SimpleSelect({ item, label, selected, onChange, rows, view, values, ord
   const chosen = new Set(selected);
   // 未选且数量为 0 的选项隐藏（天然实现联动）；已选的始终保留，方便取消
   const visible = options.filter((option) => (chosen.has(option.value) || !counts || (counts.get(option.value) ?? 0) > 0) && (!keyword || option.label.toLocaleLowerCase().includes(keyword)));
-  const summary = summarizeSelection(options.filter((option) => chosen.has(option.value)).map((option) => option.label));
+  const chosenOptions = options.filter((option) => chosen.has(option.value));
+  const summary = summarizeSelection(chosenOptions.map((option) => option.label));
   const changeOpen = (next: boolean) => { setQuery(""); setOpen(next); };
   // 保持已选值的原顺序，新选的追加在后面
   const toggle = (value: string) => onChange(chosen.has(value) ? selected.filter((entry) => entry !== value) : [...selected, value]);
@@ -109,7 +110,8 @@ function SimpleSelect({ item, label, selected, onChange, rows, view, values, ord
     <Popover.Trigger asChild>
       <button type="button" className={`simple-filter-trigger${selected.length ? " set" : ""}${open ? " open" : ""}`} aria-label={`${label}：${summary}`} title={`${label}：${summary}`}
         onKeyDown={(event) => { if (event.key === "ArrowDown" || event.key === "ArrowUp") { event.preventDefault(); changeOpen(true); } }}>
-        <span className="simple-filter-label">{label}</span><span className="simple-filter-value">{summary}</span><ChevronDown size={14} />
+        <span className="simple-filter-label">{label}</span>
+        {chosenOptions.length ? <SelectedTags field={item.field} options={chosenOptions} /> : <span className="simple-filter-value">全部</span>}<ChevronDown size={14} />
       </button>
     </Popover.Trigger>
     <Popover.Portal>
@@ -125,4 +127,16 @@ function SimpleSelect({ item, label, selected, onChange, rows, view, values, ord
       </Popover.Content>
     </Popover.Portal>
   </Popover.Root>;
+}
+
+/** 已选的选项按表格多选列的样子平铺成标签：最多两个，多出的用灰色「+n」，每个标签过长省略 */
+const MAX_TAGS = 2;
+const tagStyle = (color: string) => ({ "--tag-bg": color }) as import("react").CSSProperties;
+function SelectedTags({ field, options }: { field: Field; options: { value: string; label: string }[] }) {
+  const shown = options.slice(0, MAX_TAGS);
+  const hidden = options.length - shown.length;
+  return <span className="simple-filter-tags">
+    {shown.map((option) => <span key={option.value} className="tag" style={tagStyle(optionTagColor(field.options, option.value))}>{option.label}</span>)}
+    {hidden > 0 && <span className="tag tag-more" style={tagStyle("#eff0f1")}>+{hidden}</span>}
+  </span>;
 }

@@ -1826,44 +1826,47 @@ body {
   .view-actions-menu[data-state="closed"] { animation: none; }
 }
 
-/* 筛选区：简单 / 高级切换、筛选控件、搜索、清空收进一条白底细边的框，读起来像一个整体。
-   框内控件去掉各自的描边，只靠悬停底色和「已选」的蓝色浅底区分，段与段之间用细竖线隔开；
-   框里的输入框（搜索、文本筛选）聚焦时整条框变成聚焦态（蓝描边 + 光晕），和其它输入框一致；按钮聚焦不亮整条框。 */
+/* 筛选区：简单 / 高级切换、筛选控件、搜索、清空收进一块淡底色的区域（无描边），内边距 2px，读起来是一个整体。
+   框内控件透明、无描边，靠悬停加深和「已选」的蓝色浅底区分，段与段之间用细竖线隔开；
+   分段切换的轨道透明，选中项白底；框里的输入框聚焦时该输入框变白底蓝描边。 */
 .table-toolbar .toolbar-left > .filter-group {
   display: flex;
   align-items: center;
   gap: 4px;
-  height: 32px;
-  padding: 0 3px 0 10px;
-  border: 1px solid #dee0e3;
+  padding: 2px;
   border-radius: 8px;
-  background: #fff;
+  background: #f2f3f5;
   flex-shrink: 0;
-  transition: border-color .15s, box-shadow .15s;
 }
-.table-toolbar .toolbar-left > .filter-group:hover { border-color: #c9cdd4; }
-.table-toolbar .toolbar-left > .filter-group:has(input:focus) { border-color: #5d83e8; box-shadow: 0 0 0 2px #e0e8ff; }
 .filter-group > .filter-ui-switch,
 .filter-group > .simple-filters { display: flex; align-items: center; gap: 4px; }
-.filter-group > .filter-ui-switch { gap: 8px; }
+.filter-group > .filter-ui-switch { gap: 6px; padding-left: 6px; }
 .filter-group > .filter-ui-switch::after,
 .filter-group > .simple-filters::after {
   content: "";
   flex: none;
   width: 1px;
-  height: 16px;
+  height: 14px;
   margin: 0 2px;
-  background: #e4e7ec;
+  background: #dee0e3;
 }
+.filter-group .ntable-segmented { padding: 0; background: transparent; }
+.filter-group .ntable-segmented button:hover:not([aria-pressed="true"]) { background: rgba(31, 35, 41, .06); }
 .filter-group .simple-filter-trigger,
 .filter-group .simple-filter-text,
-.filter-group .search-box { height: 26px; border-color: transparent; box-shadow: none; }
+.filter-group .search-box { border-color: transparent; background-color: transparent; box-shadow: none; }
 .filter-group .simple-filter-trigger:not(.set):hover,
-.filter-group .simple-filter-text:not(.set):hover { border-color: transparent; background: #f2f3f5; }
-.filter-group .simple-filter-trigger.open,
-.filter-group .simple-filter-trigger:focus-visible { border-color: transparent; box-shadow: none; background: #f2f3f5; }
-.filter-group .simple-filter-text:focus-within { border-color: transparent; box-shadow: none; }
+.filter-group .simple-filter-text:not(.set):hover,
+.filter-group .simple-filter-trigger.open:not(.set),
+.filter-group .simple-filter-trigger:focus-visible:not(.set) { border-color: transparent; box-shadow: none; background-color: rgba(31, 35, 41, .06); }
+.filter-group .simple-filter-trigger.set { background-color: rgba(20, 86, 240, .16); }
+.filter-group .simple-filter-text:focus-within { border-color: #5d83e8; box-shadow: none; background-color: #fff; }
 .table-toolbar .filter-group .search-box,
-.table-toolbar .filter-group .search-box:hover,
-.table-toolbar .filter-group .search-box:focus-within { border-color: transparent; box-shadow: none; }
+.table-toolbar .filter-group .search-box:not(:focus-within):hover { border-color: transparent; box-shadow: none; background-color: transparent; }
+.table-toolbar .filter-group .search-box:not(:focus-within):hover { background-color: rgba(31, 35, 41, .06); }
+.table-toolbar .filter-group .search-box:focus-within { border-color: #5d83e8; box-shadow: none; background-color: #fff; }
 .filter-group .search-box { width: 200px; padding: 0 6px; }
+.filter-group .search-box input { background: transparent; }
+.filter-group .toolbar-action:hover,
+.filter-group .toolbar-action.active,
+.filter-group .toolbar-icon:hover { background: rgba(31, 35, 41, .06); }

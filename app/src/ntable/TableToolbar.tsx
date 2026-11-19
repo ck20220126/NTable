@@ -80,14 +80,18 @@ export function TableToolbar({ fields, activeView, onUpdateView, onAddRecord, se
     else if (cell.right > bounds.right) event.currentTarget.scrollLeft += cell.right - bounds.right;
   };
   if (!simpleEnabled) return <div className="ntable-scope table-toolbar"><div className="toolbar-left" onFocusCapture={scrollFocusedIntoView}>{addRecord}{fieldConfig}{filterPanel}{sortPanel}</div><div className="toolbar-right">{searchNode}</div></div>;
-  // 简单筛选：切换、添加记录、筛选控件、搜索依次排在左侧，字段配置和排序留在右侧
+  // 简单筛选：添加记录在最左；切换、筛选控件、搜索、清空收进一个框（.filter-group），读起来是一整块筛选区；
+  // 字段配置和排序留在右侧
   return <div className="ntable-scope table-toolbar"><div className="toolbar-left" onFocusCapture={scrollFocusedIntoView}>
-    <FilterUiSwitch ui={ui} onChange={changeUi} />{addRecord}
+    {addRecord}
+    <div className="filter-group" role="group" aria-label="筛选与搜索">
+    <FilterUiSwitch ui={ui} onChange={changeUi} />
     {ui === "simple"
       ? <SimpleFilterBar simpleFields={simpleFields} fieldById={fieldById} activeView={activeView} values={simpleValues} onChange={changeSimpleValues} rows={rows} getSubRows={getSubRows} search={search} />
       : filterPanel}
     {searchNode}
     {/* 简单模式的「清空」放在搜索框后面，筛选值和搜索词一起清 */}
     {ui === "simple" && (hasSimpleActive(simpleValues) || input.draft) && <Button size="small" color="primary" className="text-button simple-filter-clear" onClick={() => { changeSimpleValues({}); input.clear(); }}>清空</Button>}
+    </div>
   </div><div className="toolbar-right">{fieldConfig}{sortPanel}</div></div>;
 }
